@@ -6,12 +6,12 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.13.843
+  version: 1.13.854
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
 servers:
-- url: https://fbn-ci.lusid.com/honeycomb
+- url: https://fbn-prd.lusid.com/honeycomb
 security:
 - {}
 tags:

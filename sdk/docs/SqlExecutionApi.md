@@ -1,6 +1,6 @@
 # SqlExecutionApi
 
-All URIs are relative to *https://fbn-ci.lusid.com/honeycomb*
+All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -47,7 +47,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -131,7 +131,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -206,7 +206,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -284,7 +284,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -359,7 +359,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -437,7 +437,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -512,7 +512,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -590,7 +590,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -674,7 +674,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -749,7 +749,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -827,7 +827,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -902,7 +902,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -980,7 +980,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1055,7 +1055,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1133,7 +1133,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1205,7 +1205,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1274,7 +1274,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1382,7 +1382,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1459,7 +1459,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
@@ -1542,7 +1542,7 @@ import com.finbourne.luminesce.api.SqlExecutionApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-ci.lusid.com/honeycomb");
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
     
     // Configure OAuth2 access token for authorization: oauth2
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
