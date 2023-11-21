@@ -88,11 +88,11 @@ public class OptionsCsv {
 
   public static final String SERIALIZED_NAME_SKIP_PRE_HEADER = "skipPreHeader";
   @SerializedName(SERIALIZED_NAME_SKIP_PRE_HEADER)
-  private Boolean skipPreHeader;
+  private Integer skipPreHeader;
 
   public static final String SERIALIZED_NAME_SKIP_POST_HEADER = "skipPostHeader";
   @SerializedName(SERIALIZED_NAME_SKIP_POST_HEADER)
-  private Boolean skipPostHeader;
+  private Integer skipPostHeader;
 
   public static final String SERIALIZED_NAME_SKIP_INVALID_ROWS = "skipInvalidRows";
   @SerializedName(SERIALIZED_NAME_SKIP_INVALID_ROWS)
@@ -290,7 +290,7 @@ public class OptionsCsv {
   }
 
 
-  public OptionsCsv skipPreHeader(Boolean skipPreHeader) {
+  public OptionsCsv skipPreHeader(Integer skipPreHeader) {
     
     this.skipPreHeader = skipPreHeader;
     return this;
@@ -301,17 +301,17 @@ public class OptionsCsv {
    * @return skipPreHeader
   **/
   @jakarta.annotation.Nullable
-  public Boolean getSkipPreHeader() {
+  public Integer getSkipPreHeader() {
     return skipPreHeader;
   }
 
 
-  public void setSkipPreHeader(Boolean skipPreHeader) {
+  public void setSkipPreHeader(Integer skipPreHeader) {
     this.skipPreHeader = skipPreHeader;
   }
 
 
-  public OptionsCsv skipPostHeader(Boolean skipPostHeader) {
+  public OptionsCsv skipPostHeader(Integer skipPostHeader) {
     
     this.skipPostHeader = skipPostHeader;
     return this;
@@ -322,12 +322,12 @@ public class OptionsCsv {
    * @return skipPostHeader
   **/
   @jakarta.annotation.Nullable
-  public Boolean getSkipPostHeader() {
+  public Integer getSkipPostHeader() {
     return skipPostHeader;
   }
 
 
-  public void setSkipPostHeader(Boolean skipPostHeader) {
+  public void setSkipPostHeader(Integer skipPostHeader) {
     this.skipPostHeader = skipPostHeader;
   }
 

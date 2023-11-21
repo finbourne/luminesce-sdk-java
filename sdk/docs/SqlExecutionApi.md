@@ -1363,7 +1363,7 @@ public class Example {
 
 <a id="putSqlToFileReadDesign"></a>
 # **putSqlToFileReadDesign**
-> String putSqlToFileReadDesign(body).determineAvailableSources(determineAvailableSources).execute();
+> String putSqlToFileReadDesign().determineAvailableSources(determineAvailableSources).body(body).execute();
 
 [EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design object from SQL string, if possible.
 
@@ -1389,16 +1389,17 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
+    Boolean determineAvailableSources = true; // Boolean | Should the available sources be determined from `Sys.Registration`
     String body = @x = 
 use Drive.Csv
  --file=/some/folder/somefile.csv
 enduse;
 
 select generate justfile from @x;; // String | SQL query to generate the file read design object from
-    Boolean determineAvailableSources = true; // Boolean | Should the available sources be determined from `Sys.Registration`
     try {
-      String result = apiInstance.putSqlToFileReadDesign(body)
+      String result = apiInstance.putSqlToFileReadDesign()
             .determineAvailableSources(determineAvailableSources)
+            .body(body)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -1416,8 +1417,8 @@ select generate justfile from @x;; // String | SQL query to generate the file re
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | **String**| SQL query to generate the file read design object from | |
 | **determineAvailableSources** | **Boolean**| Should the available sources be determined from &#x60;Sys.Registration&#x60; | [optional] [default to true] |
+| **body** | **String**| SQL query to generate the file read design object from | [optional] |
 
 ### Return type
 

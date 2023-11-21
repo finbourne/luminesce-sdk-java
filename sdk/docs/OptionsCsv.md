@@ -17,8 +17,8 @@ Additional options applicable to the given SourceType
 |**escape** | **String** | Character used to escape the &#39;Quote&#39; character when within a value |  [optional] |
 |**quote** | **String** | Character used around any field containing the &#39;delimiter&#39; or a line break. |  [optional] |
 |**valuesToMakeNull** | **String** | Regex of values to map to &#39;null&#39; in the returned data. |  [optional] |
-|**skipPreHeader** | **Boolean** | Number of rows to ignore before the header row |  [optional] |
-|**skipPostHeader** | **Boolean** | Number of rows to ignore after the header row |  [optional] |
+|**skipPreHeader** | **Integer** | Number of rows to ignore before the header row |  [optional] |
+|**skipPostHeader** | **Integer** | Number of rows to ignore after the header row |  [optional] |
 |**skipInvalidRows** | **Boolean** | Skip invalid data rows (totally invalid ones),   This also allows for potentially wrong data if it can be handled somewhat e.g. embedded quotes misused (and still returns such rows).  In either case a warning will show in the progress feedback. |  [optional] |
 
 

@@ -3592,7 +3592,7 @@ public class SqlExecutionApi {
     public APIputQueryToFormatRequest putQueryToFormat(String body) {
         return new APIputQueryToFormatRequest(body);
     }
-    private okhttp3.Call putSqlToFileReadDesignCall(String body, Boolean determineAvailableSources, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putSqlToFileReadDesignCall(Boolean determineAvailableSources, String body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3644,37 +3644,31 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putSqlToFileReadDesignValidateBeforeCall(String body, Boolean determineAvailableSources, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling putSqlToFileReadDesign(Async)");
-        }
-
-        return putSqlToFileReadDesignCall(body, determineAvailableSources, _callback);
+    private okhttp3.Call putSqlToFileReadDesignValidateBeforeCall(Boolean determineAvailableSources, String body, final ApiCallback _callback) throws ApiException {
+        return putSqlToFileReadDesignCall(determineAvailableSources, body, _callback);
 
     }
 
 
-    private ApiResponse<String> putSqlToFileReadDesignWithHttpInfo(String body, Boolean determineAvailableSources) throws ApiException {
-        okhttp3.Call localVarCall = putSqlToFileReadDesignValidateBeforeCall(body, determineAvailableSources, null);
+    private ApiResponse<String> putSqlToFileReadDesignWithHttpInfo(Boolean determineAvailableSources, String body) throws ApiException {
+        okhttp3.Call localVarCall = putSqlToFileReadDesignValidateBeforeCall(determineAvailableSources, body, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToFileReadDesignAsync(String body, Boolean determineAvailableSources, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putSqlToFileReadDesignAsync(Boolean determineAvailableSources, String body, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putSqlToFileReadDesignValidateBeforeCall(body, determineAvailableSources, _callback);
+        okhttp3.Call localVarCall = putSqlToFileReadDesignValidateBeforeCall(determineAvailableSources, body, _callback);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     public class APIputSqlToFileReadDesignRequest {
-        private final String body;
         private Boolean determineAvailableSources;
+        private String body;
 
-        private APIputSqlToFileReadDesignRequest(String body) {
-            this.body = body;
+        private APIputSqlToFileReadDesignRequest() {
         }
 
         /**
@@ -3684,6 +3678,16 @@ public class SqlExecutionApi {
          */
         public APIputSqlToFileReadDesignRequest determineAvailableSources(Boolean determineAvailableSources) {
             this.determineAvailableSources = determineAvailableSources;
+            return this;
+        }
+
+        /**
+         * Set body
+         * @param body SQL query to generate the file read design object from (optional)
+         * @return APIputSqlToFileReadDesignRequest
+         */
+        public APIputSqlToFileReadDesignRequest body(String body) {
+            this.body = body;
             return this;
         }
 
@@ -3700,7 +3704,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putSqlToFileReadDesignCall(body, determineAvailableSources, _callback);
+            return putSqlToFileReadDesignCall(determineAvailableSources, body, _callback);
         }
 
         /**
@@ -3715,7 +3719,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putSqlToFileReadDesignWithHttpInfo(body, determineAvailableSources);
+            ApiResponse<String> localVarResp = putSqlToFileReadDesignWithHttpInfo(determineAvailableSources, body);
             return localVarResp.getData();
         }
 
@@ -3731,7 +3735,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return putSqlToFileReadDesignWithHttpInfo(body, determineAvailableSources);
+            return putSqlToFileReadDesignWithHttpInfo(determineAvailableSources, body);
         }
 
         /**
@@ -3747,14 +3751,13 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return putSqlToFileReadDesignAsync(body, determineAvailableSources, _callback);
+            return putSqlToFileReadDesignAsync(determineAvailableSources, body, _callback);
         }
     }
 
     /**
      * [EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design object from SQL string, if possible.
      * SQL to attempt to create a Design object from
-     * @param body SQL query to generate the file read design object from (required)
      * @return APIputSqlToFileReadDesignRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -3763,8 +3766,8 @@ public class SqlExecutionApi {
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
-    public APIputSqlToFileReadDesignRequest putSqlToFileReadDesign(String body) {
-        return new APIputSqlToFileReadDesignRequest(body);
+    public APIputSqlToFileReadDesignRequest putSqlToFileReadDesign() {
+        return new APIputSqlToFileReadDesignRequest();
     }
     private okhttp3.Call putSqlToQueryDesignCall(String body, Boolean validateWithMetadata, final ApiCallback _callback) throws ApiException {
         String basePath = null;

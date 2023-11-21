@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.13.954
+  version: 1.14.1
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2525,7 +2525,6 @@ paths:
             schema:
               type: string
         description: SQL query to generate the file read design object from
-        required: true
       responses:
         "200":
           content:
@@ -5246,7 +5245,7 @@ components:
           noHeader: true
           inferTypeRowCount: 6
           quote: quote
-          skipPreHeader: true
+          skipPreHeader: 1
           skipInvalidRows: true
           columnNames: columnNames
           columnTypes: columnTypes
@@ -5254,7 +5253,7 @@ components:
           columnNamesWanted: columnNamesWanted
           escape: escape
           valuesToMakeNull: valuesToMakeNull
-          skipPostHeader: true
+          skipPostHeader: 5
         source:
           location: location
           type: null
@@ -5262,7 +5261,7 @@ components:
           columnNamesWanted: columnNamesWanted
         excel:
           noHeader: true
-          inferTypeRowCount: 1
+          inferTypeRowCount: 5
           password: password
           columnNames: columnNames
           ignoreBlankRows: true
@@ -5275,7 +5274,7 @@ components:
         sqLite:
           table: table
         xml:
-          inferTypeRowCount: 5
+          inferTypeRowCount: 2
           columnNames: columnNames
           columnTypes: columnTypes
           nodePath: nodePath
@@ -5489,7 +5488,7 @@ components:
         noHeader: true
         inferTypeRowCount: 6
         quote: quote
-        skipPreHeader: true
+        skipPreHeader: 1
         skipInvalidRows: true
         columnNames: columnNames
         columnTypes: columnTypes
@@ -5497,7 +5496,7 @@ components:
         columnNamesWanted: columnNamesWanted
         escape: escape
         valuesToMakeNull: valuesToMakeNull
-        skipPostHeader: true
+        skipPostHeader: 5
       properties:
         columnNames:
           description: Column Names either overrides the header row or steps in when
@@ -5542,10 +5541,12 @@ components:
           type: string
         skipPreHeader:
           description: Number of rows to ignore before the header row
-          type: boolean
+          format: int32
+          type: integer
         skipPostHeader:
           description: Number of rows to ignore after the header row
-          type: boolean
+          format: int32
+          type: integer
         skipInvalidRows:
           description: "Skip invalid data rows (totally invalid ones), \r\nThis also\
             \ allows for potentially wrong data if it can be handled somewhat e.g.\
@@ -5558,7 +5559,7 @@ components:
       description: Additional options applicable to the given SourceType
       example:
         noHeader: true
-        inferTypeRowCount: 1
+        inferTypeRowCount: 5
         password: password
         columnNames: columnNames
         ignoreBlankRows: true
@@ -5642,7 +5643,7 @@ components:
       additionalProperties: false
       description: Additional options applicable to the given SourceType
       example:
-        inferTypeRowCount: 5
+        inferTypeRowCount: 2
         columnNames: columnNames
         columnTypes: columnTypes
         nodePath: nodePath
