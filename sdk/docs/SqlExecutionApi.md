@@ -23,6 +23,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**putQueryToFormat**](SqlExecutionApi.md#putQueryToFormat) | **PUT** /api/Sql/pretty | PutQueryToFormat: Executes Sql, returned in JSON format, where the sql is the post-body url. |
 | [**putSqlToFileReadDesign**](SqlExecutionApi.md#putSqlToFileReadDesign) | **PUT** /api/Sql/tofilereaddesign | [EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design object from SQL string, if possible. |
 | [**putSqlToQueryDesign**](SqlExecutionApi.md#putSqlToQueryDesign) | **PUT** /api/Sql/todesign | [EXPERIMENTAL] PutSqlToQueryDesign: Generates a SQL-design object from SQL string, if possible. |
+| [**putSqlToViewDesign**](SqlExecutionApi.md#putSqlToViewDesign) | **PUT** /api/Sql/toviewdesign | [EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation design from existing view creation SQL. |
 | [**putViewDesignToSql**](SqlExecutionApi.md#putViewDesignToSql) | **PUT** /api/Sql/fromviewdesign | [EXPERIMENTAL] PutViewDesignToSql: Generates view creation sql from a structured view creation design |
 
 
@@ -1502,6 +1503,82 @@ LIMIT 42; // String | SQL query to generate the design object from
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| SQL query to generate the design object from | |
 | **validateWithMetadata** | **Boolean**| Should the table be validated against the users&#39; view of Sys.Field to fill in DataTypes, etc.? | [optional] [default to true] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: text/plain
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+
+<a id="putSqlToViewDesign"></a>
+# **putSqlToViewDesign**
+> String putSqlToViewDesign(body).execute();
+
+[EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation design from existing view creation SQL.
+
+SQL which creates a view into a structured ConvertToViewData object
+
+### Example
+```java
+// Import classes:
+import com.finbourne.luminesce.ApiClient;
+import com.finbourne.luminesce.ApiException;
+import com.finbourne.luminesce.Configuration;
+import com.finbourne.luminesce.auth.*;
+import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.api.SqlExecutionApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
+    
+    // Configure OAuth2 access token for authorization: oauth2
+    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
+    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
+    String body = @x = 
+use Sys.Admin.SetupView
+ --provider=YourView
+----
+select generate justfile from Lusid.Instrument
+enduse;
+
+select generate justfile from @x;; // String | SQL Query to generate the ConvertToViewData object from
+    try {
+      String result = apiInstance.putSqlToViewDesign(body)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SqlExecutionApi#putSqlToViewDesign");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | **String**| SQL Query to generate the ConvertToViewData object from | |
 
 ### Return type
 

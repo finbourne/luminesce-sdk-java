@@ -13,6 +13,8 @@ Representation of view data where will template the data into a 'create view' sq
 |**description** | **String** | Description of view |  [optional] |
 |**documentationLink** | **String** | Documentation link |  [optional] |
 |**viewParameters** | [**List&lt;ViewParameter&gt;**](ViewParameter.md) | View parameters |  [optional] |
+|**otherParameters** | **Map&lt;String, String&gt;** | Other parameters not explicitly handled by the ConvertToView generation.  These will be populated by the \&quot;From SQL\&quot; and should simply be returned by  the web GUI should the user edit / update / regenerate |  [optional] |
+|**startingVariableName** | **String** | Which variable the this start with, null if not started from a full Create View Sql Statement. |  [optional] |
 
 
 

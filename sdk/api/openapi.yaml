@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.22
+  version: 1.14.25
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1400,6 +1400,7 @@ paths:
                 value: '@end_user_table'
                 isTableDataMandatory: true
                 description: This is a parameter tooltip
+              otherParameters: {}
             schema:
               $ref: '#/components/schemas/ConvertToViewData'
           application/json:
@@ -1429,6 +1430,7 @@ paths:
                 value: '@end_user_table'
                 isTableDataMandatory: true
                 description: This is a parameter tooltip
+              otherParameters: {}
             schema:
               $ref: '#/components/schemas/ConvertToViewData'
           text/json:
@@ -1458,6 +1460,7 @@ paths:
                 value: '@end_user_table'
                 isTableDataMandatory: true
                 description: This is a parameter tooltip
+              otherParameters: {}
             schema:
               $ref: '#/components/schemas/ConvertToViewData'
           application/*+json:
@@ -1487,6 +1490,7 @@ paths:
                 value: '@end_user_table'
                 isTableDataMandatory: true
                 description: This is a parameter tooltip
+              otherParameters: {}
             schema:
               $ref: '#/components/schemas/ConvertToViewData'
         description: Structured Query design object to generate SQL from
@@ -2563,6 +2567,93 @@ paths:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design\
         \ object from SQL string, if possible."
+      tags:
+      - Sql Execution
+      x-fbn-apistatus: Experimental
+      x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/toviewdesign:
+    put:
+      description: SQL which creates a view into a structured ConvertToViewData object
+      operationId: PutSqlToViewDesign
+      requestBody:
+        content:
+          text/plain:
+            example: "@x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\n\
+              select generate justfile from Lusid.Instrument\nenduse;\n\nselect generate\
+              \ justfile from @x;"
+            schema:
+              type: string
+        description: SQL Query to generate the ConvertToViewData object from
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example: "{\"query\":\"select generate justfile from Lusid.Instrument.bond\"\
+                ,\"name\":\"Views.MyView\",\"description\":\"This is a tooltip for\
+                \ the view as a whole\",\"documentationLink\":\"https://mydocumentationlink.com\"\
+                ,\"viewParameters\":[{\"name\":\"MyTextParam\",\"dataType\":\"Text\"\
+                ,\"value\":\"Portfolio\",\"isTableDataMandatory\":false,\"description\"\
+                :\"This is a parameter tooltip\"},{\"name\":\"EffectiveAt\",\"dataType\"\
+                :\"Date\",\"value\":\"2023-05-03\",\"isTableDataMandatory\":false,\"\
+                description\":\"This is a parameter tooltip\"},{\"name\":\"IsActive\"\
+                ,\"dataType\":\"Boolean\",\"value\":\"true\",\"isTableDataMandatory\"\
+                :true,\"description\":\"This is a parameter tooltip\"},{\"name\":\"\
+                EndUserTable\",\"dataType\":\"Table\",\"value\":\"@end_user_table\"\
+                ,\"isTableDataMandatory\":true,\"description\":\"This is a parameter\
+                \ tooltip\"}],\"otherParameters\":{}}"
+              schema:
+                type: string
+            application/json:
+              example: "{\"query\":\"select generate justfile from Lusid.Instrument.bond\"\
+                ,\"name\":\"Views.MyView\",\"description\":\"This is a tooltip for\
+                \ the view as a whole\",\"documentationLink\":\"https://mydocumentationlink.com\"\
+                ,\"viewParameters\":[{\"name\":\"MyTextParam\",\"dataType\":\"Text\"\
+                ,\"value\":\"Portfolio\",\"isTableDataMandatory\":false,\"description\"\
+                :\"This is a parameter tooltip\"},{\"name\":\"EffectiveAt\",\"dataType\"\
+                :\"Date\",\"value\":\"2023-05-03\",\"isTableDataMandatory\":false,\"\
+                description\":\"This is a parameter tooltip\"},{\"name\":\"IsActive\"\
+                ,\"dataType\":\"Boolean\",\"value\":\"true\",\"isTableDataMandatory\"\
+                :true,\"description\":\"This is a parameter tooltip\"},{\"name\":\"\
+                EndUserTable\",\"dataType\":\"Table\",\"value\":\"@end_user_table\"\
+                ,\"isTableDataMandatory\":true,\"description\":\"This is a parameter\
+                \ tooltip\"}],\"otherParameters\":{}}"
+              schema:
+                type: string
+            text/json:
+              example: "{\"query\":\"select generate justfile from Lusid.Instrument.bond\"\
+                ,\"name\":\"Views.MyView\",\"description\":\"This is a tooltip for\
+                \ the view as a whole\",\"documentationLink\":\"https://mydocumentationlink.com\"\
+                ,\"viewParameters\":[{\"name\":\"MyTextParam\",\"dataType\":\"Text\"\
+                ,\"value\":\"Portfolio\",\"isTableDataMandatory\":false,\"description\"\
+                :\"This is a parameter tooltip\"},{\"name\":\"EffectiveAt\",\"dataType\"\
+                :\"Date\",\"value\":\"2023-05-03\",\"isTableDataMandatory\":false,\"\
+                description\":\"This is a parameter tooltip\"},{\"name\":\"IsActive\"\
+                ,\"dataType\":\"Boolean\",\"value\":\"true\",\"isTableDataMandatory\"\
+                :true,\"description\":\"This is a parameter tooltip\"},{\"name\":\"\
+                EndUserTable\",\"dataType\":\"Table\",\"value\":\"@end_user_table\"\
+                ,\"isTableDataMandatory\":true,\"description\":\"This is a parameter\
+                \ tooltip\"}],\"otherParameters\":{}}"
+              schema:
+                type: string
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation\
+        \ design from existing view creation SQL."
       tags:
       - Sql Execution
       x-fbn-apistatus: Experimental
@@ -5068,6 +5159,9 @@ components:
           value: value
         description: description
         documentationLink: documentationLink
+        startingVariableName: startingVariableName
+        otherParameters:
+          key: otherParameters
       properties:
         query:
           description: view query
@@ -5096,6 +5190,21 @@ components:
             $ref: '#/components/schemas/ViewParameter'
           nullable: true
           type: array
+        otherParameters:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: "Other parameters not explicitly handled by the ConvertToView\
+            \ generation.\r\nThese will be populated by the \"From SQL\" and should\
+            \ simply be returned by\r\nthe web GUI should the user edit / update /\
+            \ regenerate"
+          nullable: true
+          type: object
+        startingVariableName:
+          description: "Which variable the this start with, null if not started from\
+            \ a full Create View Sql Statement."
+          nullable: true
+          type: string
       required:
       - name
       - query

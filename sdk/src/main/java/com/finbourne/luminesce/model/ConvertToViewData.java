@@ -20,7 +20,9 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -72,6 +74,14 @@ public class ConvertToViewData {
   public static final String SERIALIZED_NAME_VIEW_PARAMETERS = "viewParameters";
   @SerializedName(SERIALIZED_NAME_VIEW_PARAMETERS)
   private List<ViewParameter> viewParameters;
+
+  public static final String SERIALIZED_NAME_OTHER_PARAMETERS = "otherParameters";
+  @SerializedName(SERIALIZED_NAME_OTHER_PARAMETERS)
+  private Map<String, String> otherParameters;
+
+  public static final String SERIALIZED_NAME_STARTING_VARIABLE_NAME = "startingVariableName";
+  @SerializedName(SERIALIZED_NAME_STARTING_VARIABLE_NAME)
+  private String startingVariableName;
 
   public ConvertToViewData() {
   }
@@ -189,6 +199,56 @@ public class ConvertToViewData {
   }
 
 
+  public ConvertToViewData otherParameters(Map<String, String> otherParameters) {
+    
+    this.otherParameters = otherParameters;
+    return this;
+  }
+
+  public ConvertToViewData putOtherParametersItem(String key, String otherParametersItem) {
+    if (this.otherParameters == null) {
+      this.otherParameters = new HashMap<>();
+    }
+    this.otherParameters.put(key, otherParametersItem);
+    return this;
+  }
+
+   /**
+   * Other parameters not explicitly handled by the ConvertToView generation.  These will be populated by the \&quot;From SQL\&quot; and should simply be returned by  the web GUI should the user edit / update / regenerate
+   * @return otherParameters
+  **/
+  @jakarta.annotation.Nullable
+  public Map<String, String> getOtherParameters() {
+    return otherParameters;
+  }
+
+
+  public void setOtherParameters(Map<String, String> otherParameters) {
+    this.otherParameters = otherParameters;
+  }
+
+
+  public ConvertToViewData startingVariableName(String startingVariableName) {
+    
+    this.startingVariableName = startingVariableName;
+    return this;
+  }
+
+   /**
+   * Which variable the this start with, null if not started from a full Create View Sql Statement.
+   * @return startingVariableName
+  **/
+  @jakarta.annotation.Nullable
+  public String getStartingVariableName() {
+    return startingVariableName;
+  }
+
+
+  public void setStartingVariableName(String startingVariableName) {
+    this.startingVariableName = startingVariableName;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -203,7 +263,9 @@ public class ConvertToViewData {
         Objects.equals(this.name, convertToViewData.name) &&
         Objects.equals(this.description, convertToViewData.description) &&
         Objects.equals(this.documentationLink, convertToViewData.documentationLink) &&
-        Objects.equals(this.viewParameters, convertToViewData.viewParameters);
+        Objects.equals(this.viewParameters, convertToViewData.viewParameters) &&
+        Objects.equals(this.otherParameters, convertToViewData.otherParameters) &&
+        Objects.equals(this.startingVariableName, convertToViewData.startingVariableName);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -212,7 +274,7 @@ public class ConvertToViewData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(query, name, description, documentationLink, viewParameters);
+    return Objects.hash(query, name, description, documentationLink, viewParameters, otherParameters, startingVariableName);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -231,6 +293,8 @@ public class ConvertToViewData {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    documentationLink: ").append(toIndentedString(documentationLink)).append("\n");
     sb.append("    viewParameters: ").append(toIndentedString(viewParameters)).append("\n");
+    sb.append("    otherParameters: ").append(toIndentedString(otherParameters)).append("\n");
+    sb.append("    startingVariableName: ").append(toIndentedString(startingVariableName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -258,6 +322,8 @@ public class ConvertToViewData {
     openapiFields.add("description");
     openapiFields.add("documentationLink");
     openapiFields.add("viewParameters");
+    openapiFields.add("otherParameters");
+    openapiFields.add("startingVariableName");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -310,6 +376,9 @@ public class ConvertToViewData {
             ViewParameter.validateJsonElement(jsonArrayviewParameters.get(i));
           };
         }
+      }
+      if ((jsonObj.get("startingVariableName") != null && !jsonObj.get("startingVariableName").isJsonNull()) && !jsonObj.get("startingVariableName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `startingVariableName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("startingVariableName").toString()));
       }
   }
 
