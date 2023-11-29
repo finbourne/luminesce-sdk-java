@@ -63,6 +63,10 @@ public class ColumnInfo {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_X_PATH = "xPath";
+  @SerializedName(SERIALIZED_NAME_X_PATH)
+  private String xPath;
+
   public ColumnInfo() {
   }
 
@@ -129,6 +133,27 @@ public class ColumnInfo {
   }
 
 
+  public ColumnInfo xPath(String xPath) {
+    
+    this.xPath = xPath;
+    return this;
+  }
+
+   /**
+   * Xpath for the column (only applicable to XML defined columns)
+   * @return xPath
+  **/
+  @jakarta.annotation.Nullable
+  public String getxPath() {
+    return xPath;
+  }
+
+
+  public void setxPath(String xPath) {
+    this.xPath = xPath;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -141,7 +166,8 @@ public class ColumnInfo {
     ColumnInfo columnInfo = (ColumnInfo) o;
     return Objects.equals(this.select, columnInfo.select) &&
         Objects.equals(this.type, columnInfo.type) &&
-        Objects.equals(this.name, columnInfo.name);
+        Objects.equals(this.name, columnInfo.name) &&
+        Objects.equals(this.xPath, columnInfo.xPath);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -150,7 +176,7 @@ public class ColumnInfo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(select, type, name);
+    return Objects.hash(select, type, name, xPath);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -167,6 +193,7 @@ public class ColumnInfo {
     sb.append("    select: ").append(toIndentedString(select)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    xPath: ").append(toIndentedString(xPath)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -192,6 +219,7 @@ public class ColumnInfo {
     openapiFields.add("select");
     openapiFields.add("type");
     openapiFields.add("name");
+    openapiFields.add("xPath");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -212,6 +240,9 @@ public class ColumnInfo {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("xPath") != null && !jsonObj.get("xPath").isJsonNull()) && !jsonObj.get("xPath").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `xPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("xPath").toString()));
       }
   }
 

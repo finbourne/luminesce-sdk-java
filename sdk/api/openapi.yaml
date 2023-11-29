@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.53
+  version: 1.14.60
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -5119,6 +5119,7 @@ components:
         select: true
         name: name
         type: null
+        xPath: xPath
       properties:
         select:
           description: Should the column be used/selected?
@@ -5127,6 +5128,12 @@ components:
           $ref: '#/components/schemas/DataType'
         name:
           description: The name of the column
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        xPath:
+          description: Xpath for the column (only applicable to XML defined columns)
           maxLength: 256
           minLength: 0
           nullable: true
@@ -5345,9 +5352,11 @@ components:
         - select: true
           name: name
           type: null
+          xPath: xPath
         - select: true
           name: name
           type: null
+          xPath: xPath
         zipFilter: zipFilter
         filePath: filePath
         csv:
