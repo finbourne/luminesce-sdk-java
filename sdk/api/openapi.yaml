@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.106
+  version: 1.14.117
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -22,6 +22,8 @@ tags:
   name: Current Table/Field Catalog
 - description: Shows queries executed at some point and details about them
   name: Historically Executed Queries
+- description: "List, Mint, Renew and Revoke your Luminesce TLS Certificates."
+  name: Luminesce Certificate Management
 - description: This executes a series of internally defined LuminesceSql statements
     in the background
   name: Multi-Query Execution
@@ -90,6 +92,148 @@ paths:
       tags:
       - Current Table/Field Catalog
       x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/Certificate/certificates:
+    get:
+      description: |2
+
+        Lists all the certificates previously minted to which you have access.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+      operationId: GetCertificates
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CertificateState'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CertificateState'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CertificateState'
+                type: array
+          description: Success
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] GetCertificates: Shows Table and Field level information\
+        \ on Providers that are currently running that you have access to (in Json\
+        \ format)"
+      tags:
+      - Luminesce Certificate Management
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
+  /api/Certificate/manage:
+    put:
+      description: |2
+
+        Manages a certificate. This could be creating a new one, renewing an old one or revoking one explicitly.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 400 BadRequest - something about the request cannot be processed
+        - 401 Unauthorized
+      operationId: ManageCertificate
+      parameters:
+      - description: "The Action to perform, e.g. Create / Renew / Revoke"
+        explode: true
+        in: query
+        name: action
+        required: false
+        schema:
+          $ref: '#/components/schemas/CertificateAction'
+        style: form
+        x-nullable: true
+      - description: User or Domain level cert (Domain level requires additional entitlements)
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/CertificateType'
+        style: form
+        x-nullable: true
+      - description: "Version number of the cert, the request will fail to validate\
+          \ if incorrect"
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          default: 1
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: When should the cert first be valid (defaults to the current
+          time in UTC)
+        explode: true
+        in: query
+        name: validityStart
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+        x-nullable: true
+      - description: When should the cert no longer be valid (defaults to 13 months
+          from now)
+        explode: true
+        in: query
+        name: validityEnd
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+        x-nullable: true
+      - description: "True will just validate the request, but perform no changes\
+          \ to any system"
+        explode: true
+        in: query
+        name: dryRun
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: "Any systems that should be skipped\r\n(if any are the certificate\
+          \ will not function, but can be useful for certain forms of validation)"
+        explode: true
+        in: query
+        name: skipSystems
+        required: false
+        schema:
+          $ref: '#/components/schemas/CertificateStatus'
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CertificateState'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateState'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CertificateState'
+          description: Success
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create\
+        \ / Renew / Revoke)"
+      tags:
+      - Luminesce Certificate Management
+      x-fbn-apistatus: Experimental
       x-accepts: application/json
   /api/History:
     get:
@@ -5059,6 +5203,118 @@ components:
       - Cleared
       - Disposed
       type: string
+    CertificateAction:
+      description: The action to take with a certificate
+      enum:
+      - Create
+      - CreateAndAllowMultipleWhichAreValid
+      - Renew
+      - Revoke
+      type: string
+    CertificateState:
+      additionalProperties: false
+      description: "Information held about the minting / revoking of a certificate.\r\
+        \nIt does *not* contain the certificate itself"
+      example:
+        commonName: commonName
+        serialNumber: serialNumber
+        creationStatus: null
+        validityEnd: 2000-01-23T04:56:07.000+00:00
+        validityStart: 2000-01-23T04:56:07.000+00:00
+        type: null
+        version: 0
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        createdBy: createdBy
+        revocationStatus: null
+        revokedBy: revokedBy
+        links:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        revokedAt: 2000-01-23T04:56:07.000+00:00
+        key: key
+      properties:
+        key:
+          description: "The \"key\" to which this belongs in the dictionary,\r\nbasically\
+            \ the CN without any version information"
+          nullable: true
+          type: string
+        version:
+          description: The version of this certificate
+          format: int32
+          type: integer
+        commonName:
+          description: The common Name of the Certificate
+          nullable: true
+          type: string
+        type:
+          $ref: '#/components/schemas/CertificateType'
+        creationStatus:
+          $ref: '#/components/schemas/CertificateStatus'
+        revocationStatus:
+          $ref: '#/components/schemas/CertificateStatus'
+        validityStart:
+          description: The earliest point at which a certificate can be used
+          format: date-time
+          nullable: true
+          type: string
+        validityEnd:
+          description: The latest point at which a certificate can be used
+          format: date-time
+          nullable: true
+          type: string
+        revokedAt:
+          description: "The point at which this was revoked, if any"
+          format: date-time
+          nullable: true
+          type: string
+        revokedBy:
+          description: "The user which revoked this, if any"
+          nullable: true
+          type: string
+        createdAt:
+          description: The point at which this was created
+          format: date-time
+          nullable: true
+          type: string
+        createdBy:
+          description: The user which created this
+          nullable: true
+          type: string
+        serialNumber:
+          description: "The Vault-issued serial number of the certificate, if any\
+            \ - used for revocation"
+          nullable: true
+          type: string
+        links:
+          description: The location within Configuration Store that this is saved
+            to
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          type: array
+      type: object
+    CertificateStatus:
+      description: Which System(s) have been updated with a given request
+      enum:
+      - None
+      - WebApiPersistence
+      - Vault
+      - Rabbit
+      - ConfigStore
+      - AllSystems
+      type: string
+    CertificateType:
+      description: The sort of certificate being Created / Revoked / Renewed
+      enum:
+      - Domain
+      - User
+      type: string
     Column:
       additionalProperties: false
       example:
@@ -6214,6 +6470,7 @@ x-tagGroups:
   - Application Metadata
   - Current Table/Field Catalog
   - Historically Executed Queries
+  - Luminesce Certificate Management
   - Multi-Query Execution
   - Sql Background Execution
   - Sql Execution
