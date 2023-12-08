@@ -26,7 +26,6 @@ import java.io.IOException;
 
 import com.finbourne.luminesce.model.CertificateAction;
 import com.finbourne.luminesce.model.CertificateState;
-import com.finbourne.luminesce.model.CertificateStatus;
 import com.finbourne.luminesce.model.CertificateType;
 import java.time.OffsetDateTime;
 
@@ -218,7 +217,7 @@ public class LuminesceCertificateManagementApi {
     public APIgetCertificatesRequest getCertificates() {
         return new APIgetCertificatesRequest();
     }
-    private okhttp3.Call manageCertificateCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, CertificateStatus skipSystems, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call manageCertificateCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -267,10 +266,6 @@ public class LuminesceCertificateManagementApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("dryRun", dryRun));
         }
 
-        if (skipSystems != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("skipSystems", skipSystems));
-        }
-
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -293,21 +288,21 @@ public class LuminesceCertificateManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call manageCertificateValidateBeforeCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, CertificateStatus skipSystems, final ApiCallback _callback) throws ApiException {
-        return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun, skipSystems, _callback);
+    private okhttp3.Call manageCertificateValidateBeforeCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback) throws ApiException {
+        return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun, _callback);
 
     }
 
 
-    private ApiResponse<CertificateState> manageCertificateWithHttpInfo(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, CertificateStatus skipSystems) throws ApiException {
-        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, skipSystems, null);
+    private ApiResponse<CertificateState> manageCertificateWithHttpInfo(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun) throws ApiException {
+        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, null);
         Type localVarReturnType = new TypeToken<CertificateState>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call manageCertificateAsync(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, CertificateStatus skipSystems, final ApiCallback<CertificateState> _callback) throws ApiException {
+    private okhttp3.Call manageCertificateAsync(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback<CertificateState> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, skipSystems, _callback);
+        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, _callback);
         Type localVarReturnType = new TypeToken<CertificateState>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -320,7 +315,6 @@ public class LuminesceCertificateManagementApi {
         private OffsetDateTime validityStart;
         private OffsetDateTime validityEnd;
         private Boolean dryRun;
-        private CertificateStatus skipSystems;
 
         private APImanageCertificateRequest() {
         }
@@ -386,16 +380,6 @@ public class LuminesceCertificateManagementApi {
         }
 
         /**
-         * Set skipSystems
-         * @param skipSystems Any systems that should be skipped  (if any are the certificate will not function, but can be useful for certain forms of validation) (optional)
-         * @return APImanageCertificateRequest
-         */
-        public APImanageCertificateRequest skipSystems(CertificateStatus skipSystems) {
-            this.skipSystems = skipSystems;
-            return this;
-        }
-
-        /**
          * Build call for manageCertificate
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -407,7 +391,7 @@ public class LuminesceCertificateManagementApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun, skipSystems, _callback);
+            return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun, _callback);
         }
 
         /**
@@ -421,7 +405,7 @@ public class LuminesceCertificateManagementApi {
          </table>
          */
         public CertificateState execute() throws ApiException {
-            ApiResponse<CertificateState> localVarResp = manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun, skipSystems);
+            ApiResponse<CertificateState> localVarResp = manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun);
             return localVarResp.getData();
         }
 
@@ -436,7 +420,7 @@ public class LuminesceCertificateManagementApi {
          </table>
          */
         public ApiResponse<CertificateState> executeWithHttpInfo() throws ApiException {
-            return manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun, skipSystems);
+            return manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun);
         }
 
         /**
@@ -451,7 +435,7 @@ public class LuminesceCertificateManagementApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<CertificateState> _callback) throws ApiException {
-            return manageCertificateAsync(action, type, version, validityStart, validityEnd, dryRun, skipSystems, _callback);
+            return manageCertificateAsync(action, type, version, validityStart, validityEnd, dryRun, _callback);
         }
     }
 

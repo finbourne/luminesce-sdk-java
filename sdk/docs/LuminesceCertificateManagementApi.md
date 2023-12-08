@@ -74,7 +74,7 @@ This endpoint does not need any parameter.
 
 <a id="manageCertificate"></a>
 # **manageCertificate**
-> CertificateState manageCertificate().action(action).type(type).version(version).validityStart(validityStart).validityEnd(validityEnd).dryRun(dryRun).skipSystems(skipSystems).execute();
+> CertificateState manageCertificate().action(action).type(type).version(version).validityStart(validityStart).validityEnd(validityEnd).dryRun(dryRun).execute();
 
 [EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create / Renew / Revoke)
 
@@ -106,7 +106,6 @@ public class Example {
     OffsetDateTime validityStart = OffsetDateTime.now(); // OffsetDateTime | When should the cert first be valid (defaults to the current time in UTC)
     OffsetDateTime validityEnd = OffsetDateTime.now(); // OffsetDateTime | When should the cert no longer be valid (defaults to 13 months from now)
     Boolean dryRun = true; // Boolean | True will just validate the request, but perform no changes to any system
-    CertificateStatus skipSystems = CertificateStatus.fromValue("None"); // CertificateStatus | Any systems that should be skipped  (if any are the certificate will not function, but can be useful for certain forms of validation)
     try {
       CertificateState result = apiInstance.manageCertificate()
             .action(action)
@@ -115,7 +114,6 @@ public class Example {
             .validityStart(validityStart)
             .validityEnd(validityEnd)
             .dryRun(dryRun)
-            .skipSystems(skipSystems)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -139,7 +137,6 @@ public class Example {
 | **validityStart** | **OffsetDateTime**| When should the cert first be valid (defaults to the current time in UTC) | [optional] |
 | **validityEnd** | **OffsetDateTime**| When should the cert no longer be valid (defaults to 13 months from now) | [optional] |
 | **dryRun** | **Boolean**| True will just validate the request, but perform no changes to any system | [optional] [default to true] |
-| **skipSystems** | [**CertificateStatus**](.md)| Any systems that should be skipped  (if any are the certificate will not function, but can be useful for certain forms of validation) | [optional] [enum: None, WebApiPersistence, Vault, Rabbit, ConfigStore, AllSystems] |
 
 ### Return type
 
