@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.138
+  version: 1.14.140
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -17,13 +17,13 @@ security:
 tags:
 - description: Metadata about the application
   name: Application Metadata
+- description: "List, Mint, Renew and Revoke your Honeycomb / Luminesce TLS Certificates."
+  name: Certificate Management
 - description: Shows Table and Field level information on Providers that are currently
     running that you have access to.
   name: Current Table/Field Catalog
 - description: Shows queries executed at some point and details about them
   name: Historically Executed Queries
-- description: "List, Mint, Renew and Revoke your Luminesce TLS Certificates."
-  name: Luminesce Certificate Management
 - description: This executes a series of internally defined LuminesceSql statements
     in the background
   name: Multi-Query Execution
@@ -93,6 +93,72 @@ paths:
       - Current Table/Field Catalog
       x-fbn-apistatus: Stable
       x-accepts: application/json
+  /api/Certificate/certificate:
+    get:
+      description: |2
+
+        Downloads your latest Domain or User certificate's public or private key - if any.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 400 BadRequest - certificate is not available for some reason
+        - 401 Unauthorized
+      operationId: DownloadCertificate
+      parameters:
+      - description: User or Domain level cert (Domain level requires additional entitlements)
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/CertificateType'
+        style: form
+        x-nullable: true
+      - description: Should the public key or private key be downloaded? (both must
+          be in place to run providers)
+        explode: true
+        in: query
+        name: fileType
+        required: false
+        schema:
+          $ref: '#/components/schemas/CertificateFileType'
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or\
+        \ User certificate's public or private key - if any."
+      tags:
+      - Certificate Management
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
   /api/Certificate/certificates:
     get:
       description: |2
@@ -101,7 +167,7 @@ paths:
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
-      operationId: GetCertificates
+      operationId: ListCertificates
       responses:
         "200":
           content:
@@ -121,13 +187,25 @@ paths:
                   $ref: '#/components/schemas/CertificateState'
                 type: array
           description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetCertificates: Shows Table and Field level information\
+      summary: "[EXPERIMENTAL] ListCertificates: Shows Table and Field level information\
         \ on Providers that are currently running that you have access to (in Json\
         \ format)"
       tags:
-      - Luminesce Certificate Management
+      - Certificate Management
       x-fbn-apistatus: Experimental
       x-accepts: application/json
   /api/Certificate/manage:
@@ -217,12 +295,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/CertificateState'
           description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create\
         \ / Renew / Revoke)"
       tags:
-      - Luminesce Certificate Management
+      - Certificate Management
       x-fbn-apistatus: Experimental
       x-accepts: application/json
   /api/History:
@@ -5201,6 +5291,13 @@ components:
       - Renew
       - Revoke
       type: string
+    CertificateFileType:
+      description: The type of the certificate file to be downloaded (both public
+        and private are needed to connect)
+      enum:
+      - Public
+      - Private
+      type: string
     CertificateState:
       additionalProperties: false
       description: "Information held about the minting / revoking of a certificate.\r\
@@ -6458,9 +6555,9 @@ x-tagGroups:
   name: API
   tags:
   - Application Metadata
+  - Certificate Management
   - Current Table/Field Catalog
   - Historically Executed Queries
-  - Luminesce Certificate Management
   - Multi-Query Execution
   - Sql Background Execution
   - Sql Execution

@@ -25,8 +25,11 @@ import java.io.IOException;
 
 
 import com.finbourne.luminesce.model.CertificateAction;
+import com.finbourne.luminesce.model.CertificateFileType;
 import com.finbourne.luminesce.model.CertificateState;
 import com.finbourne.luminesce.model.CertificateType;
+import java.io.File;
+import com.finbourne.luminesce.model.LusidProblemDetails;
 import java.time.OffsetDateTime;
 
 import java.lang.reflect.Type;
@@ -35,16 +38,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LuminesceCertificateManagementApi {
+public class CertificateManagementApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public LuminesceCertificateManagementApi() {
+    public CertificateManagementApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public LuminesceCertificateManagementApi(ApiClient apiClient) {
+    public CertificateManagementApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -72,7 +75,187 @@ public class LuminesceCertificateManagementApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    private okhttp3.Call getCertificatesCall(final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call downloadCertificateCall(CertificateType type, CertificateFileType fileType, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/Certificate/certificate";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (type != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
+        }
+
+        if (fileType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fileType", fileType));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadCertificateValidateBeforeCall(CertificateType type, CertificateFileType fileType, final ApiCallback _callback) throws ApiException {
+        return downloadCertificateCall(type, fileType, _callback);
+
+    }
+
+
+    private ApiResponse<File> downloadCertificateWithHttpInfo(CertificateType type, CertificateFileType fileType) throws ApiException {
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call downloadCertificateAsync(CertificateType type, CertificateFileType fileType, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIdownloadCertificateRequest {
+        private CertificateType type;
+        private CertificateFileType fileType;
+
+        private APIdownloadCertificateRequest() {
+        }
+
+        /**
+         * Set type
+         * @param type User or Domain level cert (Domain level requires additional entitlements) (optional)
+         * @return APIdownloadCertificateRequest
+         */
+        public APIdownloadCertificateRequest type(CertificateType type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
+         * Set fileType
+         * @param fileType Should the public key or private key be downloaded? (both must be in place to run providers) (optional)
+         * @return APIdownloadCertificateRequest
+         */
+        public APIdownloadCertificateRequest fileType(CertificateFileType fileType) {
+            this.fileType = fileType;
+            return this;
+        }
+
+        /**
+         * Build call for downloadCertificate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return downloadCertificateCall(type, fileType, _callback);
+        }
+
+        /**
+         * Execute downloadCertificate request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = downloadCertificateWithHttpInfo(type, fileType);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute downloadCertificate request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return downloadCertificateWithHttpInfo(type, fileType);
+        }
+
+        /**
+         * Execute downloadCertificate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return downloadCertificateAsync(type, fileType, _callback);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any.
+     *  Downloads your latest Domain or User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized 
+     * @return APIdownloadCertificateRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIdownloadCertificateRequest downloadCertificate() {
+        return new APIdownloadCertificateRequest();
+    }
+    private okhttp3.Call listCertificatesCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -119,33 +302,33 @@ public class LuminesceCertificateManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCertificatesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return getCertificatesCall(_callback);
+    private okhttp3.Call listCertificatesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return listCertificatesCall(_callback);
 
     }
 
 
-    private ApiResponse<List<CertificateState>> getCertificatesWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getCertificatesValidateBeforeCall(null);
+    private ApiResponse<List<CertificateState>> listCertificatesWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<List<CertificateState>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getCertificatesAsync(final ApiCallback<List<CertificateState>> _callback) throws ApiException {
+    private okhttp3.Call listCertificatesAsync(final ApiCallback<List<CertificateState>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCertificatesValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<List<CertificateState>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    public class APIgetCertificatesRequest {
+    public class APIlistCertificatesRequest {
 
-        private APIgetCertificatesRequest() {
+        private APIlistCertificatesRequest() {
         }
 
         /**
-         * Build call for getCertificates
+         * Build call for listCertificates
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
@@ -153,43 +336,46 @@ public class LuminesceCertificateManagementApi {
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getCertificatesCall(_callback);
+            return listCertificatesCall(_callback);
         }
 
         /**
-         * Execute getCertificates request
+         * Execute listCertificates request
          * @return List&lt;CertificateState&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public List<CertificateState> execute() throws ApiException {
-            ApiResponse<List<CertificateState>> localVarResp = getCertificatesWithHttpInfo();
+            ApiResponse<List<CertificateState>> localVarResp = listCertificatesWithHttpInfo();
             return localVarResp.getData();
         }
 
         /**
-         * Execute getCertificates request with HTTP info returned
+         * Execute listCertificates request with HTTP info returned
          * @return ApiResponse&lt;List&lt;CertificateState&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<List<CertificateState>> executeWithHttpInfo() throws ApiException {
-            return getCertificatesWithHttpInfo();
+            return listCertificatesWithHttpInfo();
         }
 
         /**
-         * Execute getCertificates request (asynchronously)
+         * Execute listCertificates request (asynchronously)
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -197,25 +383,27 @@ public class LuminesceCertificateManagementApi {
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<CertificateState>> _callback) throws ApiException {
-            return getCertificatesAsync(_callback);
+            return listCertificatesAsync(_callback);
         }
     }
 
     /**
-     * [EXPERIMENTAL] GetCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
+     * [EXPERIMENTAL] ListCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
      *  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized 
-     * @return APIgetCertificatesRequest
+     * @return APIlistCertificatesRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
-    public APIgetCertificatesRequest getCertificates() {
-        return new APIgetCertificatesRequest();
+    public APIlistCertificatesRequest listCertificates() {
+        return new APIlistCertificatesRequest();
     }
     private okhttp3.Call manageCertificateCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback) throws ApiException {
         String basePath = null;
@@ -388,6 +576,7 @@ public class LuminesceCertificateManagementApi {
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -402,6 +591,7 @@ public class LuminesceCertificateManagementApi {
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public CertificateState execute() throws ApiException {
@@ -417,6 +607,7 @@ public class LuminesceCertificateManagementApi {
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<CertificateState> executeWithHttpInfo() throws ApiException {
@@ -432,6 +623,7 @@ public class LuminesceCertificateManagementApi {
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<CertificateState> _callback) throws ApiException {
@@ -447,6 +639,7 @@ public class LuminesceCertificateManagementApi {
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
      </table>
      */
     public APImanageCertificateRequest manageCertificate() {

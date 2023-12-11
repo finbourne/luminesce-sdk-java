@@ -1,18 +1,92 @@
-# LuminesceCertificateManagementApi
+# CertificateManagementApi
 
 All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCertificates**](LuminesceCertificateManagementApi.md#getCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] GetCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format) |
-| [**manageCertificate**](LuminesceCertificateManagementApi.md#manageCertificate) | **PUT** /api/Certificate/manage | [EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create / Renew / Revoke) |
+| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any. |
+| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] ListCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format) |
+| [**manageCertificate**](CertificateManagementApi.md#manageCertificate) | **PUT** /api/Certificate/manage | [EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create / Renew / Revoke) |
 
 
-<a id="getCertificates"></a>
-# **getCertificates**
-> List&lt;CertificateState&gt; getCertificates().execute();
+<a id="downloadCertificate"></a>
+# **downloadCertificate**
+> File downloadCertificate().type(type).fileType(fileType).execute();
 
-[EXPERIMENTAL] GetCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
+[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any.
+
+ Downloads your latest Domain or User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized 
+
+### Example
+```java
+// Import classes:
+import com.finbourne.luminesce.ApiClient;
+import com.finbourne.luminesce.ApiException;
+import com.finbourne.luminesce.Configuration;
+import com.finbourne.luminesce.auth.*;
+import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.api.CertificateManagementApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
+    
+    // Configure OAuth2 access token for authorization: oauth2
+    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
+    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    CertificateManagementApi apiInstance = new CertificateManagementApi(defaultClient);
+    CertificateType type = CertificateType.fromValue("Domain"); // CertificateType | User or Domain level cert (Domain level requires additional entitlements)
+    CertificateFileType fileType = CertificateFileType.fromValue("Public"); // CertificateFileType | Should the public key or private key be downloaded? (both must be in place to run providers)
+    try {
+      File result = apiInstance.downloadCertificate()
+            .type(type)
+            .fileType(fileType)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CertificateManagementApi#downloadCertificate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **type** | [**CertificateType**](.md)| User or Domain level cert (Domain level requires additional entitlements) | [optional] [enum: Domain, User] |
+| **fileType** | [**CertificateFileType**](.md)| Should the public key or private key be downloaded? (both must be in place to run providers) | [optional] [enum: Public, Private] |
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+
+<a id="listCertificates"></a>
+# **listCertificates**
+> List&lt;CertificateState&gt; listCertificates().execute();
+
+[EXPERIMENTAL] ListCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
 
  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized 
 
@@ -24,7 +98,7 @@ import com.finbourne.luminesce.ApiException;
 import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.auth.*;
 import com.finbourne.luminesce.models.*;
-import com.finbourne.luminesce.api.LuminesceCertificateManagementApi;
+import com.finbourne.luminesce.api.CertificateManagementApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -35,13 +109,13 @@ public class Example {
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
-    LuminesceCertificateManagementApi apiInstance = new LuminesceCertificateManagementApi(defaultClient);
+    CertificateManagementApi apiInstance = new CertificateManagementApi(defaultClient);
     try {
-      List<CertificateState> result = apiInstance.getCertificates()
+      List<CertificateState> result = apiInstance.listCertificates()
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling LuminesceCertificateManagementApi#getCertificates");
+      System.err.println("Exception when calling CertificateManagementApi#listCertificates");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -71,6 +145,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
+| **400** | Bad Request |  -  |
 
 <a id="manageCertificate"></a>
 # **manageCertificate**
@@ -88,7 +163,7 @@ import com.finbourne.luminesce.ApiException;
 import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.auth.*;
 import com.finbourne.luminesce.models.*;
-import com.finbourne.luminesce.api.LuminesceCertificateManagementApi;
+import com.finbourne.luminesce.api.CertificateManagementApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -99,7 +174,7 @@ public class Example {
     OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
-    LuminesceCertificateManagementApi apiInstance = new LuminesceCertificateManagementApi(defaultClient);
+    CertificateManagementApi apiInstance = new CertificateManagementApi(defaultClient);
     CertificateAction action = CertificateAction.fromValue("Create"); // CertificateAction | The Action to perform, e.g. Create / Renew / Revoke
     CertificateType type = CertificateType.fromValue("Domain"); // CertificateType | User or Domain level cert (Domain level requires additional entitlements)
     Integer version = 1; // Integer | Version number of the cert, the request will fail to validate if incorrect
@@ -117,7 +192,7 @@ public class Example {
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling LuminesceCertificateManagementApi#manageCertificate");
+      System.err.println("Exception when calling CertificateManagementApi#manageCertificate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -155,4 +230,5 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
+| **400** | Bad Request |  -  |
 
