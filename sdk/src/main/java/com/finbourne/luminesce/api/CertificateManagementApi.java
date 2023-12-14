@@ -75,7 +75,7 @@ public class CertificateManagementApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    private okhttp3.Call downloadCertificateCall(CertificateType type, CertificateFileType fileType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call downloadCertificateCall(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -108,6 +108,10 @@ public class CertificateManagementApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("fileType", fileType));
         }
 
+        if (mayAutoCreate != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("mayAutoCreate", mayAutoCreate));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -130,21 +134,21 @@ public class CertificateManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call downloadCertificateValidateBeforeCall(CertificateType type, CertificateFileType fileType, final ApiCallback _callback) throws ApiException {
-        return downloadCertificateCall(type, fileType, _callback);
+    private okhttp3.Call downloadCertificateValidateBeforeCall(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback _callback) throws ApiException {
+        return downloadCertificateCall(type, fileType, mayAutoCreate, _callback);
 
     }
 
 
-    private ApiResponse<File> downloadCertificateWithHttpInfo(CertificateType type, CertificateFileType fileType) throws ApiException {
-        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, null);
+    private ApiResponse<File> downloadCertificateWithHttpInfo(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate) throws ApiException {
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, null);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call downloadCertificateAsync(CertificateType type, CertificateFileType fileType, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call downloadCertificateAsync(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, _callback);
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, _callback);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -153,6 +157,7 @@ public class CertificateManagementApi {
     public class APIdownloadCertificateRequest {
         private CertificateType type;
         private CertificateFileType fileType;
+        private Boolean mayAutoCreate;
 
         private APIdownloadCertificateRequest() {
         }
@@ -178,6 +183,16 @@ public class CertificateManagementApi {
         }
 
         /**
+         * Set mayAutoCreate
+         * @param mayAutoCreate If no matching cert is available, should an attempt be made to Create/Renew it with default options? (optional, default to false)
+         * @return APIdownloadCertificateRequest
+         */
+        public APIdownloadCertificateRequest mayAutoCreate(Boolean mayAutoCreate) {
+            this.mayAutoCreate = mayAutoCreate;
+            return this;
+        }
+
+        /**
          * Build call for downloadCertificate
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -190,7 +205,7 @@ public class CertificateManagementApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return downloadCertificateCall(type, fileType, _callback);
+            return downloadCertificateCall(type, fileType, mayAutoCreate, _callback);
         }
 
         /**
@@ -205,7 +220,7 @@ public class CertificateManagementApi {
          </table>
          */
         public File execute() throws ApiException {
-            ApiResponse<File> localVarResp = downloadCertificateWithHttpInfo(type, fileType);
+            ApiResponse<File> localVarResp = downloadCertificateWithHttpInfo(type, fileType, mayAutoCreate);
             return localVarResp.getData();
         }
 
@@ -221,7 +236,7 @@ public class CertificateManagementApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
-            return downloadCertificateWithHttpInfo(type, fileType);
+            return downloadCertificateWithHttpInfo(type, fileType, mayAutoCreate);
         }
 
         /**
@@ -237,7 +252,7 @@ public class CertificateManagementApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
-            return downloadCertificateAsync(type, fileType, _callback);
+            return downloadCertificateAsync(type, fileType, mayAutoCreate, _callback);
         }
     }
 

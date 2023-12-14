@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.152
+  version: 1.14.154
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -121,6 +121,17 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/CertificateFileType'
+        style: form
+        x-nullable: true
+      - description: "If no matching cert is available, should an attempt be made\
+          \ to Create/Renew it with default options?"
+        explode: true
+        in: query
+        name: mayAutoCreate
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
         x-nullable: true
       responses:

@@ -11,7 +11,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 <a id="downloadCertificate"></a>
 # **downloadCertificate**
-> File downloadCertificate().type(type).fileType(fileType).execute();
+> File downloadCertificate().type(type).fileType(fileType).mayAutoCreate(mayAutoCreate).execute();
 
 [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any.
 
@@ -39,10 +39,12 @@ public class Example {
     CertificateManagementApi apiInstance = new CertificateManagementApi(defaultClient);
     CertificateType type = CertificateType.fromValue("Domain"); // CertificateType | User or Domain level cert (Domain level requires additional entitlements)
     CertificateFileType fileType = CertificateFileType.fromValue("Public"); // CertificateFileType | Should the public key or private key be downloaded? (both must be in place to run providers)
+    Boolean mayAutoCreate = false; // Boolean | If no matching cert is available, should an attempt be made to Create/Renew it with default options?
     try {
       File result = apiInstance.downloadCertificate()
             .type(type)
             .fileType(fileType)
+            .mayAutoCreate(mayAutoCreate)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -62,6 +64,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **type** | [**CertificateType**](.md)| User or Domain level cert (Domain level requires additional entitlements) | [optional] [enum: Domain, User] |
 | **fileType** | [**CertificateFileType**](.md)| Should the public key or private key be downloaded? (both must be in place to run providers) | [optional] [enum: Public, Private] |
+| **mayAutoCreate** | **Boolean**| If no matching cert is available, should an attempt be made to Create/Renew it with default options? | [optional] [default to false] |
 
 ### Return type
 
