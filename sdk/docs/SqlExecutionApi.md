@@ -598,7 +598,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -682,7 +682,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
@@ -757,7 +757,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
@@ -835,7 +835,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
@@ -910,7 +910,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -988,7 +988,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
@@ -1063,7 +1063,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -1282,7 +1282,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
+    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
     Boolean trailingCommas = true; // Boolean | Should commas be after an expression (as opposed to before)
     Boolean uppercaseKeywords = false; // Boolean | Should key words be capitalized
     Boolean breakJoinOnSections = true; // Boolean | Should clauses on joins be given line breaks?
@@ -1396,7 +1396,7 @@ use Drive.Csv
  --file=/some/folder/somefile.csv
 enduse;
 
-select generate justfile from @x;; // String | SQL query to generate the file read design object from
+select generate justfile test_sdk from @x;; // String | SQL query to generate the file read design object from
     try {
       String result = apiInstance.putSqlToFileReadDesign()
             .determineAvailableSources(determineAvailableSources)
@@ -1555,10 +1555,10 @@ public class Example {
 use Sys.Admin.SetupView
  --provider=YourView
 ----
-select generate justfile from Lusid.Instrument
+select generate justfile test_sdk from Lusid.Instrument
 enduse;
 
-select generate justfile from @x;; // String | SQL Query to generate the ConvertToViewData object from
+select generate justfile test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
     try {
       String result = apiInstance.putSqlToViewDesign(body)
             .execute();
