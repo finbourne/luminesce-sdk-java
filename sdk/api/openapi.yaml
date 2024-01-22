@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.361
+  version: 1.14.370
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -17,6 +17,11 @@ security:
 tags:
 - description: Metadata about the application
   name: Application Metadata
+- description: |-
+    Allows for the downloading of Luminesce Binaries, given the required entitlements.
+    These are to allow various functionalities to be run outside of Finbourne cloud infrastructure.
+    For example to connection to internal databases, run providers on users' machines, or obtain the LuminesceCLI.
+  name: Binary Downloading
 - description: "List, Mint, Renew and Revoke your Honeycomb / Luminesce TLS Certificates."
   name: Certificate Management
 - description: Shows Table and Field level information on Providers that are currently
@@ -324,6 +329,77 @@ paths:
         \ / Renew / Revoke)"
       tags:
       - Certificate Management
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
+  /api/Download/download:
+    get:
+      description: |2
+
+        Downloads the latest version (or specific if needs be) of the specified Luminesce Binary, given the required entitlements.
+
+        Once a file has been downloaded the following steps can be used to install it:
+
+        1. Open a terminal and cd to the directory you downloaded it to
+        2. Install / extract files from that package via:
+        ```
+        dotnet tool install NameOfFileWithoutExtension -g --add-source "."
+        ```
+        3. Execute them (see documentation for specific binary)...
+
+        The installed binaries can then be found in
+        - Windows - `%USERPROFILE%\.dotnet\tools\.store\`
+        - Linux/macOS - `$HOME/.dotnet/tools/.store/`
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 400 BadRequest - binary file is not available for some reason (e.g. permissions or invalid version)
+        - 401 Unauthorized
+      operationId: DownloadBinary
+      parameters:
+      - description: Type of binary to download (each requires separate licenses and
+          entitlements)
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/LuminesceBinaryType'
+        style: form
+        x-nullable: true
+      - description: An explicit version of the binary. Leave blank to get the latest
+          version (recommended)
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: The .nupkg file of the requested binary
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] DownloadBinary: Downloads the latest version (or specific\
+        \ if needs be) of the specified Luminesce Binary, given the required entitlements."
+      tags:
+      - Binary Downloading
       x-fbn-apistatus: Experimental
       x-accepts: application/json
   /api/History:
@@ -5904,6 +5980,23 @@ components:
       - method
       - relation
       type: object
+    LuminesceBinaryType:
+      description: Binaries that can be downloaded
+      enum:
+      - CommandLineTool
+      - LocalFileSystem_Providers
+      - Email_Providers
+      - Python_Providers
+      - AwsS3_Providers
+      - SqlDb_Providers_Db2Linux
+      - SqlDb_Providers_MySql
+      - SqlDb_Providers_Oracle
+      - SqlDb_Providers_Oracle_Snowflake
+      - SqlDb_Providers_Postgresql
+      - SqlDb_Providers_Snowflake
+      - SqlDb_Providers_SqlServer
+      - SqlDb_Providers_SybaseAse
+      type: string
     LusidProblemDetails:
       additionalProperties: false
       properties:
@@ -6566,6 +6659,7 @@ x-tagGroups:
   name: API
   tags:
   - Application Metadata
+  - Binary Downloading
   - Certificate Management
   - Current Table/Field Catalog
   - Historically Executed Queries
