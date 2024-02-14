@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.427
+  version: 1.14.510
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -34,8 +34,11 @@ tags:
   name: Multi-Query Execution
 - description: This executes LuminesceSql and allows monitoring its completion
   name: Sql Background Execution
+- description: "This has methods for Designing SQL (to support the Web GUI designer\
+    \ interfaces) for pretty-printing of sql, etc."
+  name: Sql Design
 - description: "This executes LuminesceSql synchronously, allows for returning the\
-    \ resulting data in various formats and for pretty-printing of sql."
+    \ resulting data in various formats."
   name: Sql Execution
 paths:
   /api/Catalog:
@@ -170,7 +173,7 @@ paths:
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or\
-        \ User certificate's public or private key - if any."
+        \ User certificate's public or private key - if any"
       tags:
       - Certificate Management
       x-fbn-apistatus: Experimental
@@ -217,9 +220,8 @@ paths:
           description: Bad Request
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListCertificates: Shows Table and Field level information\
-        \ on Providers that are currently running that you have access to (in Json\
-        \ format)"
+      summary: "[EXPERIMENTAL] ListCertificates: Lists all the certificates previously\
+        \ minted to which you have access"
       tags:
       - Certificate Management
       x-fbn-apistatus: Experimental
@@ -1571,7 +1573,7 @@ paths:
       summary: "[EXPERIMENTAL] PutQueryDesignToSql: Generates SQL from a structured\
         \ query design"
       tags:
-      - Sql Execution
+      - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: application/json-patch+json
       x-accepts: application/json
@@ -1669,7 +1671,7 @@ paths:
       summary: "[EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from\
         \ a structured query design"
       tags:
-      - Sql Execution
+      - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: application/json-patch+json
       x-accepts: application/json
@@ -1832,7 +1834,218 @@ paths:
       summary: "[EXPERIMENTAL] PutViewDesignToSql: Generates view creation sql from\
         \ a structured view creation design"
       tags:
-      - Sql Execution
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
+  /api/Sql/fromwriterdesign:
+    put:
+      description: SQL Writer Design specification to generate Writer SQL from
+      operationId: PutWriterDesignToSql
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              sql: |2-
+
+                @x = select SomeScope as Scope from Somewhere;
+                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+              availableToMapFrom:
+              - expression: SomeScope
+                alias: Scope
+              parameter:
+                providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              availableParameters:
+              - providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              - providerName: Email.Send
+                parameterName: ToSend
+                fields:
+                - name: Subject
+                  type: Text
+                - name: Body
+                  type: Text
+            schema:
+              $ref: '#/components/schemas/WriterDesign'
+          application/json:
+            example:
+              sql: |2-
+
+                @x = select SomeScope as Scope from Somewhere;
+                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+              availableToMapFrom:
+              - expression: SomeScope
+                alias: Scope
+              parameter:
+                providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              availableParameters:
+              - providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              - providerName: Email.Send
+                parameterName: ToSend
+                fields:
+                - name: Subject
+                  type: Text
+                - name: Body
+                  type: Text
+            schema:
+              $ref: '#/components/schemas/WriterDesign'
+          text/json:
+            example:
+              sql: |2-
+
+                @x = select SomeScope as Scope from Somewhere;
+                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+              availableToMapFrom:
+              - expression: SomeScope
+                alias: Scope
+              parameter:
+                providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              availableParameters:
+              - providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              - providerName: Email.Send
+                parameterName: ToSend
+                fields:
+                - name: Subject
+                  type: Text
+                - name: Body
+                  type: Text
+            schema:
+              $ref: '#/components/schemas/WriterDesign'
+          application/*+json:
+            example:
+              sql: |2-
+
+                @x = select SomeScope as Scope from Somewhere;
+                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+              availableToMapFrom:
+              - expression: SomeScope
+                alias: Scope
+              parameter:
+                providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              availableParameters:
+              - providerName: Lusid.Instrument.Bond
+                parameterName: ToWrite
+                fields:
+                - name: Scope
+                  type: Text
+                  description: Scope of the instrument
+                  mapping:
+                    expression: SomeScope
+                    alias: Scope
+                - name: DisplayName
+                  type: Text
+              - providerName: Email.Send
+                parameterName: ToSend
+                fields:
+                - name: Subject
+                  type: Text
+                - name: Body
+                  type: Text
+            schema:
+              $ref: '#/components/schemas/WriterDesign'
+        description: Structured Writer Design design object to generate Writer SQL
+          from
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutWriterDesignToSql: Generates writer SQL from a valid\
+        \ writer-design structure"
+      tags:
+      - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: application/json-patch+json
       x-accepts: application/json
@@ -2550,10 +2763,10 @@ paths:
           description: Bad Request
       security:
       - oauth2: []
-      summary: "PutQueryToFormat: Executes Sql, returned in JSON format, where the\
-        \ sql is the post-body url."
+      summary: "PutQueryToFormat: Formats SQL into a more readable form, a.k.a. Pretty-Print\
+        \ the SQL."
       tags:
-      - Sql Execution
+      - Sql Design
       x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
@@ -2809,7 +3022,7 @@ paths:
       summary: "[EXPERIMENTAL] PutSqlToQueryDesign: Generates a SQL-design object\
         \ from SQL string, if possible."
       tags:
-      - Sql Execution
+      - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: text/plain
       x-accepts: application/json
@@ -2875,7 +3088,7 @@ paths:
       summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design\
         \ object from SQL string, if possible."
       tags:
-      - Sql Execution
+      - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: text/plain
       x-accepts: application/json
@@ -2962,7 +3175,98 @@ paths:
       summary: "[EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation\
         \ design from existing view creation SQL."
       tags:
-      - Sql Execution
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/towriterdesign:
+    put:
+      description: SQL to attempt to create a Writer Design object from
+      operationId: PutSqlToWriterDesign
+      requestBody:
+        content:
+          text/plain:
+            example: Select abc from xyz
+            schema:
+              type: string
+        description: SQL query to generate the writer design object from
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example: "{\"sql\":\"\\n@x = select SomeScope as Scope from Somewhere;\\\
+                nselect generate justfile test_sdk from Lusid.Instrument.Bond where\
+                \ ToWriter = @x\",\"availableToMapFrom\":[{\"expression\":\"SomeScope\"\
+                ,\"alias\":\"Scope\"}],\"parameter\":{\"providerName\":\"Lusid.Instrument.Bond\"\
+                ,\"parameterName\":\"ToWrite\",\"fields\":[{\"name\":\"Scope\",\"\
+                type\":\"Text\",\"description\":\"Scope of the instrument\",\"mapping\"\
+                :{\"expression\":\"SomeScope\",\"alias\":\"Scope\"}},{\"name\":\"\
+                DisplayName\",\"type\":\"Text\"}]},\"availableParameters\":[{\"providerName\"\
+                :\"Lusid.Instrument.Bond\",\"parameterName\":\"ToWrite\",\"fields\"\
+                :[{\"name\":\"Scope\",\"type\":\"Text\",\"description\":\"Scope of\
+                \ the instrument\",\"mapping\":{\"expression\":\"SomeScope\",\"alias\"\
+                :\"Scope\"}},{\"name\":\"DisplayName\",\"type\":\"Text\"}]},{\"providerName\"\
+                :\"Email.Send\",\"parameterName\":\"ToSend\",\"fields\":[{\"name\"\
+                :\"Subject\",\"type\":\"Text\"},{\"name\":\"Body\",\"type\":\"Text\"\
+                }]}]}"
+              schema:
+                type: string
+            application/json:
+              example: "{\"sql\":\"\\n@x = select SomeScope as Scope from Somewhere;\\\
+                nselect generate justfile test_sdk from Lusid.Instrument.Bond where\
+                \ ToWriter = @x\",\"availableToMapFrom\":[{\"expression\":\"SomeScope\"\
+                ,\"alias\":\"Scope\"}],\"parameter\":{\"providerName\":\"Lusid.Instrument.Bond\"\
+                ,\"parameterName\":\"ToWrite\",\"fields\":[{\"name\":\"Scope\",\"\
+                type\":\"Text\",\"description\":\"Scope of the instrument\",\"mapping\"\
+                :{\"expression\":\"SomeScope\",\"alias\":\"Scope\"}},{\"name\":\"\
+                DisplayName\",\"type\":\"Text\"}]},\"availableParameters\":[{\"providerName\"\
+                :\"Lusid.Instrument.Bond\",\"parameterName\":\"ToWrite\",\"fields\"\
+                :[{\"name\":\"Scope\",\"type\":\"Text\",\"description\":\"Scope of\
+                \ the instrument\",\"mapping\":{\"expression\":\"SomeScope\",\"alias\"\
+                :\"Scope\"}},{\"name\":\"DisplayName\",\"type\":\"Text\"}]},{\"providerName\"\
+                :\"Email.Send\",\"parameterName\":\"ToSend\",\"fields\":[{\"name\"\
+                :\"Subject\",\"type\":\"Text\"},{\"name\":\"Body\",\"type\":\"Text\"\
+                }]}]}"
+              schema:
+                type: string
+            text/json:
+              example: "{\"sql\":\"\\n@x = select SomeScope as Scope from Somewhere;\\\
+                nselect generate justfile test_sdk from Lusid.Instrument.Bond where\
+                \ ToWriter = @x\",\"availableToMapFrom\":[{\"expression\":\"SomeScope\"\
+                ,\"alias\":\"Scope\"}],\"parameter\":{\"providerName\":\"Lusid.Instrument.Bond\"\
+                ,\"parameterName\":\"ToWrite\",\"fields\":[{\"name\":\"Scope\",\"\
+                type\":\"Text\",\"description\":\"Scope of the instrument\",\"mapping\"\
+                :{\"expression\":\"SomeScope\",\"alias\":\"Scope\"}},{\"name\":\"\
+                DisplayName\",\"type\":\"Text\"}]},\"availableParameters\":[{\"providerName\"\
+                :\"Lusid.Instrument.Bond\",\"parameterName\":\"ToWrite\",\"fields\"\
+                :[{\"name\":\"Scope\",\"type\":\"Text\",\"description\":\"Scope of\
+                \ the instrument\",\"mapping\":{\"expression\":\"SomeScope\",\"alias\"\
+                :\"Scope\"}},{\"name\":\"DisplayName\",\"type\":\"Text\"}]},{\"providerName\"\
+                :\"Email.Send\",\"parameterName\":\"ToSend\",\"fields\":[{\"name\"\
+                :\"Subject\",\"type\":\"Text\"},{\"name\":\"Body\",\"type\":\"Text\"\
+                }]}]}"
+              schema:
+                type: string
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutSqlToWriterDesign: Generates a SQL-writer-design\
+        \ object from SQL string, if possible."
+      tags:
+      - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: text/plain
       x-accepts: application/json
@@ -4808,6 +5112,53 @@ components:
       - fieldType
       - name
       type: object
+    AvailableParameter:
+      additionalProperties: false
+      description: "Information about a field that can be designed on (regardless\
+        \ if it currently is)\r\nKind of a \"mini-available catalog entry\""
+      example:
+        parameterName: parameterName
+        fields:
+        - allowedValues: allowedValues
+          mapping:
+            expression: expression
+            alias: alias
+          sampleValues: sampleValues
+          displayName: displayName
+          name: name
+          description: description
+          type: null
+          mandatoryForActions: mandatoryForActions
+        - allowedValues: allowedValues
+          mapping:
+            expression: expression
+            alias: alias
+          sampleValues: sampleValues
+          displayName: displayName
+          name: name
+          description: description
+          type: null
+          mandatoryForActions: mandatoryForActions
+        providerName: providerName
+      properties:
+        providerName:
+          description: Name of the Provider with a TableParameter
+          minLength: 1
+          type: string
+        parameterName:
+          description: Name of the TableParameter on the Provider
+          minLength: 1
+          type: string
+        fields:
+          description: Fields that can be mapped to
+          items:
+            $ref: '#/components/schemas/MappableField'
+          type: array
+      required:
+      - fields
+      - parameterName
+      - providerName
+      type: object
     BackgroundMultiQueryProgressResponse:
       additionalProperties: false
       example:
@@ -5654,6 +6005,25 @@ components:
       - Text
       - Table
       type: string
+    ExpressionWithAlias:
+      additionalProperties: false
+      description: Contract for an expression of data we "have" that we may "want
+        to map to a table-parameter's column"
+      example:
+        expression: expression
+        alias: alias
+      properties:
+        expression:
+          description: "Expression (column name, constant, complex expression, etc.)"
+          minLength: 1
+          type: string
+        alias:
+          description: Column Alias for the expression
+          nullable: true
+          type: string
+      required:
+      - expression
+      type: object
     FeedbackEventArgs:
       additionalProperties: false
       example:
@@ -5992,6 +6362,7 @@ components:
       - SqlDb_Providers_Snowflake
       - SqlDb_Providers_SqlServer
       - SqlDb_Providers_SybaseAse
+      - Jdbc_Driver
       type: string
     LusidProblemDetails:
       additionalProperties: false
@@ -6028,6 +6399,54 @@ components:
       required:
       - code
       - name
+      type: object
+    MappableField:
+      additionalProperties: false
+      description: "Information about a field that can be designed on (regardless\
+        \ if it currently is)\r\nKind of a \"mini-available catalog entry\""
+      example:
+        allowedValues: allowedValues
+        mapping:
+          expression: expression
+          alias: alias
+        sampleValues: sampleValues
+        displayName: displayName
+        name: name
+        description: description
+        type: null
+        mandatoryForActions: mandatoryForActions
+      properties:
+        name:
+          description: Name of the field in need of mapping (The field name from within
+            the Table Parameter itself)
+          nullable: true
+          type: string
+        type:
+          $ref: '#/components/schemas/DataType'
+        description:
+          description: Description of the field (just for rendering to the user)
+          nullable: true
+          type: string
+        displayName:
+          description: Display Name of the field (just for rendering to the user)
+          nullable: true
+          type: string
+        sampleValues:
+          description: Example values for the field (just for rendering to the user)
+          nullable: true
+          type: string
+        allowedValues:
+          description: "Any set of exactly allowed values for the field (perhaps just\
+            \ for rendering to the user, if nothing else)"
+          nullable: true
+          type: string
+        mandatoryForActions:
+          description: "Which `Actions` is this mandatory for? If any (and potentially\
+            \ when), perhaps just for rendering to the user, if nothing else"
+          nullable: true
+          type: string
+        mapping:
+          $ref: '#/components/schemas/ExpressionWithAlias'
       type: object
     MultiQueryDefinitionType:
       enum:
@@ -6643,6 +7062,110 @@ components:
       - name
       - value
       type: object
+    WriterDesign:
+      additionalProperties: false
+      description: Representation of a "designable Query for a writer" suitable for
+        formatting to SQL or being built from compliant SQL.
+      example:
+        availableParameters:
+        - parameterName: parameterName
+          fields:
+          - allowedValues: allowedValues
+            mapping:
+              expression: expression
+              alias: alias
+            sampleValues: sampleValues
+            displayName: displayName
+            name: name
+            description: description
+            type: null
+            mandatoryForActions: mandatoryForActions
+          - allowedValues: allowedValues
+            mapping:
+              expression: expression
+              alias: alias
+            sampleValues: sampleValues
+            displayName: displayName
+            name: name
+            description: description
+            type: null
+            mandatoryForActions: mandatoryForActions
+          providerName: providerName
+        - parameterName: parameterName
+          fields:
+          - allowedValues: allowedValues
+            mapping:
+              expression: expression
+              alias: alias
+            sampleValues: sampleValues
+            displayName: displayName
+            name: name
+            description: description
+            type: null
+            mandatoryForActions: mandatoryForActions
+          - allowedValues: allowedValues
+            mapping:
+              expression: expression
+              alias: alias
+            sampleValues: sampleValues
+            displayName: displayName
+            name: name
+            description: description
+            type: null
+            mandatoryForActions: mandatoryForActions
+          providerName: providerName
+        parameter:
+          parameterName: parameterName
+          fields:
+          - allowedValues: allowedValues
+            mapping:
+              expression: expression
+              alias: alias
+            sampleValues: sampleValues
+            displayName: displayName
+            name: name
+            description: description
+            type: null
+            mandatoryForActions: mandatoryForActions
+          - allowedValues: allowedValues
+            mapping:
+              expression: expression
+              alias: alias
+            sampleValues: sampleValues
+            displayName: displayName
+            name: name
+            description: description
+            type: null
+            mandatoryForActions: mandatoryForActions
+          providerName: providerName
+        availableToMapFrom:
+        - expression: expression
+          alias: alias
+        - expression: expression
+          alias: alias
+        sql: sql
+      properties:
+        sql:
+          description: Original SQL that started this off
+          minLength: 1
+          type: string
+        availableToMapFrom:
+          description: The data able to be mapped from as derived from the Sql
+          items:
+            $ref: '#/components/schemas/ExpressionWithAlias'
+          nullable: true
+          type: array
+        parameter:
+          $ref: '#/components/schemas/AvailableParameter'
+        availableParameters:
+          description: All the parameter the user may wish to design
+          items:
+            $ref: '#/components/schemas/AvailableParameter'
+          nullable: true
+          type: array
+      required:
+      - sql
+      type: object
   securitySchemes:
     oauth2:
       description: OAuth2 Implicit Grant
@@ -6661,6 +7184,7 @@ x-tagGroups:
   - Historically Executed Queries
   - Multi-Query Execution
   - Sql Background Execution
+  - Sql Design
   - Sql Execution
 x-group-parameters: true
 

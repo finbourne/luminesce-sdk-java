@@ -96,6 +96,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ActionId.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.Aggregation.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.AvailableField.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.AvailableParameter.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.BackgroundMultiQueryProgressResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.BackgroundMultiQueryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.BackgroundQueryCancelResponse.CustomTypeAdapterFactory());
@@ -105,6 +106,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.Column.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ColumnInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ConvertToViewData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ExpressionWithAlias.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.FeedbackEventArgs.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.FieldDesign.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.FileReaderBuilderDef.CustomTypeAdapterFactory());
@@ -112,6 +114,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.IdSelectorDefinition.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.Link.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.LusidProblemDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.MappableField.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.OptionsCsv.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.OptionsExcel.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.OptionsParquet.CustomTypeAdapterFactory());
@@ -122,6 +125,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ResourceListOfAccessControlledResource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.Source.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ViewParameter.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.WriterDesign.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

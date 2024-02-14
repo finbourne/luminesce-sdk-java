@@ -4,8 +4,8 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any. |
-| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] ListCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format) |
+| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any |
+| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] ListCertificates: Lists all the certificates previously minted to which you have access |
 | [**manageCertificate**](CertificateManagementApi.md#manageCertificate) | **PUT** /api/Certificate/manage | [EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create / Renew / Revoke) |
 
 
@@ -13,7 +13,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 # **downloadCertificate**
 > File downloadCertificate().type(type).fileType(fileType).mayAutoCreate(mayAutoCreate).execute();
 
-[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any.
+[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any
 
  Downloads your latest Domain or User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized 
 
@@ -89,7 +89,7 @@ public class Example {
 # **listCertificates**
 > List&lt;CertificateState&gt; listCertificates().execute();
 
-[EXPERIMENTAL] ListCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
+[EXPERIMENTAL] ListCertificates: Lists all the certificates previously minted to which you have access
 
  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized 
 

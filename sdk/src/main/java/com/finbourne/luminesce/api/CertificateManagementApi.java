@@ -257,7 +257,7 @@ public class CertificateManagementApi {
     }
 
     /**
-     * [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any.
+     * [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any
      *  Downloads your latest Domain or User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized 
      * @return APIdownloadCertificateRequest
      * @http.response.details
@@ -407,7 +407,7 @@ public class CertificateManagementApi {
     }
 
     /**
-     * [EXPERIMENTAL] ListCertificates: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
+     * [EXPERIMENTAL] ListCertificates: Lists all the certificates previously minted to which you have access
      *  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized 
      * @return APIlistCertificatesRequest
      * @http.response.details

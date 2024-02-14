@@ -31,5 +31,7 @@
 
 * `SQLDB_PROVIDERS_SYBASEASE` (value: `"SqlDb_Providers_SybaseAse"`)
 
+* `JDBC_DRIVER` (value: `"Jdbc_Driver"`)
+
 
 
