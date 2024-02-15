@@ -11,6 +11,7 @@
 package com.finbourne.luminesce.model;
 
 import java.util.Objects;
+import com.finbourne.luminesce.model.MappingFlags;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -58,6 +59,10 @@ public class ExpressionWithAlias {
   @SerializedName(SERIALIZED_NAME_ALIAS)
   private String alias;
 
+  public static final String SERIALIZED_NAME_FLAGS = "flags";
+  @SerializedName(SERIALIZED_NAME_FLAGS)
+  private MappingFlags flags;
+
   public ExpressionWithAlias() {
   }
 
@@ -103,6 +108,27 @@ public class ExpressionWithAlias {
   }
 
 
+  public ExpressionWithAlias flags(MappingFlags flags) {
+    
+    this.flags = flags;
+    return this;
+  }
+
+   /**
+   * Get flags
+   * @return flags
+  **/
+  @jakarta.annotation.Nullable
+  public MappingFlags getFlags() {
+    return flags;
+  }
+
+
+  public void setFlags(MappingFlags flags) {
+    this.flags = flags;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -114,7 +140,8 @@ public class ExpressionWithAlias {
     }
     ExpressionWithAlias expressionWithAlias = (ExpressionWithAlias) o;
     return Objects.equals(this.expression, expressionWithAlias.expression) &&
-        Objects.equals(this.alias, expressionWithAlias.alias);
+        Objects.equals(this.alias, expressionWithAlias.alias) &&
+        Objects.equals(this.flags, expressionWithAlias.flags);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -123,7 +150,7 @@ public class ExpressionWithAlias {
 
   @Override
   public int hashCode() {
-    return Objects.hash(expression, alias);
+    return Objects.hash(expression, alias, flags);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -139,6 +166,7 @@ public class ExpressionWithAlias {
     sb.append("class ExpressionWithAlias {\n");
     sb.append("    expression: ").append(toIndentedString(expression)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
+    sb.append("    flags: ").append(toIndentedString(flags)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -163,6 +191,7 @@ public class ExpressionWithAlias {
     openapiFields = new HashSet<String>();
     openapiFields.add("expression");
     openapiFields.add("alias");
+    openapiFields.add("flags");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

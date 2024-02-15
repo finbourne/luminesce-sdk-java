@@ -1276,7 +1276,7 @@ public class SqlDesignApi {
     public APIputSqlToViewDesignRequest putSqlToViewDesign(String body) {
         return new APIputSqlToViewDesignRequest(body);
     }
-    private okhttp3.Call putSqlToWriterDesignCall(String body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putSqlToWriterDesignCall(String body, Boolean mergeAdditionalMappingFields, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1301,6 +1301,10 @@ public class SqlDesignApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (mergeAdditionalMappingFields != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("mergeAdditionalMappingFields", mergeAdditionalMappingFields));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -1324,26 +1328,26 @@ public class SqlDesignApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putSqlToWriterDesignValidateBeforeCall(String body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putSqlToWriterDesignValidateBeforeCall(String body, Boolean mergeAdditionalMappingFields, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putSqlToWriterDesign(Async)");
         }
 
-        return putSqlToWriterDesignCall(body, _callback);
+        return putSqlToWriterDesignCall(body, mergeAdditionalMappingFields, _callback);
 
     }
 
 
-    private ApiResponse<String> putSqlToWriterDesignWithHttpInfo(String body) throws ApiException {
-        okhttp3.Call localVarCall = putSqlToWriterDesignValidateBeforeCall(body, null);
+    private ApiResponse<String> putSqlToWriterDesignWithHttpInfo(String body, Boolean mergeAdditionalMappingFields) throws ApiException {
+        okhttp3.Call localVarCall = putSqlToWriterDesignValidateBeforeCall(body, mergeAdditionalMappingFields, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToWriterDesignAsync(String body, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putSqlToWriterDesignAsync(String body, Boolean mergeAdditionalMappingFields, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putSqlToWriterDesignValidateBeforeCall(body, _callback);
+        okhttp3.Call localVarCall = putSqlToWriterDesignValidateBeforeCall(body, mergeAdditionalMappingFields, _callback);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1351,9 +1355,20 @@ public class SqlDesignApi {
 
     public class APIputSqlToWriterDesignRequest {
         private final String body;
+        private Boolean mergeAdditionalMappingFields;
 
         private APIputSqlToWriterDesignRequest(String body) {
             this.body = body;
+        }
+
+        /**
+         * Set mergeAdditionalMappingFields
+         * @param mergeAdditionalMappingFields Should &#x60;Sys.Field&#x60; be used to find additional potential fields to map from? (not always possible) (optional, default to false)
+         * @return APIputSqlToWriterDesignRequest
+         */
+        public APIputSqlToWriterDesignRequest mergeAdditionalMappingFields(Boolean mergeAdditionalMappingFields) {
+            this.mergeAdditionalMappingFields = mergeAdditionalMappingFields;
+            return this;
         }
 
         /**
@@ -1369,7 +1384,7 @@ public class SqlDesignApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putSqlToWriterDesignCall(body, _callback);
+            return putSqlToWriterDesignCall(body, mergeAdditionalMappingFields, _callback);
         }
 
         /**
@@ -1384,7 +1399,7 @@ public class SqlDesignApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putSqlToWriterDesignWithHttpInfo(body);
+            ApiResponse<String> localVarResp = putSqlToWriterDesignWithHttpInfo(body, mergeAdditionalMappingFields);
             return localVarResp.getData();
         }
 
@@ -1400,7 +1415,7 @@ public class SqlDesignApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return putSqlToWriterDesignWithHttpInfo(body);
+            return putSqlToWriterDesignWithHttpInfo(body, mergeAdditionalMappingFields);
         }
 
         /**
@@ -1416,7 +1431,7 @@ public class SqlDesignApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return putSqlToWriterDesignAsync(body, _callback);
+            return putSqlToWriterDesignAsync(body, mergeAdditionalMappingFields, _callback);
         }
     }
 

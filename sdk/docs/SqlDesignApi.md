@@ -503,7 +503,7 @@ select generate justfile test_sdk from @x;; // String | SQL Query to generate th
 
 <a id="putSqlToWriterDesign"></a>
 # **putSqlToWriterDesign**
-> String putSqlToWriterDesign(body).execute();
+> String putSqlToWriterDesign(body).mergeAdditionalMappingFields(mergeAdditionalMappingFields).execute();
 
 [EXPERIMENTAL] PutSqlToWriterDesign: Generates a SQL-writer-design object from SQL string, if possible.
 
@@ -530,8 +530,10 @@ public class Example {
 
     SqlDesignApi apiInstance = new SqlDesignApi(defaultClient);
     String body = Select abc from xyz; // String | SQL query to generate the writer design object from
+    Boolean mergeAdditionalMappingFields = false; // Boolean | Should `Sys.Field` be used to find additional potential fields to map from? (not always possible)
     try {
       String result = apiInstance.putSqlToWriterDesign(body)
+            .mergeAdditionalMappingFields(mergeAdditionalMappingFields)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -550,6 +552,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| SQL query to generate the writer design object from | |
+| **mergeAdditionalMappingFields** | **Boolean**| Should &#x60;Sys.Field&#x60; be used to find additional potential fields to map from? (not always possible) | [optional] [default to false] |
 
 ### Return type
 
