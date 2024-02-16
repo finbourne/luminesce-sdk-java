@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.519
+  version: 1.14.526
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -446,6 +446,17 @@ paths:
         required: false
         schema:
           default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: Should a native data store (e.g. Athena or Fabric) be used over
+          Elastic Search if available?
+        explode: true
+        in: query
+        name: mayUseNativeStore
+        required: false
+        schema:
+          default: true
           type: boolean
         style: form
         x-nullable: true
