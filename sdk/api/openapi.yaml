@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.586
+  version: 1.14.587
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6405,6 +6405,8 @@ components:
       - SqlDb_Providers_Snowflake
       - SqlDb_Providers_SqlServer
       - SqlDb_Providers_SybaseAse
+      - SqlDb_Providers_SqLite
+      - SqlDb_Providers_DuckDb
       - Jdbc_Driver
       type: string
     LusidProblemDetails:

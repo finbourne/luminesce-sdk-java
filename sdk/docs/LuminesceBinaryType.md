@@ -31,6 +31,10 @@
 
 * `SQLDB_PROVIDERS_SYBASEASE` (value: `"SqlDb_Providers_SybaseAse"`)
 
+* `SQLDB_PROVIDERS_SQLITE` (value: `"SqlDb_Providers_SqLite"`)
+
+* `SQLDB_PROVIDERS_DUCKDB` (value: `"SqlDb_Providers_DuckDb"`)
+
 * `JDBC_DRIVER` (value: `"Jdbc_Driver"`)
 
 

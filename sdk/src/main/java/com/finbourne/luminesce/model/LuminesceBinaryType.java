@@ -51,6 +51,10 @@ public enum LuminesceBinaryType {
   
   SQLDB_PROVIDERS_SYBASEASE("SqlDb_Providers_SybaseAse"),
   
+  SQLDB_PROVIDERS_SQLITE("SqlDb_Providers_SqLite"),
+  
+  SQLDB_PROVIDERS_DUCKDB("SqlDb_Providers_DuckDb"),
+  
   JDBC_DRIVER("Jdbc_Driver");
 
   private String value;
