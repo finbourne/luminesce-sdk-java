@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.633
+  version: 1.14.635
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -342,9 +342,11 @@ paths:
         \ as \"Highly Available\" to the degree \n> that FINBOURNE services generally\
         \ are. \n> Thus it is not subject to the same SLAs as other API endpoints\
         \ are.\n> *If you perceive an outage, please try again later.*\n\nOnce a file\
-        \ has been downloaded the following steps can be used to install it:\n\n1.\
-        \ Open a terminal and cd to the directory you downloaded it to\n2. Install\
-        \ / extract files from that package via:\n```\ndotnet tool install NameOfFileWithoutExtension\
+        \ has been downloaded the following steps can be used to install it (for the\
+        \ dotnet tools at least):\n\n1. Open a terminal and cd to the directory you\
+        \ downloaded it to\n2. Install / extract files from that package via:\n```\n\
+        dotnet tool install NameOfFileWithoutVersionNumberOrExtension -g --add-source\
+        \ \".\"\n```\ne.g.\n```\ndotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake\
         \ -g --add-source \".\"\n```\n3. Execute them (see documentation for specific\
         \ binary)...\n\nThe installed binaries can then be found in\n- Windows - `%USERPROFILE%\\\
         .dotnet\\tools\\.store\\`\n- Linux/macOS - `$HOME/.dotnet/tools/.store/`\n\
