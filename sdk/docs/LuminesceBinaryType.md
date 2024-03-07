@@ -15,6 +15,8 @@
 
 * `AWSS3_PROVIDERS` (value: `"AwsS3_Providers"`)
 
+* `AZURE_PROVIDERS` (value: `"Azure_Providers"`)
+
 * `SQLDB_PROVIDERS_DB2LINUX` (value: `"SqlDb_Providers_Db2Linux"`)
 
 * `SQLDB_PROVIDERS_MYSQL` (value: `"SqlDb_Providers_MySql"`)

@@ -35,6 +35,8 @@ public enum LuminesceBinaryType {
   
   AWSS3_PROVIDERS("AwsS3_Providers"),
   
+  AZURE_PROVIDERS("Azure_Providers"),
+  
   SQLDB_PROVIDERS_DB2LINUX("SqlDb_Providers_Db2Linux"),
   
   SQLDB_PROVIDERS_MYSQL("SqlDb_Providers_MySql"),
