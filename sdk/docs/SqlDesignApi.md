@@ -5,6 +5,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**putFileReadDesignToSql**](SqlDesignApi.md#putFileReadDesignToSql) | **PUT** /api/Sql/fromfilereaddesign | [EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from a structured query design |
+| [**putIntellisense**](SqlDesignApi.md#putIntellisense) | **PUT** /api/Sql/intellisense | [EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense prompts given a SQL snipit (in need not yet be valid) and cursor location |
 | [**putQueryDesignToSql**](SqlDesignApi.md#putQueryDesignToSql) | **PUT** /api/Sql/fromdesign | [EXPERIMENTAL] PutQueryDesignToSql: Generates SQL from a structured query design |
 | [**putQueryToFormat**](SqlDesignApi.md#putQueryToFormat) | **PUT** /api/Sql/pretty | PutQueryToFormat: Formats SQL into a more readable form, a.k.a. Pretty-Print the SQL. |
 | [**putSqlToFileReadDesign**](SqlDesignApi.md#putSqlToFileReadDesign) | **PUT** /api/Sql/tofilereaddesign | [EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design object from SQL string, if possible. |
@@ -17,7 +18,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 <a id="putFileReadDesignToSql"></a>
 # **putFileReadDesignToSql**
-> String putFileReadDesignToSql(fileReaderBuilderDef).executeQuery(executeQuery).execute();
+> FileReaderBuilderResponse putFileReadDesignToSql(fileReaderBuilderDef).executeQuery(executeQuery).execute();
 
 [EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from a structured query design
 
@@ -46,7 +47,7 @@ public class Example {
     FileReaderBuilderDef fileReaderBuilderDef = new FileReaderBuilderDef(); // FileReaderBuilderDef | Structured file read design object to generate SQL from
     Boolean executeQuery = true; // Boolean | Should the generated query be executed to build preview data or determine errors.>
     try {
-      String result = apiInstance.putFileReadDesignToSql(fileReaderBuilderDef)
+      FileReaderBuilderResponse result = apiInstance.putFileReadDesignToSql(fileReaderBuilderDef)
             .executeQuery(executeQuery)
             .execute();
       System.out.println(result);
@@ -70,7 +71,76 @@ public class Example {
 
 ### Return type
 
-**String**
+[**FileReaderBuilderResponse**](FileReaderBuilderResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+
+<a id="putIntellisense"></a>
+# **putIntellisense**
+> IntellisenseResponse putIntellisense(intellisenseRequest).execute();
+
+[EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense prompts given a SQL snipit (in need not yet be valid) and cursor location
+
+SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from.
+
+### Example
+```java
+// Import classes:
+import com.finbourne.luminesce.ApiClient;
+import com.finbourne.luminesce.ApiException;
+import com.finbourne.luminesce.Configuration;
+import com.finbourne.luminesce.auth.*;
+import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
+    
+    // Configure OAuth2 access token for authorization: oauth2
+    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
+    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    SqlDesignApi apiInstance = new SqlDesignApi(defaultClient);
+    IntellisenseRequest intellisenseRequest = new IntellisenseRequest(); // IntellisenseRequest | 
+    try {
+      IntellisenseResponse result = apiInstance.putIntellisense(intellisenseRequest)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SqlDesignApi#putIntellisense");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **intellisenseRequest** | [**IntellisenseRequest**](IntellisenseRequest.md)|  | |
+
+### Return type
+
+[**IntellisenseResponse**](IntellisenseResponse.md)
 
 ### Authorization
 
@@ -266,7 +336,7 @@ public class Example {
 
 <a id="putSqlToFileReadDesign"></a>
 # **putSqlToFileReadDesign**
-> String putSqlToFileReadDesign().determineAvailableSources(determineAvailableSources).body(body).execute();
+> FileReaderBuilderDef putSqlToFileReadDesign().determineAvailableSources(determineAvailableSources).body(body).execute();
 
 [EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design object from SQL string, if possible.
 
@@ -300,7 +370,7 @@ enduse;
 
 select generate justfile test_sdk from @x;; // String | SQL query to generate the file read design object from
     try {
-      String result = apiInstance.putSqlToFileReadDesign()
+      FileReaderBuilderDef result = apiInstance.putSqlToFileReadDesign()
             .determineAvailableSources(determineAvailableSources)
             .body(body)
             .execute();
@@ -325,7 +395,7 @@ select generate justfile test_sdk from @x;; // String | SQL query to generate th
 
 ### Return type
 
-**String**
+[**FileReaderBuilderDef**](FileReaderBuilderDef.md)
 
 ### Authorization
 
@@ -344,7 +414,7 @@ select generate justfile test_sdk from @x;; // String | SQL query to generate th
 
 <a id="putSqlToQueryDesign"></a>
 # **putSqlToQueryDesign**
-> String putSqlToQueryDesign(body).validateWithMetadata(validateWithMetadata).execute();
+> QueryDesign putSqlToQueryDesign(body).validateWithMetadata(validateWithMetadata).execute();
 
 [EXPERIMENTAL] PutSqlToQueryDesign: Generates a SQL-design object from SQL string, if possible.
 
@@ -384,7 +454,7 @@ ORDER BY
 LIMIT 42; // String | SQL query to generate the design object from
     Boolean validateWithMetadata = true; // Boolean | Should the table be validated against the users' view of Sys.Field to fill in DataTypes, etc.?
     try {
-      String result = apiInstance.putSqlToQueryDesign(body)
+      QueryDesign result = apiInstance.putSqlToQueryDesign(body)
             .validateWithMetadata(validateWithMetadata)
             .execute();
       System.out.println(result);
@@ -408,7 +478,7 @@ LIMIT 42; // String | SQL query to generate the design object from
 
 ### Return type
 
-**String**
+[**QueryDesign**](QueryDesign.md)
 
 ### Authorization
 
@@ -427,7 +497,7 @@ LIMIT 42; // String | SQL query to generate the design object from
 
 <a id="putSqlToViewDesign"></a>
 # **putSqlToViewDesign**
-> String putSqlToViewDesign(body).execute();
+> ConvertToViewData putSqlToViewDesign(body).execute();
 
 [EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation design from existing view creation SQL.
 
@@ -462,7 +532,7 @@ enduse;
 
 select generate justfile test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
     try {
-      String result = apiInstance.putSqlToViewDesign(body)
+      ConvertToViewData result = apiInstance.putSqlToViewDesign(body)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -484,7 +554,7 @@ select generate justfile test_sdk from @x;; // String | SQL Query to generate th
 
 ### Return type
 
-**String**
+[**ConvertToViewData**](ConvertToViewData.md)
 
 ### Authorization
 
@@ -503,7 +573,7 @@ select generate justfile test_sdk from @x;; // String | SQL Query to generate th
 
 <a id="putSqlToWriterDesign"></a>
 # **putSqlToWriterDesign**
-> String putSqlToWriterDesign(body).mergeAdditionalMappingFields(mergeAdditionalMappingFields).execute();
+> WriterDesign putSqlToWriterDesign(body).mergeAdditionalMappingFields(mergeAdditionalMappingFields).execute();
 
 [EXPERIMENTAL] PutSqlToWriterDesign: Generates a SQL-writer-design object from SQL string, if possible.
 
@@ -532,7 +602,7 @@ public class Example {
     String body = Select abc from xyz; // String | SQL query to generate the writer design object from
     Boolean mergeAdditionalMappingFields = false; // Boolean | Should `Sys.Field` be used to find additional potential fields to map from? (not always possible)
     try {
-      String result = apiInstance.putSqlToWriterDesign(body)
+      WriterDesign result = apiInstance.putSqlToWriterDesign(body)
             .mergeAdditionalMappingFields(mergeAdditionalMappingFields)
             .execute();
       System.out.println(result);
@@ -556,7 +626,7 @@ public class Example {
 
 ### Return type
 
-**String**
+[**WriterDesign**](WriterDesign.md)
 
 ### Authorization
 

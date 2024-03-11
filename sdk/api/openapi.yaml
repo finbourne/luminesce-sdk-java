@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.683
+  version: 1.14.688
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1659,13 +1659,13 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
+                $ref: '#/components/schemas/FileReaderBuilderResponse'
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/FileReaderBuilderResponse'
             text/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/FileReaderBuilderResponse'
           description: Success
         "400":
           content:
@@ -2069,6 +2069,136 @@ paths:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutWriterDesignToSql: Generates writer SQL from a valid\
         \ writer-design structure"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
+  /api/Sql/intellisense:
+    put:
+      description: SQL and a row/colum position within it from which to determine
+        intellisense options for the user to potentially choose from.
+      operationId: PutIntellisense
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              lines:
+              - select *
+              - from somewhere
+              position:
+                row: 0
+                column: 4
+            schema:
+              $ref: '#/components/schemas/IntellisenseRequest'
+          application/json:
+            example:
+              lines:
+              - select *
+              - from somewhere
+              position:
+                row: 0
+                column: 4
+            schema:
+              $ref: '#/components/schemas/IntellisenseRequest'
+          text/json:
+            example:
+              lines:
+              - select *
+              - from somewhere
+              position:
+                row: 0
+                column: 4
+            schema:
+              $ref: '#/components/schemas/IntellisenseRequest'
+          application/*+json:
+            example:
+              lines:
+              - select *
+              - from somewhere
+              position:
+                row: 0
+                column: 4
+            schema:
+              $ref: '#/components/schemas/IntellisenseRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                autoCompleteList:
+                - caption: SELECT
+                  value: SELECT
+                  meta: select some data
+                  score: 100
+                  docHtml: <p>Select some data!</p>
+                  type: Keyword
+                - caption: VALUES
+                  value: VALUES
+                  meta: some hard-coded data
+                  score: 100
+                  docHtml: <p>values give you data</p>
+                  type: Keyword
+                tryAgainSoonForMore: false
+                sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
+              schema:
+                $ref: '#/components/schemas/IntellisenseResponse'
+            application/json:
+              example:
+                autoCompleteList:
+                - caption: SELECT
+                  value: SELECT
+                  meta: select some data
+                  score: 100
+                  docHtml: <p>Select some data!</p>
+                  type: Keyword
+                - caption: VALUES
+                  value: VALUES
+                  meta: some hard-coded data
+                  score: 100
+                  docHtml: <p>values give you data</p>
+                  type: Keyword
+                tryAgainSoonForMore: false
+                sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
+              schema:
+                $ref: '#/components/schemas/IntellisenseResponse'
+            text/json:
+              example:
+                autoCompleteList:
+                - caption: SELECT
+                  value: SELECT
+                  meta: select some data
+                  score: 100
+                  docHtml: <p>Select some data!</p>
+                  type: Keyword
+                - caption: VALUES
+                  value: VALUES
+                  meta: some hard-coded data
+                  score: 100
+                  docHtml: <p>values give you data</p>
+                  type: Keyword
+                tryAgainSoonForMore: false
+                sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
+              schema:
+                $ref: '#/components/schemas/IntellisenseResponse'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense\
+        \ prompts given a SQL snipit (in need not yet be valid) and cursor location"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -3000,35 +3130,83 @@ paths:
         "200":
           content:
             text/plain:
-              example: "{\"tableName\":\"Sys.Field\",\"fields\":[{\"name\":\"TableName\"\
-                ,\"dataType\":\"Text\",\"shouldSelect\":true,\"filters\":[{\"operator\"\
-                :\"Eq\",\"value\":\"Sys.Registration\"}],\"aggregations\":[]},{\"\
-                name\":\"FieldName\",\"dataType\":\"Text\",\"shouldSelect\":true,\"\
-                filters\":[],\"aggregations\":[{\"type\":\"count_distinct\",\"alias\"\
-                :\"NumberOfFields\"}]}],\"orderBy\":[{\"field\":\"DataType\",\"direction\"\
-                :\"asc\"}],\"limit\":42,\"warnings\":[],\"availableFields\":[]}"
+              example:
+                tableName: Sys.Field
+                fields:
+                - name: TableName
+                  dataType: Text
+                  shouldSelect: true
+                  filters:
+                  - operator: Eq
+                    value: Sys.Registration
+                  aggregations: []
+                - name: FieldName
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations:
+                  - type: count_distinct
+                    alias: NumberOfFields
+                orderBy:
+                - field: DataType
+                  direction: asc
+                limit: 42
+                warnings: []
+                availableFields: []
               schema:
-                type: string
+                $ref: '#/components/schemas/QueryDesign'
             application/json:
-              example: "{\"tableName\":\"Sys.Field\",\"fields\":[{\"name\":\"TableName\"\
-                ,\"dataType\":\"Text\",\"shouldSelect\":true,\"filters\":[{\"operator\"\
-                :\"Eq\",\"value\":\"Sys.Registration\"}],\"aggregations\":[]},{\"\
-                name\":\"FieldName\",\"dataType\":\"Text\",\"shouldSelect\":true,\"\
-                filters\":[],\"aggregations\":[{\"type\":\"count_distinct\",\"alias\"\
-                :\"NumberOfFields\"}]}],\"orderBy\":[{\"field\":\"DataType\",\"direction\"\
-                :\"asc\"}],\"limit\":42,\"warnings\":[],\"availableFields\":[]}"
+              example:
+                tableName: Sys.Field
+                fields:
+                - name: TableName
+                  dataType: Text
+                  shouldSelect: true
+                  filters:
+                  - operator: Eq
+                    value: Sys.Registration
+                  aggregations: []
+                - name: FieldName
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations:
+                  - type: count_distinct
+                    alias: NumberOfFields
+                orderBy:
+                - field: DataType
+                  direction: asc
+                limit: 42
+                warnings: []
+                availableFields: []
               schema:
-                type: string
+                $ref: '#/components/schemas/QueryDesign'
             text/json:
-              example: "{\"tableName\":\"Sys.Field\",\"fields\":[{\"name\":\"TableName\"\
-                ,\"dataType\":\"Text\",\"shouldSelect\":true,\"filters\":[{\"operator\"\
-                :\"Eq\",\"value\":\"Sys.Registration\"}],\"aggregations\":[]},{\"\
-                name\":\"FieldName\",\"dataType\":\"Text\",\"shouldSelect\":true,\"\
-                filters\":[],\"aggregations\":[{\"type\":\"count_distinct\",\"alias\"\
-                :\"NumberOfFields\"}]}],\"orderBy\":[{\"field\":\"DataType\",\"direction\"\
-                :\"asc\"}],\"limit\":42,\"warnings\":[],\"availableFields\":[]}"
+              example:
+                tableName: Sys.Field
+                fields:
+                - name: TableName
+                  dataType: Text
+                  shouldSelect: true
+                  filters:
+                  - operator: Eq
+                    value: Sys.Registration
+                  aggregations: []
+                - name: FieldName
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations:
+                  - type: count_distinct
+                    alias: NumberOfFields
+                orderBy:
+                - field: DataType
+                  direction: asc
+                limit: 42
+                warnings: []
+                availableFields: []
               schema:
-                type: string
+                $ref: '#/components/schemas/QueryDesign'
           description: Success
         "400":
           content:
@@ -3078,23 +3256,38 @@ paths:
         "200":
           content:
             text/plain:
-              example: "{\"limit\":0,\"source\":{\"location\":\"Drive\",\"type\":\"\
-                Csv\"},\"filePath\":\"/some/folder\",\"folderFilter\":\".*\\\\.csv\"\
-                ,\"addFileName\":true}"
+              example:
+                limit: 0
+                source:
+                  location: Drive
+                  type: Csv
+                filePath: /some/folder
+                folderFilter: .*\.csv
+                addFileName: true
               schema:
-                type: string
+                $ref: '#/components/schemas/FileReaderBuilderDef'
             application/json:
-              example: "{\"limit\":0,\"source\":{\"location\":\"Drive\",\"type\":\"\
-                Csv\"},\"filePath\":\"/some/folder\",\"folderFilter\":\".*\\\\.csv\"\
-                ,\"addFileName\":true}"
+              example:
+                limit: 0
+                source:
+                  location: Drive
+                  type: Csv
+                filePath: /some/folder
+                folderFilter: .*\.csv
+                addFileName: true
               schema:
-                type: string
+                $ref: '#/components/schemas/FileReaderBuilderDef'
             text/json:
-              example: "{\"limit\":0,\"source\":{\"location\":\"Drive\",\"type\":\"\
-                Csv\"},\"filePath\":\"/some/folder\",\"folderFilter\":\".*\\\\.csv\"\
-                ,\"addFileName\":true}"
+              example:
+                limit: 0
+                source:
+                  location: Drive
+                  type: Csv
+                filePath: /some/folder
+                folderFilter: .*\.csv
+                addFileName: true
               schema:
-                type: string
+                $ref: '#/components/schemas/FileReaderBuilderDef'
           description: Success
         "400":
           content:
@@ -3135,53 +3328,95 @@ paths:
         "200":
           content:
             text/plain:
-              example: "{\"query\":\"select generate justfile test_sdk from Lusid.Instrument.bond\"\
-                ,\"name\":\"Views.MyView\",\"description\":\"This is a tooltip for\
-                \ the view as a whole\",\"documentationLink\":\"https://mydocumentationlink.com\"\
-                ,\"viewParameters\":[{\"name\":\"MyTextParam\",\"dataType\":\"Text\"\
-                ,\"value\":\"Portfolio\",\"isTableDataMandatory\":false,\"description\"\
-                :\"This is a parameter tooltip\"},{\"name\":\"EffectiveAt\",\"dataType\"\
-                :\"Date\",\"value\":\"2023-05-03\",\"isTableDataMandatory\":false,\"\
-                description\":\"This is a parameter tooltip\"},{\"name\":\"IsActive\"\
-                ,\"dataType\":\"Boolean\",\"value\":\"true\",\"isTableDataMandatory\"\
-                :true,\"description\":\"This is a parameter tooltip\"},{\"name\":\"\
-                EndUserTable\",\"dataType\":\"Table\",\"value\":\"@end_user_table\"\
-                ,\"isTableDataMandatory\":true,\"description\":\"This is a parameter\
-                \ tooltip\"}],\"otherParameters\":{}}"
+              example:
+                query: select generate justfile test_sdk from Lusid.Instrument.bond
+                name: Views.MyView
+                description: This is a tooltip for the view as a whole
+                documentationLink: https://mydocumentationlink.com
+                viewParameters:
+                - name: MyTextParam
+                  dataType: Text
+                  value: Portfolio
+                  isTableDataMandatory: false
+                  description: This is a parameter tooltip
+                - name: EffectiveAt
+                  dataType: Date
+                  value: 2023-05-03
+                  isTableDataMandatory: false
+                  description: This is a parameter tooltip
+                - name: IsActive
+                  dataType: Boolean
+                  value: "true"
+                  isTableDataMandatory: true
+                  description: This is a parameter tooltip
+                - name: EndUserTable
+                  dataType: Table
+                  value: '@end_user_table'
+                  isTableDataMandatory: true
+                  description: This is a parameter tooltip
+                otherParameters: {}
               schema:
-                type: string
+                $ref: '#/components/schemas/ConvertToViewData'
             application/json:
-              example: "{\"query\":\"select generate justfile test_sdk from Lusid.Instrument.bond\"\
-                ,\"name\":\"Views.MyView\",\"description\":\"This is a tooltip for\
-                \ the view as a whole\",\"documentationLink\":\"https://mydocumentationlink.com\"\
-                ,\"viewParameters\":[{\"name\":\"MyTextParam\",\"dataType\":\"Text\"\
-                ,\"value\":\"Portfolio\",\"isTableDataMandatory\":false,\"description\"\
-                :\"This is a parameter tooltip\"},{\"name\":\"EffectiveAt\",\"dataType\"\
-                :\"Date\",\"value\":\"2023-05-03\",\"isTableDataMandatory\":false,\"\
-                description\":\"This is a parameter tooltip\"},{\"name\":\"IsActive\"\
-                ,\"dataType\":\"Boolean\",\"value\":\"true\",\"isTableDataMandatory\"\
-                :true,\"description\":\"This is a parameter tooltip\"},{\"name\":\"\
-                EndUserTable\",\"dataType\":\"Table\",\"value\":\"@end_user_table\"\
-                ,\"isTableDataMandatory\":true,\"description\":\"This is a parameter\
-                \ tooltip\"}],\"otherParameters\":{}}"
+              example:
+                query: select generate justfile test_sdk from Lusid.Instrument.bond
+                name: Views.MyView
+                description: This is a tooltip for the view as a whole
+                documentationLink: https://mydocumentationlink.com
+                viewParameters:
+                - name: MyTextParam
+                  dataType: Text
+                  value: Portfolio
+                  isTableDataMandatory: false
+                  description: This is a parameter tooltip
+                - name: EffectiveAt
+                  dataType: Date
+                  value: 2023-05-03
+                  isTableDataMandatory: false
+                  description: This is a parameter tooltip
+                - name: IsActive
+                  dataType: Boolean
+                  value: "true"
+                  isTableDataMandatory: true
+                  description: This is a parameter tooltip
+                - name: EndUserTable
+                  dataType: Table
+                  value: '@end_user_table'
+                  isTableDataMandatory: true
+                  description: This is a parameter tooltip
+                otherParameters: {}
               schema:
-                type: string
+                $ref: '#/components/schemas/ConvertToViewData'
             text/json:
-              example: "{\"query\":\"select generate justfile test_sdk from Lusid.Instrument.bond\"\
-                ,\"name\":\"Views.MyView\",\"description\":\"This is a tooltip for\
-                \ the view as a whole\",\"documentationLink\":\"https://mydocumentationlink.com\"\
-                ,\"viewParameters\":[{\"name\":\"MyTextParam\",\"dataType\":\"Text\"\
-                ,\"value\":\"Portfolio\",\"isTableDataMandatory\":false,\"description\"\
-                :\"This is a parameter tooltip\"},{\"name\":\"EffectiveAt\",\"dataType\"\
-                :\"Date\",\"value\":\"2023-05-03\",\"isTableDataMandatory\":false,\"\
-                description\":\"This is a parameter tooltip\"},{\"name\":\"IsActive\"\
-                ,\"dataType\":\"Boolean\",\"value\":\"true\",\"isTableDataMandatory\"\
-                :true,\"description\":\"This is a parameter tooltip\"},{\"name\":\"\
-                EndUserTable\",\"dataType\":\"Table\",\"value\":\"@end_user_table\"\
-                ,\"isTableDataMandatory\":true,\"description\":\"This is a parameter\
-                \ tooltip\"}],\"otherParameters\":{}}"
+              example:
+                query: select generate justfile test_sdk from Lusid.Instrument.bond
+                name: Views.MyView
+                description: This is a tooltip for the view as a whole
+                documentationLink: https://mydocumentationlink.com
+                viewParameters:
+                - name: MyTextParam
+                  dataType: Text
+                  value: Portfolio
+                  isTableDataMandatory: false
+                  description: This is a parameter tooltip
+                - name: EffectiveAt
+                  dataType: Date
+                  value: 2023-05-03
+                  isTableDataMandatory: false
+                  description: This is a parameter tooltip
+                - name: IsActive
+                  dataType: Boolean
+                  value: "true"
+                  isTableDataMandatory: true
+                  description: This is a parameter tooltip
+                - name: EndUserTable
+                  dataType: Table
+                  value: '@end_user_table'
+                  isTableDataMandatory: true
+                  description: This is a parameter tooltip
+                otherParameters: {}
               schema:
-                type: string
+                $ref: '#/components/schemas/ConvertToViewData'
           description: Success
         "400":
           content:
@@ -3232,62 +3467,140 @@ paths:
         "200":
           content:
             text/plain:
-              example: "{\"sql\":\"\\n@x = select SomeScope as Scope from Somewhere;\\\
-                nselect generate justfile test_sdk from Lusid.Instrument.Bond where\
-                \ ToWriter = @x\",\"availableToMapFrom\":[{\"expression\":\"SomeScope\"\
-                ,\"alias\":\"Scope\",\"flags\":\"None\"}],\"parameter\":{\"providerName\"\
-                :\"Lusid.Instrument.Bond\",\"parameterName\":\"ToWrite\",\"fields\"\
-                :[{\"name\":\"Scope\",\"type\":\"Text\",\"description\":\"Scope of\
-                \ the instrument\",\"mapping\":{\"expression\":\"SomeScope\",\"alias\"\
-                :\"Scope\",\"flags\":\"None\"}},{\"name\":\"DisplayName\",\"type\"\
-                :\"Text\"}]},\"availableParameters\":[{\"providerName\":\"Lusid.Instrument.Bond\"\
-                ,\"parameterName\":\"ToWrite\",\"fields\":[{\"name\":\"Scope\",\"\
-                type\":\"Text\",\"description\":\"Scope of the instrument\",\"mapping\"\
-                :{\"expression\":\"SomeScope\",\"alias\":\"Scope\",\"flags\":\"None\"\
-                }},{\"name\":\"DisplayName\",\"type\":\"Text\"}]},{\"providerName\"\
-                :\"Email.Send\",\"parameterName\":\"ToSend\",\"fields\":[{\"name\"\
-                :\"Subject\",\"type\":\"Text\"},{\"name\":\"Body\",\"type\":\"Text\"\
-                }]}]}"
+              example:
+                sql: |2-
+
+                  @x = select SomeScope as Scope from Somewhere;
+                  select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                availableToMapFrom:
+                - expression: SomeScope
+                  alias: Scope
+                  flags: None
+                parameter:
+                  providerName: Lusid.Instrument.Bond
+                  parameterName: ToWrite
+                  fields:
+                  - name: Scope
+                    type: Text
+                    description: Scope of the instrument
+                    mapping:
+                      expression: SomeScope
+                      alias: Scope
+                      flags: None
+                  - name: DisplayName
+                    type: Text
+                availableParameters:
+                - providerName: Lusid.Instrument.Bond
+                  parameterName: ToWrite
+                  fields:
+                  - name: Scope
+                    type: Text
+                    description: Scope of the instrument
+                    mapping:
+                      expression: SomeScope
+                      alias: Scope
+                      flags: None
+                  - name: DisplayName
+                    type: Text
+                - providerName: Email.Send
+                  parameterName: ToSend
+                  fields:
+                  - name: Subject
+                    type: Text
+                  - name: Body
+                    type: Text
               schema:
-                type: string
+                $ref: '#/components/schemas/WriterDesign'
             application/json:
-              example: "{\"sql\":\"\\n@x = select SomeScope as Scope from Somewhere;\\\
-                nselect generate justfile test_sdk from Lusid.Instrument.Bond where\
-                \ ToWriter = @x\",\"availableToMapFrom\":[{\"expression\":\"SomeScope\"\
-                ,\"alias\":\"Scope\",\"flags\":\"None\"}],\"parameter\":{\"providerName\"\
-                :\"Lusid.Instrument.Bond\",\"parameterName\":\"ToWrite\",\"fields\"\
-                :[{\"name\":\"Scope\",\"type\":\"Text\",\"description\":\"Scope of\
-                \ the instrument\",\"mapping\":{\"expression\":\"SomeScope\",\"alias\"\
-                :\"Scope\",\"flags\":\"None\"}},{\"name\":\"DisplayName\",\"type\"\
-                :\"Text\"}]},\"availableParameters\":[{\"providerName\":\"Lusid.Instrument.Bond\"\
-                ,\"parameterName\":\"ToWrite\",\"fields\":[{\"name\":\"Scope\",\"\
-                type\":\"Text\",\"description\":\"Scope of the instrument\",\"mapping\"\
-                :{\"expression\":\"SomeScope\",\"alias\":\"Scope\",\"flags\":\"None\"\
-                }},{\"name\":\"DisplayName\",\"type\":\"Text\"}]},{\"providerName\"\
-                :\"Email.Send\",\"parameterName\":\"ToSend\",\"fields\":[{\"name\"\
-                :\"Subject\",\"type\":\"Text\"},{\"name\":\"Body\",\"type\":\"Text\"\
-                }]}]}"
+              example:
+                sql: |2-
+
+                  @x = select SomeScope as Scope from Somewhere;
+                  select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                availableToMapFrom:
+                - expression: SomeScope
+                  alias: Scope
+                  flags: None
+                parameter:
+                  providerName: Lusid.Instrument.Bond
+                  parameterName: ToWrite
+                  fields:
+                  - name: Scope
+                    type: Text
+                    description: Scope of the instrument
+                    mapping:
+                      expression: SomeScope
+                      alias: Scope
+                      flags: None
+                  - name: DisplayName
+                    type: Text
+                availableParameters:
+                - providerName: Lusid.Instrument.Bond
+                  parameterName: ToWrite
+                  fields:
+                  - name: Scope
+                    type: Text
+                    description: Scope of the instrument
+                    mapping:
+                      expression: SomeScope
+                      alias: Scope
+                      flags: None
+                  - name: DisplayName
+                    type: Text
+                - providerName: Email.Send
+                  parameterName: ToSend
+                  fields:
+                  - name: Subject
+                    type: Text
+                  - name: Body
+                    type: Text
               schema:
-                type: string
+                $ref: '#/components/schemas/WriterDesign'
             text/json:
-              example: "{\"sql\":\"\\n@x = select SomeScope as Scope from Somewhere;\\\
-                nselect generate justfile test_sdk from Lusid.Instrument.Bond where\
-                \ ToWriter = @x\",\"availableToMapFrom\":[{\"expression\":\"SomeScope\"\
-                ,\"alias\":\"Scope\",\"flags\":\"None\"}],\"parameter\":{\"providerName\"\
-                :\"Lusid.Instrument.Bond\",\"parameterName\":\"ToWrite\",\"fields\"\
-                :[{\"name\":\"Scope\",\"type\":\"Text\",\"description\":\"Scope of\
-                \ the instrument\",\"mapping\":{\"expression\":\"SomeScope\",\"alias\"\
-                :\"Scope\",\"flags\":\"None\"}},{\"name\":\"DisplayName\",\"type\"\
-                :\"Text\"}]},\"availableParameters\":[{\"providerName\":\"Lusid.Instrument.Bond\"\
-                ,\"parameterName\":\"ToWrite\",\"fields\":[{\"name\":\"Scope\",\"\
-                type\":\"Text\",\"description\":\"Scope of the instrument\",\"mapping\"\
-                :{\"expression\":\"SomeScope\",\"alias\":\"Scope\",\"flags\":\"None\"\
-                }},{\"name\":\"DisplayName\",\"type\":\"Text\"}]},{\"providerName\"\
-                :\"Email.Send\",\"parameterName\":\"ToSend\",\"fields\":[{\"name\"\
-                :\"Subject\",\"type\":\"Text\"},{\"name\":\"Body\",\"type\":\"Text\"\
-                }]}]}"
+              example:
+                sql: |2-
+
+                  @x = select SomeScope as Scope from Somewhere;
+                  select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                availableToMapFrom:
+                - expression: SomeScope
+                  alias: Scope
+                  flags: None
+                parameter:
+                  providerName: Lusid.Instrument.Bond
+                  parameterName: ToWrite
+                  fields:
+                  - name: Scope
+                    type: Text
+                    description: Scope of the instrument
+                    mapping:
+                      expression: SomeScope
+                      alias: Scope
+                      flags: None
+                  - name: DisplayName
+                    type: Text
+                availableParameters:
+                - providerName: Lusid.Instrument.Bond
+                  parameterName: ToWrite
+                  fields:
+                  - name: Scope
+                    type: Text
+                    description: Scope of the instrument
+                    mapping:
+                      expression: SomeScope
+                      alias: Scope
+                      flags: None
+                  - name: DisplayName
+                    type: Text
+                - providerName: Email.Send
+                  parameterName: ToSend
+                  fields:
+                  - name: Subject
+                    type: Text
+                  - name: Body
+                    type: Text
               schema:
-                type: string
+                $ref: '#/components/schemas/WriterDesign'
           description: Success
         "400":
           content:
@@ -6035,6 +6348,24 @@ components:
       - name
       - query
       type: object
+    CursorPosition:
+      additionalProperties: false
+      example:
+        column: 6
+        row: 0
+      properties:
+        row:
+          description: Row (0 based) of the user's cursor position
+          format: int32
+          type: integer
+        column:
+          description: Column (0 based) of the user's cursor position
+          format: int32
+          type: integer
+      required:
+      - column
+      - row
+      type: object
     DataType:
       enum:
       - Boolean
@@ -6310,6 +6641,41 @@ components:
         parquet:
           $ref: '#/components/schemas/OptionsParquet'
       type: object
+    FileReaderBuilderResponse:
+      additionalProperties: false
+      description: Information on how to construct a file-read sql query
+      example:
+        data: ""
+        columns:
+        - select: true
+          name: name
+          type: null
+          xPath: xPath
+        - select: true
+          name: name
+          type: null
+          xPath: xPath
+        query: query
+        error: error
+      properties:
+        query:
+          description: The generated SQL
+          nullable: true
+          type: string
+        error:
+          description: "The error from running generated SQL Query, if any"
+          nullable: true
+          type: string
+        columns:
+          description: Column information for the results
+          items:
+            $ref: '#/components/schemas/ColumnInfo'
+          nullable: true
+          type: array
+        data:
+          description: The resulting data from running the Query
+          nullable: true
+      type: object
     FilterTermDesign:
       additionalProperties: false
       description: A single filter clause
@@ -6368,6 +6734,114 @@ components:
       - actions
       - identifier
       type: object
+    IntellisenseItem:
+      additionalProperties: false
+      description: Representation of an item in an Intellisense popup
+      example:
+        score: 0
+        meta: meta
+        caption: caption
+        type: null
+        value: value
+        docHtml: docHtml
+      properties:
+        caption:
+          description: The value to show the user in the popup
+          minLength: 1
+          type: string
+        value:
+          description: The value to substitute in
+          minLength: 1
+          type: string
+        meta:
+          description: The light-grey text shown to the right of the Caption in the
+            popup
+          nullable: true
+          type: string
+        score:
+          description: How important is this. Bigger is more important.
+          format: int32
+          type: integer
+        docHtml:
+          description: Popup further info (as in a whole documentation article!)
+          nullable: true
+          type: string
+        type:
+          $ref: '#/components/schemas/IntellisenseType'
+      required:
+      - caption
+      - value
+      type: object
+    IntellisenseRequest:
+      additionalProperties: false
+      description: Representation of a request for IntellisenseItems
+      example:
+        position:
+          column: 6
+          row: 0
+        lines:
+        - lines
+        - lines
+      properties:
+        lines:
+          description: The lines of text the user currently has in the editor
+          items:
+            type: string
+          type: array
+        position:
+          $ref: '#/components/schemas/CursorPosition'
+      required:
+      - lines
+      - position
+      type: object
+    IntellisenseResponse:
+      additionalProperties: false
+      example:
+        sqlWithMarker: sqlWithMarker
+        autoCompleteList:
+        - score: 0
+          meta: meta
+          caption: caption
+          type: null
+          value: value
+          docHtml: docHtml
+        - score: 0
+          meta: meta
+          caption: caption
+          type: null
+          value: value
+          docHtml: docHtml
+        tryAgainSoonForMore: true
+      properties:
+        autoCompleteList:
+          description: The available items at this point
+          items:
+            $ref: '#/components/schemas/IntellisenseItem'
+          type: array
+        tryAgainSoonForMore:
+          description: Should the caller try again soon? (true means a cache is being
+            built and this is a preliminary response!)
+          type: boolean
+        sqlWithMarker:
+          description: The overall SQL this is for with a character marker for where
+            the Intellisense is for
+          minLength: 1
+          type: string
+      required:
+      - autoCompleteList
+      - sqlWithMarker
+      - tryAgainSoonForMore
+      type: object
+    IntellisenseType:
+      enum:
+      - Keyword
+      - Symbol
+      - Function
+      - Operator
+      - Table
+      - Column
+      - Parameter
+      type: string
     Link:
       additionalProperties: false
       example:

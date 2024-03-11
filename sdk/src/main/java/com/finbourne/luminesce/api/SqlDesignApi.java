@@ -26,6 +26,9 @@ import java.io.IOException;
 
 import com.finbourne.luminesce.model.ConvertToViewData;
 import com.finbourne.luminesce.model.FileReaderBuilderDef;
+import com.finbourne.luminesce.model.FileReaderBuilderResponse;
+import com.finbourne.luminesce.model.IntellisenseRequest;
+import com.finbourne.luminesce.model.IntellisenseResponse;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import com.finbourne.luminesce.model.QueryDesign;
 import com.finbourne.luminesce.model.WriterDesign;
@@ -139,16 +142,16 @@ public class SqlDesignApi {
     }
 
 
-    private ApiResponse<String> putFileReadDesignToSqlWithHttpInfo(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery) throws ApiException {
+    private ApiResponse<FileReaderBuilderResponse> putFileReadDesignToSqlWithHttpInfo(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery) throws ApiException {
         okhttp3.Call localVarCall = putFileReadDesignToSqlValidateBeforeCall(fileReaderBuilderDef, executeQuery, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<FileReaderBuilderResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putFileReadDesignToSqlAsync(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putFileReadDesignToSqlAsync(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery, final ApiCallback<FileReaderBuilderResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putFileReadDesignToSqlValidateBeforeCall(fileReaderBuilderDef, executeQuery, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<FileReaderBuilderResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -189,7 +192,7 @@ public class SqlDesignApi {
 
         /**
          * Execute putFileReadDesignToSql request
-         * @return String
+         * @return FileReaderBuilderResponse
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -198,14 +201,14 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putFileReadDesignToSqlWithHttpInfo(fileReaderBuilderDef, executeQuery);
+        public FileReaderBuilderResponse execute() throws ApiException {
+            ApiResponse<FileReaderBuilderResponse> localVarResp = putFileReadDesignToSqlWithHttpInfo(fileReaderBuilderDef, executeQuery);
             return localVarResp.getData();
         }
 
         /**
          * Execute putFileReadDesignToSql request with HTTP info returned
-         * @return ApiResponse&lt;String&gt;
+         * @return ApiResponse&lt;FileReaderBuilderResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -214,7 +217,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<FileReaderBuilderResponse> executeWithHttpInfo() throws ApiException {
             return putFileReadDesignToSqlWithHttpInfo(fileReaderBuilderDef, executeQuery);
         }
 
@@ -230,7 +233,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<FileReaderBuilderResponse> _callback) throws ApiException {
             return putFileReadDesignToSqlAsync(fileReaderBuilderDef, executeQuery, _callback);
         }
     }
@@ -249,6 +252,168 @@ public class SqlDesignApi {
      */
     public APIputFileReadDesignToSqlRequest putFileReadDesignToSql(FileReaderBuilderDef fileReaderBuilderDef) {
         return new APIputFileReadDesignToSqlRequest(fileReaderBuilderDef);
+    }
+    private okhttp3.Call putIntellisenseCall(IntellisenseRequest intellisenseRequest, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = intellisenseRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/intellisense";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json-patch+json",
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putIntellisenseValidateBeforeCall(IntellisenseRequest intellisenseRequest, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'intellisenseRequest' is set
+        if (intellisenseRequest == null) {
+            throw new ApiException("Missing the required parameter 'intellisenseRequest' when calling putIntellisense(Async)");
+        }
+
+        return putIntellisenseCall(intellisenseRequest, _callback);
+
+    }
+
+
+    private ApiResponse<IntellisenseResponse> putIntellisenseWithHttpInfo(IntellisenseRequest intellisenseRequest) throws ApiException {
+        okhttp3.Call localVarCall = putIntellisenseValidateBeforeCall(intellisenseRequest, null);
+        Type localVarReturnType = new TypeToken<IntellisenseResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putIntellisenseAsync(IntellisenseRequest intellisenseRequest, final ApiCallback<IntellisenseResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putIntellisenseValidateBeforeCall(intellisenseRequest, _callback);
+        Type localVarReturnType = new TypeToken<IntellisenseResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputIntellisenseRequest {
+        private final IntellisenseRequest intellisenseRequest;
+
+        private APIputIntellisenseRequest(IntellisenseRequest intellisenseRequest) {
+            this.intellisenseRequest = intellisenseRequest;
+        }
+
+        /**
+         * Build call for putIntellisense
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putIntellisenseCall(intellisenseRequest, _callback);
+        }
+
+        /**
+         * Execute putIntellisense request
+         * @return IntellisenseResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public IntellisenseResponse execute() throws ApiException {
+            ApiResponse<IntellisenseResponse> localVarResp = putIntellisenseWithHttpInfo(intellisenseRequest);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putIntellisense request with HTTP info returned
+         * @return ApiResponse&lt;IntellisenseResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<IntellisenseResponse> executeWithHttpInfo() throws ApiException {
+            return putIntellisenseWithHttpInfo(intellisenseRequest);
+        }
+
+        /**
+         * Execute putIntellisense request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<IntellisenseResponse> _callback) throws ApiException {
+            return putIntellisenseAsync(intellisenseRequest, _callback);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense prompts given a SQL snipit (in need not yet be valid) and cursor location
+     * SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from.
+     * @param intellisenseRequest  (required)
+     * @return APIputIntellisenseRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputIntellisenseRequest putIntellisense(IntellisenseRequest intellisenseRequest) {
+        return new APIputIntellisenseRequest(intellisenseRequest);
     }
     private okhttp3.Call putQueryDesignToSqlCall(QueryDesign queryDesign, final ApiCallback _callback) throws ApiException {
         String basePath = null;
@@ -824,16 +989,16 @@ public class SqlDesignApi {
     }
 
 
-    private ApiResponse<String> putSqlToFileReadDesignWithHttpInfo(Boolean determineAvailableSources, String body) throws ApiException {
+    private ApiResponse<FileReaderBuilderDef> putSqlToFileReadDesignWithHttpInfo(Boolean determineAvailableSources, String body) throws ApiException {
         okhttp3.Call localVarCall = putSqlToFileReadDesignValidateBeforeCall(determineAvailableSources, body, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<FileReaderBuilderDef>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToFileReadDesignAsync(Boolean determineAvailableSources, String body, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putSqlToFileReadDesignAsync(Boolean determineAvailableSources, String body, final ApiCallback<FileReaderBuilderDef> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putSqlToFileReadDesignValidateBeforeCall(determineAvailableSources, body, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<FileReaderBuilderDef>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -883,7 +1048,7 @@ public class SqlDesignApi {
 
         /**
          * Execute putSqlToFileReadDesign request
-         * @return String
+         * @return FileReaderBuilderDef
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -892,14 +1057,14 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putSqlToFileReadDesignWithHttpInfo(determineAvailableSources, body);
+        public FileReaderBuilderDef execute() throws ApiException {
+            ApiResponse<FileReaderBuilderDef> localVarResp = putSqlToFileReadDesignWithHttpInfo(determineAvailableSources, body);
             return localVarResp.getData();
         }
 
         /**
          * Execute putSqlToFileReadDesign request with HTTP info returned
-         * @return ApiResponse&lt;String&gt;
+         * @return ApiResponse&lt;FileReaderBuilderDef&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -908,7 +1073,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<FileReaderBuilderDef> executeWithHttpInfo() throws ApiException {
             return putSqlToFileReadDesignWithHttpInfo(determineAvailableSources, body);
         }
 
@@ -924,7 +1089,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<FileReaderBuilderDef> _callback) throws ApiException {
             return putSqlToFileReadDesignAsync(determineAvailableSources, body, _callback);
         }
     }
@@ -1006,16 +1171,16 @@ public class SqlDesignApi {
     }
 
 
-    private ApiResponse<String> putSqlToQueryDesignWithHttpInfo(String body, Boolean validateWithMetadata) throws ApiException {
+    private ApiResponse<QueryDesign> putSqlToQueryDesignWithHttpInfo(String body, Boolean validateWithMetadata) throws ApiException {
         okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<QueryDesign>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToQueryDesignAsync(String body, Boolean validateWithMetadata, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putSqlToQueryDesignAsync(String body, Boolean validateWithMetadata, final ApiCallback<QueryDesign> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<QueryDesign>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1056,7 +1221,7 @@ public class SqlDesignApi {
 
         /**
          * Execute putSqlToQueryDesign request
-         * @return String
+         * @return QueryDesign
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -1065,14 +1230,14 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata);
+        public QueryDesign execute() throws ApiException {
+            ApiResponse<QueryDesign> localVarResp = putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata);
             return localVarResp.getData();
         }
 
         /**
          * Execute putSqlToQueryDesign request with HTTP info returned
-         * @return ApiResponse&lt;String&gt;
+         * @return ApiResponse&lt;QueryDesign&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -1081,7 +1246,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<QueryDesign> executeWithHttpInfo() throws ApiException {
             return putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata);
         }
 
@@ -1097,7 +1262,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<QueryDesign> _callback) throws ApiException {
             return putSqlToQueryDesignAsync(body, validateWithMetadata, _callback);
         }
     }
@@ -1176,16 +1341,16 @@ public class SqlDesignApi {
     }
 
 
-    private ApiResponse<String> putSqlToViewDesignWithHttpInfo(String body) throws ApiException {
+    private ApiResponse<ConvertToViewData> putSqlToViewDesignWithHttpInfo(String body) throws ApiException {
         okhttp3.Call localVarCall = putSqlToViewDesignValidateBeforeCall(body, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ConvertToViewData>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToViewDesignAsync(String body, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putSqlToViewDesignAsync(String body, final ApiCallback<ConvertToViewData> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putSqlToViewDesignValidateBeforeCall(body, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ConvertToViewData>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1215,7 +1380,7 @@ public class SqlDesignApi {
 
         /**
          * Execute putSqlToViewDesign request
-         * @return String
+         * @return ConvertToViewData
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -1224,14 +1389,14 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putSqlToViewDesignWithHttpInfo(body);
+        public ConvertToViewData execute() throws ApiException {
+            ApiResponse<ConvertToViewData> localVarResp = putSqlToViewDesignWithHttpInfo(body);
             return localVarResp.getData();
         }
 
         /**
          * Execute putSqlToViewDesign request with HTTP info returned
-         * @return ApiResponse&lt;String&gt;
+         * @return ApiResponse&lt;ConvertToViewData&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -1240,7 +1405,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<ConvertToViewData> executeWithHttpInfo() throws ApiException {
             return putSqlToViewDesignWithHttpInfo(body);
         }
 
@@ -1256,7 +1421,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<ConvertToViewData> _callback) throws ApiException {
             return putSqlToViewDesignAsync(body, _callback);
         }
     }
@@ -1339,16 +1504,16 @@ public class SqlDesignApi {
     }
 
 
-    private ApiResponse<String> putSqlToWriterDesignWithHttpInfo(String body, Boolean mergeAdditionalMappingFields) throws ApiException {
+    private ApiResponse<WriterDesign> putSqlToWriterDesignWithHttpInfo(String body, Boolean mergeAdditionalMappingFields) throws ApiException {
         okhttp3.Call localVarCall = putSqlToWriterDesignValidateBeforeCall(body, mergeAdditionalMappingFields, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<WriterDesign>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToWriterDesignAsync(String body, Boolean mergeAdditionalMappingFields, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putSqlToWriterDesignAsync(String body, Boolean mergeAdditionalMappingFields, final ApiCallback<WriterDesign> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putSqlToWriterDesignValidateBeforeCall(body, mergeAdditionalMappingFields, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<WriterDesign>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1389,7 +1554,7 @@ public class SqlDesignApi {
 
         /**
          * Execute putSqlToWriterDesign request
-         * @return String
+         * @return WriterDesign
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -1398,14 +1563,14 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putSqlToWriterDesignWithHttpInfo(body, mergeAdditionalMappingFields);
+        public WriterDesign execute() throws ApiException {
+            ApiResponse<WriterDesign> localVarResp = putSqlToWriterDesignWithHttpInfo(body, mergeAdditionalMappingFields);
             return localVarResp.getData();
         }
 
         /**
          * Execute putSqlToWriterDesign request with HTTP info returned
-         * @return ApiResponse&lt;String&gt;
+         * @return ApiResponse&lt;WriterDesign&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
          <table summary="Response Details" border="1">
@@ -1414,7 +1579,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+        public ApiResponse<WriterDesign> executeWithHttpInfo() throws ApiException {
             return putSqlToWriterDesignWithHttpInfo(body, mergeAdditionalMappingFields);
         }
 
@@ -1430,7 +1595,7 @@ public class SqlDesignApi {
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
          </table>
          */
-        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+        public okhttp3.Call executeAsync(final ApiCallback<WriterDesign> _callback) throws ApiException {
             return putSqlToWriterDesignAsync(body, mergeAdditionalMappingFields, _callback);
         }
     }
