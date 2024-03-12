@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.692
+  version: 1.14.699
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2132,13 +2132,13 @@ paths:
                   value: SELECT
                   meta: select some data
                   score: 100
-                  docHtml: <p>Select some data!</p>
+                  docHTML: <p>Select some data!</p>
                   type: Keyword
                 - caption: VALUES
                   value: VALUES
                   meta: some hard-coded data
                   score: 100
-                  docHtml: <p>values give you data</p>
+                  docHTML: <p>values give you data</p>
                   type: Keyword
                 tryAgainSoonForMore: false
                 sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
@@ -2151,13 +2151,13 @@ paths:
                   value: SELECT
                   meta: select some data
                   score: 100
-                  docHtml: <p>Select some data!</p>
+                  docHTML: <p>Select some data!</p>
                   type: Keyword
                 - caption: VALUES
                   value: VALUES
                   meta: some hard-coded data
                   score: 100
-                  docHtml: <p>values give you data</p>
+                  docHTML: <p>values give you data</p>
                   type: Keyword
                 tryAgainSoonForMore: false
                 sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
@@ -2170,13 +2170,13 @@ paths:
                   value: SELECT
                   meta: select some data
                   score: 100
-                  docHtml: <p>Select some data!</p>
+                  docHTML: <p>Select some data!</p>
                   type: Keyword
                 - caption: VALUES
                   value: VALUES
                   meta: some hard-coded data
                   score: 100
-                  docHtml: <p>values give you data</p>
+                  docHTML: <p>values give you data</p>
                   type: Keyword
                 tryAgainSoonForMore: false
                 sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
@@ -6743,7 +6743,7 @@ components:
         caption: caption
         type: null
         value: value
-        docHtml: docHtml
+        docHTML: docHTML
       properties:
         caption:
           description: The value to show the user in the popup
@@ -6762,7 +6762,7 @@ components:
           description: How important is this. Bigger is more important.
           format: int32
           type: integer
-        docHtml:
+        docHTML:
           description: Popup further info (as in a whole documentation article!)
           nullable: true
           type: string
@@ -6804,13 +6804,13 @@ components:
           caption: caption
           type: null
           value: value
-          docHtml: docHtml
+          docHTML: docHTML
         - score: 0
           meta: meta
           caption: caption
           type: null
           value: value
-          docHtml: docHtml
+          docHTML: docHTML
         tryAgainSoonForMore: true
       properties:
         autoCompleteList:

@@ -67,9 +67,9 @@ public class IntellisenseItem {
   @SerializedName(SERIALIZED_NAME_SCORE)
   private Integer score;
 
-  public static final String SERIALIZED_NAME_DOC_HTML = "docHtml";
-  @SerializedName(SERIALIZED_NAME_DOC_HTML)
-  private String docHtml;
+  public static final String SERIALIZED_NAME_DOC_H_T_M_L = "docHTML";
+  @SerializedName(SERIALIZED_NAME_DOC_H_T_M_L)
+  private String docHTML;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -162,24 +162,24 @@ public class IntellisenseItem {
   }
 
 
-  public IntellisenseItem docHtml(String docHtml) {
+  public IntellisenseItem docHTML(String docHTML) {
     
-    this.docHtml = docHtml;
+    this.docHTML = docHTML;
     return this;
   }
 
    /**
    * Popup further info (as in a whole documentation article!)
-   * @return docHtml
+   * @return docHTML
   **/
   @jakarta.annotation.Nullable
-  public String getDocHtml() {
-    return docHtml;
+  public String getDocHTML() {
+    return docHTML;
   }
 
 
-  public void setDocHtml(String docHtml) {
-    this.docHtml = docHtml;
+  public void setDocHTML(String docHTML) {
+    this.docHTML = docHTML;
   }
 
 
@@ -218,7 +218,7 @@ public class IntellisenseItem {
         Objects.equals(this.value, intellisenseItem.value) &&
         Objects.equals(this.meta, intellisenseItem.meta) &&
         Objects.equals(this.score, intellisenseItem.score) &&
-        Objects.equals(this.docHtml, intellisenseItem.docHtml) &&
+        Objects.equals(this.docHTML, intellisenseItem.docHTML) &&
         Objects.equals(this.type, intellisenseItem.type);
   }
 
@@ -228,7 +228,7 @@ public class IntellisenseItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(caption, value, meta, score, docHtml, type);
+    return Objects.hash(caption, value, meta, score, docHTML, type);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -246,7 +246,7 @@ public class IntellisenseItem {
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("    score: ").append(toIndentedString(score)).append("\n");
-    sb.append("    docHtml: ").append(toIndentedString(docHtml)).append("\n");
+    sb.append("    docHTML: ").append(toIndentedString(docHTML)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -274,7 +274,7 @@ public class IntellisenseItem {
     openapiFields.add("value");
     openapiFields.add("meta");
     openapiFields.add("score");
-    openapiFields.add("docHtml");
+    openapiFields.add("docHTML");
     openapiFields.add("type");
 
     // a set of required properties/fields (JSON key names)
@@ -312,8 +312,8 @@ public class IntellisenseItem {
       if ((jsonObj.get("meta") != null && !jsonObj.get("meta").isJsonNull()) && !jsonObj.get("meta").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `meta` to be a primitive type in the JSON string but got `%s`", jsonObj.get("meta").toString()));
       }
-      if ((jsonObj.get("docHtml") != null && !jsonObj.get("docHtml").isJsonNull()) && !jsonObj.get("docHtml").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `docHtml` to be a primitive type in the JSON string but got `%s`", jsonObj.get("docHtml").toString()));
+      if ((jsonObj.get("docHTML") != null && !jsonObj.get("docHTML").isJsonNull()) && !jsonObj.get("docHTML").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `docHTML` to be a primitive type in the JSON string but got `%s`", jsonObj.get("docHTML").toString()));
       }
   }
 
