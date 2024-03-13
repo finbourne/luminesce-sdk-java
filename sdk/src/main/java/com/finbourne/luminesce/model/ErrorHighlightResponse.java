@@ -11,7 +11,7 @@
 package com.finbourne.luminesce.model;
 
 import java.util.Objects;
-import com.finbourne.luminesce.model.IntellisenseItem;
+import com.finbourne.luminesce.model.ErrorHighlightItem;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -48,83 +48,58 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * IntellisenseResponse
+ * ErrorHighlightResponse
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class IntellisenseResponse {
-  public static final String SERIALIZED_NAME_AUTO_COMPLETE_LIST = "autoCompleteList";
-  @SerializedName(SERIALIZED_NAME_AUTO_COMPLETE_LIST)
-  private List<IntellisenseItem> autoCompleteList = new ArrayList<>();
-
-  public static final String SERIALIZED_NAME_TRY_AGAIN_SOON_FOR_MORE = "tryAgainSoonForMore";
-  @SerializedName(SERIALIZED_NAME_TRY_AGAIN_SOON_FOR_MORE)
-  private Boolean tryAgainSoonForMore;
+public class ErrorHighlightResponse {
+  public static final String SERIALIZED_NAME_ERRORS = "errors";
+  @SerializedName(SERIALIZED_NAME_ERRORS)
+  private List<ErrorHighlightItem> errors = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SQL_WITH_MARKER = "sqlWithMarker";
   @SerializedName(SERIALIZED_NAME_SQL_WITH_MARKER)
   private String sqlWithMarker;
 
-  public IntellisenseResponse() {
+  public ErrorHighlightResponse() {
   }
 
-  public IntellisenseResponse autoCompleteList(List<IntellisenseItem> autoCompleteList) {
+  public ErrorHighlightResponse errors(List<ErrorHighlightItem> errors) {
     
-    this.autoCompleteList = autoCompleteList;
+    this.errors = errors;
     return this;
   }
 
-  public IntellisenseResponse addAutoCompleteListItem(IntellisenseItem autoCompleteListItem) {
-    if (this.autoCompleteList == null) {
-      this.autoCompleteList = new ArrayList<>();
+  public ErrorHighlightResponse addErrorsItem(ErrorHighlightItem errorsItem) {
+    if (this.errors == null) {
+      this.errors = new ArrayList<>();
     }
-    this.autoCompleteList.add(autoCompleteListItem);
+    this.errors.add(errorsItem);
     return this;
   }
 
    /**
-   * The available items at this point
-   * @return autoCompleteList
+   * The errors within the Sql
+   * @return errors
   **/
   @jakarta.annotation.Nonnull
-  public List<IntellisenseItem> getAutoCompleteList() {
-    return autoCompleteList;
+  public List<ErrorHighlightItem> getErrors() {
+    return errors;
   }
 
 
-  public void setAutoCompleteList(List<IntellisenseItem> autoCompleteList) {
-    this.autoCompleteList = autoCompleteList;
+  public void setErrors(List<ErrorHighlightItem> errors) {
+    this.errors = errors;
   }
 
 
-  public IntellisenseResponse tryAgainSoonForMore(Boolean tryAgainSoonForMore) {
-    
-    this.tryAgainSoonForMore = tryAgainSoonForMore;
-    return this;
-  }
-
-   /**
-   * Should the caller try again soon? (true means a cache is being built and this is a preliminary response!)
-   * @return tryAgainSoonForMore
-  **/
-  @jakarta.annotation.Nonnull
-  public Boolean getTryAgainSoonForMore() {
-    return tryAgainSoonForMore;
-  }
-
-
-  public void setTryAgainSoonForMore(Boolean tryAgainSoonForMore) {
-    this.tryAgainSoonForMore = tryAgainSoonForMore;
-  }
-
-
-  public IntellisenseResponse sqlWithMarker(String sqlWithMarker) {
+  public ErrorHighlightResponse sqlWithMarker(String sqlWithMarker) {
     
     this.sqlWithMarker = sqlWithMarker;
     return this;
   }
 
    /**
-   * The SQL this is for with characters indicating the location the pop-up is for
+   * The SQL this is for, with characters indicating the error locations
    * @return sqlWithMarker
   **/
   @jakarta.annotation.Nonnull
@@ -147,23 +122,21 @@ public class IntellisenseResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IntellisenseResponse intellisenseResponse = (IntellisenseResponse) o;
-    return Objects.equals(this.autoCompleteList, intellisenseResponse.autoCompleteList) &&
-        Objects.equals(this.tryAgainSoonForMore, intellisenseResponse.tryAgainSoonForMore) &&
-        Objects.equals(this.sqlWithMarker, intellisenseResponse.sqlWithMarker);
+    ErrorHighlightResponse errorHighlightResponse = (ErrorHighlightResponse) o;
+    return Objects.equals(this.errors, errorHighlightResponse.errors) &&
+        Objects.equals(this.sqlWithMarker, errorHighlightResponse.sqlWithMarker);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(autoCompleteList, tryAgainSoonForMore, sqlWithMarker);
+    return Objects.hash(errors, sqlWithMarker);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IntellisenseResponse {\n");
-    sb.append("    autoCompleteList: ").append(toIndentedString(autoCompleteList)).append("\n");
-    sb.append("    tryAgainSoonForMore: ").append(toIndentedString(tryAgainSoonForMore)).append("\n");
+    sb.append("class ErrorHighlightResponse {\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("    sqlWithMarker: ").append(toIndentedString(sqlWithMarker)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -187,14 +160,12 @@ public class IntellisenseResponse {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("autoCompleteList");
-    openapiFields.add("tryAgainSoonForMore");
+    openapiFields.add("errors");
     openapiFields.add("sqlWithMarker");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("autoCompleteList");
-    openapiRequiredFields.add("tryAgainSoonForMore");
+    openapiRequiredFields.add("errors");
     openapiRequiredFields.add("sqlWithMarker");
   }
 
@@ -202,31 +173,31 @@ public class IntellisenseResponse {
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to IntellisenseResponse
+  * @throws IOException if the JSON Element is invalid with respect to ErrorHighlightResponse
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!IntellisenseResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in IntellisenseResponse is not found in the empty JSON string", IntellisenseResponse.openapiRequiredFields.toString()));
+        if (!ErrorHighlightResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ErrorHighlightResponse is not found in the empty JSON string", ErrorHighlightResponse.openapiRequiredFields.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : IntellisenseResponse.openapiRequiredFields) {
+      for (String requiredField : ErrorHighlightResponse.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // ensure the json data is an array
-      if (!jsonObj.get("autoCompleteList").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `autoCompleteList` to be an array in the JSON string but got `%s`", jsonObj.get("autoCompleteList").toString()));
+      if (!jsonObj.get("errors").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
       }
 
-      JsonArray jsonArrayautoCompleteList = jsonObj.getAsJsonArray("autoCompleteList");
-      // validate the required field `autoCompleteList` (array)
-      for (int i = 0; i < jsonArrayautoCompleteList.size(); i++) {
-        IntellisenseItem.validateJsonElement(jsonArrayautoCompleteList.get(i));
+      JsonArray jsonArrayerrors = jsonObj.getAsJsonArray("errors");
+      // validate the required field `errors` (array)
+      for (int i = 0; i < jsonArrayerrors.size(); i++) {
+        ErrorHighlightItem.validateJsonElement(jsonArrayerrors.get(i));
       };
       if (!jsonObj.get("sqlWithMarker").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sqlWithMarker` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sqlWithMarker").toString()));
@@ -237,22 +208,22 @@ public class IntellisenseResponse {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!IntellisenseResponse.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'IntellisenseResponse' and its subtypes
+       if (!ErrorHighlightResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ErrorHighlightResponse' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<IntellisenseResponse> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(IntellisenseResponse.class));
+       final TypeAdapter<ErrorHighlightResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ErrorHighlightResponse.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<IntellisenseResponse>() {
+       return (TypeAdapter<T>) new TypeAdapter<ErrorHighlightResponse>() {
            @Override
-           public void write(JsonWriter out, IntellisenseResponse value) throws IOException {
+           public void write(JsonWriter out, ErrorHighlightResponse value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public IntellisenseResponse read(JsonReader in) throws IOException {
+           public ErrorHighlightResponse read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -263,18 +234,18 @@ public class IntellisenseResponse {
   }
 
  /**
-  * Create an instance of IntellisenseResponse given an JSON string
+  * Create an instance of ErrorHighlightResponse given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of IntellisenseResponse
-  * @throws IOException if the JSON string is invalid with respect to IntellisenseResponse
+  * @return An instance of ErrorHighlightResponse
+  * @throws IOException if the JSON string is invalid with respect to ErrorHighlightResponse
   */
-  public static IntellisenseResponse fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, IntellisenseResponse.class);
+  public static ErrorHighlightResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ErrorHighlightResponse.class);
   }
 
  /**
-  * Convert an instance of IntellisenseResponse to an JSON string
+  * Convert an instance of ErrorHighlightResponse to an JSON string
   *
   * @return JSON string
   */

@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.703
+  version: 1.14.707
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2198,7 +2198,109 @@ paths:
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense\
-        \ prompts given a SQL snipit (in need not yet be valid) and cursor location"
+        \ prompts given a SQL snip-it (in need not yet be valid) and cursor location"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
+  /api/Sql/intellisenseError:
+    put:
+      description: "SQL (by line) to syntax check and return error ranges from within,\
+        \ if any."
+      operationId: PutIntellisenseError
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              lines:
+              - select mx(x) x from y
+            schema:
+              $ref: '#/components/schemas/ErrorHighlightRequest'
+          application/json:
+            example:
+              lines:
+              - select mx(x) x from y
+            schema:
+              $ref: '#/components/schemas/ErrorHighlightRequest'
+          text/json:
+            example:
+              lines:
+              - select mx(x) x from y
+            schema:
+              $ref: '#/components/schemas/ErrorHighlightRequest'
+          application/*+json:
+            example:
+              lines:
+              - select mx(x) x from y
+            schema:
+              $ref: '#/components/schemas/ErrorHighlightRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                errors:
+                - start:
+                    row: 0
+                    column: 9
+                  stop:
+                    row: 0
+                    column: 10
+                  length: 1
+                  message: "extraneous input '(' expecting {<EOF>, '@', '@@', ';',\
+                    \ K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
+                sqlWithMarker: select mx▷(◁︎x) x from y
+              schema:
+                $ref: '#/components/schemas/ErrorHighlightResponse'
+            application/json:
+              example:
+                errors:
+                - start:
+                    row: 0
+                    column: 9
+                  stop:
+                    row: 0
+                    column: 10
+                  length: 1
+                  message: "extraneous input '(' expecting {<EOF>, '@', '@@', ';',\
+                    \ K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
+                sqlWithMarker: select mx▷(◁︎x) x from y
+              schema:
+                $ref: '#/components/schemas/ErrorHighlightResponse'
+            text/json:
+              example:
+                errors:
+                - start:
+                    row: 0
+                    column: 9
+                  stop:
+                    row: 0
+                    column: 10
+                  length: 1
+                  message: "extraneous input '(' expecting {<EOF>, '@', '@@', ';',\
+                    \ K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
+                sqlWithMarker: select mx▷(◁︎x) x from y
+              schema:
+                $ref: '#/components/schemas/ErrorHighlightResponse'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutIntellisenseError: Generate a set of error ranges,\
+        \ if any, in the given SQL (expressed as Lines)"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -6378,6 +6480,88 @@ components:
       - Text
       - Table
       type: string
+    ErrorHighlightItem:
+      additionalProperties: false
+      description: Representation of a sql error
+      example:
+        stop:
+          column: 6
+          row: 0
+        start:
+          column: 6
+          row: 0
+        length: 0
+        message: message
+      properties:
+        start:
+          $ref: '#/components/schemas/CursorPosition'
+        stop:
+          $ref: '#/components/schemas/CursorPosition'
+        length:
+          description: The length of the error token counting line breaks if any
+          format: int32
+          type: integer
+        message:
+          description: The error message
+          minLength: 1
+          type: string
+      required:
+      - length
+      - message
+      - start
+      - stop
+      type: object
+    ErrorHighlightRequest:
+      additionalProperties: false
+      example:
+        lines:
+        - lines
+        - lines
+      properties:
+        lines:
+          description: The lines of text the user currently has in the editor
+          items:
+            type: string
+          type: array
+      required:
+      - lines
+      type: object
+    ErrorHighlightResponse:
+      additionalProperties: false
+      example:
+        sqlWithMarker: sqlWithMarker
+        errors:
+        - stop:
+            column: 6
+            row: 0
+          start:
+            column: 6
+            row: 0
+          length: 0
+          message: message
+        - stop:
+            column: 6
+            row: 0
+          start:
+            column: 6
+            row: 0
+          length: 0
+          message: message
+      properties:
+        errors:
+          description: The errors within the Sql
+          items:
+            $ref: '#/components/schemas/ErrorHighlightItem'
+          type: array
+        sqlWithMarker:
+          description: "The SQL this is for, with characters indicating the error\
+            \ locations"
+          minLength: 1
+          type: string
+      required:
+      - errors
+      - sqlWithMarker
+      type: object
     ExpressionWithAlias:
       additionalProperties: false
       description: Contract for an expression of data we "have" that we may "want
@@ -6823,8 +7007,8 @@ components:
             built and this is a preliminary response!)
           type: boolean
         sqlWithMarker:
-          description: The overall SQL this is for with a character marker for where
-            the Intellisense is for
+          description: The SQL this is for with characters indicating the location
+            the pop-up is for
           minLength: 1
           type: string
       required:
