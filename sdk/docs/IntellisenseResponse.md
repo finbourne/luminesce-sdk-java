@@ -2,6 +2,7 @@
 
 # IntellisenseResponse
 
+Available intellisense response information
 
 ## Properties
 

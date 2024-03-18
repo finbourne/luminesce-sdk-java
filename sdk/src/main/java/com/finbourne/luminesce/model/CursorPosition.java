@@ -45,7 +45,7 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * CursorPosition
+ * Represents a cursor location
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CursorPosition {

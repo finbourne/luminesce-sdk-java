@@ -48,7 +48,7 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * ErrorHighlightResponse
+ * Response for error highlighting
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ErrorHighlightResponse {

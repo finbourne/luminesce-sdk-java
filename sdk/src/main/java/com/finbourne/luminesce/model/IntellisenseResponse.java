@@ -48,7 +48,7 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * IntellisenseResponse
+ * Available intellisense response information
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IntellisenseResponse {

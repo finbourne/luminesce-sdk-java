@@ -2,6 +2,7 @@
 
 # ErrorHighlightResponse
 
+Response for error highlighting
 
 ## Properties
 

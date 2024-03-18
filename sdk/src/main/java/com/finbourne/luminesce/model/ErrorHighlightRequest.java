@@ -47,13 +47,17 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * ErrorHighlightRequest
+ * Request for Error highlighting
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ErrorHighlightRequest {
   public static final String SERIALIZED_NAME_LINES = "lines";
   @SerializedName(SERIALIZED_NAME_LINES)
   private List<String> lines = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_ENSURE_SOME_TEXT_IS_SELECTED = "ensureSomeTextIsSelected";
+  @SerializedName(SERIALIZED_NAME_ENSURE_SOME_TEXT_IS_SELECTED)
+  private Boolean ensureSomeTextIsSelected;
 
   public ErrorHighlightRequest() {
   }
@@ -87,6 +91,27 @@ public class ErrorHighlightRequest {
   }
 
 
+  public ErrorHighlightRequest ensureSomeTextIsSelected(Boolean ensureSomeTextIsSelected) {
+    
+    this.ensureSomeTextIsSelected = ensureSomeTextIsSelected;
+    return this;
+  }
+
+   /**
+   * If an editor requires some selection of non-whitespace this can be set to true to force  at least one visible character to be selected.
+   * @return ensureSomeTextIsSelected
+  **/
+  @jakarta.annotation.Nullable
+  public Boolean getEnsureSomeTextIsSelected() {
+    return ensureSomeTextIsSelected;
+  }
+
+
+  public void setEnsureSomeTextIsSelected(Boolean ensureSomeTextIsSelected) {
+    this.ensureSomeTextIsSelected = ensureSomeTextIsSelected;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -97,12 +122,13 @@ public class ErrorHighlightRequest {
       return false;
     }
     ErrorHighlightRequest errorHighlightRequest = (ErrorHighlightRequest) o;
-    return Objects.equals(this.lines, errorHighlightRequest.lines);
+    return Objects.equals(this.lines, errorHighlightRequest.lines) &&
+        Objects.equals(this.ensureSomeTextIsSelected, errorHighlightRequest.ensureSomeTextIsSelected);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lines);
+    return Objects.hash(lines, ensureSomeTextIsSelected);
   }
 
   @Override
@@ -110,6 +136,7 @@ public class ErrorHighlightRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorHighlightRequest {\n");
     sb.append("    lines: ").append(toIndentedString(lines)).append("\n");
+    sb.append("    ensureSomeTextIsSelected: ").append(toIndentedString(ensureSomeTextIsSelected)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -133,6 +160,7 @@ public class ErrorHighlightRequest {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("lines");
+    openapiFields.add("ensureSomeTextIsSelected");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

@@ -2,6 +2,7 @@
 
 # CursorPosition
 
+Represents a cursor location
 
 ## Properties
 
