@@ -39,5 +39,9 @@
 
 * `JDBC_DRIVER` (value: `"Jdbc_Driver"`)
 
+* `POWERBI_CONNECTOR` (value: `"PowerBi_Connector"`)
+
+* `ODBC_WIN64_DRIVER` (value: `"Odbc_Win64_Driver"`)
+
 
 

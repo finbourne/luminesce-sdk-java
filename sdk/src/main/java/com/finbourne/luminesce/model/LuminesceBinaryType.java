@@ -57,7 +57,11 @@ public enum LuminesceBinaryType {
   
   SQLDB_PROVIDERS_DUCKDB("SqlDb_Providers_DuckDb"),
   
-  JDBC_DRIVER("Jdbc_Driver");
+  JDBC_DRIVER("Jdbc_Driver"),
+  
+  POWERBI_CONNECTOR("PowerBi_Connector"),
+  
+  ODBC_WIN64_DRIVER("Odbc_Win64_Driver");
 
   private String value;
 
