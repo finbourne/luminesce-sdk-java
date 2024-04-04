@@ -58,6 +58,10 @@ public class ErrorHighlightItem {
   @SerializedName(SERIALIZED_NAME_STOP)
   private CursorPosition stop;
 
+  public static final String SERIALIZED_NAME_NO_VIABLE_ALTERNATIVE_START = "noViableAlternativeStart";
+  @SerializedName(SERIALIZED_NAME_NO_VIABLE_ALTERNATIVE_START)
+  private CursorPosition noViableAlternativeStart;
+
   public static final String SERIALIZED_NAME_LENGTH = "length";
   @SerializedName(SERIALIZED_NAME_LENGTH)
   private Integer length;
@@ -108,6 +112,27 @@ public class ErrorHighlightItem {
 
   public void setStop(CursorPosition stop) {
     this.stop = stop;
+  }
+
+
+  public ErrorHighlightItem noViableAlternativeStart(CursorPosition noViableAlternativeStart) {
+    
+    this.noViableAlternativeStart = noViableAlternativeStart;
+    return this;
+  }
+
+   /**
+   * Get noViableAlternativeStart
+   * @return noViableAlternativeStart
+  **/
+  @jakarta.annotation.Nullable
+  public CursorPosition getNoViableAlternativeStart() {
+    return noViableAlternativeStart;
+  }
+
+
+  public void setNoViableAlternativeStart(CursorPosition noViableAlternativeStart) {
+    this.noViableAlternativeStart = noViableAlternativeStart;
   }
 
 
@@ -165,13 +190,14 @@ public class ErrorHighlightItem {
     ErrorHighlightItem errorHighlightItem = (ErrorHighlightItem) o;
     return Objects.equals(this.start, errorHighlightItem.start) &&
         Objects.equals(this.stop, errorHighlightItem.stop) &&
+        Objects.equals(this.noViableAlternativeStart, errorHighlightItem.noViableAlternativeStart) &&
         Objects.equals(this.length, errorHighlightItem.length) &&
         Objects.equals(this.message, errorHighlightItem.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, stop, length, message);
+    return Objects.hash(start, stop, noViableAlternativeStart, length, message);
   }
 
   @Override
@@ -180,6 +206,7 @@ public class ErrorHighlightItem {
     sb.append("class ErrorHighlightItem {\n");
     sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    stop: ").append(toIndentedString(stop)).append("\n");
+    sb.append("    noViableAlternativeStart: ").append(toIndentedString(noViableAlternativeStart)).append("\n");
     sb.append("    length: ").append(toIndentedString(length)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
@@ -206,6 +233,7 @@ public class ErrorHighlightItem {
     openapiFields = new HashSet<String>();
     openapiFields.add("start");
     openapiFields.add("stop");
+    openapiFields.add("noViableAlternativeStart");
     openapiFields.add("length");
     openapiFields.add("message");
 
@@ -241,6 +269,10 @@ public class ErrorHighlightItem {
       CursorPosition.validateJsonElement(jsonObj.get("start"));
       // validate the required field `stop`
       CursorPosition.validateJsonElement(jsonObj.get("stop"));
+      // validate the optional field `noViableAlternativeStart`
+      if (jsonObj.get("noViableAlternativeStart") != null && !jsonObj.get("noViableAlternativeStart").isJsonNull()) {
+        CursorPosition.validateJsonElement(jsonObj.get("noViableAlternativeStart"));
+      }
       if (!jsonObj.get("message").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
       }

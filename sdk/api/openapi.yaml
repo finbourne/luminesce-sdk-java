@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.14.891
+  version: 1.14.896
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6496,11 +6496,16 @@ components:
           column: 6
           row: 0
         length: 0
+        noViableAlternativeStart:
+          column: 6
+          row: 0
         message: message
       properties:
         start:
           $ref: '#/components/schemas/CursorPosition'
         stop:
+          $ref: '#/components/schemas/CursorPosition'
+        noViableAlternativeStart:
           $ref: '#/components/schemas/CursorPosition'
         length:
           description: The length of the error token counting line breaks if any
@@ -6551,6 +6556,9 @@ components:
             column: 6
             row: 0
           length: 0
+          noViableAlternativeStart:
+            column: 6
+            row: 0
           message: message
         - stop:
             column: 6
@@ -6559,6 +6567,9 @@ components:
             column: 6
             row: 0
           length: 0
+          noViableAlternativeStart:
+            column: 6
+            row: 0
           message: message
       properties:
         errors:
