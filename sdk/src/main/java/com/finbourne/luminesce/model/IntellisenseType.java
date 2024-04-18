@@ -37,7 +37,9 @@ public enum IntellisenseType {
   
   COLUMN("Column"),
   
-  PARAMETER("Parameter");
+  PARAMETER("Parameter"),
+  
+  SCALARVARIABLE("ScalarVariable");
 
   private String value;
 

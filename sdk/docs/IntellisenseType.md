@@ -19,5 +19,7 @@
 
 * `PARAMETER` (value: `"Parameter"`)
 
+* `SCALARVARIABLE` (value: `"ScalarVariable"`)
+
 
 
