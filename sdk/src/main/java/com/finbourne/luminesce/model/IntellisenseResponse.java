@@ -11,6 +11,7 @@
 package com.finbourne.luminesce.model;
 
 import java.util.Objects;
+import com.finbourne.luminesce.model.CursorPosition;
 import com.finbourne.luminesce.model.IntellisenseItem;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -63,6 +64,14 @@ public class IntellisenseResponse {
   public static final String SERIALIZED_NAME_SQL_WITH_MARKER = "sqlWithMarker";
   @SerializedName(SERIALIZED_NAME_SQL_WITH_MARKER)
   private String sqlWithMarker;
+
+  public static final String SERIALIZED_NAME_START_REPLACEMENT_POSITION = "startReplacementPosition";
+  @SerializedName(SERIALIZED_NAME_START_REPLACEMENT_POSITION)
+  private CursorPosition startReplacementPosition;
+
+  public static final String SERIALIZED_NAME_END_REPLACEMENT_POSITION = "endReplacementPosition";
+  @SerializedName(SERIALIZED_NAME_END_REPLACEMENT_POSITION)
+  private CursorPosition endReplacementPosition;
 
   public IntellisenseResponse() {
   }
@@ -138,6 +147,48 @@ public class IntellisenseResponse {
   }
 
 
+  public IntellisenseResponse startReplacementPosition(CursorPosition startReplacementPosition) {
+    
+    this.startReplacementPosition = startReplacementPosition;
+    return this;
+  }
+
+   /**
+   * Get startReplacementPosition
+   * @return startReplacementPosition
+  **/
+  @jakarta.annotation.Nonnull
+  public CursorPosition getStartReplacementPosition() {
+    return startReplacementPosition;
+  }
+
+
+  public void setStartReplacementPosition(CursorPosition startReplacementPosition) {
+    this.startReplacementPosition = startReplacementPosition;
+  }
+
+
+  public IntellisenseResponse endReplacementPosition(CursorPosition endReplacementPosition) {
+    
+    this.endReplacementPosition = endReplacementPosition;
+    return this;
+  }
+
+   /**
+   * Get endReplacementPosition
+   * @return endReplacementPosition
+  **/
+  @jakarta.annotation.Nonnull
+  public CursorPosition getEndReplacementPosition() {
+    return endReplacementPosition;
+  }
+
+
+  public void setEndReplacementPosition(CursorPosition endReplacementPosition) {
+    this.endReplacementPosition = endReplacementPosition;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -150,12 +201,14 @@ public class IntellisenseResponse {
     IntellisenseResponse intellisenseResponse = (IntellisenseResponse) o;
     return Objects.equals(this.autoCompleteList, intellisenseResponse.autoCompleteList) &&
         Objects.equals(this.tryAgainSoonForMore, intellisenseResponse.tryAgainSoonForMore) &&
-        Objects.equals(this.sqlWithMarker, intellisenseResponse.sqlWithMarker);
+        Objects.equals(this.sqlWithMarker, intellisenseResponse.sqlWithMarker) &&
+        Objects.equals(this.startReplacementPosition, intellisenseResponse.startReplacementPosition) &&
+        Objects.equals(this.endReplacementPosition, intellisenseResponse.endReplacementPosition);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(autoCompleteList, tryAgainSoonForMore, sqlWithMarker);
+    return Objects.hash(autoCompleteList, tryAgainSoonForMore, sqlWithMarker, startReplacementPosition, endReplacementPosition);
   }
 
   @Override
@@ -165,6 +218,8 @@ public class IntellisenseResponse {
     sb.append("    autoCompleteList: ").append(toIndentedString(autoCompleteList)).append("\n");
     sb.append("    tryAgainSoonForMore: ").append(toIndentedString(tryAgainSoonForMore)).append("\n");
     sb.append("    sqlWithMarker: ").append(toIndentedString(sqlWithMarker)).append("\n");
+    sb.append("    startReplacementPosition: ").append(toIndentedString(startReplacementPosition)).append("\n");
+    sb.append("    endReplacementPosition: ").append(toIndentedString(endReplacementPosition)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -190,12 +245,16 @@ public class IntellisenseResponse {
     openapiFields.add("autoCompleteList");
     openapiFields.add("tryAgainSoonForMore");
     openapiFields.add("sqlWithMarker");
+    openapiFields.add("startReplacementPosition");
+    openapiFields.add("endReplacementPosition");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("autoCompleteList");
     openapiRequiredFields.add("tryAgainSoonForMore");
     openapiRequiredFields.add("sqlWithMarker");
+    openapiRequiredFields.add("startReplacementPosition");
+    openapiRequiredFields.add("endReplacementPosition");
   }
 
  /**
@@ -231,6 +290,10 @@ public class IntellisenseResponse {
       if (!jsonObj.get("sqlWithMarker").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sqlWithMarker` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sqlWithMarker").toString()));
       }
+      // validate the required field `startReplacementPosition`
+      CursorPosition.validateJsonElement(jsonObj.get("startReplacementPosition"));
+      // validate the required field `endReplacementPosition`
+      CursorPosition.validateJsonElement(jsonObj.get("endReplacementPosition"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

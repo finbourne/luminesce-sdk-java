@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.15.107
+  version: 1.15.113
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6458,8 +6458,8 @@ components:
       additionalProperties: false
       description: Represents a cursor location
       example:
-        column: 6
-        row: 0
+        column: 1
+        row: 6
       properties:
         row:
           description: Row (0 based) of the user's cursor position
@@ -6490,15 +6490,15 @@ components:
       description: Representation of a sql error
       example:
         stop:
-          column: 6
-          row: 0
+          column: 1
+          row: 6
         start:
-          column: 6
-          row: 0
+          column: 1
+          row: 6
         length: 0
         noViableAlternativeStart:
-          column: 6
-          row: 0
+          column: 1
+          row: 6
         message: message
       properties:
         start:
@@ -6550,26 +6550,26 @@ components:
         sqlWithMarker: sqlWithMarker
         errors:
         - stop:
-            column: 6
-            row: 0
+            column: 1
+            row: 6
           start:
-            column: 6
-            row: 0
+            column: 1
+            row: 6
           length: 0
           noViableAlternativeStart:
-            column: 6
-            row: 0
+            column: 1
+            row: 6
           message: message
         - stop:
-            column: 6
-            row: 0
+            column: 1
+            row: 6
           start:
-            column: 6
-            row: 0
+            column: 1
+            row: 6
           length: 0
           noViableAlternativeStart:
-            column: 6
-            row: 0
+            column: 1
+            row: 6
           message: message
       properties:
         errors:
@@ -6985,8 +6985,8 @@ components:
       description: Representation of a request for IntellisenseItems
       example:
         position:
-          column: 6
-          row: 0
+          column: 1
+          row: 6
         lines:
         - lines
         - lines
@@ -7020,6 +7020,12 @@ components:
           type: null
           value: value
           docHTML: docHTML
+        startReplacementPosition:
+          column: 1
+          row: 6
+        endReplacementPosition:
+          column: 1
+          row: 6
         tryAgainSoonForMore: true
       properties:
         autoCompleteList:
@@ -7036,9 +7042,15 @@ components:
             the pop-up is for
           minLength: 1
           type: string
+        startReplacementPosition:
+          $ref: '#/components/schemas/CursorPosition'
+        endReplacementPosition:
+          $ref: '#/components/schemas/CursorPosition'
       required:
       - autoCompleteList
+      - endReplacementPosition
       - sqlWithMarker
+      - startReplacementPosition
       - tryAgainSoonForMore
       type: object
     IntellisenseType:
