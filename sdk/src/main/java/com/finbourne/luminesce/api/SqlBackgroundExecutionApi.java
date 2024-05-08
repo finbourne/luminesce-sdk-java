@@ -216,7 +216,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * CancelQuery: Cancels (if running) or clears the data from (if completed) a previously started query
-     * Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
+     * Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIcancelQueryRequest
      * @http.response.details
@@ -453,6 +453,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -468,6 +469,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -484,6 +486,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -500,6 +503,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -509,7 +513,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultCsv: Fetches the result from a previously started query, in CSV format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultCsvRequest
      * @http.response.details
@@ -517,6 +521,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultCsvRequest fetchQueryResultCsv(String executionId) {
@@ -672,6 +677,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -687,6 +693,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -703,6 +710,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -719,6 +727,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -728,7 +737,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultExcel: Fetches the result from a previously started query, in Excel format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultExcelRequest
      * @http.response.details
@@ -736,6 +745,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultExcelRequest fetchQueryResultExcel(String executionId) {
@@ -917,6 +927,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -932,6 +943,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -948,6 +960,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -964,6 +977,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -973,7 +987,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultHistogram: Fetches the result from a previously started query, converts it to a histogram (counts in buckets).
-     * Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @param timestampFieldName Name of the timestamp field used in building the histogram (required)
      * @return APIfetchQueryResultHistogramRequest
@@ -982,6 +996,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultHistogramRequest fetchQueryResultHistogram(String executionId, String timestampFieldName) {
@@ -1167,6 +1182,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1182,6 +1198,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1198,6 +1215,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1214,6 +1232,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1223,7 +1242,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultJson: Fetches the result from a previously started query, in JSON string format.  Please move to &#39;/jsonProper&#39; instead. This may be marked as Deprecated in the future.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultJsonRequest
      * @http.response.details
@@ -1231,6 +1250,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultJsonRequest fetchQueryResultJson(String executionId) {
@@ -1431,6 +1451,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1446,6 +1467,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1462,6 +1484,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1478,6 +1501,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1487,7 +1511,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultJsonProper: Fetches the result from a previously started query, in JSON format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultJsonProperRequest
      * @http.response.details
@@ -1495,6 +1519,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultJsonProperRequest fetchQueryResultJsonProper(String executionId) {
@@ -1650,6 +1675,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1665,6 +1691,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -1681,6 +1708,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -1697,6 +1725,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -1706,7 +1735,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultParquet: Fetches the result from a previously started query, in Parquet format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultParquetRequest
      * @http.response.details
@@ -1714,6 +1743,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultParquetRequest fetchQueryResultParquet(String executionId) {
@@ -1914,6 +1944,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1929,6 +1960,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1945,6 +1977,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1961,6 +1994,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1970,7 +2004,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultPipe: Fetches the result from a previously started query, in pipe-delimited format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultPipeRequest
      * @http.response.details
@@ -1978,6 +2012,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultPipeRequest fetchQueryResultPipe(String executionId) {
@@ -2133,6 +2168,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2148,6 +2184,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -2164,6 +2201,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -2180,6 +2218,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -2189,7 +2228,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultSqlite: Fetches the result from a previously started query, in SqLite format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultSqliteRequest
      * @http.response.details
@@ -2197,6 +2236,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultSqliteRequest fetchQueryResultSqlite(String executionId) {
@@ -2397,6 +2437,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2412,6 +2453,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -2428,6 +2470,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -2444,6 +2487,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -2453,7 +2497,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultXml: Fetches the result from a previously started query, in Xml format.
-     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultXmlRequest
      * @http.response.details
@@ -2461,6 +2505,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIfetchQueryResultXmlRequest fetchQueryResultXml(String executionId) {
@@ -2608,7 +2653,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * GetProgressOf: View progress information (up until this point)
-     * View progress information (up until this point) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * View progress information (up until this point) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIgetProgressOfRequest
      * @http.response.details
@@ -2755,6 +2800,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2770,6 +2816,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public BackgroundQueryResponse execute() throws ApiException {
@@ -2786,6 +2833,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo() throws ApiException {
@@ -2802,6 +2850,7 @@ public class SqlBackgroundExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
@@ -2811,7 +2860,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * StartQuery: Starts to Execute LuminesceSql in the background.
-     *  Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  &#x60;&#x60;&#x60;sql select Str, Takes500Ms from Testing1K where UseLinq &#x3D; true and [Int] &lt;&#x3D; 120 &#x60;&#x60;&#x60;  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to &#x60;N&#x60; seconds (where &#x60;N&#x60; should be &#x60;&lt;&#x3D;&#x60; &#x60;keepForSeconds&#x60;).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized 
+     *  Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  &#x60;&#x60;&#x60;sql select Str, Takes500Ms from Testing1K where UseLinq &#x3D; true and [Int] &lt;&#x3D; 120 &#x60;&#x60;&#x60;  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to &#x60;N&#x60; seconds (where &#x60;N&#x60; should be &#x60;&lt;&#x3D;&#x60; &#x60;keepForSeconds&#x60;).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden 
      * @param body The LuminesceSql query to kick off. (required)
      * @return APIstartQueryRequest
      * @http.response.details
@@ -2819,6 +2868,7 @@ public class SqlBackgroundExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIstartQueryRequest startQuery(String body) {

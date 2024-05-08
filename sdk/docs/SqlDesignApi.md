@@ -88,6 +88,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putIntellisense"></a>
 # **putIntellisense**
@@ -157,6 +158,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putIntellisenseError"></a>
 # **putIntellisenseError**
@@ -226,6 +228,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putQueryDesignToSql"></a>
 # **putQueryDesignToSql**
@@ -295,6 +298,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putQueryToFormat"></a>
 # **putQueryToFormat**
@@ -403,6 +407,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putSqlToFileReadDesign"></a>
 # **putSqlToFileReadDesign**
@@ -481,6 +486,7 @@ select generate justfile test_sdk from @x;; // String | SQL query to generate th
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putSqlToQueryDesign"></a>
 # **putSqlToQueryDesign**
@@ -564,6 +570,7 @@ LIMIT 42; // String | SQL query to generate the design object from
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putSqlToViewDesign"></a>
 # **putSqlToViewDesign**
@@ -640,6 +647,7 @@ select generate justfile test_sdk from @x;; // String | SQL Query to generate th
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putSqlToWriterDesign"></a>
 # **putSqlToWriterDesign**
@@ -712,6 +720,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putViewDesignToSql"></a>
 # **putViewDesignToSql**
@@ -781,6 +790,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 <a id="putWriterDesignToSql"></a>
 # **putWriterDesignToSql**
@@ -850,4 +860,5 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 

@@ -186,6 +186,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -201,6 +202,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public FileReaderBuilderResponse execute() throws ApiException {
@@ -217,6 +219,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<FileReaderBuilderResponse> executeWithHttpInfo() throws ApiException {
@@ -233,6 +236,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<FileReaderBuilderResponse> _callback) throws ApiException {
@@ -250,6 +254,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputFileReadDesignToSqlRequest putFileReadDesignToSql(FileReaderBuilderDef fileReaderBuilderDef) {
@@ -348,6 +353,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -363,6 +369,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public IntellisenseResponse execute() throws ApiException {
@@ -379,6 +386,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<IntellisenseResponse> executeWithHttpInfo() throws ApiException {
@@ -395,6 +403,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<IntellisenseResponse> _callback) throws ApiException {
@@ -412,6 +421,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputIntellisenseRequest putIntellisense(IntellisenseRequest intellisenseRequest) {
@@ -510,6 +520,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -525,6 +536,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ErrorHighlightResponse execute() throws ApiException {
@@ -541,6 +553,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<ErrorHighlightResponse> executeWithHttpInfo() throws ApiException {
@@ -557,6 +570,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<ErrorHighlightResponse> _callback) throws ApiException {
@@ -574,6 +588,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputIntellisenseErrorRequest putIntellisenseError(ErrorHighlightRequest errorHighlightRequest) {
@@ -672,6 +687,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -687,6 +703,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -703,6 +720,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -719,6 +737,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -736,6 +755,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputQueryDesignToSqlRequest putQueryDesignToSql(QueryDesign queryDesign) {
@@ -1026,6 +1046,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1041,6 +1062,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1057,6 +1079,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1073,6 +1096,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1090,6 +1114,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputQueryToFormatRequest putQueryToFormat(String body) {
@@ -1204,6 +1229,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1219,6 +1245,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public FileReaderBuilderDef execute() throws ApiException {
@@ -1235,6 +1262,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<FileReaderBuilderDef> executeWithHttpInfo() throws ApiException {
@@ -1251,6 +1279,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<FileReaderBuilderDef> _callback) throws ApiException {
@@ -1267,6 +1296,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputSqlToFileReadDesignRequest putSqlToFileReadDesign() {
@@ -1377,6 +1407,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1392,6 +1423,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public QueryDesign execute() throws ApiException {
@@ -1408,6 +1440,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<QueryDesign> executeWithHttpInfo() throws ApiException {
@@ -1424,6 +1457,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<QueryDesign> _callback) throws ApiException {
@@ -1441,6 +1475,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputSqlToQueryDesignRequest putSqlToQueryDesign(String body) {
@@ -1536,6 +1571,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1551,6 +1587,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ConvertToViewData execute() throws ApiException {
@@ -1567,6 +1604,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<ConvertToViewData> executeWithHttpInfo() throws ApiException {
@@ -1583,6 +1621,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<ConvertToViewData> _callback) throws ApiException {
@@ -1600,6 +1639,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputSqlToViewDesignRequest putSqlToViewDesign(String body) {
@@ -1710,6 +1750,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1725,6 +1766,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public WriterDesign execute() throws ApiException {
@@ -1741,6 +1783,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<WriterDesign> executeWithHttpInfo() throws ApiException {
@@ -1757,6 +1800,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<WriterDesign> _callback) throws ApiException {
@@ -1774,6 +1818,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputSqlToWriterDesignRequest putSqlToWriterDesign(String body) {
@@ -1872,6 +1917,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1887,6 +1933,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1903,6 +1950,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1919,6 +1967,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1936,6 +1985,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputViewDesignToSqlRequest putViewDesignToSql(ConvertToViewData convertToViewData) {
@@ -2034,6 +2084,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2049,6 +2100,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -2065,6 +2117,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -2081,6 +2134,7 @@ public class SqlDesignApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -2098,6 +2152,7 @@ public class SqlDesignApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputWriterDesignToSqlRequest putWriterDesignToSql(WriterDesign writerDesign) {

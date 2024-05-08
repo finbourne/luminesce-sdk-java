@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.15.132
+  version: 1.15.155
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -58,7 +58,7 @@ paths:
         \ r.DocumentationLink,\n r.IsView\nfrom\n @reg r\n left outer join @fld f\n\
         \ on r.Name = f.TableName\norder by\n 1, 5 desc, 6 desc, 2\n ;\n \n```\n\n\
         The following error codes are to be anticipated with standard Problem Detail\
-        \ reports:\n- 401 Unauthorized\n"
+        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetCatalog
       parameters:
       - description: Limit the catalog to only things in some way dealing with the
@@ -110,6 +110,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - certificate is not available for some reason
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: DownloadCertificate
       parameters:
       - description: User or Domain level cert (Domain level requires additional entitlements)
@@ -170,6 +171,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or\
@@ -186,6 +199,7 @@ paths:
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: ListCertificates
       responses:
         "200":
@@ -218,6 +232,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] ListCertificates: Lists all the certificates previously\
@@ -235,6 +261,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something about the request cannot be processed
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: ManageCertificate
       parameters:
       - description: "The Action to perform, e.g. Create / Renew / Revoke"
@@ -325,6 +352,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create\
@@ -352,7 +391,7 @@ paths:
         .dotnet\\tools\\.store\\`\n- Linux/macOS - `$HOME/.dotnet/tools/.store/`\n\
         \nThe following error codes are to be anticipated with standard Problem Detail\
         \ reports:\n- 400 BadRequest - binary file is not available for some reason\
-        \ (e.g. permissions or invalid version)\n- 401 Unauthorized\n"
+        \ (e.g. permissions or invalid version)\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: DownloadBinary
       parameters:
       - description: Type of binary to download (each requires separate licenses and
@@ -394,6 +433,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] DownloadBinary: Downloads the latest version (or specific\
@@ -410,6 +461,7 @@ paths:
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetHistory
       parameters:
       - description: Date time to start the search from. Will default to Now - 1 Day
@@ -489,6 +541,7 @@ paths:
         Cancel the query (if still running) / clear the data (if already returned)
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't exist and is not running.
       operationId: CancelHistory
       parameters:
@@ -526,6 +579,7 @@ paths:
         View progress information (up until this point) of previously started History query
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't exist and is not running.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -568,6 +622,7 @@ paths:
         Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready)
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -639,6 +694,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchHistoryResultHistogram: Fetches the result from a previously\
@@ -653,6 +720,7 @@ paths:
         Fetch the data in Json format (if available, or if not simply being informed it is not yet ready)
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -786,6 +854,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchHistoryResultJson: Fetches the result from a previously started\
@@ -803,7 +883,7 @@ paths:
         \ ')') as Description\nfrom\n Sys.Registration\nwhere\n Type in ('DirectProvider',\
         \ 'DataProvider')\n and\n ShowAll = true\ngroup by 1\norder by 1\n \n```\n\
         \nThe following error codes are to be anticipated with standard Problem Detail\
-        \ reports:\n- 401 Unauthorized\n"
+        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetServicesAsAccessControlledResources
       responses:
         "200":
@@ -836,7 +916,7 @@ paths:
         \ data (if already returned)\n\nThe following error codes are to be anticipated\
         \ with standard Problem Detail reports:\n- 400 BadRequest - there was something\
         \ wrong with your query syntax (the issue was detected at parse-time)\n- 401\
-        \ Unauthorized\n"
+        \ Unauthorized\n- 403 Forbidden\n"
       operationId: StartQueries
       parameters:
       - description: An enum value defining the set of statements being executed
@@ -978,6 +1058,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "StartQueries: Starts to Execute the LuminesceSql statements in the\
@@ -993,6 +1085,7 @@ paths:
         Cancel the query-set (if still running) / clear the data (if already returned)
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't exist and is not running.
       operationId: CancelMultiQuery
       parameters:
@@ -1030,6 +1123,7 @@ paths:
         View progress information (up until this point) for the entire query-set
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't exist and is not running.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -1085,6 +1179,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQueryCsv
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -1168,6 +1263,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQueryCsv: Executes Sql, returned in CSV format, where the sql\
@@ -1187,6 +1294,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQueryCsv
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -1271,6 +1379,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQueryCsv: Executes Sql, returned in CSV format, where the sql\
@@ -1298,6 +1418,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQueryExcel
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -1357,6 +1478,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as\
@@ -1376,6 +1509,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQueryExcel
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -1436,6 +1570,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as\
@@ -1581,6 +1727,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutQueryDesignToSql: Generates SQL from a structured\
@@ -1679,6 +1837,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from\
@@ -1842,6 +2012,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutViewDesignToSql: Generates view creation sql from\
@@ -2065,6 +2247,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutWriterDesignToSql: Generates writer SQL from a valid\
@@ -2195,6 +2389,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense\
@@ -2301,6 +2507,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutIntellisenseError: Generate a set of error ranges,\
@@ -2329,6 +2547,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQueryJson
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -2395,6 +2614,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQueryJson: Executes Sql, returned in JSON format, where the sql\
@@ -2414,6 +2645,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQueryJson
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -2481,6 +2713,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQueryJson: Executes Sql, returned in JSON format, where the sql\
@@ -2508,6 +2752,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQueryParquet
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -2567,6 +2812,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQueryParquet: Executes Sql, returned in Parquet format, where\
@@ -2586,6 +2843,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQueryParquet
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -2646,6 +2904,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQueryParquet: Executes Sql, returned in Parquet (.parquet) format\
@@ -2673,6 +2943,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQueryPipe
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -2740,6 +3011,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQueryPipe: Executes Sql, returned in pipe-delimited format, where\
@@ -2759,6 +3042,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQueryPipe
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -2827,6 +3111,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQueryPipe: Executes Sql, returned in pipe-delimited format, where\
@@ -3022,6 +3318,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutQueryToFormat: Formats SQL into a more readable form, a.k.a. Pretty-Print\
@@ -3050,6 +3358,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQuerySqlite
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -3109,6 +3418,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format\
@@ -3128,6 +3449,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQuerySqlite
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -3188,6 +3510,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format\
@@ -3326,6 +3660,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutSqlToQueryDesign: Generates a SQL-design object\
@@ -3407,6 +3753,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design\
@@ -3536,6 +3894,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation\
@@ -3720,6 +4090,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutSqlToWriterDesign: Generates a SQL-writer-design\
@@ -3748,6 +4130,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: PutByQueryXml
       parameters:
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
@@ -3815,6 +4198,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "PutByQueryXml: Executes Sql, returned in Xml format, where the sql\
@@ -3834,6 +4229,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
         - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetByQueryXml
       parameters:
       - description: LuminesceSql to Execute (must be one line only)
@@ -3902,6 +4298,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "GetByQueryXml: Executes Sql, returned in Xml format, where the sql\
@@ -3928,7 +4336,7 @@ paths:
         \ should be `<=` `keepForSeconds`).\n\nThe following error codes are to be\
         \ anticipated with standard Problem Detail reports:\n- 400 BadRequest - there\
         \ was something wrong with your query syntax (the issue was detected at parse-time)\n\
-        - 401 Unauthorized\n"
+        - 401 Unauthorized\n- 403 Forbidden\n"
       operationId: StartQuery
       parameters:
       - description: A name for this query. This goes into logs and is available in
@@ -4001,6 +4409,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "StartQuery: Starts to Execute LuminesceSql in the background."
@@ -4015,6 +4435,7 @@ paths:
         Cancel the query (if still running) / clear the data (if already returned)
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't exist and is not running.
       operationId: CancelQuery
       parameters:
@@ -4052,6 +4473,7 @@ paths:
         View progress information (up until this point)
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't exist and is not running.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4094,6 +4516,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4244,6 +4667,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultCsv: Fetches the result from a previously started\
@@ -4259,6 +4694,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4361,6 +4797,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultExcel: Fetches the result from a previously started\
@@ -4375,6 +4823,7 @@ paths:
         Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready)
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4474,6 +4923,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultHistogram: Fetches the result from a previously started\
@@ -4489,6 +4950,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4612,6 +5074,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultJson: Fetches the result from a previously started\
@@ -4628,6 +5102,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4762,6 +5237,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultJsonProper: Fetches the result from a previously started\
@@ -4777,6 +5264,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -4879,6 +5367,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultParquet: Fetches the result from a previously started\
@@ -4894,6 +5394,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -5028,6 +5529,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultPipe: Fetches the result from a previously started\
@@ -5043,6 +5556,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -5145,6 +5659,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultSqlite: Fetches the result from a previously started\
@@ -5160,6 +5686,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
+        - 403 Forbidden
         - 404 Not Found : The requested query result doesn't (yet) exist.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
@@ -5294,6 +5821,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
       security:
       - oauth2: []
       summary: "FetchQueryResultXml: Fetches the result from a previously started\

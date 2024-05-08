@@ -202,6 +202,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -217,6 +218,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -233,6 +235,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -249,6 +252,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -258,13 +262,14 @@ public class CertificateManagementApi {
 
     /**
      * [EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or User certificate&#39;s public or private key - if any
-     *  Downloads your latest Domain or User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized 
+     *  Downloads your latest Domain or User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized - 403 Forbidden 
      * @return APIdownloadCertificateRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIdownloadCertificateRequest downloadCertificate() {
@@ -352,6 +357,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -367,6 +373,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public List<CertificateState> execute() throws ApiException {
@@ -383,6 +390,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<List<CertificateState>> executeWithHttpInfo() throws ApiException {
@@ -399,6 +407,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<CertificateState>> _callback) throws ApiException {
@@ -408,13 +417,14 @@ public class CertificateManagementApi {
 
     /**
      * [EXPERIMENTAL] ListCertificates: Lists all the certificates previously minted to which you have access
-     *  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized 
+     *  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
      * @return APIlistCertificatesRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIlistCertificatesRequest listCertificates() {
@@ -592,6 +602,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -607,6 +618,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public CertificateState execute() throws ApiException {
@@ -623,6 +635,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<CertificateState> executeWithHttpInfo() throws ApiException {
@@ -639,6 +652,7 @@ public class CertificateManagementApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<CertificateState> _callback) throws ApiException {
@@ -648,13 +662,14 @@ public class CertificateManagementApi {
 
     /**
      * [EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create / Renew / Revoke)
-     *  Manages a certificate. This could be creating a new one, renewing an old one or revoking one explicitly.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something about the request cannot be processed - 401 Unauthorized 
+     *  Manages a certificate. This could be creating a new one, renewing an old one or revoking one explicitly.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something about the request cannot be processed - 401 Unauthorized - 403 Forbidden 
      * @return APImanageCertificateRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APImanageCertificateRequest manageCertificate() {

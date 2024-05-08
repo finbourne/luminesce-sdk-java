@@ -184,6 +184,7 @@ public class BinaryDownloadingApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -199,6 +200,7 @@ public class BinaryDownloadingApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -215,6 +217,7 @@ public class BinaryDownloadingApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -231,6 +234,7 @@ public class BinaryDownloadingApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -240,13 +244,14 @@ public class BinaryDownloadingApi {
 
     /**
      * [EXPERIMENTAL] DownloadBinary: Downloads the latest version (or specific if needs be) of the specified Luminesce Binary, given the required entitlements.
-     *  Downloads the latest version (or specific if needs be) of the specified Luminesce Binary, given the required entitlements.  *NOTE:* This endpoint is an alternative to time-consuming manual distribution via Drive or Email. &gt; it relies on as underlying datastore that is not quite as \&quot;Highly Available\&quot; to the degree  &gt; that FINBOURNE services generally are.  &gt; Thus it is not subject to the same SLAs as other API endpoints are. &gt; *If you perceive an outage, please try again later.*  Once a file has been downloaded the following steps can be used to install it (for the dotnet tools at least):  1. Open a terminal and cd to the directory you downloaded it to 2. Install / extract files from that package via: &#x60;&#x60;&#x60; dotnet tool install NameOfFileWithoutVersionNumberOrExtension -g --add-source \&quot;.\&quot; &#x60;&#x60;&#x60; e.g. &#x60;&#x60;&#x60; dotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake -g --add-source \&quot;.\&quot; &#x60;&#x60;&#x60; 3. Execute them (see documentation for specific binary)...  The installed binaries can then be found in - Windows - &#x60;%USERPROFILE%\\.dotnet\\tools\\.store\\&#x60; - Linux/macOS - &#x60;$HOME/.dotnet/tools/.store/&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - binary file is not available for some reason (e.g. permissions or invalid version) - 401 Unauthorized 
+     *  Downloads the latest version (or specific if needs be) of the specified Luminesce Binary, given the required entitlements.  *NOTE:* This endpoint is an alternative to time-consuming manual distribution via Drive or Email. &gt; it relies on as underlying datastore that is not quite as \&quot;Highly Available\&quot; to the degree  &gt; that FINBOURNE services generally are.  &gt; Thus it is not subject to the same SLAs as other API endpoints are. &gt; *If you perceive an outage, please try again later.*  Once a file has been downloaded the following steps can be used to install it (for the dotnet tools at least):  1. Open a terminal and cd to the directory you downloaded it to 2. Install / extract files from that package via: &#x60;&#x60;&#x60; dotnet tool install NameOfFileWithoutVersionNumberOrExtension -g --add-source \&quot;.\&quot; &#x60;&#x60;&#x60; e.g. &#x60;&#x60;&#x60; dotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake -g --add-source \&quot;.\&quot; &#x60;&#x60;&#x60; 3. Execute them (see documentation for specific binary)...  The installed binaries can then be found in - Windows - &#x60;%USERPROFILE%\\.dotnet\\tools\\.store\\&#x60; - Linux/macOS - &#x60;$HOME/.dotnet/tools/.store/&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - binary file is not available for some reason (e.g. permissions or invalid version) - 401 Unauthorized - 403 Forbidden 
      * @return APIdownloadBinaryRequest
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIdownloadBinaryRequest downloadBinary() {

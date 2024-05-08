@@ -235,6 +235,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -250,6 +251,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -266,6 +268,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -282,6 +285,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -291,7 +295,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQueryCsv: Executes Sql, returned in CSV format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryCsvRequest
      * @http.response.details
@@ -299,6 +303,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQueryCsvRequest getByQueryCsv(String query) {
@@ -424,6 +429,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -439,6 +445,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -455,6 +462,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -471,6 +479,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -480,7 +489,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as a file to be downloaded) format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryExcelRequest
      * @http.response.details
@@ -488,6 +497,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQueryExcelRequest getByQueryExcel(String query) {
@@ -628,6 +638,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -643,6 +654,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -659,6 +671,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -675,6 +688,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -684,7 +698,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQueryJson: Executes Sql, returned in JSON format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryJsonRequest
      * @http.response.details
@@ -692,6 +706,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQueryJsonRequest getByQueryJson(String query) {
@@ -817,6 +832,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -832,6 +848,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -848,6 +865,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -864,6 +882,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -873,7 +892,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQueryParquet: Executes Sql, returned in Parquet (.parquet) format (as a file to be downloaded) format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryParquetRequest
      * @http.response.details
@@ -881,6 +900,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQueryParquetRequest getByQueryParquet(String query) {
@@ -1021,6 +1041,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1036,6 +1057,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1052,6 +1074,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1068,6 +1091,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1077,7 +1101,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQueryPipe: Executes Sql, returned in pipe-delimited format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryPipeRequest
      * @http.response.details
@@ -1085,6 +1109,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQueryPipeRequest getByQueryPipe(String query) {
@@ -1210,6 +1235,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1225,6 +1251,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -1241,6 +1268,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -1257,6 +1285,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -1266,7 +1295,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format (as a file to be downloaded) format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQuerySqliteRequest
      * @http.response.details
@@ -1274,6 +1303,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQuerySqliteRequest getByQuerySqlite(String query) {
@@ -1414,6 +1444,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1429,6 +1460,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1445,6 +1477,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1461,6 +1494,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1470,7 +1504,7 @@ public class SqlExecutionApi {
 
     /**
      * GetByQueryXml: Executes Sql, returned in Xml format, where the sql is simply in the url.
-     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For simple single-line query execution via the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryXmlRequest
      * @http.response.details
@@ -1478,6 +1512,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIgetByQueryXmlRequest getByQueryXml(String query) {
@@ -1648,6 +1683,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1663,6 +1699,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -1679,6 +1716,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -1695,6 +1733,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -1704,7 +1743,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQueryCsv: Executes Sql, returned in CSV format, where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryCsvRequest
      * @http.response.details
@@ -1712,6 +1751,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQueryCsvRequest putByQueryCsv(String body) {
@@ -1837,6 +1877,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -1852,6 +1893,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -1868,6 +1910,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -1884,6 +1927,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -1893,7 +1937,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as a file to be downloaded), where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryExcelRequest
      * @http.response.details
@@ -1901,6 +1945,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQueryExcelRequest putByQueryExcel(String body) {
@@ -2041,6 +2086,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2056,6 +2102,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -2072,6 +2119,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -2088,6 +2136,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -2097,7 +2146,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQueryJson: Executes Sql, returned in JSON format, where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryJsonRequest
      * @http.response.details
@@ -2105,6 +2154,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQueryJsonRequest putByQueryJson(String body) {
@@ -2230,6 +2280,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2245,6 +2296,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -2261,6 +2313,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -2277,6 +2330,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -2286,7 +2340,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQueryParquet: Executes Sql, returned in Parquet format, where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryParquetRequest
      * @http.response.details
@@ -2294,6 +2348,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQueryParquetRequest putByQueryParquet(String body) {
@@ -2434,6 +2489,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2449,6 +2505,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -2465,6 +2522,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -2481,6 +2539,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -2490,7 +2549,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQueryPipe: Executes Sql, returned in pipe-delimited format, where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryPipeRequest
      * @http.response.details
@@ -2498,6 +2557,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQueryPipeRequest putByQueryPipe(String body) {
@@ -2623,6 +2683,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2638,6 +2699,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public File execute() throws ApiException {
@@ -2654,6 +2716,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
@@ -2670,6 +2733,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
@@ -2679,7 +2743,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format (as a file to be downloaded), where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQuerySqliteRequest
      * @http.response.details
@@ -2687,6 +2751,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQuerySqliteRequest putByQuerySqlite(String body) {
@@ -2827,6 +2892,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -2842,6 +2908,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public String execute() throws ApiException {
@@ -2858,6 +2925,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
@@ -2874,6 +2942,7 @@ public class SqlExecutionApi {
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
             <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
             <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
@@ -2883,7 +2952,7 @@ public class SqlExecutionApi {
 
     /**
      * PutByQueryXml: Executes Sql, returned in Xml format, where the sql is the post-body url.
-     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized 
+     *  For more complex LuminesceSql a PUT will allow for longer Sql. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryXmlRequest
      * @http.response.details
@@ -2891,6 +2960,7 @@ public class SqlExecutionApi {
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
      </table>
      */
     public APIputByQueryXmlRequest putByQueryXml(String body) {
