@@ -5,6 +5,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**putFileReadDesignToSql**](SqlDesignApi.md#putFileReadDesignToSql) | **PUT** /api/Sql/fromfilereaddesign | [EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from a structured query design |
+| [**putInlinedPropertiesDesignToSql**](SqlDesignApi.md#putInlinedPropertiesDesignToSql) | **PUT** /api/Sql/frominlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Generates inlined properties SQL from a structured design |
 | [**putIntellisense**](SqlDesignApi.md#putIntellisense) | **PUT** /api/Sql/intellisense | [EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid) and cursor location |
 | [**putIntellisenseError**](SqlDesignApi.md#putIntellisenseError) | **PUT** /api/Sql/intellisenseError | [EXPERIMENTAL] PutIntellisenseError: Generate a set of error ranges, if any, in the given SQL (expressed as Lines) |
 | [**putQueryDesignToSql**](SqlDesignApi.md#putQueryDesignToSql) | **PUT** /api/Sql/fromdesign | [EXPERIMENTAL] PutQueryDesignToSql: Generates SQL from a structured query design |
@@ -73,6 +74,76 @@ public class Example {
 ### Return type
 
 [**FileReaderBuilderResponse**](FileReaderBuilderResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+<a id="putInlinedPropertiesDesignToSql"></a>
+# **putInlinedPropertiesDesignToSql**
+> String putInlinedPropertiesDesignToSql(inlinedPropertyDesign).execute();
+
+[EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Generates inlined properties SQL from a structured design
+
+Inlined properties Designer specification to generate SQL from
+
+### Example
+```java
+// Import classes:
+import com.finbourne.luminesce.ApiClient;
+import com.finbourne.luminesce.ApiException;
+import com.finbourne.luminesce.Configuration;
+import com.finbourne.luminesce.auth.*;
+import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
+    
+    // Configure OAuth2 access token for authorization: oauth2
+    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
+    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    SqlDesignApi apiInstance = new SqlDesignApi(defaultClient);
+    InlinedPropertyDesign inlinedPropertyDesign = new InlinedPropertyDesign(); // InlinedPropertyDesign | Structured file read design object to generate SQL from
+    try {
+      String result = apiInstance.putInlinedPropertiesDesignToSql(inlinedPropertyDesign)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SqlDesignApi#putInlinedPropertiesDesignToSql");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **inlinedPropertyDesign** | [**InlinedPropertyDesign**](InlinedPropertyDesign.md)| Structured file read design object to generate SQL from | |
+
+### Return type
+
+**String**
 
 ### Authorization
 
