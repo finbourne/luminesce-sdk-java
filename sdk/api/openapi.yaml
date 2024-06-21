@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.73
+  version: 1.16.169
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -43,22 +43,13 @@ tags:
 paths:
   /api/Catalog:
     get:
-      description: "\nThe following LuminesceSql is executed to return this information:\n\
-        \n```sql\n@reg =\nselect\n Name,\n min(Description) as Description,\n min(DocumentationLink)\
-        \ as DocumentationLink,\n iif(Category = 'View' and Client is not null, true,\
-        \ false) as IsView\nfrom\n Sys.Registration\nwhere\n Type in ('DirectProvider',\
-        \ 'DataProvider')\n and \n ShowAll = false\ngroup by\n 1\n ;\n\n@fld =\nselect\n\
-        \ TableName,\n FieldName,\n DataType,\n FieldType,\n IsPrimaryKey,\n IsMain,\n\
-        \ Description,\n ParamDefaultValue,\n TableParamColumns\nfrom\n Sys.Field\n\
-        \ ;\n\n@x =\nselect\n coalesce(f.TableName, r.Name) as TableName,\n coalesce(f.FieldName,\
-        \ 'N/A') as FieldName,\n f.DataType,\n f.FieldType,\n f.IsPrimaryKey,\n f.IsMain,\n\
-        \ case \n when f.TableName is not null then\n f.Description\n else\n r.Name\
-        \ || ' returns a different set of columns depending on use.'\n end as Description,\n\
-        \ f.ParamDefaultValue,\n f.TableParamColumns,\n r.Description as ProviderDescription,\n\
-        \ r.DocumentationLink,\n r.IsView\nfrom\n @reg r\n left outer join @fld f\n\
-        \ on r.Name = f.TableName\norder by\n 1, 5 desc, 6 desc, 2\n ;\n \n```\n\n\
-        The following error codes are to be anticipated with standard Problem Detail\
-        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
+      description: |2
+
+        Returns the User's full version of the catalog (Providers and their fields)
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
       operationId: GetCatalog
       parameters:
       - description: Limit the catalog to only things in some way dealing with the
@@ -74,6 +65,17 @@ paths:
         explode: true
         in: query
         name: jsonProper
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: Should the available cache be used? false is effectively to pick
+          up a change in the catalog
+        explode: true
+        in: query
+        name: useCache
         required: false
         schema:
           default: false
@@ -97,6 +99,96 @@ paths:
       - oauth2: []
       summary: "GetCatalog: Shows Table and Field level information on Providers that\
         \ are currently running that you have access to (in Json format)"
+      tags:
+      - Current Table/Field Catalog
+      x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/Catalog/fields:
+    get:
+      description: "\nReturns the User's full version of the catalog but only the\
+        \ field/parameter-level information \n(as well as the TableName they refer\
+        \ to, of course) for tables matching the `tableLike` (manually include wildcards\
+        \ if desired).\n\nThe following error codes are to be anticipated with standard\
+        \ Problem Detail reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
+      operationId: GetFields
+      parameters:
+      - explode: true
+        in: query
+        name: tableLike
+        required: false
+        schema:
+          default: '%'
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: Success
+      security:
+      - oauth2: []
+      summary: "GetFields: Shows Table level information on Providers that are currently\
+        \ running that you have access to (in Json format)"
+      tags:
+      - Current Table/Field Catalog
+      x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/Catalog/providers:
+    get:
+      description: |2
+
+        Returns the User's full version of the catalog but only the table/provider-level information
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+      operationId: GetProviders
+      parameters:
+      - description: Limit the catalog to only things in some way dealing with the
+          passed in text string
+        explode: true
+        in: query
+        name: freeTextSearch
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Should the available cache be used? false is effectively to pick
+          up a change in the catalog
+        explode: true
+        in: query
+        name: useCache
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: Success
+      security:
+      - oauth2: []
+      summary: "GetProviders: Shows Table level information on Providers that are\
+        \ currently running that you have access to (in Json format)"
       tags:
       - Current Table/Field Catalog
       x-fbn-apistatus: Stable
