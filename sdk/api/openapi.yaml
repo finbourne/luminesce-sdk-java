@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.182
+  version: 1.16.197
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -541,6 +541,74 @@ paths:
       - oauth2: []
       summary: "[EXPERIMENTAL] DownloadBinary: Downloads the latest version (or specific\
         \ if needs be) of the specified Luminesce Binary, given the required entitlements."
+      tags:
+      - Binary Downloading
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
+  /api/Download/versions:
+    get:
+      description: |2-
+
+        Gets all available versions of a given binary type (from newest to oldest)
+        This does not mean you are entitled to download them.
+      operationId: GetBinaryVersions
+      parameters:
+      - description: Type of binary to fetch available versions of
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/LuminesceBinaryType'
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] GetBinaryVersions: Gets the list of available versions\
+        \ of a user-downloadable binary from Nexus"
       tags:
       - Binary Downloading
       x-fbn-apistatus: Experimental

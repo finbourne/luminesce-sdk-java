@@ -5,6 +5,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**downloadBinary**](BinaryDownloadingApi.md#downloadBinary) | **GET** /api/Download/download | [EXPERIMENTAL] DownloadBinary: Downloads the latest version (or specific if needs be) of the specified Luminesce Binary, given the required entitlements. |
+| [**getBinaryVersions**](BinaryDownloadingApi.md#getBinaryVersions) | **GET** /api/Download/versions | [EXPERIMENTAL] GetBinaryVersions: Gets the list of available versions of a user-downloadable binary from Nexus |
 
 
 <a id="downloadBinary"></a>
@@ -78,6 +79,77 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The .nupkg file of the requested binary |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+<a id="getBinaryVersions"></a>
+# **getBinaryVersions**
+> List&lt;String&gt; getBinaryVersions().type(type).execute();
+
+[EXPERIMENTAL] GetBinaryVersions: Gets the list of available versions of a user-downloadable binary from Nexus
+
+ Gets all available versions of a given binary type (from newest to oldest) This does not mean you are entitled to download them.
+
+### Example
+```java
+// Import classes:
+import com.finbourne.luminesce.ApiClient;
+import com.finbourne.luminesce.ApiException;
+import com.finbourne.luminesce.Configuration;
+import com.finbourne.luminesce.auth.*;
+import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.api.BinaryDownloadingApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
+    
+    // Configure OAuth2 access token for authorization: oauth2
+    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
+    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+
+    BinaryDownloadingApi apiInstance = new BinaryDownloadingApi(defaultClient);
+    LuminesceBinaryType type = LuminesceBinaryType.fromValue("CommandLineTool"); // LuminesceBinaryType | Type of binary to fetch available versions of
+    try {
+      List<String> result = apiInstance.getBinaryVersions()
+            .type(type)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BinaryDownloadingApi#getBinaryVersions");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **type** | [**LuminesceBinaryType**](.md)| Type of binary to fetch available versions of | [optional] [enum: CommandLineTool, LocalFileSystem_Providers, Email_Providers, Python_Providers, AwsS3_Providers, Azure_Providers, SqlDb_Providers_Db2Linux, SqlDb_Providers_MySql, SqlDb_Providers_Oracle, SqlDb_Providers_Oracle_Snowflake, SqlDb_Providers_Postgresql, SqlDb_Providers_Snowflake, SqlDb_Providers_SqlServer, SqlDb_Providers_SybaseAse, SqlDb_Providers_SqLite, SqlDb_Providers_DuckDb, Jdbc_Driver, PowerBi_Connector, Odbc_Win64_Driver] |
+
+### Return type
+
+**List&lt;String&gt;**
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
