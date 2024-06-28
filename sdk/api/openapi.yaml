@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.198
+  version: 1.16.226
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -4023,6 +4023,88 @@ paths:
       - oauth2: []
       summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design\
         \ object from SQL string, if possible."
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/toinlinedpropertiesdesign:
+    put:
+      description: SQL to attempt to create an inlined properties Design object from
+      operationId: PutInlinedPropertiesDesignSqlToDesign
+      requestBody:
+        content:
+          text/plain:
+            example: "@keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location',\
+              \ 'PortfolioLocation', false, '');\n @config = select column1 as [Key],\
+              \ column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog;\
+              \ \n select generate justfile test_sdk from Sys.Admin.Lusid.Provider.Configure\
+              \ where Provider = 'Lusid.Portfolio' and Configuration = @config;"
+            schema:
+              type: string
+        description: SQL query to generate the inlined properties design object from
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                providerName: Lusid.portfolio
+                inlinedPropertyItems:
+                - key: fieldKey
+                  name: fieldName
+                  isMain: true
+                  description: some description
+              schema:
+                $ref: '#/components/schemas/InlinedPropertyDesign'
+            application/json:
+              example:
+                providerName: Lusid.portfolio
+                inlinedPropertyItems:
+                - key: fieldKey
+                  name: fieldName
+                  isMain: true
+                  description: some description
+              schema:
+                $ref: '#/components/schemas/InlinedPropertyDesign'
+            text/json:
+              example:
+                providerName: Lusid.portfolio
+                inlinedPropertyItems:
+                - key: fieldKey
+                  name: fieldName
+                  isMain: true
+                  description: some description
+              schema:
+                $ref: '#/components/schemas/InlinedPropertyDesign'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Generates a\
+        \ SQL-inlined-properties-design object from SQL string, if possible."
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
