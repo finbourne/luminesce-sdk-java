@@ -1393,7 +1393,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
@@ -1605,7 +1606,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
@@ -2121,7 +2123,8 @@ paths:
         content:
           application/json-patch+json:
             example:
-              query: select generate justfile test_sdk from Lusid.Instrument.bond
+              query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
               name: Views.MyView
               description: This is a tooltip for the view as a whole
               documentationLink: https://mydocumentationlink.com
@@ -2151,7 +2154,8 @@ paths:
               $ref: '#/components/schemas/ConvertToViewData'
           application/json:
             example:
-              query: select generate justfile test_sdk from Lusid.Instrument.bond
+              query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
               name: Views.MyView
               description: This is a tooltip for the view as a whole
               documentationLink: https://mydocumentationlink.com
@@ -2181,7 +2185,8 @@ paths:
               $ref: '#/components/schemas/ConvertToViewData'
           text/json:
             example:
-              query: select generate justfile test_sdk from Lusid.Instrument.bond
+              query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
               name: Views.MyView
               description: This is a tooltip for the view as a whole
               documentationLink: https://mydocumentationlink.com
@@ -2211,7 +2216,8 @@ paths:
               $ref: '#/components/schemas/ConvertToViewData'
           application/*+json:
             example:
-              query: select generate justfile test_sdk from Lusid.Instrument.bond
+              query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
               name: Views.MyView
               description: This is a tooltip for the view as a whole
               documentationLink: https://mydocumentationlink.com
@@ -2298,7 +2304,7 @@ paths:
               sql: |2-
 
                 @x = select SomeScope as Scope from Somewhere;
-                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
               availableToMapFrom:
               - expression: SomeScope
                 alias: Scope
@@ -2343,7 +2349,7 @@ paths:
               sql: |2-
 
                 @x = select SomeScope as Scope from Somewhere;
-                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
               availableToMapFrom:
               - expression: SomeScope
                 alias: Scope
@@ -2388,7 +2394,7 @@ paths:
               sql: |2-
 
                 @x = select SomeScope as Scope from Somewhere;
-                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
               availableToMapFrom:
               - expression: SomeScope
                 alias: Scope
@@ -2433,7 +2439,7 @@ paths:
               sql: |2-
 
                 @x = select SomeScope as Scope from Somewhere;
-                select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
               availableToMapFrom:
               - expression: SomeScope
                 alias: Scope
@@ -2589,7 +2595,9 @@ paths:
                   docHTML: <p>values give you data</p>
                   type: Keyword
                 tryAgainSoonForMore: false
-                sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
+                sqlWithMarker: ▷select◁︎ Dockerfile Dockerfile.cicd LICENSE.md README.md
+                  docker-compose.yml docs generate justfile publish resources test_sdk
+                  from somewhere
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
             application/json:
@@ -2608,7 +2616,9 @@ paths:
                   docHTML: <p>values give you data</p>
                   type: Keyword
                 tryAgainSoonForMore: false
-                sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
+                sqlWithMarker: ▷select◁︎ Dockerfile Dockerfile.cicd LICENSE.md README.md
+                  docker-compose.yml docs generate justfile publish resources test_sdk
+                  from somewhere
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
             text/json:
@@ -2627,7 +2637,9 @@ paths:
                   docHTML: <p>values give you data</p>
                   type: Keyword
                 tryAgainSoonForMore: false
-                sqlWithMarker: ▷select◁︎ generate justfile test_sdk from somewhere
+                sqlWithMarker: ▷select◁︎ Dockerfile Dockerfile.cicd LICENSE.md README.md
+                  docker-compose.yml docs generate justfile publish resources test_sdk
+                  from somewhere
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
           description: Success
@@ -2838,7 +2850,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
@@ -3033,7 +3046,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
@@ -3235,7 +3249,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
@@ -3541,7 +3556,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt
@@ -3639,7 +3655,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
@@ -3954,7 +3971,8 @@ paths:
         content:
           text/plain:
             example: "@x = \nuse Drive.Csv\n --file=/some/folder/somefile.csv\nenduse;\n\
-              \nselect generate justfile test_sdk from @x;"
+              \nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
+              \ docs generate justfile publish resources test_sdk from @x;"
             schema:
               type: string
         description: SQL query to generate the file read design object from
@@ -4038,7 +4056,8 @@ paths:
             example: "@keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location',\
               \ 'PortfolioLocation', false, '');\n @config = select column1 as [Key],\
               \ column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog;\
-              \ \n select generate justfile test_sdk from Sys.Admin.Lusid.Provider.Configure\
+              \ \n select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
+              \ docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure\
               \ where Provider = 'Lusid.Portfolio' and Configuration = @config;"
             schema:
               type: string
@@ -4118,8 +4137,10 @@ paths:
         content:
           text/plain:
             example: "@x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\n\
-              select generate justfile test_sdk from Lusid.Instrument\nenduse;\n\n\
-              select generate justfile test_sdk from @x;"
+              select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
+              \ docs generate justfile publish resources test_sdk from Lusid.Instrument\n\
+              enduse;\n\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
+              \ docs generate justfile publish resources test_sdk from @x;"
             schema:
               type: string
         description: SQL Query to generate the ConvertToViewData object from
@@ -4129,7 +4150,8 @@ paths:
           content:
             text/plain:
               example:
-                query: select generate justfile test_sdk from Lusid.Instrument.bond
+                query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                  docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
                 name: Views.MyView
                 description: This is a tooltip for the view as a whole
                 documentationLink: https://mydocumentationlink.com
@@ -4159,7 +4181,8 @@ paths:
                 $ref: '#/components/schemas/ConvertToViewData'
             application/json:
               example:
-                query: select generate justfile test_sdk from Lusid.Instrument.bond
+                query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                  docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
                 name: Views.MyView
                 description: This is a tooltip for the view as a whole
                 documentationLink: https://mydocumentationlink.com
@@ -4189,7 +4212,8 @@ paths:
                 $ref: '#/components/schemas/ConvertToViewData'
             text/json:
               example:
-                query: select generate justfile test_sdk from Lusid.Instrument.bond
+                query: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+                  docs generate justfile publish resources test_sdk from Lusid.Instrument.bond
                 name: Views.MyView
                 description: This is a tooltip for the view as a whole
                 documentationLink: https://mydocumentationlink.com
@@ -4283,7 +4307,7 @@ paths:
                 sql: |2-
 
                   @x = select SomeScope as Scope from Somewhere;
-                  select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                  select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
                 availableToMapFrom:
                 - expression: SomeScope
                   alias: Scope
@@ -4328,7 +4352,7 @@ paths:
                 sql: |2-
 
                   @x = select SomeScope as Scope from Somewhere;
-                  select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                  select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
                 availableToMapFrom:
                 - expression: SomeScope
                   alias: Scope
@@ -4373,7 +4397,7 @@ paths:
                 sql: |2-
 
                   @x = select SomeScope as Scope from Somewhere;
-                  select generate justfile test_sdk from Lusid.Instrument.Bond where ToWriter = @x
+                  select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument.Bond where ToWriter = @x
                 availableToMapFrom:
                 - expression: SomeScope
                   alias: Scope
@@ -4504,7 +4528,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: select generate justfile test_sdk from sys.field
+            example: select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml
+              docs generate justfile publish resources test_sdk from sys.field
             schema:
               type: string
         description: LuminesceSql to Execute (may be multi-line)
