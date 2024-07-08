@@ -598,7 +598,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -683,7 +683,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
@@ -759,7 +759,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
@@ -838,7 +838,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
@@ -914,7 +914,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -993,7 +993,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
@@ -1069,7 +1069,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s

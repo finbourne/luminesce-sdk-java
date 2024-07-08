@@ -122,7 +122,7 @@ public class Example {
     SqlDesignApi apiInstance = new SqlDesignApi(defaultClient);
     String body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');
  @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; 
- select generate justfile test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to generate the inlined properties design object from
+ select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to generate the inlined properties design object from
     try {
       InlinedPropertyDesign result = apiInstance.putInlinedPropertiesDesignSqlToDesign()
             .body(body)
@@ -473,7 +473,7 @@ public class Example {
     oauth2.setAccessToken("YOUR ACCESS TOKEN");
 
     SqlDesignApi apiInstance = new SqlDesignApi(defaultClient);
-    String body = select generate justfile test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
+    String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
     Boolean trailingCommas = true; // Boolean | Should commas be after an expression (as opposed to before)
     Boolean uppercaseKeywords = false; // Boolean | Should key words be capitalized
     Boolean breakJoinOnSections = true; // Boolean | Should clauses on joins be given line breaks?
@@ -588,7 +588,7 @@ use Drive.Csv
  --file=/some/folder/somefile.csv
 enduse;
 
-select generate justfile test_sdk from @x;; // String | SQL query to generate the file read design object from
+select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL query to generate the file read design object from
     try {
       FileReaderBuilderDef result = apiInstance.putSqlToFileReadDesign()
             .determineAvailableSources(determineAvailableSources)
@@ -749,10 +749,10 @@ public class Example {
 use Sys.Admin.SetupView
  --provider=YourView
 ----
-select generate justfile test_sdk from Lusid.Instrument
+select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument
 enduse;
 
-select generate justfile test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
+select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
     try {
       ConvertToViewData result = apiInstance.putSqlToViewDesign(body)
             .execute();
