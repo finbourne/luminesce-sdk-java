@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.262
+  version: 1.16.304
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -27,6 +27,8 @@ tags:
 - description: Shows Table and Field level information on Providers that are currently
     running that you have access to.
   name: Current Table/Field Catalog
+- description: Allows for checking health
+  name: Health checking endpoint
 - description: Shows queries executed at some point and details about them
   name: Historically Executed Queries
 - description: This executes a series of internally defined LuminesceSql statements
@@ -1751,6 +1753,98 @@ paths:
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/Sql/extractscalarparameters:
+    put:
+      description: SQL to extract scalar parameters from
+      operationId: PutSqlToExtractScalarParameters
+      requestBody:
+        content:
+          text/plain:
+            example: "select abc, :p1:'this' as c1 from xxx where abc = :abcP:123\
+              \ or xyz in (:p2:, 'zzz')"
+            schema:
+              type: string
+        description: SQL query to generate the design object from
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+              - name: p1
+                type: Text
+                value: this
+              - name: abcP
+                type: Decimal
+                value: "123"
+              - name: p2
+                type: Text
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScalarParameter'
+                type: array
+            application/json:
+              example:
+              - name: p1
+                type: Text
+                value: this
+              - name: abcP
+                type: Decimal
+                value: "123"
+              - name: p2
+                type: Text
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScalarParameter'
+                type: array
+            text/json:
+              example:
+              - name: p1
+                type: Text
+                value: this
+              - name: abcP
+                type: Decimal
+                value: "123"
+              - name: p2
+                type: Text
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScalarParameter'
+                type: array
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutSqlToExtractScalarParameters: Generates information\
+        \ about all the scalar parameters defined in the given SQL statement"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/fromdesign:
     put:
@@ -6202,6 +6296,44 @@ paths:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
+  /fakeNodeReclaim:
+    get:
+      description: "Internal testing controller to simulate having received an AWS\
+        \ node reclaim warning, or similar."
+      operationId: FakeNodeReclaim
+      parameters:
+      - description: the number of seconds from which to assume node termination
+        explode: true
+        in: query
+        name: secondsUntilReclaim
+        required: false
+        schema:
+          default: 119
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+          description: Success
+      security:
+      - oauth2: []
+      summary: "[INTERNAL] FakeNodeReclaim: An internal Method used to mark the next\
+        \ SIGTERM as though an Aws Node reclaim were about to take place."
+      tags:
+      - Health checking endpoint
+      x-fbn-apistatus: Internal
+      x-accepts: application/json
 components:
   schemas:
     AccessControlledAction:
@@ -6401,6 +6533,9 @@ components:
       - activity
       - entity
       - scope
+      type: object
+    ActionResult:
+      additionalProperties: false
       type: object
     AggregateFunction:
       description: Aggregation function type
@@ -7077,6 +7212,7 @@ components:
       - Loaded
       - Cleared
       - Disposed
+      - OwnerTerminated
       type: string
     CertificateAction:
       description: The action to take with a certificate
@@ -8695,6 +8831,28 @@ components:
       required:
       - values
       type: object
+    ScalarParameter:
+      additionalProperties: false
+      description: Describes a scalar parameter as defined in the SQL
+      example:
+        name: name
+        type: null
+        value: ""
+      properties:
+        name:
+          description: Name of the scalar parameter
+          maxLength: 256
+          minLength: 0
+          type: string
+        type:
+          $ref: '#/components/schemas/DataType'
+        value:
+          description: the default value of the parameter
+          nullable: true
+      required:
+      - name
+      - type
+      type: object
     Source:
       additionalProperties: false
       description: Information leading to choosing the provider
@@ -8898,6 +9056,7 @@ x-tagGroups:
   - Binary Downloading
   - Certificate Management
   - Current Table/Field Catalog
+  - Health checking endpoint
   - Historically Executed Queries
   - Multi-Query Execution
   - Sql Background Execution

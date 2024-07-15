@@ -29,5 +29,7 @@
 
 * `DISPOSED` (value: `"Disposed"`)
 
+* `OWNERTERMINATED` (value: `"OwnerTerminated"`)
+
 
 

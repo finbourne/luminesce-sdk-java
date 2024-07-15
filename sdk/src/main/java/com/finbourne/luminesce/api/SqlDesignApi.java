@@ -34,6 +34,7 @@ import com.finbourne.luminesce.model.IntellisenseRequest;
 import com.finbourne.luminesce.model.IntellisenseResponse;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import com.finbourne.luminesce.model.QueryDesign;
+import com.finbourne.luminesce.model.ScalarParameter;
 import com.finbourne.luminesce.model.WriterDesign;
 
 import java.lang.reflect.Type;
@@ -1454,6 +1455,170 @@ public class SqlDesignApi {
      */
     public APIputQueryToFormatRequest putQueryToFormat(String body) {
         return new APIputQueryToFormatRequest(body);
+    }
+    private okhttp3.Call putSqlToExtractScalarParametersCall(String body, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/extractscalarparameters";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "text/plain"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putSqlToExtractScalarParametersValidateBeforeCall(String body, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling putSqlToExtractScalarParameters(Async)");
+        }
+
+        return putSqlToExtractScalarParametersCall(body, _callback);
+
+    }
+
+
+    private ApiResponse<List<ScalarParameter>> putSqlToExtractScalarParametersWithHttpInfo(String body) throws ApiException {
+        okhttp3.Call localVarCall = putSqlToExtractScalarParametersValidateBeforeCall(body, null);
+        Type localVarReturnType = new TypeToken<List<ScalarParameter>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putSqlToExtractScalarParametersAsync(String body, final ApiCallback<List<ScalarParameter>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putSqlToExtractScalarParametersValidateBeforeCall(body, _callback);
+        Type localVarReturnType = new TypeToken<List<ScalarParameter>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputSqlToExtractScalarParametersRequest {
+        private final String body;
+
+        private APIputSqlToExtractScalarParametersRequest(String body) {
+            this.body = body;
+        }
+
+        /**
+         * Build call for putSqlToExtractScalarParameters
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putSqlToExtractScalarParametersCall(body, _callback);
+        }
+
+        /**
+         * Execute putSqlToExtractScalarParameters request
+         * @return List&lt;ScalarParameter&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<ScalarParameter> execute() throws ApiException {
+            ApiResponse<List<ScalarParameter>> localVarResp = putSqlToExtractScalarParametersWithHttpInfo(body);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putSqlToExtractScalarParameters request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;ScalarParameter&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<ScalarParameter>> executeWithHttpInfo() throws ApiException {
+            return putSqlToExtractScalarParametersWithHttpInfo(body);
+        }
+
+        /**
+         * Execute putSqlToExtractScalarParameters request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<ScalarParameter>> _callback) throws ApiException {
+            return putSqlToExtractScalarParametersAsync(body, _callback);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] PutSqlToExtractScalarParameters: Generates information about all the scalar parameters defined in the given SQL statement
+     * SQL to extract scalar parameters from
+     * @param body SQL query to generate the design object from (required)
+     * @return APIputSqlToExtractScalarParametersRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputSqlToExtractScalarParametersRequest putSqlToExtractScalarParameters(String body) {
+        return new APIputSqlToExtractScalarParametersRequest(body);
     }
     private okhttp3.Call putSqlToFileReadDesignCall(Boolean determineAvailableSources, String body, final ApiCallback _callback) throws ApiException {
         String basePath = null;

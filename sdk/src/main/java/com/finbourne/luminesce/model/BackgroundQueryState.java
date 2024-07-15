@@ -47,7 +47,9 @@ public enum BackgroundQueryState {
   
   CLEARED("Cleared"),
   
-  DISPOSED("Disposed");
+  DISPOSED("Disposed"),
+  
+  OWNERTERMINATED("OwnerTerminated");
 
   private String value;
 
