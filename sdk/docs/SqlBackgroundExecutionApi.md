@@ -947,7 +947,7 @@ public class Example {
 
 <a id="startQuery"></a>
 # **startQuery**
-> BackgroundQueryResponse startQuery(body).queryName(queryName).timeoutSeconds(timeoutSeconds).keepForSeconds(keepForSeconds).execute();
+> BackgroundQueryResponse startQuery(body).scalarParameters(scalarParameters).queryName(queryName).timeoutSeconds(timeoutSeconds).keepForSeconds(keepForSeconds).execute();
 
 StartQuery: Starts to Execute LuminesceSql in the background.
 
@@ -974,11 +974,13 @@ public class Example {
 
     SqlBackgroundExecutionApi apiInstance = new SqlBackgroundExecutionApi(defaultClient);
     String body = select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120; // String | The LuminesceSql query to kick off.
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Intentionally slow test query"; // String | A name for this query. This goes into logs and is available in `Sys.Logs.HcQueryStart`.
     Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 7200 (2h)
     Integer keepForSeconds = 0; // Integer | Maximum time the result may be kept for, in seconds: <0 → 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)
     try {
       BackgroundQueryResponse result = apiInstance.startQuery(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeoutSeconds(timeoutSeconds)
             .keepForSeconds(keepForSeconds)
@@ -1000,6 +1002,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| The LuminesceSql query to kick off. | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| A name for this query. This goes into logs and is available in &#x60;Sys.Logs.HcQueryStart&#x60;. | [optional] |
 | **timeoutSeconds** | **Integer**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 7200 (2h) | [optional] [default to 0] |
 | **keepForSeconds** | **Integer**| Maximum time the result may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d) | [optional] [default to 0] |

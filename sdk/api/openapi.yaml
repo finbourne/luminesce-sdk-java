@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.306
+  version: 1.16.312
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -4794,6 +4794,21 @@ paths:
         - 401 Unauthorized\n- 403 Forbidden\n"
       operationId: StartQuery
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: A name for this query. This goes into logs and is available in
           `Sys.Logs.HcQueryStart`.
         example: Intentionally slow test query

@@ -2665,7 +2665,7 @@ public class SqlBackgroundExecutionApi {
     public APIgetProgressOfRequest getProgressOf(String executionId) {
         return new APIgetProgressOfRequest(executionId);
     }
-    private okhttp3.Call startQueryCall(String body, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call startQueryCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2689,6 +2689,10 @@ public class SqlBackgroundExecutionApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (scalarParameters != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("scalarParameters", scalarParameters));
+        }
 
         if (queryName != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("queryName", queryName));
@@ -2725,26 +2729,26 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call startQueryValidateBeforeCall(String body, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call startQueryValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling startQuery(Async)");
         }
 
-        return startQueryCall(body, queryName, timeoutSeconds, keepForSeconds, _callback);
+        return startQueryCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
 
     }
 
 
-    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, String queryName, Integer timeoutSeconds, Integer keepForSeconds) throws ApiException {
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, queryName, timeoutSeconds, keepForSeconds, null);
+    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds) throws ApiException {
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, null);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call startQueryAsync(String body, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
+    private okhttp3.Call startQueryAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, queryName, timeoutSeconds, keepForSeconds, _callback);
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2752,12 +2756,23 @@ public class SqlBackgroundExecutionApi {
 
     public class APIstartQueryRequest {
         private final String body;
+        private Map<String, String> scalarParameters;
         private String queryName;
         private Integer timeoutSeconds;
         private Integer keepForSeconds;
 
         private APIstartQueryRequest(String body) {
             this.body = body;
+        }
+
+        /**
+         * Set scalarParameters
+         * @param scalarParameters Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. (optional)
+         * @return APIstartQueryRequest
+         */
+        public APIstartQueryRequest scalarParameters(Map<String, String> scalarParameters) {
+            this.scalarParameters = scalarParameters;
+            return this;
         }
 
         /**
@@ -2804,7 +2819,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return startQueryCall(body, queryName, timeoutSeconds, keepForSeconds, _callback);
+            return startQueryCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
         }
 
         /**
@@ -2820,7 +2835,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryResponse execute() throws ApiException {
-            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, queryName, timeoutSeconds, keepForSeconds);
+            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds);
             return localVarResp.getData();
         }
 
@@ -2837,7 +2852,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo() throws ApiException {
-            return startQueryWithHttpInfo(body, queryName, timeoutSeconds, keepForSeconds);
+            return startQueryWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds);
         }
 
         /**
@@ -2854,7 +2869,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
-            return startQueryAsync(body, queryName, timeoutSeconds, keepForSeconds, _callback);
+            return startQueryAsync(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
         }
     }
 
