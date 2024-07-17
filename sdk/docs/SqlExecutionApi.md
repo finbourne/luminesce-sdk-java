@@ -22,7 +22,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 <a id="getByQueryCsv"></a>
 # **getByQueryCsv**
-> String getByQueryCsv(query).queryName(queryName).download(download).timeout(timeout).delimiter(delimiter).escape(escape).execute();
+> String getByQueryCsv(query).scalarParameters(scalarParameters).queryName(queryName).download(download).timeout(timeout).delimiter(delimiter).escape(escape).execute();
 
 GetByQueryCsv: Executes Sql, returned in CSV format, where the sql is simply in the url.
 
@@ -49,6 +49,7 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -56,6 +57,7 @@ public class Example {
     String escape = "escape_example"; // String | Escape character to override the default
     try {
       String result = apiInstance.getByQueryCsv(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .download(download)
             .timeout(timeout)
@@ -79,6 +81,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
@@ -107,7 +110,7 @@ public class Example {
 
 <a id="getByQueryExcel"></a>
 # **getByQueryExcel**
-> File getByQueryExcel(query).queryName(queryName).timeout(timeout).execute();
+> File getByQueryExcel(query).scalarParameters(scalarParameters).queryName(queryName).timeout(timeout).execute();
 
 GetByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as a file to be downloaded) format, where the sql is simply in the url.
 
@@ -134,10 +137,12 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       File result = apiInstance.getByQueryExcel(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeout(timeout)
             .execute();
@@ -158,6 +163,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 
@@ -183,7 +189,7 @@ public class Example {
 
 <a id="getByQueryJson"></a>
 # **getByQueryJson**
-> String getByQueryJson(query).queryName(queryName).timeout(timeout).jsonProper(jsonProper).execute();
+> String getByQueryJson(query).scalarParameters(scalarParameters).queryName(queryName).timeout(timeout).jsonProper(jsonProper).execute();
 
 GetByQueryJson: Executes Sql, returned in JSON format, where the sql is simply in the url.
 
@@ -210,11 +216,13 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
     try {
       String result = apiInstance.getByQueryJson(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeout(timeout)
             .jsonProper(jsonProper)
@@ -236,6 +244,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
@@ -262,7 +271,7 @@ public class Example {
 
 <a id="getByQueryParquet"></a>
 # **getByQueryParquet**
-> File getByQueryParquet(query).queryName(queryName).timeout(timeout).execute();
+> File getByQueryParquet(query).scalarParameters(scalarParameters).queryName(queryName).timeout(timeout).execute();
 
 GetByQueryParquet: Executes Sql, returned in Parquet (.parquet) format (as a file to be downloaded) format, where the sql is simply in the url.
 
@@ -289,10 +298,12 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       File result = apiInstance.getByQueryParquet(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeout(timeout)
             .execute();
@@ -313,6 +324,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 
@@ -338,7 +350,7 @@ public class Example {
 
 <a id="getByQueryPipe"></a>
 # **getByQueryPipe**
-> String getByQueryPipe(query).queryName(queryName).download(download).timeout(timeout).execute();
+> String getByQueryPipe(query).scalarParameters(scalarParameters).queryName(queryName).download(download).timeout(timeout).execute();
 
 GetByQueryPipe: Executes Sql, returned in pipe-delimited format, where the sql is simply in the url.
 
@@ -365,11 +377,13 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       String result = apiInstance.getByQueryPipe(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .download(download)
             .timeout(timeout)
@@ -391,6 +405,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
@@ -417,7 +432,7 @@ public class Example {
 
 <a id="getByQuerySqlite"></a>
 # **getByQuerySqlite**
-> File getByQuerySqlite(query).queryName(queryName).timeout(timeout).execute();
+> File getByQuerySqlite(query).scalarParameters(scalarParameters).queryName(queryName).timeout(timeout).execute();
 
 GetByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format (as a file to be downloaded) format, where the sql is simply in the url.
 
@@ -444,10 +459,12 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       File result = apiInstance.getByQuerySqlite(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeout(timeout)
             .execute();
@@ -468,6 +485,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 
@@ -493,7 +511,7 @@ public class Example {
 
 <a id="getByQueryXml"></a>
 # **getByQueryXml**
-> String getByQueryXml(query).queryName(queryName).download(download).timeout(timeout).execute();
+> String getByQueryXml(query).scalarParameters(scalarParameters).queryName(queryName).download(download).timeout(timeout).execute();
 
 GetByQueryXml: Executes Sql, returned in Xml format, where the sql is simply in the url.
 
@@ -520,11 +538,13 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       String result = apiInstance.getByQueryXml(query)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .download(download)
             .timeout(timeout)
@@ -546,6 +566,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
 | **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
@@ -572,7 +593,7 @@ public class Example {
 
 <a id="putByQueryCsv"></a>
 # **putByQueryCsv**
-> String putByQueryCsv(body).queryName(queryName).download(download).timeoutSeconds(timeoutSeconds).delimiter(delimiter).escape(escape).execute();
+> String putByQueryCsv(body).scalarParameters(scalarParameters).queryName(queryName).download(download).timeoutSeconds(timeoutSeconds).delimiter(delimiter).escape(escape).execute();
 
 PutByQueryCsv: Executes Sql, returned in CSV format, where the sql is the post-body url.
 
@@ -599,6 +620,7 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
@@ -606,6 +628,7 @@ public class Example {
     String escape = "escape_example"; // String | Escape character to override the default
     try {
       String result = apiInstance.putByQueryCsv(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .download(download)
             .timeoutSeconds(timeoutSeconds)
@@ -629,6 +652,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
@@ -657,7 +681,7 @@ public class Example {
 
 <a id="putByQueryExcel"></a>
 # **putByQueryExcel**
-> File putByQueryExcel(body).queryName(queryName).timeoutSeconds(timeoutSeconds).execute();
+> File putByQueryExcel(body).scalarParameters(scalarParameters).queryName(queryName).timeoutSeconds(timeoutSeconds).execute();
 
 PutByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as a file to be downloaded), where the sql is the post-body url.
 
@@ -684,10 +708,12 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       File result = apiInstance.putByQueryExcel(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeoutSeconds(timeoutSeconds)
             .execute();
@@ -708,6 +734,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 
@@ -733,7 +760,7 @@ public class Example {
 
 <a id="putByQueryJson"></a>
 # **putByQueryJson**
-> String putByQueryJson(body).queryName(queryName).timeoutSeconds(timeoutSeconds).jsonProper(jsonProper).execute();
+> String putByQueryJson(body).scalarParameters(scalarParameters).queryName(queryName).timeoutSeconds(timeoutSeconds).jsonProper(jsonProper).execute();
 
 PutByQueryJson: Executes Sql, returned in JSON format, where the sql is the post-body url.
 
@@ -760,11 +787,13 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
     try {
       String result = apiInstance.putByQueryJson(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeoutSeconds(timeoutSeconds)
             .jsonProper(jsonProper)
@@ -786,6 +815,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
@@ -812,7 +842,7 @@ public class Example {
 
 <a id="putByQueryParquet"></a>
 # **putByQueryParquet**
-> File putByQueryParquet(body).queryName(queryName).timeoutSeconds(timeoutSeconds).execute();
+> File putByQueryParquet(body).scalarParameters(scalarParameters).queryName(queryName).timeoutSeconds(timeoutSeconds).execute();
 
 PutByQueryParquet: Executes Sql, returned in Parquet format, where the sql is the post-body url.
 
@@ -839,10 +869,12 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       File result = apiInstance.putByQueryParquet(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeoutSeconds(timeoutSeconds)
             .execute();
@@ -863,6 +895,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 
@@ -888,7 +921,7 @@ public class Example {
 
 <a id="putByQueryPipe"></a>
 # **putByQueryPipe**
-> String putByQueryPipe(body).queryName(queryName).download(download).timeoutSeconds(timeoutSeconds).execute();
+> String putByQueryPipe(body).scalarParameters(scalarParameters).queryName(queryName).download(download).timeoutSeconds(timeoutSeconds).execute();
 
 PutByQueryPipe: Executes Sql, returned in pipe-delimited format, where the sql is the post-body url.
 
@@ -915,11 +948,13 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       String result = apiInstance.putByQueryPipe(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .download(download)
             .timeoutSeconds(timeoutSeconds)
@@ -941,6 +976,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
@@ -967,7 +1003,7 @@ public class Example {
 
 <a id="putByQuerySqlite"></a>
 # **putByQuerySqlite**
-> File putByQuerySqlite(body).queryName(queryName).timeoutSeconds(timeoutSeconds).execute();
+> File putByQuerySqlite(body).scalarParameters(scalarParameters).queryName(queryName).timeoutSeconds(timeoutSeconds).execute();
 
 PutByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format (as a file to be downloaded), where the sql is the post-body url.
 
@@ -994,10 +1030,12 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       File result = apiInstance.putByQuerySqlite(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .timeoutSeconds(timeoutSeconds)
             .execute();
@@ -1018,6 +1056,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
 
@@ -1043,7 +1082,7 @@ public class Example {
 
 <a id="putByQueryXml"></a>
 # **putByQueryXml**
-> String putByQueryXml(body).queryName(queryName).download(download).timeoutSeconds(timeoutSeconds).execute();
+> String putByQueryXml(body).scalarParameters(scalarParameters).queryName(queryName).download(download).timeoutSeconds(timeoutSeconds).execute();
 
 PutByQueryXml: Executes Sql, returned in Xml format, where the sql is the post-body url.
 
@@ -1070,11 +1109,13 @@ public class Example {
 
     SqlExecutionApi apiInstance = new SqlExecutionApi(defaultClient);
     String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+    Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
     String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
     Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
     Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
     try {
       String result = apiInstance.putByQueryXml(body)
+            .scalarParameters(scalarParameters)
             .queryName(queryName)
             .download(download)
             .timeoutSeconds(timeoutSeconds)
@@ -1096,6 +1137,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
+| **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |

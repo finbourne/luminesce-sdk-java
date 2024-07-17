@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.315
+  version: 1.16.322
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1344,6 +1344,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQueryCsv
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -1469,6 +1484,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -1584,6 +1614,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQueryExcel
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -1685,6 +1730,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -2910,6 +2970,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQueryJson
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3018,6 +3093,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3116,6 +3206,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQueryParquet
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3217,6 +3322,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3308,6 +3428,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQueryPipe
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3417,6 +3552,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3725,6 +3875,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQuerySqlite
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -3826,6 +3991,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -4587,6 +4767,21 @@ paths:
         - 403 Forbidden
       operationId: PutByQueryXml
       parameters:
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
@@ -4696,6 +4891,21 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Json encoded dictionary of key-value pairs for scalar parameter
+          values to use in the sql execution.
+        example:
+          someParameter: 12
+          someOtherParameter: someValue
+        explode: true
+        in: query
+        name: scalarParameters
+        required: false
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+        style: form
+        x-nullable: true
       - description: Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         example: Get tables/fields
         explode: true
