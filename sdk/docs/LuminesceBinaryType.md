@@ -37,6 +37,10 @@
 
 * `SQLDB_PROVIDERS_DUCKDB` (value: `"SqlDb_Providers_DuckDb"`)
 
+* `SQLDB_PROVIDERS_AWSDYNAMODB` (value: `"SqlDb_Providers_AwsDynamoDb"`)
+
+* `SQLDB_PROVIDERS_SQLSERVER_ORACLE` (value: `"SqlDb_Providers_SqlServer_Oracle"`)
+
 * `JDBC_DRIVER` (value: `"Jdbc_Driver"`)
 
 * `POWERBI_CONNECTOR` (value: `"PowerBi_Connector"`)

@@ -57,6 +57,10 @@ public enum LuminesceBinaryType {
   
   SQLDB_PROVIDERS_DUCKDB("SqlDb_Providers_DuckDb"),
   
+  SQLDB_PROVIDERS_AWSDYNAMODB("SqlDb_Providers_AwsDynamoDb"),
+  
+  SQLDB_PROVIDERS_SQLSERVER_ORACLE("SqlDb_Providers_SqlServer_Oracle"),
+  
   JDBC_DRIVER("Jdbc_Driver"),
   
   POWERBI_CONNECTOR("PowerBi_Connector"),

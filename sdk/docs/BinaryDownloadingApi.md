@@ -59,7 +59,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | [**LuminesceBinaryType**](.md)| Type of binary to download (each requires separate licenses and entitlements) | [optional] [enum: CommandLineTool, LocalFileSystem_Providers, Email_Providers, Python_Providers, AwsS3_Providers, Azure_Providers, SqlDb_Providers_Db2Linux, SqlDb_Providers_MySql, SqlDb_Providers_Oracle, SqlDb_Providers_Oracle_Snowflake, SqlDb_Providers_Postgresql, SqlDb_Providers_Snowflake, SqlDb_Providers_SqlServer, SqlDb_Providers_SybaseAse, SqlDb_Providers_SqLite, SqlDb_Providers_DuckDb, Jdbc_Driver, PowerBi_Connector, Odbc_Win64_Driver] |
+| **type** | [**LuminesceBinaryType**](.md)| Type of binary to download (each requires separate licenses and entitlements) | [optional] [enum: CommandLineTool, LocalFileSystem_Providers, Email_Providers, Python_Providers, AwsS3_Providers, Azure_Providers, SqlDb_Providers_Db2Linux, SqlDb_Providers_MySql, SqlDb_Providers_Oracle, SqlDb_Providers_Oracle_Snowflake, SqlDb_Providers_Postgresql, SqlDb_Providers_Snowflake, SqlDb_Providers_SqlServer, SqlDb_Providers_SybaseAse, SqlDb_Providers_SqLite, SqlDb_Providers_DuckDb, SqlDb_Providers_AwsDynamoDb, SqlDb_Providers_SqlServer_Oracle, Jdbc_Driver, PowerBi_Connector, Odbc_Win64_Driver] |
 | **version** | **String**| An explicit version of the binary. Leave blank to get the latest version (recommended) | [optional] |
 
 ### Return type
@@ -131,7 +131,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **type** | [**LuminesceBinaryType**](.md)| Type of binary to fetch available versions of | [optional] [enum: CommandLineTool, LocalFileSystem_Providers, Email_Providers, Python_Providers, AwsS3_Providers, Azure_Providers, SqlDb_Providers_Db2Linux, SqlDb_Providers_MySql, SqlDb_Providers_Oracle, SqlDb_Providers_Oracle_Snowflake, SqlDb_Providers_Postgresql, SqlDb_Providers_Snowflake, SqlDb_Providers_SqlServer, SqlDb_Providers_SybaseAse, SqlDb_Providers_SqLite, SqlDb_Providers_DuckDb, Jdbc_Driver, PowerBi_Connector, Odbc_Win64_Driver] |
+| **type** | [**LuminesceBinaryType**](.md)| Type of binary to fetch available versions of | [optional] [enum: CommandLineTool, LocalFileSystem_Providers, Email_Providers, Python_Providers, AwsS3_Providers, Azure_Providers, SqlDb_Providers_Db2Linux, SqlDb_Providers_MySql, SqlDb_Providers_Oracle, SqlDb_Providers_Oracle_Snowflake, SqlDb_Providers_Postgresql, SqlDb_Providers_Snowflake, SqlDb_Providers_SqlServer, SqlDb_Providers_SybaseAse, SqlDb_Providers_SqLite, SqlDb_Providers_DuckDb, SqlDb_Providers_AwsDynamoDb, SqlDb_Providers_SqlServer_Oracle, Jdbc_Driver, PowerBi_Connector, Odbc_Win64_Driver] |
 
 ### Return type
 
