@@ -11,51 +11,62 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**getProgressOfHistory**](HistoricallyExecutedQueriesApi.md#getProgressOfHistory) | **GET** /api/History/{executionId} | GetProgressOfHistory: View progress information (up until this point) of a history query |
 
 
-<a id="cancelHistory"></a>
-# **cancelHistory**
-> BackgroundQueryCancelResponse cancelHistory(executionId).execute();
+
+## cancelHistory
+
+> BackgroundQueryCancelResponse cancelHistory(executionId)
 
 CancelHistory: Cancels (if running) or clears the data from (if completed) a previously started History query
 
 Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.luminesce.ApiClient;
-import com.finbourne.luminesce.ApiException;
-import com.finbourne.luminesce.Configuration;
-import com.finbourne.luminesce.auth.*;
-import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.model.*;
 import com.finbourne.luminesce.api.HistoricallyExecutedQueriesApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    HistoricallyExecutedQueriesApi apiInstance = new HistoricallyExecutedQueriesApi(defaultClient);
-    String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
-    try {
-      BackgroundQueryCancelResponse result = apiInstance.cancelHistory(executionId)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling HistoricallyExecutedQueriesApi#cancelHistory");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class HistoricallyExecutedQueriesApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        try {
+            BackgroundQueryCancelResponse result = apiInstance.cancelHistory(executionId).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling HistoricallyExecutedQueriesApi#cancelHistory");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -65,71 +76,78 @@ public class Example {
 
 [**BackgroundQueryCancelResponse**](BackgroundQueryCancelResponse.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 
-<a id="fetchHistoryResultHistogram"></a>
-# **fetchHistoryResultHistogram**
-> String fetchHistoryResultHistogram(executionId).bucketSize(bucketSize).filter(filter).jsonProper(jsonProper).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## fetchHistoryResultHistogram
+
+> String fetchHistoryResultHistogram(executionId, bucketSize, filter, jsonProper)
 
 FetchHistoryResultHistogram: Fetches the result from a previously started query, converts it to a histogram (counts in buckets).
 
 Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.luminesce.ApiClient;
-import com.finbourne.luminesce.ApiException;
-import com.finbourne.luminesce.Configuration;
-import com.finbourne.luminesce.auth.*;
-import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.model.*;
 import com.finbourne.luminesce.api.HistoricallyExecutedQueriesApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    HistoricallyExecutedQueriesApi apiInstance = new HistoricallyExecutedQueriesApi(defaultClient);
-    String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
-    String bucketSize = "bucketSize_example"; // String | Optional histogram bucket width. If not provided a set number of buckets between start/end range will be generated.
-    String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
-    Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
-    try {
-      String result = apiInstance.fetchHistoryResultHistogram(executionId)
-            .bucketSize(bucketSize)
-            .filter(filter)
-            .jsonProper(jsonProper)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling HistoricallyExecutedQueriesApi#fetchHistoryResultHistogram");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class HistoricallyExecutedQueriesApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        String bucketSize = "bucketSize_example"; // String | Optional histogram bucket width. If not provided a set number of buckets between start/end range will be generated.
+        String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
+        Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
+        try {
+            String result = apiInstance.fetchHistoryResultHistogram(executionId, bucketSize, filter, jsonProper).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling HistoricallyExecutedQueriesApi#fetchHistoryResultHistogram");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -142,14 +160,11 @@ public class Example {
 
 **String**
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -158,65 +173,71 @@ public class Example {
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
-<a id="fetchHistoryResultJson"></a>
-# **fetchHistoryResultJson**
-> String fetchHistoryResultJson(executionId).sortBy(sortBy).filter(filter).select(select).groupBy(groupBy).limit(limit).page(page).jsonProper(jsonProper).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## fetchHistoryResultJson
+
+> String fetchHistoryResultJson(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper)
 
 FetchHistoryResultJson: Fetches the result from a previously started query, in JSON format.
 
 Fetch the data in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.luminesce.ApiClient;
-import com.finbourne.luminesce.ApiException;
-import com.finbourne.luminesce.Configuration;
-import com.finbourne.luminesce.auth.*;
-import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.model.*;
 import com.finbourne.luminesce.api.HistoricallyExecutedQueriesApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    HistoricallyExecutedQueriesApi apiInstance = new HistoricallyExecutedQueriesApi(defaultClient);
-    String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
-    String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
-    String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
-    String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - `MyField`  - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name)  - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works)  - `count(distinct x) as numOfXs`  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
-    String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
-    Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
-    Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
-    Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
-    try {
-      String result = apiInstance.fetchHistoryResultJson(executionId)
-            .sortBy(sortBy)
-            .filter(filter)
-            .select(select)
-            .groupBy(groupBy)
-            .limit(limit)
-            .page(page)
-            .jsonProper(jsonProper)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling HistoricallyExecutedQueriesApi#fetchHistoryResultJson");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class HistoricallyExecutedQueriesApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
+        String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
+        String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - `MyField`  - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name)  - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works)  - `count(distinct x) as numOfXs`  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
+        String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
+        Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
+        Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
+        Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
+        try {
+            String result = apiInstance.fetchHistoryResultJson(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling HistoricallyExecutedQueriesApi#fetchHistoryResultJson");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -233,14 +254,11 @@ public class Example {
 
 **String**
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -249,60 +267,68 @@ public class Example {
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
-<a id="getHistory"></a>
-# **getHistory**
-> BackgroundQueryResponse getHistory().startAt(startAt).endAt(endAt).freeTextSearch(freeTextSearch).showAll(showAll).mayUseNativeStore(mayUseNativeStore).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## getHistory
+
+> BackgroundQueryResponse getHistory(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore)
 
 GetHistory: Shows queries executed in a given historical time window (in Json format).
 
  Starts to load the historical query logs for a certain time range, search criteria, etc.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.luminesce.ApiClient;
-import com.finbourne.luminesce.ApiException;
-import com.finbourne.luminesce.Configuration;
-import com.finbourne.luminesce.auth.*;
-import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.model.*;
 import com.finbourne.luminesce.api.HistoricallyExecutedQueriesApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    HistoricallyExecutedQueriesApi apiInstance = new HistoricallyExecutedQueriesApi(defaultClient);
-    OffsetDateTime startAt = OffsetDateTime.now(); // OffsetDateTime | Date time to start the search from. Will default to Now - 1 Day
-    OffsetDateTime endAt = OffsetDateTime.now(); // OffsetDateTime | Date time to end the search at. Defaults to now.
-    String freeTextSearch = "freeTextSearch_example"; // String | Some test that must be in at least one field returned.
-    Boolean showAll = false; // Boolean | For users with extra permissions, they may optionally see other users' queries.
-    Boolean mayUseNativeStore = true; // Boolean | Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?
-    try {
-      BackgroundQueryResponse result = apiInstance.getHistory()
-            .startAt(startAt)
-            .endAt(endAt)
-            .freeTextSearch(freeTextSearch)
-            .showAll(showAll)
-            .mayUseNativeStore(mayUseNativeStore)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling HistoricallyExecutedQueriesApi#getHistory");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class HistoricallyExecutedQueriesApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
+        OffsetDateTime startAt = OffsetDateTime.now(); // OffsetDateTime | Date time to start the search from. Will default to Now - 1 Day
+        OffsetDateTime endAt = OffsetDateTime.now(); // OffsetDateTime | Date time to end the search at. Defaults to now.
+        String freeTextSearch = "freeTextSearch_example"; // String | Some test that must be in at least one field returned.
+        Boolean showAll = false; // Boolean | For users with extra permissions, they may optionally see other users' queries.
+        Boolean mayUseNativeStore = true; // Boolean | Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?
+        try {
+            BackgroundQueryResponse result = apiInstance.getHistory(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling HistoricallyExecutedQueriesApi#getHistory");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -316,65 +342,75 @@ public class Example {
 
 [**BackgroundQueryResponse**](BackgroundQueryResponse.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **202** | Accepted |  -  |
 
-<a id="getProgressOfHistory"></a>
-# **getProgressOfHistory**
-> BackgroundQueryProgressResponse getProgressOfHistory(executionId).execute();
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## getProgressOfHistory
+
+> BackgroundQueryProgressResponse getProgressOfHistory(executionId)
 
 GetProgressOfHistory: View progress information (up until this point) of a history query
 
 View progress information (up until this point) of previously started History query The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
+
 ```java
-// Import classes:
-import com.finbourne.luminesce.ApiClient;
-import com.finbourne.luminesce.ApiException;
-import com.finbourne.luminesce.Configuration;
-import com.finbourne.luminesce.auth.*;
-import com.finbourne.luminesce.models.*;
+import com.finbourne.luminesce.model.*;
 import com.finbourne.luminesce.api.HistoricallyExecutedQueriesApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
 
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://fbn-prd.lusid.com/honeycomb");
-    
-    // Configure OAuth2 access token for authorization: oauth2
-    OAuth oauth2 = (OAuth) defaultClient.getAuthentication("oauth2");
-    oauth2.setAccessToken("YOUR ACCESS TOKEN");
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
-    HistoricallyExecutedQueriesApi apiInstance = new HistoricallyExecutedQueriesApi(defaultClient);
-    String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
-    try {
-      BackgroundQueryProgressResponse result = apiInstance.getProgressOfHistory(executionId)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling HistoricallyExecutedQueriesApi#getProgressOfHistory");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
+public class HistoricallyExecutedQueriesApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        try {
+            BackgroundQueryProgressResponse result = apiInstance.getProgressOfHistory(executionId).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling HistoricallyExecutedQueriesApi#getProgressOfHistory");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
     }
-  }
 }
 ```
 
 ### Parameters
+
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
@@ -384,17 +420,16 @@ public class Example {
 
 [**BackgroundQueryProgressResponse**](BackgroundQueryProgressResponse.md)
 
-### Authorization
-
-[oauth2](../README.md#oauth2)
-
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
