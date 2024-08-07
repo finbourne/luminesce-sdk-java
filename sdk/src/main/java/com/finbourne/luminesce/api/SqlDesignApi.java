@@ -748,7 +748,7 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid) and cursor location
+     * PutIntellisense: Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid) and cursor location
      * SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from.
      * @param intellisenseRequest  (required)
      * @return APIputIntellisenseRequest
@@ -915,7 +915,7 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutIntellisenseError: Generate a set of error ranges, if any, in the given SQL (expressed as Lines)
+     * PutIntellisenseError: Generate a set of error ranges, if any, in the given SQL (expressed as Lines)
      * SQL (by line) to syntax check and return error ranges from within, if any.
      * @param errorHighlightRequest  (required)
      * @return APIputIntellisenseErrorRequest

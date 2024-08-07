@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.418
+  version: 1.16.421
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2823,11 +2823,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutIntellisense: Generate a set of possible intellisense\
-        \ prompts given a SQL snip-it (in need not yet be valid) and cursor location"
+      summary: "PutIntellisense: Generate a set of possible intellisense prompts given\
+        \ a SQL snip-it (in need not yet be valid) and cursor location"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/intellisenseError:
@@ -2941,11 +2941,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutIntellisenseError: Generate a set of error ranges,\
-        \ if any, in the given SQL (expressed as Lines)"
+      summary: "PutIntellisenseError: Generate a set of error ranges, if any, in the\
+        \ given SQL (expressed as Lines)"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/json:
