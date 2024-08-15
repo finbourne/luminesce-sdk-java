@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.475
+  version: 1.16.490
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -5173,14 +5173,15 @@ paths:
           \ from the shared-db-state?\r\nFalse will mean `404 Not Found` in cases\
           \ where it was a real query but has passed its `keepForSeconds`\r\nsince\
           \ the query completed (as well as 'this was not a query at all' of course)"
-        explode: false
-        in: path
+        explode: true
+        in: query
         name: buildFromLogs
-        required: true
+        required: false
         schema:
           default: true
           type: boolean
-        style: simple
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:

@@ -2529,14 +2529,17 @@ public class SqlBackgroundExecutionApi {
 
         // create path and map variables
         String localVarPath = "/api/SqlBackground/{executionId}"
-            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()))
-            .replace("{" + "buildFromLogs" + "}", localVarApiClient.escapeString(buildFromLogs.toString()));
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (buildFromLogs != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("buildFromLogs", buildFromLogs));
+        }
 
         final String[] localVarAccepts = {
             "text/plain",
@@ -2566,11 +2569,6 @@ public class SqlBackgroundExecutionApi {
             throw new ApiException("Missing the required parameter 'executionId' when calling getProgressOf(Async)");
         }
 
-        // verify the required parameter 'buildFromLogs' is set
-        if (buildFromLogs == null) {
-            throw new ApiException("Missing the required parameter 'buildFromLogs' when calling getProgressOf(Async)");
-        }
-
         return getProgressOfCall(executionId, buildFromLogs, _callback);
 
     }
@@ -2592,11 +2590,20 @@ public class SqlBackgroundExecutionApi {
 
     public class APIgetProgressOfRequest {
         private final String executionId;
-        private final Boolean buildFromLogs;
+        private Boolean buildFromLogs;
 
-        private APIgetProgressOfRequest(String executionId, Boolean buildFromLogs) {
+        private APIgetProgressOfRequest(String executionId) {
             this.executionId = executionId;
+        }
+
+        /**
+         * Set buildFromLogs
+         * @param buildFromLogs Should the response state be build from query logs if missing from the shared-db-state?  False will mean &#x60;404 Not Found&#x60; in cases where it was a real query but has passed its &#x60;keepForSeconds&#x60;  since the query completed (as well as &#39;this was not a query at all&#39; of course) (optional, default to true)
+         * @return APIgetProgressOfRequest
+         */
+        public APIgetProgressOfRequest buildFromLogs(Boolean buildFromLogs) {
             this.buildFromLogs = buildFromLogs;
+            return this;
         }
 
         /**
@@ -2663,7 +2670,6 @@ public class SqlBackgroundExecutionApi {
      * GetProgressOf: View progress information (up until this point)
      * View progress information (up until this point) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
-     * @param buildFromLogs Should the response state be build from query logs if missing from the shared-db-state?  False will mean &#x60;404 Not Found&#x60; in cases where it was a real query but has passed its &#x60;keepForSeconds&#x60;  since the query completed (as well as &#39;this was not a query at all&#39; of course) (required)
      * @return APIgetProgressOfRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -2671,8 +2677,8 @@ public class SqlBackgroundExecutionApi {
         <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
      </table>
      */
-    public APIgetProgressOfRequest getProgressOf(String executionId, Boolean buildFromLogs) {
-        return new APIgetProgressOfRequest(executionId, buildFromLogs);
+    public APIgetProgressOfRequest getProgressOf(String executionId) {
+        return new APIgetProgressOfRequest(executionId);
     }
     private okhttp3.Call startQueryCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
         String basePath = null;
