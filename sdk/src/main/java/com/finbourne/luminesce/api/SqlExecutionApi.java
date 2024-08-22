@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -71,6 +72,10 @@ public class SqlExecutionApi {
     }
 
     private okhttp3.Call getByQueryCsvCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
+        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQueryCsvCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -138,30 +143,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryCsvValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQueryCsvValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryCsv(Async)");
         }
 
-        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback);
+        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getByQueryCsvWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, null);
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getByQueryCsvWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQueryCsvAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback);
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQueryCsvAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -275,6 +294,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQueryCsv request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQueryCsv request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -288,6 +324,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape);
+        }
+
+        /**
+         * Execute getByQueryCsv request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, opts);
         }
 
         /**
@@ -305,6 +357,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getByQueryCsvAsync(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback);
+        }
+
+        /**
+         * Execute getByQueryCsv request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQueryCsvAsync(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, opts);
         }
     }
 
@@ -325,6 +394,10 @@ public class SqlExecutionApi {
         return new APIgetByQueryCsvRequest(query);
     }
     private okhttp3.Call getByQueryExcelCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQueryExcelCall(query, scalarParameters, queryName, timeout,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQueryExcelCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -380,30 +453,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryExcelValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQueryExcelValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryExcel(Async)");
         }
 
-        return getByQueryExcelCall(query, scalarParameters, queryName, timeout, _callback);
+        return getByQueryExcelCall(query, scalarParameters, queryName, timeout, _callback, opts);
 
     }
 
 
     private ApiResponse<File> getByQueryExcelWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, null);
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> getByQueryExcelWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQueryExcelAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback);
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQueryExcelAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -484,6 +571,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQueryExcel request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQueryExcel request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -497,6 +601,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout);
+        }
+
+        /**
+         * Execute getByQueryExcel request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
         }
 
         /**
@@ -514,6 +634,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return getByQueryExcelAsync(query, scalarParameters, queryName, timeout, _callback);
+        }
+
+        /**
+         * Execute getByQueryExcel request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQueryExcelAsync(query, scalarParameters, queryName, timeout, _callback, opts);
         }
     }
 
@@ -534,6 +671,10 @@ public class SqlExecutionApi {
         return new APIgetByQueryExcelRequest(query);
     }
     private okhttp3.Call getByQueryJsonCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQueryJsonCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -593,30 +734,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryJsonValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQueryJsonValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryJson(Async)");
         }
 
-        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, _callback);
+        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getByQueryJsonWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, null);
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getByQueryJsonWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQueryJsonAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, _callback);
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQueryJsonAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -708,6 +863,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQueryJson request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQueryJson request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -721,6 +893,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper);
+        }
+
+        /**
+         * Execute getByQueryJson request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, opts);
         }
 
         /**
@@ -738,6 +926,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getByQueryJsonAsync(query, scalarParameters, queryName, timeout, jsonProper, _callback);
+        }
+
+        /**
+         * Execute getByQueryJson request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQueryJsonAsync(query, scalarParameters, queryName, timeout, jsonProper, _callback, opts);
         }
     }
 
@@ -758,6 +963,10 @@ public class SqlExecutionApi {
         return new APIgetByQueryJsonRequest(query);
     }
     private okhttp3.Call getByQueryParquetCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQueryParquetCall(query, scalarParameters, queryName, timeout,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQueryParquetCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -813,30 +1022,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryParquetValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQueryParquetValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryParquet(Async)");
         }
 
-        return getByQueryParquetCall(query, scalarParameters, queryName, timeout, _callback);
+        return getByQueryParquetCall(query, scalarParameters, queryName, timeout, _callback, opts);
 
     }
 
 
     private ApiResponse<File> getByQueryParquetWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryParquetValidateBeforeCall(query, scalarParameters, queryName, timeout, null);
+        okhttp3.Call localVarCall = getByQueryParquetValidateBeforeCall(query, scalarParameters, queryName, timeout, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> getByQueryParquetWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryParquetValidateBeforeCall(query, scalarParameters, queryName, timeout, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQueryParquetAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryParquetValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback);
+        okhttp3.Call localVarCall = getByQueryParquetValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQueryParquetAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQueryParquetValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -917,6 +1140,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQueryParquet request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = getByQueryParquetWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQueryParquet request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -930,6 +1170,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return getByQueryParquetWithHttpInfo(query, scalarParameters, queryName, timeout);
+        }
+
+        /**
+         * Execute getByQueryParquet request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQueryParquetWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
         }
 
         /**
@@ -947,6 +1203,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return getByQueryParquetAsync(query, scalarParameters, queryName, timeout, _callback);
+        }
+
+        /**
+         * Execute getByQueryParquet request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQueryParquetAsync(query, scalarParameters, queryName, timeout, _callback, opts);
         }
     }
 
@@ -967,6 +1240,10 @@ public class SqlExecutionApi {
         return new APIgetByQueryParquetRequest(query);
     }
     private okhttp3.Call getByQueryPipeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQueryPipeCall(query, scalarParameters, queryName, download, timeout,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQueryPipeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1026,30 +1303,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryPipeValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQueryPipeValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryPipe(Async)");
         }
 
-        return getByQueryPipeCall(query, scalarParameters, queryName, download, timeout, _callback);
+        return getByQueryPipeCall(query, scalarParameters, queryName, download, timeout, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getByQueryPipeWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null);
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getByQueryPipeWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQueryPipeAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback);
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQueryPipeAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1141,6 +1432,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQueryPipe request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQueryPipe request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1154,6 +1462,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout);
+        }
+
+        /**
+         * Execute getByQueryPipe request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout, opts);
         }
 
         /**
@@ -1171,6 +1495,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getByQueryPipeAsync(query, scalarParameters, queryName, download, timeout, _callback);
+        }
+
+        /**
+         * Execute getByQueryPipe request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQueryPipeAsync(query, scalarParameters, queryName, download, timeout, _callback, opts);
         }
     }
 
@@ -1191,6 +1532,10 @@ public class SqlExecutionApi {
         return new APIgetByQueryPipeRequest(query);
     }
     private okhttp3.Call getByQuerySqliteCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQuerySqliteCall(query, scalarParameters, queryName, timeout,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQuerySqliteCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1246,30 +1591,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQuerySqliteValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQuerySqliteValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQuerySqlite(Async)");
         }
 
-        return getByQuerySqliteCall(query, scalarParameters, queryName, timeout, _callback);
+        return getByQuerySqliteCall(query, scalarParameters, queryName, timeout, _callback, opts);
 
     }
 
 
     private ApiResponse<File> getByQuerySqliteWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQuerySqliteValidateBeforeCall(query, scalarParameters, queryName, timeout, null);
+        okhttp3.Call localVarCall = getByQuerySqliteValidateBeforeCall(query, scalarParameters, queryName, timeout, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> getByQuerySqliteWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQuerySqliteValidateBeforeCall(query, scalarParameters, queryName, timeout, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQuerySqliteAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQuerySqliteValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback);
+        okhttp3.Call localVarCall = getByQuerySqliteValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQuerySqliteAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQuerySqliteValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1350,6 +1709,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQuerySqlite request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = getByQuerySqliteWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQuerySqlite request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1363,6 +1739,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return getByQuerySqliteWithHttpInfo(query, scalarParameters, queryName, timeout);
+        }
+
+        /**
+         * Execute getByQuerySqlite request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQuerySqliteWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
         }
 
         /**
@@ -1380,6 +1772,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return getByQuerySqliteAsync(query, scalarParameters, queryName, timeout, _callback);
+        }
+
+        /**
+         * Execute getByQuerySqlite request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQuerySqliteAsync(query, scalarParameters, queryName, timeout, _callback, opts);
         }
     }
 
@@ -1400,6 +1809,10 @@ public class SqlExecutionApi {
         return new APIgetByQuerySqliteRequest(query);
     }
     private okhttp3.Call getByQueryXmlCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQueryXmlCall(query, scalarParameters, queryName, download, timeout,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getByQueryXmlCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1459,30 +1872,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryXmlValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getByQueryXmlValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryXml(Async)");
         }
 
-        return getByQueryXmlCall(query, scalarParameters, queryName, download, timeout, _callback);
+        return getByQueryXmlCall(query, scalarParameters, queryName, download, timeout, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getByQueryXmlWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryXmlValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null);
+        okhttp3.Call localVarCall = getByQueryXmlValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getByQueryXmlWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryXmlValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getByQueryXmlAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryXmlValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback);
+        okhttp3.Call localVarCall = getByQueryXmlValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getByQueryXmlAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getByQueryXmlValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1574,6 +2001,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute getByQueryXml request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getByQueryXmlWithHttpInfo(query, scalarParameters, queryName, download, timeout, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getByQueryXml request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1587,6 +2031,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getByQueryXmlWithHttpInfo(query, scalarParameters, queryName, download, timeout);
+        }
+
+        /**
+         * Execute getByQueryXml request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getByQueryXmlWithHttpInfo(query, scalarParameters, queryName, download, timeout, opts);
         }
 
         /**
@@ -1604,6 +2064,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getByQueryXmlAsync(query, scalarParameters, queryName, download, timeout, _callback);
+        }
+
+        /**
+         * Execute getByQueryXml request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getByQueryXmlAsync(query, scalarParameters, queryName, download, timeout, _callback, opts);
         }
     }
 
@@ -1624,6 +2101,10 @@ public class SqlExecutionApi {
         return new APIgetByQueryXmlRequest(query);
     }
     private okhttp3.Call putByQueryCsvCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
+        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQueryCsvCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1691,30 +2172,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryCsvValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQueryCsvValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryCsv(Async)");
         }
 
-        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback);
+        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, opts);
 
     }
 
 
     private ApiResponse<String> putByQueryCsvWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, null);
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putByQueryCsvWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQueryCsvAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback);
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQueryCsvAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1828,6 +2323,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQueryCsv request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQueryCsv request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1841,6 +2353,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape);
+        }
+
+        /**
+         * Execute putByQueryCsv request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, opts);
         }
 
         /**
@@ -1858,6 +2386,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return putByQueryCsvAsync(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback);
+        }
+
+        /**
+         * Execute putByQueryCsv request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQueryCsvAsync(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, opts);
         }
     }
 
@@ -1878,6 +2423,10 @@ public class SqlExecutionApi {
         return new APIputByQueryCsvRequest(body);
     }
     private okhttp3.Call putByQueryExcelCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQueryExcelCall(body, scalarParameters, queryName, timeoutSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQueryExcelCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1933,30 +2482,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryExcelValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQueryExcelValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryExcel(Async)");
         }
 
-        return putByQueryExcelCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        return putByQueryExcelCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<File> putByQueryExcelWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null);
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> putByQueryExcelWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQueryExcelAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQueryExcelAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2037,6 +2600,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQueryExcel request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQueryExcel request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2050,6 +2630,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds);
+        }
+
+        /**
+         * Execute putByQueryExcel request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
         }
 
         /**
@@ -2067,6 +2663,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return putByQueryExcelAsync(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        }
+
+        /**
+         * Execute putByQueryExcel request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQueryExcelAsync(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
         }
     }
 
@@ -2087,6 +2700,10 @@ public class SqlExecutionApi {
         return new APIputByQueryExcelRequest(body);
     }
     private okhttp3.Call putByQueryJsonCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQueryJsonCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2146,30 +2763,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryJsonValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQueryJsonValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryJson(Async)");
         }
 
-        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback);
+        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, opts);
 
     }
 
 
     private ApiResponse<String> putByQueryJsonWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, null);
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putByQueryJsonWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQueryJsonAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback);
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQueryJsonAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2261,6 +2892,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQueryJson request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQueryJson request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2274,6 +2922,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper);
+        }
+
+        /**
+         * Execute putByQueryJson request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, opts);
         }
 
         /**
@@ -2291,6 +2955,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return putByQueryJsonAsync(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback);
+        }
+
+        /**
+         * Execute putByQueryJson request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQueryJsonAsync(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, opts);
         }
     }
 
@@ -2311,6 +2992,10 @@ public class SqlExecutionApi {
         return new APIputByQueryJsonRequest(body);
     }
     private okhttp3.Call putByQueryParquetCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQueryParquetCall(body, scalarParameters, queryName, timeoutSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQueryParquetCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2366,30 +3051,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryParquetValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQueryParquetValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryParquet(Async)");
         }
 
-        return putByQueryParquetCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        return putByQueryParquetCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<File> putByQueryParquetWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryParquetValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null);
+        okhttp3.Call localVarCall = putByQueryParquetValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> putByQueryParquetWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryParquetValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQueryParquetAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryParquetValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        okhttp3.Call localVarCall = putByQueryParquetValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQueryParquetAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQueryParquetValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2470,6 +3169,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQueryParquet request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = putByQueryParquetWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQueryParquet request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2483,6 +3199,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return putByQueryParquetWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds);
+        }
+
+        /**
+         * Execute putByQueryParquet request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQueryParquetWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
         }
 
         /**
@@ -2500,6 +3232,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return putByQueryParquetAsync(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        }
+
+        /**
+         * Execute putByQueryParquet request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQueryParquetAsync(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
         }
     }
 
@@ -2520,6 +3269,10 @@ public class SqlExecutionApi {
         return new APIputByQueryParquetRequest(body);
     }
     private okhttp3.Call putByQueryPipeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQueryPipeCall(body, scalarParameters, queryName, download, timeoutSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQueryPipeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2579,30 +3332,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryPipeValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQueryPipeValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryPipe(Async)");
         }
 
-        return putByQueryPipeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+        return putByQueryPipeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<String> putByQueryPipeWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null);
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putByQueryPipeWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQueryPipeAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQueryPipeAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2694,6 +3461,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQueryPipe request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQueryPipe request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2707,6 +3491,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds);
+        }
+
+        /**
+         * Execute putByQueryPipe request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, opts);
         }
 
         /**
@@ -2724,6 +3524,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return putByQueryPipeAsync(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+        }
+
+        /**
+         * Execute putByQueryPipe request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQueryPipeAsync(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
         }
     }
 
@@ -2744,6 +3561,10 @@ public class SqlExecutionApi {
         return new APIputByQueryPipeRequest(body);
     }
     private okhttp3.Call putByQuerySqliteCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQuerySqliteCall(body, scalarParameters, queryName, timeoutSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQuerySqliteCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2799,30 +3620,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQuerySqliteValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQuerySqliteValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQuerySqlite(Async)");
         }
 
-        return putByQuerySqliteCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        return putByQuerySqliteCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<File> putByQuerySqliteWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQuerySqliteValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null);
+        okhttp3.Call localVarCall = putByQuerySqliteValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> putByQuerySqliteWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQuerySqliteValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQuerySqliteAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQuerySqliteValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        okhttp3.Call localVarCall = putByQuerySqliteValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQuerySqliteAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQuerySqliteValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2903,6 +3738,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQuerySqlite request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = putByQuerySqliteWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQuerySqlite request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2916,6 +3768,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return putByQuerySqliteWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds);
+        }
+
+        /**
+         * Execute putByQuerySqlite request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQuerySqliteWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
         }
 
         /**
@@ -2933,6 +3801,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return putByQuerySqliteAsync(body, scalarParameters, queryName, timeoutSeconds, _callback);
+        }
+
+        /**
+         * Execute putByQuerySqlite request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQuerySqliteAsync(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
         }
     }
 
@@ -2953,6 +3838,10 @@ public class SqlExecutionApi {
         return new APIputByQuerySqliteRequest(body);
     }
     private okhttp3.Call putByQueryXmlCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQueryXmlCall(body, scalarParameters, queryName, download, timeoutSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putByQueryXmlCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3012,30 +3901,44 @@ public class SqlExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryXmlValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putByQueryXmlValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryXml(Async)");
         }
 
-        return putByQueryXmlCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+        return putByQueryXmlCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<String> putByQueryXmlWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryXmlValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null);
+        okhttp3.Call localVarCall = putByQueryXmlValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putByQueryXmlWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryXmlValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call putByQueryXmlAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryXmlValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+        okhttp3.Call localVarCall = putByQueryXmlValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putByQueryXmlAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putByQueryXmlValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3127,6 +4030,23 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Execute putByQueryXml request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putByQueryXmlWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute putByQueryXml request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -3140,6 +4060,22 @@ public class SqlExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return putByQueryXmlWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds);
+        }
+
+        /**
+         * Execute putByQueryXml request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putByQueryXmlWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, opts);
         }
 
         /**
@@ -3157,6 +4093,23 @@ public class SqlExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return putByQueryXmlAsync(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+        }
+
+        /**
+         * Execute putByQueryXml request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putByQueryXmlAsync(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
         }
     }
 

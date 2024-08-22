@@ -50,9 +50,20 @@ public class HistoricallyExecutedQueriesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // HistoricallyExecutedQueriesApi apiInstance = apiFactory.build(HistoricallyExecutedQueriesApi.class);
+
         HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryCancelResponse result = apiInstance.cancelHistory(executionId).execute(opts);
+
             BackgroundQueryCancelResponse result = apiInstance.cancelHistory(executionId).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -128,12 +139,23 @@ public class HistoricallyExecutedQueriesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // HistoricallyExecutedQueriesApi apiInstance = apiFactory.build(HistoricallyExecutedQueriesApi.class);
+
         HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String bucketSize = "bucketSize_example"; // String | Optional histogram bucket width. If not provided a set number of buckets between start/end range will be generated.
         String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchHistoryResultHistogram(executionId, bucketSize, filter, jsonProper).execute(opts);
+
             String result = apiInstance.fetchHistoryResultHistogram(executionId, bucketSize, filter, jsonProper).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -214,6 +236,14 @@ public class HistoricallyExecutedQueriesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // HistoricallyExecutedQueriesApi apiInstance = apiFactory.build(HistoricallyExecutedQueriesApi.class);
+
         HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
@@ -224,6 +254,9 @@ public class HistoricallyExecutedQueriesApiExample {
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchHistoryResultJson(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper).execute(opts);
+
             String result = apiInstance.fetchHistoryResultJson(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -308,6 +341,14 @@ public class HistoricallyExecutedQueriesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // HistoricallyExecutedQueriesApi apiInstance = apiFactory.build(HistoricallyExecutedQueriesApi.class);
+
         HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
         OffsetDateTime startAt = OffsetDateTime.now(); // OffsetDateTime | Date time to start the search from. Will default to Now - 1 Day
         OffsetDateTime endAt = OffsetDateTime.now(); // OffsetDateTime | Date time to end the search at. Defaults to now.
@@ -315,6 +356,9 @@ public class HistoricallyExecutedQueriesApiExample {
         Boolean showAll = false; // Boolean | For users with extra permissions, they may optionally see other users' queries.
         Boolean mayUseNativeStore = true; // Boolean | Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryResponse result = apiInstance.getHistory(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore).execute(opts);
+
             BackgroundQueryResponse result = apiInstance.getHistory(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -394,9 +438,20 @@ public class HistoricallyExecutedQueriesApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // HistoricallyExecutedQueriesApi apiInstance = apiFactory.build(HistoricallyExecutedQueriesApi.class);
+
         HistoricallyExecutedQueriesApi apiInstance = ApiFactoryBuilder.build(fileName).build(HistoricallyExecutedQueriesApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryProgressResponse result = apiInstance.getProgressOfHistory(executionId).execute(opts);
+
             BackgroundQueryProgressResponse result = apiInstance.getProgressOfHistory(executionId).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

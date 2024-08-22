@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -72,6 +73,10 @@ public class BinaryDownloadingApi {
     }
 
     private okhttp3.Call downloadBinaryCall(LuminesceBinaryType type, String version, final ApiCallback _callback) throws ApiException {
+        return downloadBinaryCall(type, version,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call downloadBinaryCall(LuminesceBinaryType type, String version, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -123,25 +128,39 @@ public class BinaryDownloadingApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call downloadBinaryValidateBeforeCall(LuminesceBinaryType type, String version, final ApiCallback _callback) throws ApiException {
-        return downloadBinaryCall(type, version, _callback);
+    private okhttp3.Call downloadBinaryValidateBeforeCall(LuminesceBinaryType type, String version, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return downloadBinaryCall(type, version, _callback, opts);
 
     }
 
 
     private ApiResponse<File> downloadBinaryWithHttpInfo(LuminesceBinaryType type, String version) throws ApiException {
-        okhttp3.Call localVarCall = downloadBinaryValidateBeforeCall(type, version, null);
+        okhttp3.Call localVarCall = downloadBinaryValidateBeforeCall(type, version, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> downloadBinaryWithHttpInfo(LuminesceBinaryType type, String version, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = downloadBinaryValidateBeforeCall(type, version, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call downloadBinaryAsync(LuminesceBinaryType type, String version, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = downloadBinaryValidateBeforeCall(type, version, _callback);
+        okhttp3.Call localVarCall = downloadBinaryValidateBeforeCall(type, version, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call downloadBinaryAsync(LuminesceBinaryType type, String version, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadBinaryValidateBeforeCall(type, version, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -209,6 +228,23 @@ public class BinaryDownloadingApi {
         }
 
         /**
+         * Execute downloadBinary request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = downloadBinaryWithHttpInfo(type, version, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute downloadBinary request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -222,6 +258,22 @@ public class BinaryDownloadingApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return downloadBinaryWithHttpInfo(type, version);
+        }
+
+        /**
+         * Execute downloadBinary request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return downloadBinaryWithHttpInfo(type, version, opts);
         }
 
         /**
@@ -239,6 +291,23 @@ public class BinaryDownloadingApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return downloadBinaryAsync(type, version, _callback);
+        }
+
+        /**
+         * Execute downloadBinary request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> The .nupkg file of the requested binary </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return downloadBinaryAsync(type, version, _callback, opts);
         }
     }
 
@@ -258,6 +327,10 @@ public class BinaryDownloadingApi {
         return new APIdownloadBinaryRequest();
     }
     private okhttp3.Call getBinaryVersionsCall(LuminesceBinaryType type, final ApiCallback _callback) throws ApiException {
+        return getBinaryVersionsCall(type,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getBinaryVersionsCall(LuminesceBinaryType type, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -304,25 +377,39 @@ public class BinaryDownloadingApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getBinaryVersionsValidateBeforeCall(LuminesceBinaryType type, final ApiCallback _callback) throws ApiException {
-        return getBinaryVersionsCall(type, _callback);
+    private okhttp3.Call getBinaryVersionsValidateBeforeCall(LuminesceBinaryType type, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getBinaryVersionsCall(type, _callback, opts);
 
     }
 
 
     private ApiResponse<List<String>> getBinaryVersionsWithHttpInfo(LuminesceBinaryType type) throws ApiException {
-        okhttp3.Call localVarCall = getBinaryVersionsValidateBeforeCall(type, null);
+        okhttp3.Call localVarCall = getBinaryVersionsValidateBeforeCall(type, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<List<String>> getBinaryVersionsWithHttpInfo(LuminesceBinaryType type, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getBinaryVersionsValidateBeforeCall(type, null, opts);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getBinaryVersionsAsync(LuminesceBinaryType type, final ApiCallback<List<String>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getBinaryVersionsValidateBeforeCall(type, _callback);
+        okhttp3.Call localVarCall = getBinaryVersionsValidateBeforeCall(type, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getBinaryVersionsAsync(LuminesceBinaryType type, final ApiCallback<List<String>> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getBinaryVersionsValidateBeforeCall(type, _callback, opts);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -379,6 +466,23 @@ public class BinaryDownloadingApi {
         }
 
         /**
+         * Execute getBinaryVersions request. Use any specified configuration options to override any other configuration for this request only.
+         * @return List&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<String> execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<List<String>> localVarResp = getBinaryVersionsWithHttpInfo(type, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getBinaryVersions request with HTTP info returned
          * @return ApiResponse&lt;List&lt;String&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -392,6 +496,22 @@ public class BinaryDownloadingApi {
          */
         public ApiResponse<List<String>> executeWithHttpInfo() throws ApiException {
             return getBinaryVersionsWithHttpInfo(type);
+        }
+
+        /**
+         * Execute getBinaryVersions request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;List&lt;String&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<String>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getBinaryVersionsWithHttpInfo(type, opts);
         }
 
         /**
@@ -409,6 +529,23 @@ public class BinaryDownloadingApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<String>> _callback) throws ApiException {
             return getBinaryVersionsAsync(type, _callback);
+        }
+
+        /**
+         * Execute getBinaryVersions request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<String>> _callback, ConfigurationOptions opts) throws ApiException {
+            return getBinaryVersionsAsync(type, _callback, opts);
         }
     }
 

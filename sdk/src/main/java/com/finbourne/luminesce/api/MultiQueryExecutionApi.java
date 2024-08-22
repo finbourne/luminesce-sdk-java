@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -75,6 +76,10 @@ public class MultiQueryExecutionApi {
     }
 
     private okhttp3.Call cancelMultiQueryCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return cancelMultiQueryCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call cancelMultiQueryCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -118,30 +123,44 @@ public class MultiQueryExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call cancelMultiQueryValidateBeforeCall(String executionId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call cancelMultiQueryValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling cancelMultiQuery(Async)");
         }
 
-        return cancelMultiQueryCall(executionId, _callback);
+        return cancelMultiQueryCall(executionId, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryCancelResponse> cancelMultiQueryWithHttpInfo(String executionId) throws ApiException {
-        okhttp3.Call localVarCall = cancelMultiQueryValidateBeforeCall(executionId, null);
+        okhttp3.Call localVarCall = cancelMultiQueryValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryCancelResponse> cancelMultiQueryWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = cancelMultiQueryValidateBeforeCall(executionId, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call cancelMultiQueryAsync(String executionId, final ApiCallback<BackgroundQueryCancelResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = cancelMultiQueryValidateBeforeCall(executionId, _callback);
+        okhttp3.Call localVarCall = cancelMultiQueryValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call cancelMultiQueryAsync(String executionId, final ApiCallback<BackgroundQueryCancelResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = cancelMultiQueryValidateBeforeCall(executionId, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -185,6 +204,21 @@ public class MultiQueryExecutionApi {
         }
 
         /**
+         * Execute cancelMultiQuery request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryCancelResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryCancelResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryCancelResponse> localVarResp = cancelMultiQueryWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute cancelMultiQuery request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryCancelResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -196,6 +230,20 @@ public class MultiQueryExecutionApi {
          */
         public ApiResponse<BackgroundQueryCancelResponse> executeWithHttpInfo() throws ApiException {
             return cancelMultiQueryWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute cancelMultiQuery request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryCancelResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryCancelResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return cancelMultiQueryWithHttpInfo(executionId, opts);
         }
 
         /**
@@ -211,6 +259,21 @@ public class MultiQueryExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryCancelResponse> _callback) throws ApiException {
             return cancelMultiQueryAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute cancelMultiQuery request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryCancelResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return cancelMultiQueryAsync(executionId, _callback, opts);
         }
     }
 
@@ -229,6 +292,10 @@ public class MultiQueryExecutionApi {
         return new APIcancelMultiQueryRequest(executionId);
     }
     private okhttp3.Call getProgressOfMultiQueryCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return getProgressOfMultiQueryCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getProgressOfMultiQueryCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -272,30 +339,44 @@ public class MultiQueryExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProgressOfMultiQueryValidateBeforeCall(String executionId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProgressOfMultiQueryValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling getProgressOfMultiQuery(Async)");
         }
 
-        return getProgressOfMultiQueryCall(executionId, _callback);
+        return getProgressOfMultiQueryCall(executionId, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundMultiQueryProgressResponse> getProgressOfMultiQueryWithHttpInfo(String executionId) throws ApiException {
-        okhttp3.Call localVarCall = getProgressOfMultiQueryValidateBeforeCall(executionId, null);
+        okhttp3.Call localVarCall = getProgressOfMultiQueryValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryProgressResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundMultiQueryProgressResponse> getProgressOfMultiQueryWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProgressOfMultiQueryValidateBeforeCall(executionId, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundMultiQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getProgressOfMultiQueryAsync(String executionId, final ApiCallback<BackgroundMultiQueryProgressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProgressOfMultiQueryValidateBeforeCall(executionId, _callback);
+        okhttp3.Call localVarCall = getProgressOfMultiQueryValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryProgressResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getProgressOfMultiQueryAsync(String executionId, final ApiCallback<BackgroundMultiQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getProgressOfMultiQueryValidateBeforeCall(executionId, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundMultiQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -339,6 +420,21 @@ public class MultiQueryExecutionApi {
         }
 
         /**
+         * Execute getProgressOfMultiQuery request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundMultiQueryProgressResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundMultiQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundMultiQueryProgressResponse> localVarResp = getProgressOfMultiQueryWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getProgressOfMultiQuery request with HTTP info returned
          * @return ApiResponse&lt;BackgroundMultiQueryProgressResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -350,6 +446,20 @@ public class MultiQueryExecutionApi {
          */
         public ApiResponse<BackgroundMultiQueryProgressResponse> executeWithHttpInfo() throws ApiException {
             return getProgressOfMultiQueryWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute getProgressOfMultiQuery request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundMultiQueryProgressResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundMultiQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getProgressOfMultiQueryWithHttpInfo(executionId, opts);
         }
 
         /**
@@ -365,6 +475,21 @@ public class MultiQueryExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundMultiQueryProgressResponse> _callback) throws ApiException {
             return getProgressOfMultiQueryAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute getProgressOfMultiQuery request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundMultiQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return getProgressOfMultiQueryAsync(executionId, _callback, opts);
         }
     }
 
@@ -383,6 +508,10 @@ public class MultiQueryExecutionApi {
         return new APIgetProgressOfMultiQueryRequest(executionId);
     }
     private okhttp3.Call startQueriesCall(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
+        return startQueriesCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call startQueriesCall(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -466,11 +595,11 @@ public class MultiQueryExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call startQueriesValidateBeforeCall(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call startQueriesValidateBeforeCall(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'type' is set
         if (type == null) {
             throw new ApiException("Missing the required parameter 'type' when calling startQueries(Async)");
@@ -481,20 +610,34 @@ public class MultiQueryExecutionApi {
             throw new ApiException("Missing the required parameter 'body' when calling startQueries(Async)");
         }
 
-        return startQueriesCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback);
+        return startQueriesCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundMultiQueryResponse> startQueriesWithHttpInfo(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds) throws ApiException {
-        okhttp3.Call localVarCall = startQueriesValidateBeforeCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, null);
+        okhttp3.Call localVarCall = startQueriesValidateBeforeCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundMultiQueryResponse> startQueriesWithHttpInfo(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = startQueriesValidateBeforeCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call startQueriesAsync(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundMultiQueryResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = startQueriesValidateBeforeCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback);
+        okhttp3.Call localVarCall = startQueriesValidateBeforeCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call startQueriesAsync(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundMultiQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = startQueriesValidateBeforeCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -643,6 +786,23 @@ public class MultiQueryExecutionApi {
         }
 
         /**
+         * Execute startQueries request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundMultiQueryResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundMultiQueryResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundMultiQueryResponse> localVarResp = startQueriesWithHttpInfo(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute startQueries request with HTTP info returned
          * @return ApiResponse&lt;BackgroundMultiQueryResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -656,6 +816,22 @@ public class MultiQueryExecutionApi {
          */
         public ApiResponse<BackgroundMultiQueryResponse> executeWithHttpInfo() throws ApiException {
             return startQueriesWithHttpInfo(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds);
+        }
+
+        /**
+         * Execute startQueries request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundMultiQueryResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundMultiQueryResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return startQueriesWithHttpInfo(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, opts);
         }
 
         /**
@@ -673,6 +849,23 @@ public class MultiQueryExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundMultiQueryResponse> _callback) throws ApiException {
             return startQueriesAsync(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback);
+        }
+
+        /**
+         * Execute startQueries request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundMultiQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return startQueriesAsync(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds, _callback, opts);
         }
     }
 

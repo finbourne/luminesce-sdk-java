@@ -48,9 +48,20 @@ public class MultiQueryExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // MultiQueryExecutionApi apiInstance = apiFactory.build(MultiQueryExecutionApi.class);
+
         MultiQueryExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(MultiQueryExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryCancelResponse result = apiInstance.cancelMultiQuery(executionId).execute(opts);
+
             BackgroundQueryCancelResponse result = apiInstance.cancelMultiQuery(executionId).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -126,9 +137,20 @@ public class MultiQueryExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // MultiQueryExecutionApi apiInstance = apiFactory.build(MultiQueryExecutionApi.class);
+
         MultiQueryExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(MultiQueryExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundMultiQueryProgressResponse result = apiInstance.getProgressOfMultiQuery(executionId).execute(opts);
+
             BackgroundMultiQueryProgressResponse result = apiInstance.getProgressOfMultiQuery(executionId).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -204,6 +226,14 @@ public class MultiQueryExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // MultiQueryExecutionApi apiInstance = apiFactory.build(MultiQueryExecutionApi.class);
+
         MultiQueryExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(MultiQueryExecutionApi.class);
         MultiQueryDefinitionType type = MultiQueryDefinitionType.fromValue("Instrument"); // MultiQueryDefinitionType | An enum value defining the set of statements being executed
         String body = Apple; // String | A \"search\" value (e.g. 'Apple' on an instrument search, a `Finbourne.Filtering` expression of Insights, etc.)  In the cases where \"Nothing\" is valid for a `Finbourne.Filtering` expression, pass `True`.
@@ -217,6 +247,9 @@ public class MultiQueryExecutionApiExample {
         Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 1200s (20m)
         Integer keepForSeconds = 0; // Integer | Maximum time the result may be kept for, in seconds: <0 → 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundMultiQueryResponse result = apiInstance.startQueries(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds).execute(opts);
+
             BackgroundMultiQueryResponse result = apiInstance.startQueries(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

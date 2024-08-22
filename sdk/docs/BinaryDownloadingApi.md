@@ -47,10 +47,21 @@ public class BinaryDownloadingApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // BinaryDownloadingApi apiInstance = apiFactory.build(BinaryDownloadingApi.class);
+
         BinaryDownloadingApi apiInstance = ApiFactoryBuilder.build(fileName).build(BinaryDownloadingApi.class);
         LuminesceBinaryType type = LuminesceBinaryType.fromValue("CommandLineTool"); // LuminesceBinaryType | Type of binary to download (each requires separate licenses and entitlements)
         String version = "version_example"; // String | An explicit version of the binary. Leave blank to get the latest version (recommended)
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.downloadBinary(type, version).execute(opts);
+
             File result = apiInstance.downloadBinary(type, version).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -129,9 +140,20 @@ public class BinaryDownloadingApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // BinaryDownloadingApi apiInstance = apiFactory.build(BinaryDownloadingApi.class);
+
         BinaryDownloadingApi apiInstance = ApiFactoryBuilder.build(fileName).build(BinaryDownloadingApi.class);
         LuminesceBinaryType type = LuminesceBinaryType.fromValue("CommandLineTool"); // LuminesceBinaryType | Type of binary to fetch available versions of
         try {
+            // uncomment the below to set overrides at the request level
+            // List<String> result = apiInstance.getBinaryVersions(type).execute(opts);
+
             List<String> result = apiInstance.getBinaryVersions(type).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

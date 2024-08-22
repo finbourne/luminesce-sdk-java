@@ -48,11 +48,22 @@ public class CertificateManagementApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // CertificateManagementApi apiInstance = apiFactory.build(CertificateManagementApi.class);
+
         CertificateManagementApi apiInstance = ApiFactoryBuilder.build(fileName).build(CertificateManagementApi.class);
         CertificateType type = CertificateType.fromValue("Domain"); // CertificateType | User or Domain level cert (Domain level requires additional entitlements)
         CertificateFileType fileType = CertificateFileType.fromValue("Public"); // CertificateFileType | Should the public key or private key be downloaded? (both must be in place to run providers)
         Boolean mayAutoCreate = false; // Boolean | If no matching cert is available, should an attempt be made to Create/Renew it with default options?
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.downloadCertificate(type, fileType, mayAutoCreate).execute(opts);
+
             File result = apiInstance.downloadCertificate(type, fileType, mayAutoCreate).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -132,8 +143,19 @@ public class CertificateManagementApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // CertificateManagementApi apiInstance = apiFactory.build(CertificateManagementApi.class);
+
         CertificateManagementApi apiInstance = ApiFactoryBuilder.build(fileName).build(CertificateManagementApi.class);
         try {
+            // uncomment the below to set overrides at the request level
+            // List<CertificateState> result = apiInstance.listCertificates().execute(opts);
+
             List<CertificateState> result = apiInstance.listCertificates().execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -208,6 +230,14 @@ public class CertificateManagementApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // CertificateManagementApi apiInstance = apiFactory.build(CertificateManagementApi.class);
+
         CertificateManagementApi apiInstance = ApiFactoryBuilder.build(fileName).build(CertificateManagementApi.class);
         CertificateAction action = CertificateAction.fromValue("Create"); // CertificateAction | The Action to perform, e.g. Create / Renew / Revoke
         CertificateType type = CertificateType.fromValue("Domain"); // CertificateType | User or Domain level cert (Domain level requires additional entitlements)
@@ -216,6 +246,9 @@ public class CertificateManagementApiExample {
         OffsetDateTime validityEnd = OffsetDateTime.now(); // OffsetDateTime | When should the cert no longer be valid (defaults to 13 months from now)
         Boolean dryRun = true; // Boolean | True will just validate the request, but perform no changes to any system
         try {
+            // uncomment the below to set overrides at the request level
+            // CertificateState result = apiInstance.manageCertificate(action, type, version, validityStart, validityEnd, dryRun).execute(opts);
+
             CertificateState result = apiInstance.manageCertificate(action, type, version, validityStart, validityEnd, dryRun).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

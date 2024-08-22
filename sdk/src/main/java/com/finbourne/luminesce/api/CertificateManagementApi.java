@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -76,6 +77,10 @@ public class CertificateManagementApi {
     }
 
     private okhttp3.Call downloadCertificateCall(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback _callback) throws ApiException {
+        return downloadCertificateCall(type, fileType, mayAutoCreate,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call downloadCertificateCall(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -130,25 +135,39 @@ public class CertificateManagementApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call downloadCertificateValidateBeforeCall(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback _callback) throws ApiException {
-        return downloadCertificateCall(type, fileType, mayAutoCreate, _callback);
+    private okhttp3.Call downloadCertificateValidateBeforeCall(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return downloadCertificateCall(type, fileType, mayAutoCreate, _callback, opts);
 
     }
 
 
     private ApiResponse<File> downloadCertificateWithHttpInfo(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate) throws ApiException {
-        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, null);
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> downloadCertificateWithHttpInfo(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call downloadCertificateAsync(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, _callback);
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call downloadCertificateAsync(CertificateType type, CertificateFileType fileType, Boolean mayAutoCreate, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadCertificateValidateBeforeCall(type, fileType, mayAutoCreate, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -227,6 +246,23 @@ public class CertificateManagementApi {
         }
 
         /**
+         * Execute downloadCertificate request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = downloadCertificateWithHttpInfo(type, fileType, mayAutoCreate, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute downloadCertificate request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -240,6 +276,22 @@ public class CertificateManagementApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return downloadCertificateWithHttpInfo(type, fileType, mayAutoCreate);
+        }
+
+        /**
+         * Execute downloadCertificate request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return downloadCertificateWithHttpInfo(type, fileType, mayAutoCreate, opts);
         }
 
         /**
@@ -257,6 +309,23 @@ public class CertificateManagementApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return downloadCertificateAsync(type, fileType, mayAutoCreate, _callback);
+        }
+
+        /**
+         * Execute downloadCertificate request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return downloadCertificateAsync(type, fileType, mayAutoCreate, _callback, opts);
         }
     }
 
@@ -276,6 +345,10 @@ public class CertificateManagementApi {
         return new APIdownloadCertificateRequest();
     }
     private okhttp3.Call listCertificatesCall(final ApiCallback _callback) throws ApiException {
+        return listCertificatesCall( _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listCertificatesCall(final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -318,25 +391,39 @@ public class CertificateManagementApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listCertificatesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return listCertificatesCall(_callback);
+    private okhttp3.Call listCertificatesValidateBeforeCall(final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listCertificatesCall(_callback, opts);
 
     }
 
 
     private ApiResponse<List<CertificateState>> listCertificatesWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(null);
+        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<CertificateState>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<List<CertificateState>> listCertificatesWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(null, opts);
         Type localVarReturnType = new TypeToken<List<CertificateState>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listCertificatesAsync(final ApiCallback<List<CertificateState>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(_callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<CertificateState>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listCertificatesAsync(final ApiCallback<List<CertificateState>> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listCertificatesValidateBeforeCall(_callback, opts);
         Type localVarReturnType = new TypeToken<List<CertificateState>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -382,6 +469,23 @@ public class CertificateManagementApi {
         }
 
         /**
+         * Execute listCertificates request. Use any specified configuration options to override any other configuration for this request only.
+         * @return List&lt;CertificateState&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<CertificateState> execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<List<CertificateState>> localVarResp = listCertificatesWithHttpInfo(opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute listCertificates request with HTTP info returned
          * @return ApiResponse&lt;List&lt;CertificateState&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -395,6 +499,22 @@ public class CertificateManagementApi {
          */
         public ApiResponse<List<CertificateState>> executeWithHttpInfo() throws ApiException {
             return listCertificatesWithHttpInfo();
+        }
+
+        /**
+         * Execute listCertificates request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;List&lt;CertificateState&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<CertificateState>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listCertificatesWithHttpInfo(opts);
         }
 
         /**
@@ -412,6 +532,23 @@ public class CertificateManagementApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<CertificateState>> _callback) throws ApiException {
             return listCertificatesAsync(_callback);
+        }
+
+        /**
+         * Execute listCertificates request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<CertificateState>> _callback, ConfigurationOptions opts) throws ApiException {
+            return listCertificatesAsync(_callback, opts);
         }
     }
 
@@ -431,6 +568,10 @@ public class CertificateManagementApi {
         return new APIlistCertificatesRequest();
     }
     private okhttp3.Call manageCertificateCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback) throws ApiException {
+        return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call manageCertificateCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -497,25 +638,39 @@ public class CertificateManagementApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call manageCertificateValidateBeforeCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback) throws ApiException {
-        return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun, _callback);
+    private okhttp3.Call manageCertificateValidateBeforeCall(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return manageCertificateCall(action, type, version, validityStart, validityEnd, dryRun, _callback, opts);
 
     }
 
 
     private ApiResponse<CertificateState> manageCertificateWithHttpInfo(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun) throws ApiException {
-        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, null);
+        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<CertificateState>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<CertificateState> manageCertificateWithHttpInfo(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, null, opts);
         Type localVarReturnType = new TypeToken<CertificateState>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call manageCertificateAsync(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback<CertificateState> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, _callback);
+        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<CertificateState>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call manageCertificateAsync(CertificateAction action, CertificateType type, Integer version, OffsetDateTime validityStart, OffsetDateTime validityEnd, Boolean dryRun, final ApiCallback<CertificateState> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = manageCertificateValidateBeforeCall(action, type, version, validityStart, validityEnd, dryRun, _callback, opts);
         Type localVarReturnType = new TypeToken<CertificateState>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -627,6 +782,23 @@ public class CertificateManagementApi {
         }
 
         /**
+         * Execute manageCertificate request. Use any specified configuration options to override any other configuration for this request only.
+         * @return CertificateState
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public CertificateState execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<CertificateState> localVarResp = manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute manageCertificate request with HTTP info returned
          * @return ApiResponse&lt;CertificateState&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -640,6 +812,22 @@ public class CertificateManagementApi {
          */
         public ApiResponse<CertificateState> executeWithHttpInfo() throws ApiException {
             return manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun);
+        }
+
+        /**
+         * Execute manageCertificate request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;CertificateState&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<CertificateState> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return manageCertificateWithHttpInfo(action, type, version, validityStart, validityEnd, dryRun, opts);
         }
 
         /**
@@ -657,6 +845,23 @@ public class CertificateManagementApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<CertificateState> _callback) throws ApiException {
             return manageCertificateAsync(action, type, version, validityStart, validityEnd, dryRun, _callback);
+        }
+
+        /**
+         * Execute manageCertificate request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<CertificateState> _callback, ConfigurationOptions opts) throws ApiException {
+            return manageCertificateAsync(action, type, version, validityStart, validityEnd, dryRun, _callback, opts);
         }
     }
 

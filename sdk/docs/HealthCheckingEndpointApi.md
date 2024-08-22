@@ -46,9 +46,20 @@ public class HealthCheckingEndpointApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // HealthCheckingEndpointApi apiInstance = apiFactory.build(HealthCheckingEndpointApi.class);
+
         HealthCheckingEndpointApi apiInstance = ApiFactoryBuilder.build(fileName).build(HealthCheckingEndpointApi.class);
         Integer secondsUntilReclaim = 119; // Integer | the number of seconds from which to assume node termination
         try {
+            // uncomment the below to set overrides at the request level
+            // Object result = apiInstance.fakeNodeReclaim(secondsUntilReclaim).execute(opts);
+
             Object result = apiInstance.fakeNodeReclaim(secondsUntilReclaim).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

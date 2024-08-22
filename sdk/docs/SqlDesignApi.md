@@ -59,10 +59,21 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         FileReaderBuilderDef fileReaderBuilderDef = new FileReaderBuilderDef(); // FileReaderBuilderDef | Structured file read design object to generate SQL from
         Boolean executeQuery = true; // Boolean | Should the generated query be executed to build preview data or determine errors.>
         try {
+            // uncomment the below to set overrides at the request level
+            // FileReaderBuilderResponse result = apiInstance.putFileReadDesignToSql(fileReaderBuilderDef, executeQuery).execute(opts);
+
             FileReaderBuilderResponse result = apiInstance.putFileReadDesignToSql(fileReaderBuilderDef, executeQuery).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -141,11 +152,22 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');
  @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; 
  select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to generate the inlined properties design object from
         try {
+            // uncomment the below to set overrides at the request level
+            // InlinedPropertyDesign result = apiInstance.putInlinedPropertiesDesignSqlToDesign(body).execute(opts);
+
             InlinedPropertyDesign result = apiInstance.putInlinedPropertiesDesignSqlToDesign(body).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -223,9 +245,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         InlinedPropertyDesign inlinedPropertyDesign = new InlinedPropertyDesign(); // InlinedPropertyDesign | Structured file read design object to generate SQL from
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putInlinedPropertiesDesignToSql(inlinedPropertyDesign).execute(opts);
+
             String result = apiInstance.putInlinedPropertiesDesignToSql(inlinedPropertyDesign).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -303,9 +336,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         IntellisenseRequest intellisenseRequest = new IntellisenseRequest(); // IntellisenseRequest | 
         try {
+            // uncomment the below to set overrides at the request level
+            // IntellisenseResponse result = apiInstance.putIntellisense(intellisenseRequest).execute(opts);
+
             IntellisenseResponse result = apiInstance.putIntellisense(intellisenseRequest).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -383,9 +427,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         ErrorHighlightRequest errorHighlightRequest = new ErrorHighlightRequest(); // ErrorHighlightRequest | 
         try {
+            // uncomment the below to set overrides at the request level
+            // ErrorHighlightResponse result = apiInstance.putIntellisenseError(errorHighlightRequest).execute(opts);
+
             ErrorHighlightResponse result = apiInstance.putIntellisenseError(errorHighlightRequest).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -463,9 +518,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         QueryDesign queryDesign = new QueryDesign(); // QueryDesign | Structured Query design object to generate SQL from
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putQueryDesignToSql(queryDesign).execute(opts);
+
             String result = apiInstance.putQueryDesignToSql(queryDesign).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -543,6 +609,14 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
         Boolean trailingCommas = true; // Boolean | Should commas be after an expression (as opposed to before)
@@ -559,6 +633,9 @@ public class SqlDesignApiExample {
         Boolean spaceBeforeTrailingSingleLineComments = true; // Boolean | Should the be a space before trailing single line comments?
         Boolean multilineCommentExtraLineBreak = false; // Boolean | Should an additional line break be added after multi-line comments?
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putQueryToFormat(body, trailingCommas, uppercaseKeywords, breakJoinOnSections, spaceAfterExpandedComma, keywordStandardization, expandCommaLists, expandInLists, expandBooleanExpressions, expandBetweenConditions, expandCaseStatements, maxLineWidth, spaceBeforeTrailingSingleLineComments, multilineCommentExtraLineBreak).execute(opts);
+
             String result = apiInstance.putQueryToFormat(body, trailingCommas, uppercaseKeywords, breakJoinOnSections, spaceAfterExpandedComma, keywordStandardization, expandCommaLists, expandInLists, expandBooleanExpressions, expandBetweenConditions, expandCaseStatements, maxLineWidth, spaceBeforeTrailingSingleLineComments, multilineCommentExtraLineBreak).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -649,9 +726,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = select abc, :p1:'this' as c1 from xxx where abc = :abcP:123 or xyz in (:p2:, 'zzz'); // String | SQL query to generate the design object from
         try {
+            // uncomment the below to set overrides at the request level
+            // List<ScalarParameter> result = apiInstance.putSqlToExtractScalarParameters(body).execute(opts);
+
             List<ScalarParameter> result = apiInstance.putSqlToExtractScalarParameters(body).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -729,6 +817,14 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         Boolean determineAvailableSources = true; // Boolean | Should the available sources be determined from `Sys.Registration`
         String body = @x = 
@@ -738,6 +834,9 @@ enduse;
 
 select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL query to generate the file read design object from
         try {
+            // uncomment the below to set overrides at the request level
+            // FileReaderBuilderDef result = apiInstance.putSqlToFileReadDesign(determineAvailableSources, body).execute(opts);
+
             FileReaderBuilderDef result = apiInstance.putSqlToFileReadDesign(determineAvailableSources, body).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -816,6 +915,14 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = SELECT
  [TableName],
@@ -831,6 +938,9 @@ ORDER BY
 LIMIT 42; // String | SQL query to generate the design object from
         Boolean validateWithMetadata = true; // Boolean | Should the table be validated against the users' view of Sys.Field to fill in DataTypes, etc.?
         try {
+            // uncomment the below to set overrides at the request level
+            // QueryDesign result = apiInstance.putSqlToQueryDesign(body, validateWithMetadata).execute(opts);
+
             QueryDesign result = apiInstance.putSqlToQueryDesign(body, validateWithMetadata).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -909,6 +1019,14 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = @x = 
 use Sys.Admin.SetupView
@@ -919,6 +1037,9 @@ enduse;
 
 select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
         try {
+            // uncomment the below to set overrides at the request level
+            // ConvertToViewData result = apiInstance.putSqlToViewDesign(body).execute(opts);
+
             ConvertToViewData result = apiInstance.putSqlToViewDesign(body).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -996,10 +1117,21 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = Select abc from xyz; // String | SQL query to generate the writer design object from
         Boolean mergeAdditionalMappingFields = false; // Boolean | Should `Sys.Field` be used to find additional potential fields to map from? (not always possible)
         try {
+            // uncomment the below to set overrides at the request level
+            // WriterDesign result = apiInstance.putSqlToWriterDesign(body, mergeAdditionalMappingFields).execute(opts);
+
             WriterDesign result = apiInstance.putSqlToWriterDesign(body, mergeAdditionalMappingFields).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -1078,9 +1210,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         ConvertToViewData convertToViewData = new ConvertToViewData(); // ConvertToViewData | Structured Query design object to generate SQL from
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putViewDesignToSql(convertToViewData).execute(opts);
+
             String result = apiInstance.putViewDesignToSql(convertToViewData).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -1158,9 +1301,20 @@ public class SqlDesignApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         WriterDesign writerDesign = new WriterDesign(); // WriterDesign | Structured Writer Design design object to generate Writer SQL from
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putWriterDesignToSql(writerDesign).execute(opts);
+
             String result = apiInstance.putWriterDesignToSql(writerDesign).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

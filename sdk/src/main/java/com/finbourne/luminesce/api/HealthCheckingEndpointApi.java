@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -69,6 +70,10 @@ public class HealthCheckingEndpointApi {
     }
 
     private okhttp3.Call fakeNodeReclaimCall(Integer secondsUntilReclaim, final ApiCallback _callback) throws ApiException {
+        return fakeNodeReclaimCall(secondsUntilReclaim,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fakeNodeReclaimCall(Integer secondsUntilReclaim, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -115,25 +120,39 @@ public class HealthCheckingEndpointApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fakeNodeReclaimValidateBeforeCall(Integer secondsUntilReclaim, final ApiCallback _callback) throws ApiException {
-        return fakeNodeReclaimCall(secondsUntilReclaim, _callback);
+    private okhttp3.Call fakeNodeReclaimValidateBeforeCall(Integer secondsUntilReclaim, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return fakeNodeReclaimCall(secondsUntilReclaim, _callback, opts);
 
     }
 
 
     private ApiResponse<Object> fakeNodeReclaimWithHttpInfo(Integer secondsUntilReclaim) throws ApiException {
-        okhttp3.Call localVarCall = fakeNodeReclaimValidateBeforeCall(secondsUntilReclaim, null);
+        okhttp3.Call localVarCall = fakeNodeReclaimValidateBeforeCall(secondsUntilReclaim, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<Object> fakeNodeReclaimWithHttpInfo(Integer secondsUntilReclaim, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fakeNodeReclaimValidateBeforeCall(secondsUntilReclaim, null, opts);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fakeNodeReclaimAsync(Integer secondsUntilReclaim, final ApiCallback<Object> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fakeNodeReclaimValidateBeforeCall(secondsUntilReclaim, _callback);
+        okhttp3.Call localVarCall = fakeNodeReclaimValidateBeforeCall(secondsUntilReclaim, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fakeNodeReclaimAsync(Integer secondsUntilReclaim, final ApiCallback<Object> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fakeNodeReclaimValidateBeforeCall(secondsUntilReclaim, _callback, opts);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -186,6 +205,21 @@ public class HealthCheckingEndpointApi {
         }
 
         /**
+         * Execute fakeNodeReclaim request. Use any specified configuration options to override any other configuration for this request only.
+         * @return Object
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public Object execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<Object> localVarResp = fakeNodeReclaimWithHttpInfo(secondsUntilReclaim, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fakeNodeReclaim request with HTTP info returned
          * @return ApiResponse&lt;Object&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -197,6 +231,20 @@ public class HealthCheckingEndpointApi {
          */
         public ApiResponse<Object> executeWithHttpInfo() throws ApiException {
             return fakeNodeReclaimWithHttpInfo(secondsUntilReclaim);
+        }
+
+        /**
+         * Execute fakeNodeReclaim request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;Object&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Object> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fakeNodeReclaimWithHttpInfo(secondsUntilReclaim, opts);
         }
 
         /**
@@ -212,6 +260,21 @@ public class HealthCheckingEndpointApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<Object> _callback) throws ApiException {
             return fakeNodeReclaimAsync(secondsUntilReclaim, _callback);
+        }
+
+        /**
+         * Execute fakeNodeReclaim request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Object> _callback, ConfigurationOptions opts) throws ApiException {
+            return fakeNodeReclaimAsync(secondsUntilReclaim, _callback, opts);
         }
     }
 

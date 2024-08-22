@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -70,6 +71,10 @@ public class ApplicationMetadataApi {
     }
 
     private okhttp3.Call getServicesAsAccessControlledResourcesCall(final ApiCallback _callback) throws ApiException {
+        return getServicesAsAccessControlledResourcesCall( _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getServicesAsAccessControlledResourcesCall(final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -112,25 +117,39 @@ public class ApplicationMetadataApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getServicesAsAccessControlledResourcesValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return getServicesAsAccessControlledResourcesCall(_callback);
+    private okhttp3.Call getServicesAsAccessControlledResourcesValidateBeforeCall(final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getServicesAsAccessControlledResourcesCall(_callback, opts);
 
     }
 
 
     private ApiResponse<ResourceListOfAccessControlledResource> getServicesAsAccessControlledResourcesWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getServicesAsAccessControlledResourcesValidateBeforeCall(null);
+        okhttp3.Call localVarCall = getServicesAsAccessControlledResourcesValidateBeforeCall(null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfAccessControlledResource>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<ResourceListOfAccessControlledResource> getServicesAsAccessControlledResourcesWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getServicesAsAccessControlledResourcesValidateBeforeCall(null, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfAccessControlledResource>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getServicesAsAccessControlledResourcesAsync(final ApiCallback<ResourceListOfAccessControlledResource> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getServicesAsAccessControlledResourcesValidateBeforeCall(_callback);
+        okhttp3.Call localVarCall = getServicesAsAccessControlledResourcesValidateBeforeCall(_callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<ResourceListOfAccessControlledResource>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getServicesAsAccessControlledResourcesAsync(final ApiCallback<ResourceListOfAccessControlledResource> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getServicesAsAccessControlledResourcesValidateBeforeCall(_callback, opts);
         Type localVarReturnType = new TypeToken<ResourceListOfAccessControlledResource>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -172,6 +191,21 @@ public class ApplicationMetadataApi {
         }
 
         /**
+         * Execute getServicesAsAccessControlledResources request. Use any specified configuration options to override any other configuration for this request only.
+         * @return ResourceListOfAccessControlledResource
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ResourceListOfAccessControlledResource execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<ResourceListOfAccessControlledResource> localVarResp = getServicesAsAccessControlledResourcesWithHttpInfo(opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getServicesAsAccessControlledResources request with HTTP info returned
          * @return ApiResponse&lt;ResourceListOfAccessControlledResource&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -183,6 +217,20 @@ public class ApplicationMetadataApi {
          */
         public ApiResponse<ResourceListOfAccessControlledResource> executeWithHttpInfo() throws ApiException {
             return getServicesAsAccessControlledResourcesWithHttpInfo();
+        }
+
+        /**
+         * Execute getServicesAsAccessControlledResources request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;ResourceListOfAccessControlledResource&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ResourceListOfAccessControlledResource> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getServicesAsAccessControlledResourcesWithHttpInfo(opts);
         }
 
         /**
@@ -198,6 +246,21 @@ public class ApplicationMetadataApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfAccessControlledResource> _callback) throws ApiException {
             return getServicesAsAccessControlledResourcesAsync(_callback);
+        }
+
+        /**
+         * Execute getServicesAsAccessControlledResources request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ResourceListOfAccessControlledResource> _callback, ConfigurationOptions opts) throws ApiException {
+            return getServicesAsAccessControlledResourcesAsync(_callback, opts);
         }
     }
 

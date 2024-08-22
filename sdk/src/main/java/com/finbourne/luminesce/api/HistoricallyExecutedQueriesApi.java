@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -74,6 +75,10 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     private okhttp3.Call cancelHistoryCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return cancelHistoryCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call cancelHistoryCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,30 +122,44 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call cancelHistoryValidateBeforeCall(String executionId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call cancelHistoryValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling cancelHistory(Async)");
         }
 
-        return cancelHistoryCall(executionId, _callback);
+        return cancelHistoryCall(executionId, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryCancelResponse> cancelHistoryWithHttpInfo(String executionId) throws ApiException {
-        okhttp3.Call localVarCall = cancelHistoryValidateBeforeCall(executionId, null);
+        okhttp3.Call localVarCall = cancelHistoryValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryCancelResponse> cancelHistoryWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = cancelHistoryValidateBeforeCall(executionId, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call cancelHistoryAsync(String executionId, final ApiCallback<BackgroundQueryCancelResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = cancelHistoryValidateBeforeCall(executionId, _callback);
+        okhttp3.Call localVarCall = cancelHistoryValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call cancelHistoryAsync(String executionId, final ApiCallback<BackgroundQueryCancelResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = cancelHistoryValidateBeforeCall(executionId, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -184,6 +203,21 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         /**
+         * Execute cancelHistory request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryCancelResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryCancelResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryCancelResponse> localVarResp = cancelHistoryWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute cancelHistory request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryCancelResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -195,6 +229,20 @@ public class HistoricallyExecutedQueriesApi {
          */
         public ApiResponse<BackgroundQueryCancelResponse> executeWithHttpInfo() throws ApiException {
             return cancelHistoryWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute cancelHistory request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryCancelResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryCancelResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return cancelHistoryWithHttpInfo(executionId, opts);
         }
 
         /**
@@ -210,6 +258,21 @@ public class HistoricallyExecutedQueriesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryCancelResponse> _callback) throws ApiException {
             return cancelHistoryAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute cancelHistory request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryCancelResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return cancelHistoryAsync(executionId, _callback, opts);
         }
     }
 
@@ -228,6 +291,10 @@ public class HistoricallyExecutedQueriesApi {
         return new APIcancelHistoryRequest(executionId);
     }
     private okhttp3.Call fetchHistoryResultHistogramCall(String executionId, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+        return fetchHistoryResultHistogramCall(executionId, bucketSize, filter, jsonProper,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchHistoryResultHistogramCall(String executionId, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -283,30 +350,44 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchHistoryResultHistogramValidateBeforeCall(String executionId, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchHistoryResultHistogramValidateBeforeCall(String executionId, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchHistoryResultHistogram(Async)");
         }
 
-        return fetchHistoryResultHistogramCall(executionId, bucketSize, filter, jsonProper, _callback);
+        return fetchHistoryResultHistogramCall(executionId, bucketSize, filter, jsonProper, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchHistoryResultHistogramWithHttpInfo(String executionId, String bucketSize, String filter, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = fetchHistoryResultHistogramValidateBeforeCall(executionId, bucketSize, filter, jsonProper, null);
+        okhttp3.Call localVarCall = fetchHistoryResultHistogramValidateBeforeCall(executionId, bucketSize, filter, jsonProper, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchHistoryResultHistogramWithHttpInfo(String executionId, String bucketSize, String filter, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchHistoryResultHistogramValidateBeforeCall(executionId, bucketSize, filter, jsonProper, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchHistoryResultHistogramAsync(String executionId, String bucketSize, String filter, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchHistoryResultHistogramValidateBeforeCall(executionId, bucketSize, filter, jsonProper, _callback);
+        okhttp3.Call localVarCall = fetchHistoryResultHistogramValidateBeforeCall(executionId, bucketSize, filter, jsonProper, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchHistoryResultHistogramAsync(String executionId, String bucketSize, String filter, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchHistoryResultHistogramValidateBeforeCall(executionId, bucketSize, filter, jsonProper, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -387,6 +468,23 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         /**
+         * Execute fetchHistoryResultHistogram request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchHistoryResultHistogramWithHttpInfo(executionId, bucketSize, filter, jsonProper, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchHistoryResultHistogram request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -400,6 +498,22 @@ public class HistoricallyExecutedQueriesApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchHistoryResultHistogramWithHttpInfo(executionId, bucketSize, filter, jsonProper);
+        }
+
+        /**
+         * Execute fetchHistoryResultHistogram request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchHistoryResultHistogramWithHttpInfo(executionId, bucketSize, filter, jsonProper, opts);
         }
 
         /**
@@ -417,6 +531,23 @@ public class HistoricallyExecutedQueriesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchHistoryResultHistogramAsync(executionId, bucketSize, filter, jsonProper, _callback);
+        }
+
+        /**
+         * Execute fetchHistoryResultHistogram request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchHistoryResultHistogramAsync(executionId, bucketSize, filter, jsonProper, _callback, opts);
         }
     }
 
@@ -437,6 +568,10 @@ public class HistoricallyExecutedQueriesApi {
         return new APIfetchHistoryResultHistogramRequest(executionId);
     }
     private okhttp3.Call fetchHistoryResultJsonCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+        return fetchHistoryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchHistoryResultJsonCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -508,30 +643,44 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchHistoryResultJsonValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchHistoryResultJsonValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchHistoryResultJson(Async)");
         }
 
-        return fetchHistoryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback);
+        return fetchHistoryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchHistoryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = fetchHistoryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, null);
+        okhttp3.Call localVarCall = fetchHistoryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchHistoryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchHistoryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchHistoryResultJsonAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchHistoryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback);
+        okhttp3.Call localVarCall = fetchHistoryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchHistoryResultJsonAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchHistoryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -656,6 +805,23 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         /**
+         * Execute fetchHistoryResultJson request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchHistoryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchHistoryResultJson request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -669,6 +835,22 @@ public class HistoricallyExecutedQueriesApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchHistoryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper);
+        }
+
+        /**
+         * Execute fetchHistoryResultJson request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchHistoryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, opts);
         }
 
         /**
@@ -686,6 +868,23 @@ public class HistoricallyExecutedQueriesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchHistoryResultJsonAsync(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback);
+        }
+
+        /**
+         * Execute fetchHistoryResultJson request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchHistoryResultJsonAsync(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper, _callback, opts);
         }
     }
 
@@ -706,6 +905,10 @@ public class HistoricallyExecutedQueriesApi {
         return new APIfetchHistoryResultJsonRequest(executionId);
     }
     private okhttp3.Call getHistoryCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback) throws ApiException {
+        return getHistoryCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getHistoryCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -768,25 +971,39 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getHistoryValidateBeforeCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback) throws ApiException {
-        return getHistoryCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback);
+    private okhttp3.Call getHistoryValidateBeforeCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getHistoryCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryResponse> getHistoryWithHttpInfo(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore) throws ApiException {
-        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, null);
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryResponse> getHistoryWithHttpInfo(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getHistoryAsync(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback);
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getHistoryAsync(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -883,6 +1100,21 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         /**
+         * Execute getHistory request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryResponse> localVarResp = getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getHistory request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -894,6 +1126,20 @@ public class HistoricallyExecutedQueriesApi {
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo() throws ApiException {
             return getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore);
+        }
+
+        /**
+         * Execute getHistory request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, opts);
         }
 
         /**
@@ -909,6 +1155,21 @@ public class HistoricallyExecutedQueriesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
             return getHistoryAsync(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback);
+        }
+
+        /**
+         * Execute getHistory request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return getHistoryAsync(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, opts);
         }
     }
 
@@ -926,6 +1187,10 @@ public class HistoricallyExecutedQueriesApi {
         return new APIgetHistoryRequest();
     }
     private okhttp3.Call getProgressOfHistoryCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return getProgressOfHistoryCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getProgressOfHistoryCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -969,30 +1234,44 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProgressOfHistoryValidateBeforeCall(String executionId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProgressOfHistoryValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling getProgressOfHistory(Async)");
         }
 
-        return getProgressOfHistoryCall(executionId, _callback);
+        return getProgressOfHistoryCall(executionId, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryProgressResponse> getProgressOfHistoryWithHttpInfo(String executionId) throws ApiException {
-        okhttp3.Call localVarCall = getProgressOfHistoryValidateBeforeCall(executionId, null);
+        okhttp3.Call localVarCall = getProgressOfHistoryValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryProgressResponse> getProgressOfHistoryWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProgressOfHistoryValidateBeforeCall(executionId, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getProgressOfHistoryAsync(String executionId, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProgressOfHistoryValidateBeforeCall(executionId, _callback);
+        okhttp3.Call localVarCall = getProgressOfHistoryValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getProgressOfHistoryAsync(String executionId, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getProgressOfHistoryValidateBeforeCall(executionId, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1036,6 +1315,21 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         /**
+         * Execute getProgressOfHistory request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryProgressResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getProgressOfHistoryWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getProgressOfHistory request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryProgressResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1047,6 +1341,20 @@ public class HistoricallyExecutedQueriesApi {
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo() throws ApiException {
             return getProgressOfHistoryWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute getProgressOfHistory request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryProgressResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getProgressOfHistoryWithHttpInfo(executionId, opts);
         }
 
         /**
@@ -1062,6 +1370,21 @@ public class HistoricallyExecutedQueriesApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
             return getProgressOfHistoryAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute getProgressOfHistory request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return getProgressOfHistoryAsync(executionId, _callback, opts);
         }
     }
 

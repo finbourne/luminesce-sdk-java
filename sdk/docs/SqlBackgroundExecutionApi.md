@@ -57,9 +57,20 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryCancelResponse result = apiInstance.cancelQuery(executionId).execute(opts);
+
             BackgroundQueryCancelResponse result = apiInstance.cancelQuery(executionId).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -135,6 +146,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
@@ -147,6 +166,9 @@ public class SqlBackgroundExecutionApiExample {
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape).execute(opts);
+
             String result = apiInstance.fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -233,6 +255,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
@@ -240,6 +270,9 @@ public class SqlBackgroundExecutionApiExample {
         String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - `MyField`  - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name)  - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works)  - `count(distinct x) as numOfXs`  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy).execute(opts);
+
             File result = apiInstance.fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -321,6 +354,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String timestampFieldName = "timestampFieldName_example"; // String | Name of the timestamp field used in building the histogram
@@ -330,6 +371,9 @@ public class SqlBackgroundExecutionApiExample {
         String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultHistogram(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper).execute(opts);
+
             String result = apiInstance.fetchQueryResultHistogram(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -413,6 +457,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
@@ -422,6 +474,9 @@ public class SqlBackgroundExecutionApiExample {
         Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultJson(executionId, sortBy, filter, select, groupBy, limit, page).execute(opts);
+
             String result = apiInstance.fetchQueryResultJson(executionId, sortBy, filter, select, groupBy, limit, page).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -505,6 +560,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
@@ -515,6 +578,9 @@ public class SqlBackgroundExecutionApiExample {
         Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultJsonProper(executionId, download, sortBy, filter, select, groupBy, limit, page).execute(opts);
+
             String result = apiInstance.fetchQueryResultJsonProper(executionId, download, sortBy, filter, select, groupBy, limit, page).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -599,6 +665,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
@@ -606,6 +680,9 @@ public class SqlBackgroundExecutionApiExample {
         String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - `MyField`  - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name)  - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works)  - `count(distinct x) as numOfXs`  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.fetchQueryResultParquet(executionId, sortBy, filter, select, groupBy).execute(opts);
+
             File result = apiInstance.fetchQueryResultParquet(executionId, sortBy, filter, select, groupBy).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -687,6 +764,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
@@ -697,6 +782,9 @@ public class SqlBackgroundExecutionApiExample {
         Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page).execute(opts);
+
             String result = apiInstance.fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -781,6 +869,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         String sortBy = "sortBy_example"; // String | Order the results by these fields.   Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.   Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.   Default is null, the sort order specified in the query itself.
@@ -788,6 +884,9 @@ public class SqlBackgroundExecutionApiExample {
         String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - `MyField`  - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name)  - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works)  - `count(distinct x) as numOfXs`  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.fetchQueryResultSqlite(executionId, sortBy, filter, select, groupBy).execute(opts);
+
             File result = apiInstance.fetchQueryResultSqlite(executionId, sortBy, filter, select, groupBy).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -869,6 +968,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
@@ -879,6 +986,9 @@ public class SqlBackgroundExecutionApiExample {
         Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultXml(executionId, download, sortBy, filter, select, groupBy, limit, page).execute(opts);
+
             String result = apiInstance.fetchQueryResultXml(executionId, download, sortBy, filter, select, groupBy, limit, page).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -963,10 +1073,21 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
         Boolean buildFromLogs = true; // Boolean | Should the response state be build from query logs if missing from the shared-db-state?  False will mean `404 Not Found` in cases where it was a real query but has passed its `keepForSeconds`  since the query completed (as well as 'this was not a query at all' of course)
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryProgressResponse result = apiInstance.getProgressOf(executionId, buildFromLogs).execute(opts);
+
             BackgroundQueryProgressResponse result = apiInstance.getProgressOf(executionId, buildFromLogs).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -1043,6 +1164,14 @@ public class SqlBackgroundExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String body = select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120; // String | The LuminesceSql query to kick off.
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -1050,6 +1179,9 @@ public class SqlBackgroundExecutionApiExample {
         Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 7200 (2h)
         Integer keepForSeconds = 0; // Integer | Maximum time the result may be kept for, in seconds: <0 → 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)
         try {
+            // uncomment the below to set overrides at the request level
+            // BackgroundQueryResponse result = apiInstance.startQuery(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds).execute(opts);
+
             BackgroundQueryResponse result = apiInstance.startQuery(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

@@ -59,6 +59,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -68,6 +76,9 @@ public class SqlExecutionApiExample {
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape).execute(opts);
+
             String result = apiInstance.getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -151,12 +162,23 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, timeout).execute(opts);
+
             File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -237,6 +259,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -244,6 +274,9 @@ public class SqlExecutionApiExample {
         Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper).execute(opts);
+
             String result = apiInstance.getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -325,12 +358,23 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.getByQueryParquet(query, scalarParameters, queryName, timeout).execute(opts);
+
             File result = apiInstance.getByQueryParquet(query, scalarParameters, queryName, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -411,6 +455,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -418,6 +470,9 @@ public class SqlExecutionApiExample {
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
         Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, timeout).execute(opts);
+
             String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -499,12 +554,23 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.getByQuerySqlite(query, scalarParameters, queryName, timeout).execute(opts);
+
             File result = apiInstance.getByQuerySqlite(query, scalarParameters, queryName, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -585,6 +651,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -592,6 +666,9 @@ public class SqlExecutionApiExample {
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
         Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.getByQueryXml(query, scalarParameters, queryName, download, timeout).execute(opts);
+
             String result = apiInstance.getByQueryXml(query, scalarParameters, queryName, download, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -673,6 +750,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -682,6 +767,9 @@ public class SqlExecutionApiExample {
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape).execute(opts);
+
             String result = apiInstance.putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -765,12 +853,23 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
+
             File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -851,6 +950,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -858,6 +965,9 @@ public class SqlExecutionApiExample {
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper).execute(opts);
+
             String result = apiInstance.putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -939,12 +1049,23 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.putByQueryParquet(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
+
             File result = apiInstance.putByQueryParquet(body, scalarParameters, queryName, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -1025,6 +1146,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -1032,6 +1161,9 @@ public class SqlExecutionApiExample {
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, timeoutSeconds).execute(opts);
+
             String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -1113,12 +1245,23 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // File result = apiInstance.putByQuerySqlite(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
+
             File result = apiInstance.putByQuerySqlite(body, scalarParameters, queryName, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
@@ -1199,6 +1342,14 @@ public class SqlExecutionApiExample {
             "}");
         }
 
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
+
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
@@ -1206,6 +1357,9 @@ public class SqlExecutionApiExample {
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
         try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putByQueryXml(body, scalarParameters, queryName, download, timeoutSeconds).execute(opts);
+
             String result = apiInstance.putByQueryXml(body, scalarParameters, queryName, download, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {

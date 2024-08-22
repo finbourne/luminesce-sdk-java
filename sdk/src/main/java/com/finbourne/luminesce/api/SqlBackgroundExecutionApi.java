@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -75,6 +76,10 @@ public class SqlBackgroundExecutionApi {
     }
 
     private okhttp3.Call cancelQueryCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return cancelQueryCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call cancelQueryCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -118,30 +123,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call cancelQueryValidateBeforeCall(String executionId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call cancelQueryValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling cancelQuery(Async)");
         }
 
-        return cancelQueryCall(executionId, _callback);
+        return cancelQueryCall(executionId, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryCancelResponse> cancelQueryWithHttpInfo(String executionId) throws ApiException {
-        okhttp3.Call localVarCall = cancelQueryValidateBeforeCall(executionId, null);
+        okhttp3.Call localVarCall = cancelQueryValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryCancelResponse> cancelQueryWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = cancelQueryValidateBeforeCall(executionId, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call cancelQueryAsync(String executionId, final ApiCallback<BackgroundQueryCancelResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = cancelQueryValidateBeforeCall(executionId, _callback);
+        okhttp3.Call localVarCall = cancelQueryValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call cancelQueryAsync(String executionId, final ApiCallback<BackgroundQueryCancelResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = cancelQueryValidateBeforeCall(executionId, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryCancelResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -185,6 +204,21 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute cancelQuery request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryCancelResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryCancelResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryCancelResponse> localVarResp = cancelQueryWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute cancelQuery request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryCancelResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -196,6 +230,20 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<BackgroundQueryCancelResponse> executeWithHttpInfo() throws ApiException {
             return cancelQueryWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute cancelQuery request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryCancelResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryCancelResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return cancelQueryWithHttpInfo(executionId, opts);
         }
 
         /**
@@ -211,6 +259,21 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryCancelResponse> _callback) throws ApiException {
             return cancelQueryAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute cancelQuery request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryCancelResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return cancelQueryAsync(executionId, _callback, opts);
         }
     }
 
@@ -229,6 +292,10 @@ public class SqlBackgroundExecutionApi {
         return new APIcancelQueryRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -308,30 +375,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultCsvValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultCsvValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultCsv(Async)");
         }
 
-        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback);
+        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchQueryResultCsvWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, null);
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultCsvWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultCsvAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultCsvAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -478,6 +559,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultCsv request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultCsv request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -491,6 +589,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape);
+        }
+
+        /**
+         * Execute fetchQueryResultCsv request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, opts);
         }
 
         /**
@@ -508,6 +622,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchQueryResultCsvAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultCsv request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultCsvAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, _callback, opts);
         }
     }
 
@@ -528,6 +659,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultCsvRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultExcelCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultExcelCall(executionId, sortBy, filter, select, groupBy,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultExcelCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -587,30 +722,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultExcelValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultExcelValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultExcel(Async)");
         }
 
-        return fetchQueryResultExcelCall(executionId, sortBy, filter, select, groupBy, _callback);
+        return fetchQueryResultExcelCall(executionId, sortBy, filter, select, groupBy, _callback, opts);
 
     }
 
 
     private ApiResponse<File> fetchQueryResultExcelWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null);
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> fetchQueryResultExcelWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultExcelAsync(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultExcelAsync(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -702,6 +851,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultExcel request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultExcel request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -715,6 +881,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy);
+        }
+
+        /**
+         * Execute fetchQueryResultExcel request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy, opts);
         }
 
         /**
@@ -732,6 +914,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return fetchQueryResultExcelAsync(executionId, sortBy, filter, select, groupBy, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultExcel request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultExcelAsync(executionId, sortBy, filter, select, groupBy, _callback, opts);
         }
     }
 
@@ -752,6 +951,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultExcelRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultHistogramCall(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultHistogramCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultHistogramCall(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -819,11 +1022,11 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultHistogramValidateBeforeCall(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultHistogramValidateBeforeCall(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultHistogram(Async)");
@@ -834,20 +1037,34 @@ public class SqlBackgroundExecutionApi {
             throw new ApiException("Missing the required parameter 'timestampFieldName' when calling fetchQueryResultHistogram(Async)");
         }
 
-        return fetchQueryResultHistogramCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback);
+        return fetchQueryResultHistogramCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchQueryResultHistogramWithHttpInfo(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultHistogramValidateBeforeCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, null);
+        okhttp3.Call localVarCall = fetchQueryResultHistogramValidateBeforeCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultHistogramWithHttpInfo(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultHistogramValidateBeforeCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultHistogramAsync(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultHistogramValidateBeforeCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultHistogramValidateBeforeCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultHistogramAsync(String executionId, String timestampFieldName, OffsetDateTime startAt, OffsetDateTime endAt, String bucketSize, String filter, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultHistogramValidateBeforeCall(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -952,6 +1169,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultHistogram request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultHistogramWithHttpInfo(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultHistogram request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -965,6 +1199,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultHistogramWithHttpInfo(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper);
+        }
+
+        /**
+         * Execute fetchQueryResultHistogram request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultHistogramWithHttpInfo(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, opts);
         }
 
         /**
@@ -982,6 +1232,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchQueryResultHistogramAsync(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultHistogram request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultHistogramAsync(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper, _callback, opts);
         }
     }
 
@@ -1003,6 +1270,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultHistogramRequest(executionId, timestampFieldName);
     }
     private okhttp3.Call fetchQueryResultJsonCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultJsonCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1070,30 +1341,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultJsonValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultJson(Async)");
         }
 
-        return fetchQueryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, _callback);
+        return fetchQueryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchQueryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, null);
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultJsonAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultJsonAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1207,6 +1492,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultJson request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultJson request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1220,6 +1522,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page);
+        }
+
+        /**
+         * Execute fetchQueryResultJson request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, opts);
         }
 
         /**
@@ -1237,6 +1555,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchQueryResultJsonAsync(executionId, sortBy, filter, select, groupBy, limit, page, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultJson request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultJsonAsync(executionId, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         }
     }
 
@@ -1257,6 +1592,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultJsonRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultJsonProperCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, select, groupBy, limit, page,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultJsonProperCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1328,30 +1667,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultJsonProperValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultJsonProper(Async)");
         }
 
-        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchQueryResultJsonProperWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null);
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultJsonProperWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultJsonProperAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultJsonProperAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1476,6 +1829,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultJsonProper request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultJsonProper request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1489,6 +1859,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page);
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProper request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, opts);
         }
 
         /**
@@ -1506,6 +1892,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchQueryResultJsonProperAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProper request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultJsonProperAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         }
     }
 
@@ -1526,6 +1929,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultJsonProperRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1585,30 +1992,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultParquetValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultParquetValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultParquet(Async)");
         }
 
-        return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy, _callback);
+        return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy, _callback, opts);
 
     }
 
 
     private ApiResponse<File> fetchQueryResultParquetWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null);
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> fetchQueryResultParquetWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultParquetAsync(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultParquetAsync(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1700,6 +2121,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultParquet request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultParquet request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1713,6 +2151,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy);
+        }
+
+        /**
+         * Execute fetchQueryResultParquet request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy, opts);
         }
 
         /**
@@ -1730,6 +2184,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return fetchQueryResultParquetAsync(executionId, sortBy, filter, select, groupBy, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultParquet request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultParquetAsync(executionId, sortBy, filter, select, groupBy, _callback, opts);
         }
     }
 
@@ -1750,6 +2221,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultParquetRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultPipeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, select, groupBy, limit, page,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultPipeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1821,30 +2296,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultPipeValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultPipeValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultPipe(Async)");
         }
 
-        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchQueryResultPipeWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null);
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultPipeWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultPipeAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultPipeAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1969,6 +2458,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultPipe request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultPipe request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1982,6 +2488,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page);
+        }
+
+        /**
+         * Execute fetchQueryResultPipe request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, opts);
         }
 
         /**
@@ -1999,6 +2521,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchQueryResultPipeAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultPipe request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultPipeAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         }
     }
 
@@ -2019,6 +2558,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultPipeRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultSqliteCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultSqliteCall(executionId, sortBy, filter, select, groupBy,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultSqliteCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2078,30 +2621,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultSqliteValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultSqliteValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultSqlite(Async)");
         }
 
-        return fetchQueryResultSqliteCall(executionId, sortBy, filter, select, groupBy, _callback);
+        return fetchQueryResultSqliteCall(executionId, sortBy, filter, select, groupBy, _callback, opts);
 
     }
 
 
     private ApiResponse<File> fetchQueryResultSqliteWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null);
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> fetchQueryResultSqliteWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultSqliteAsync(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultSqliteAsync(String executionId, String sortBy, String filter, String select, String groupBy, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2193,6 +2750,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultSqlite request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultSqlite request with HTTP info returned
          * @return ApiResponse&lt;File&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2206,6 +2780,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy);
+        }
+
+        /**
+         * Execute fetchQueryResultSqlite request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy, opts);
         }
 
         /**
@@ -2223,6 +2813,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
             return fetchQueryResultSqliteAsync(executionId, sortBy, filter, select, groupBy, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultSqlite request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultSqliteAsync(executionId, sortBy, filter, select, groupBy, _callback, opts);
         }
     }
 
@@ -2243,6 +2850,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultSqliteRequest(executionId);
     }
     private okhttp3.Call fetchQueryResultXmlCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, select, groupBy, limit, page,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultXmlCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2314,30 +2925,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultXmlValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultXmlValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultXml(Async)");
         }
 
-        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
 
     }
 
 
     private ApiResponse<String> fetchQueryResultXmlWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null);
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultXmlWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call fetchQueryResultXmlAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultXmlAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2462,6 +3087,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute fetchQueryResultXml request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute fetchQueryResultXml request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2475,6 +3117,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page);
+        }
+
+        /**
+         * Execute fetchQueryResultXml request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, opts);
         }
 
         /**
@@ -2492,6 +3150,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return fetchQueryResultXmlAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultXml request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultXmlAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, _callback, opts);
         }
     }
 
@@ -2512,6 +3187,10 @@ public class SqlBackgroundExecutionApi {
         return new APIfetchQueryResultXmlRequest(executionId);
     }
     private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback) throws ApiException {
+        return getProgressOfCall(executionId, buildFromLogs,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2559,30 +3238,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProgressOfValidateBeforeCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getProgressOfValidateBeforeCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling getProgressOf(Async)");
         }
 
-        return getProgressOfCall(executionId, buildFromLogs, _callback);
+        return getProgressOfCall(executionId, buildFromLogs, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryProgressResponse> getProgressOfWithHttpInfo(String executionId, Boolean buildFromLogs) throws ApiException {
-        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, null);
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryProgressResponse> getProgressOfWithHttpInfo(String executionId, Boolean buildFromLogs, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getProgressOfAsync(String executionId, Boolean buildFromLogs, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, _callback);
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getProgressOfAsync(String executionId, Boolean buildFromLogs, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2637,6 +3330,21 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute getProgressOf request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryProgressResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getProgressOfWithHttpInfo(executionId, buildFromLogs, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getProgressOf request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryProgressResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2648,6 +3356,20 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo() throws ApiException {
             return getProgressOfWithHttpInfo(executionId, buildFromLogs);
+        }
+
+        /**
+         * Execute getProgressOf request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryProgressResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getProgressOfWithHttpInfo(executionId, buildFromLogs, opts);
         }
 
         /**
@@ -2663,6 +3385,21 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
             return getProgressOfAsync(executionId, buildFromLogs, _callback);
+        }
+
+        /**
+         * Execute getProgressOf request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return getProgressOfAsync(executionId, buildFromLogs, _callback, opts);
         }
     }
 
@@ -2681,6 +3418,10 @@ public class SqlBackgroundExecutionApi {
         return new APIgetProgressOfRequest(executionId);
     }
     private okhttp3.Call startQueryCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
+        return startQueryCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call startQueryCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2740,30 +3481,44 @@ public class SqlBackgroundExecutionApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call startQueryValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call startQueryValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling startQuery(Async)");
         }
 
-        return startQueryCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
+        return startQueryCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, opts);
 
     }
 
 
     private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds) throws ApiException {
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, null);
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call startQueryAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call startQueryAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2855,6 +3610,23 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Execute startQuery request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute startQuery request with HTTP info returned
          * @return ApiResponse&lt;BackgroundQueryResponse&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -2868,6 +3640,22 @@ public class SqlBackgroundExecutionApi {
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo() throws ApiException {
             return startQueryWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds);
+        }
+
+        /**
+         * Execute startQuery request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return startQueryWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, opts);
         }
 
         /**
@@ -2885,6 +3673,23 @@ public class SqlBackgroundExecutionApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
             return startQueryAsync(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
+        }
+
+        /**
+         * Execute startQuery request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return startQueryAsync(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, opts);
         }
     }
 

@@ -18,6 +18,7 @@ import com.finbourne.luminesce.Configuration;
 import com.finbourne.luminesce.Pair;
 import com.finbourne.luminesce.ProgressRequestBody;
 import com.finbourne.luminesce.ProgressResponseBody;
+import com.finbourne.luminesce.extensions.ConfigurationOptions;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -69,6 +70,10 @@ public class CurrentTableFieldCatalogApi {
     }
 
     private okhttp3.Call getCatalogCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback) throws ApiException {
+        return getCatalogCall(freeTextSearch, jsonProper, useCache,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getCatalogCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -123,25 +128,39 @@ public class CurrentTableFieldCatalogApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCatalogValidateBeforeCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback) throws ApiException {
-        return getCatalogCall(freeTextSearch, jsonProper, useCache, _callback);
+    private okhttp3.Call getCatalogValidateBeforeCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getCatalogCall(freeTextSearch, jsonProper, useCache, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getCatalogWithHttpInfo(String freeTextSearch, Boolean jsonProper, Boolean useCache) throws ApiException {
-        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, null);
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getCatalogWithHttpInfo(String freeTextSearch, Boolean jsonProper, Boolean useCache, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getCatalogAsync(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, _callback);
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getCatalogAsync(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -216,6 +235,21 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
+         * Execute getCatalog request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getCatalog request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -227,6 +261,20 @@ public class CurrentTableFieldCatalogApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache);
+        }
+
+        /**
+         * Execute getCatalog request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache, opts);
         }
 
         /**
@@ -242,6 +290,21 @@ public class CurrentTableFieldCatalogApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getCatalogAsync(freeTextSearch, jsonProper, useCache, _callback);
+        }
+
+        /**
+         * Execute getCatalog request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getCatalogAsync(freeTextSearch, jsonProper, useCache, _callback, opts);
         }
     }
 
@@ -259,6 +322,10 @@ public class CurrentTableFieldCatalogApi {
         return new APIgetCatalogRequest();
     }
     private okhttp3.Call getFieldsCall(String tableLike, final ApiCallback _callback) throws ApiException {
+        return getFieldsCall(tableLike,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getFieldsCall(String tableLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -305,25 +372,39 @@ public class CurrentTableFieldCatalogApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFieldsValidateBeforeCall(String tableLike, final ApiCallback _callback) throws ApiException {
-        return getFieldsCall(tableLike, _callback);
+    private okhttp3.Call getFieldsValidateBeforeCall(String tableLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getFieldsCall(tableLike, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getFieldsWithHttpInfo(String tableLike) throws ApiException {
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, null);
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getFieldsAsync(String tableLike, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, _callback);
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getFieldsAsync(String tableLike, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -376,6 +457,21 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
+         * Execute getFields request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getFields request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -387,6 +483,20 @@ public class CurrentTableFieldCatalogApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getFieldsWithHttpInfo(tableLike);
+        }
+
+        /**
+         * Execute getFields request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getFieldsWithHttpInfo(tableLike, opts);
         }
 
         /**
@@ -402,6 +512,21 @@ public class CurrentTableFieldCatalogApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getFieldsAsync(tableLike, _callback);
+        }
+
+        /**
+         * Execute getFields request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getFieldsAsync(tableLike, _callback, opts);
         }
     }
 
@@ -419,6 +544,10 @@ public class CurrentTableFieldCatalogApi {
         return new APIgetFieldsRequest();
     }
     private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback) throws ApiException {
+        return getProvidersCall(freeTextSearch, useCache,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -469,25 +598,39 @@ public class CurrentTableFieldCatalogApi {
         }
 
         String[] localVarAuthNames = new String[] { "oauth2" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback) throws ApiException {
-        return getProvidersCall(freeTextSearch, useCache, _callback);
+    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getProvidersCall(freeTextSearch, useCache, _callback, opts);
 
     }
 
 
     private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean useCache) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, null);
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean useCache, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean useCache, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, _callback);
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean useCache, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -551,6 +694,21 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
+         * Execute getProviders request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, useCache, opts);
+            return localVarResp.getData();
+        }
+
+        /**
          * Execute getProviders request with HTTP info returned
          * @return ApiResponse&lt;String&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -562,6 +720,20 @@ public class CurrentTableFieldCatalogApi {
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
             return getProvidersWithHttpInfo(freeTextSearch, useCache);
+        }
+
+        /**
+         * Execute getProviders request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getProvidersWithHttpInfo(freeTextSearch, useCache, opts);
         }
 
         /**
@@ -577,6 +749,21 @@ public class CurrentTableFieldCatalogApi {
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
             return getProvidersAsync(freeTextSearch, useCache, _callback);
+        }
+
+        /**
+         * Execute getProviders request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return getProvidersAsync(freeTextSearch, useCache, _callback, opts);
         }
     }
 
