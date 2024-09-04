@@ -6,7 +6,7 @@ info:
     url: https://www.finbourne.com
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.573
+  version: 1.16.583
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -514,7 +514,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: The .nupkg file of the requested binary
+          description: The .nupkg or .msi file of the requested binary
         "400":
           content:
             text/plain:
