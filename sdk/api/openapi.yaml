@@ -4,9 +4,39 @@ info:
     email: info@finbourne.com
     name: FINBOURNE Technology
     url: https://www.finbourne.com
+  description: "\n```\n> __ _ \n / / __ ______ ___ (_)___ ___ _____________ \n / /\
+    \ / / / / __ `__ \\/ / __ \\/ _ \\/ ___/ ___/ _ \\\n / /___/ /_/ / / / / / / /\
+    \ / / / __(__ ) /__/ __/\n/_____/\\__,_/_/ /_/ /_/_/_/ /_/\\___/____/\\___/\\\
+    ___/ \n```\n\n### Introduction to Luminesce\n\n[Luminesce](https://support.lusid.com/knowledgebase/article/KA-01677/)\
+    \ is a data virtualization engine for LUSID and other applications. \nIt is proprietary\
+    \ technology designed and developed by FINBOURNE Technology Limited. \n[Understanding\
+    \ the Luminesce platform architecture.](https://support.lusid.com/knowledgebase/article/KA-01707/)\n\
+    \nLuminesce enables you to query multiple sources of business intelligence simultaneously\
+    \ in real-time—including investment management data stored in LUSID itself—and\
+    \ build a consolidated picture for analysis, optionally writing data back into\
+    \ LUSID. Alternatively, you can use Luminesce in a standalone capacity, without\
+    \ interacting with LUSID at all.\n\n### WebAPI\n\nAllows for running queries and\
+    \ a variety of other functions relating to Luminesce.\nFor example these REST\
+    \ APIs can execute queries, synchronously or better asynchronously, returning\
+    \ results in either Excel, CSV, SqLite, JSON among other formats.\n\n\n\n\n###\
+    \ Error Codes\n\n| Code|Meaning |\n| ---|--- |\n| <a name=\"233\">233</a>|Query\
+    \ Parser Failure |\n| <a name=\"850\">850</a>|Required provider not visible; provider\
+    \ may not exist, be temporarily unavailable, or you may not have the necessary\
+    \ permissions |\n| <a name=\"851\">851</a>|Query reached a timeout period or was\
+    \ cancelled |\n| <a name=\"852\">852</a>|Query failed during execution |\n| <a\
+    \ name=\"853\">853</a>|Query failed during execution for an unexpected reason\
+    \ |\n| <a name=\"854\">854</a>|Query failed during execution for a reason known\
+    \ to be an internal error (e.g. a Lusid provider where a corresponding API would\
+    \ return a 500) |\n| <a name=\"855\">855</a>|Required column is not in the queried\
+    \ provider(s) |\n| <a name=\"856\">856</a>|One or more columns are ambiguously\
+    \ referenced in the query |\n| <a name=\"857\">857</a>|Query failed during execution\
+    \ of a provider (e.g. in a way that might be transient, like an upstream issue)\
+    \ |\n| <a name=\"858\">858</a>|Query failed during execution within the Query\
+    \ Engine's SQL processing |\n| <a name=\"859\">859</a>|A variable has been defined\
+    \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.583
+  version: 1.16.590
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
