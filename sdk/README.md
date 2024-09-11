@@ -35,6 +35,8 @@ Class | Method | HTTP request | Description
 *SqlBackgroundExecutionApi* | [**fetchQueryResultXml**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultxml) | **GET** /api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetches the result from a previously started query, in Xml format.
 *SqlBackgroundExecutionApi* | [**getProgressOf**](docs/SqlBackgroundExecutionApi.md#getprogressof) | **GET** /api/SqlBackground/{executionId} | GetProgressOf: View progress information (up until this point)
 *SqlBackgroundExecutionApi* | [**startQuery**](docs/SqlBackgroundExecutionApi.md#startquery) | **PUT** /api/SqlBackground | StartQuery: Starts to Execute LuminesceSql in the background.
+*SqlDesignApi* | [**putCaseStatementDesignSqlToDesign**](docs/SqlDesignApi.md#putcasestatementdesignsqltodesign) | **PUT** /api/Sql/tocasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries to a CaseStatementDesign object.
+*SqlDesignApi* | [**putCaseStatementDesignToSql**](docs/SqlDesignApi.md#putcasestatementdesigntosql) | **PUT** /api/Sql/fromcasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement queries from a structured design
 *SqlDesignApi* | [**putFileReadDesignToSql**](docs/SqlDesignApi.md#putfilereaddesigntosql) | **PUT** /api/Sql/fromfilereaddesign | [EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from a structured query design
 *SqlDesignApi* | [**putInlinedPropertiesDesignSqlToDesign**](docs/SqlDesignApi.md#putinlinedpropertiesdesignsqltodesign) | **PUT** /api/Sql/toinlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Generates a SQL-inlined-properties-design object from SQL string, if possible.
 *SqlDesignApi* | [**putInlinedPropertiesDesignToSql**](docs/SqlDesignApi.md#putinlinedpropertiesdesigntosql) | **PUT** /api/Sql/frominlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Generates inlined properties SQL from a structured design
@@ -83,6 +85,8 @@ Class | Method | HTTP request | Description
  - [BackgroundQueryProgressResponse](docs/BackgroundQueryProgressResponse.md)
  - [BackgroundQueryResponse](docs/BackgroundQueryResponse.md)
  - [BackgroundQueryState](docs/BackgroundQueryState.md)
+ - [CaseStatementDesign](docs/CaseStatementDesign.md)
+ - [CaseStatementItem](docs/CaseStatementItem.md)
  - [CertificateAction](docs/CertificateAction.md)
  - [CertificateFileType](docs/CertificateFileType.md)
  - [CertificateState](docs/CertificateState.md)

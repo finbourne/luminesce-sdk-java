@@ -25,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.finbourne.luminesce.model.CaseStatementDesign;
 import com.finbourne.luminesce.model.ConvertToViewData;
 import com.finbourne.luminesce.model.ErrorHighlightRequest;
 import com.finbourne.luminesce.model.ErrorHighlightResponse;
@@ -81,6 +82,476 @@ public class SqlDesignApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    private okhttp3.Call putCaseStatementDesignSqlToDesignCall(String body, final ApiCallback _callback) throws ApiException {
+        return putCaseStatementDesignSqlToDesignCall(body,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putCaseStatementDesignSqlToDesignCall(String body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/tocasestatementdesign";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "text/plain"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putCaseStatementDesignSqlToDesignValidateBeforeCall(String body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return putCaseStatementDesignSqlToDesignCall(body, _callback, opts);
+
+    }
+
+
+    private ApiResponse<CaseStatementDesign> putCaseStatementDesignSqlToDesignWithHttpInfo(String body) throws ApiException {
+        okhttp3.Call localVarCall = putCaseStatementDesignSqlToDesignValidateBeforeCall(body, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<CaseStatementDesign>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<CaseStatementDesign> putCaseStatementDesignSqlToDesignWithHttpInfo(String body, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putCaseStatementDesignSqlToDesignValidateBeforeCall(body, null, opts);
+        Type localVarReturnType = new TypeToken<CaseStatementDesign>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putCaseStatementDesignSqlToDesignAsync(String body, final ApiCallback<CaseStatementDesign> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putCaseStatementDesignSqlToDesignValidateBeforeCall(body, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<CaseStatementDesign>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putCaseStatementDesignSqlToDesignAsync(String body, final ApiCallback<CaseStatementDesign> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putCaseStatementDesignSqlToDesignValidateBeforeCall(body, _callback, opts);
+        Type localVarReturnType = new TypeToken<CaseStatementDesign>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputCaseStatementDesignSqlToDesignRequest {
+        private String body;
+
+        private APIputCaseStatementDesignSqlToDesignRequest() {
+        }
+
+        /**
+         * Set body
+         * @param body SQL query to generate the case statement design object from (optional)
+         * @return APIputCaseStatementDesignSqlToDesignRequest
+         */
+        public APIputCaseStatementDesignSqlToDesignRequest body(String body) {
+            this.body = body;
+            return this;
+        }
+
+        /**
+         * Build call for putCaseStatementDesignSqlToDesign
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putCaseStatementDesignSqlToDesignCall(body, _callback);
+        }
+
+        /**
+         * Execute putCaseStatementDesignSqlToDesign request
+         * @return CaseStatementDesign
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public CaseStatementDesign execute() throws ApiException {
+            ApiResponse<CaseStatementDesign> localVarResp = putCaseStatementDesignSqlToDesignWithHttpInfo(body);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCaseStatementDesignSqlToDesign request. Use any specified configuration options to override any other configuration for this request only.
+         * @return CaseStatementDesign
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public CaseStatementDesign execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<CaseStatementDesign> localVarResp = putCaseStatementDesignSqlToDesignWithHttpInfo(body, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCaseStatementDesignSqlToDesign request with HTTP info returned
+         * @return ApiResponse&lt;CaseStatementDesign&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<CaseStatementDesign> executeWithHttpInfo() throws ApiException {
+            return putCaseStatementDesignSqlToDesignWithHttpInfo(body);
+        }
+
+        /**
+         * Execute putCaseStatementDesignSqlToDesign request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;CaseStatementDesign&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<CaseStatementDesign> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putCaseStatementDesignSqlToDesignWithHttpInfo(body, opts);
+        }
+
+        /**
+         * Execute putCaseStatementDesignSqlToDesign request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<CaseStatementDesign> _callback) throws ApiException {
+            return putCaseStatementDesignSqlToDesignAsync(body, _callback);
+        }
+
+        /**
+         * Execute putCaseStatementDesignSqlToDesign request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<CaseStatementDesign> _callback, ConfigurationOptions opts) throws ApiException {
+            return putCaseStatementDesignSqlToDesignAsync(body, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries to a CaseStatementDesign object.
+     * SQL to attempt to create an case statement Design object from
+     * @return APIputCaseStatementDesignSqlToDesignRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputCaseStatementDesignSqlToDesignRequest putCaseStatementDesignSqlToDesign() {
+        return new APIputCaseStatementDesignSqlToDesignRequest();
+    }
+    private okhttp3.Call putCaseStatementDesignToSqlCall(CaseStatementDesign caseStatementDesign, final ApiCallback _callback) throws ApiException {
+        return putCaseStatementDesignToSqlCall(caseStatementDesign,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putCaseStatementDesignToSqlCall(CaseStatementDesign caseStatementDesign, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = caseStatementDesign;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/fromcasestatementdesign";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json-patch+json",
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putCaseStatementDesignToSqlValidateBeforeCall(CaseStatementDesign caseStatementDesign, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'caseStatementDesign' is set
+        if (caseStatementDesign == null) {
+            throw new ApiException("Missing the required parameter 'caseStatementDesign' when calling putCaseStatementDesignToSql(Async)");
+        }
+
+        return putCaseStatementDesignToSqlCall(caseStatementDesign, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> putCaseStatementDesignToSqlWithHttpInfo(CaseStatementDesign caseStatementDesign) throws ApiException {
+        okhttp3.Call localVarCall = putCaseStatementDesignToSqlValidateBeforeCall(caseStatementDesign, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putCaseStatementDesignToSqlWithHttpInfo(CaseStatementDesign caseStatementDesign, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putCaseStatementDesignToSqlValidateBeforeCall(caseStatementDesign, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putCaseStatementDesignToSqlAsync(CaseStatementDesign caseStatementDesign, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putCaseStatementDesignToSqlValidateBeforeCall(caseStatementDesign, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putCaseStatementDesignToSqlAsync(CaseStatementDesign caseStatementDesign, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putCaseStatementDesignToSqlValidateBeforeCall(caseStatementDesign, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputCaseStatementDesignToSqlRequest {
+        private final CaseStatementDesign caseStatementDesign;
+
+        private APIputCaseStatementDesignToSqlRequest(CaseStatementDesign caseStatementDesign) {
+            this.caseStatementDesign = caseStatementDesign;
+        }
+
+        /**
+         * Build call for putCaseStatementDesignToSql
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putCaseStatementDesignToSqlCall(caseStatementDesign, _callback);
+        }
+
+        /**
+         * Execute putCaseStatementDesignToSql request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = putCaseStatementDesignToSqlWithHttpInfo(caseStatementDesign);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCaseStatementDesignToSql request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putCaseStatementDesignToSqlWithHttpInfo(caseStatementDesign, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCaseStatementDesignToSql request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return putCaseStatementDesignToSqlWithHttpInfo(caseStatementDesign);
+        }
+
+        /**
+         * Execute putCaseStatementDesignToSql request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putCaseStatementDesignToSqlWithHttpInfo(caseStatementDesign, opts);
+        }
+
+        /**
+         * Execute putCaseStatementDesignToSql request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return putCaseStatementDesignToSqlAsync(caseStatementDesign, _callback);
+        }
+
+        /**
+         * Execute putCaseStatementDesignToSql request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putCaseStatementDesignToSqlAsync(caseStatementDesign, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement queries from a structured design
+     * CaseStatementDesign object to try and create a SQL query from
+     * @param caseStatementDesign Structured file read design object to generate SQL from (required)
+     * @return APIputCaseStatementDesignToSqlRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputCaseStatementDesignToSqlRequest putCaseStatementDesignToSql(CaseStatementDesign caseStatementDesign) {
+        return new APIputCaseStatementDesignToSqlRequest(caseStatementDesign);
+    }
     private okhttp3.Call putFileReadDesignToSqlCall(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery, final ApiCallback _callback) throws ApiException {
         return putFileReadDesignToSqlCall(fileReaderBuilderDef, executeQuery,  _callback, new ConfigurationOptions());
     }

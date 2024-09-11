@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.602
+  version: 1.16.605
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1935,6 +1935,96 @@ paths:
       - Sql Design
       x-fbn-apistatus: Experimental
       x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/fromcasestatementdesign:
+    put:
+      description: CaseStatementDesign object to try and create a SQL query from
+      operationId: PutCaseStatementDesignToSql
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              selectedField: currency
+              caseStatementItems:
+              - filter: Eq
+                source: USD
+                target: US
+            schema:
+              $ref: '#/components/schemas/CaseStatementDesign'
+          application/json:
+            example:
+              selectedField: currency
+              caseStatementItems:
+              - filter: Eq
+                source: USD
+                target: US
+            schema:
+              $ref: '#/components/schemas/CaseStatementDesign'
+          text/json:
+            example:
+              selectedField: currency
+              caseStatementItems:
+              - filter: Eq
+                source: USD
+                target: US
+            schema:
+              $ref: '#/components/schemas/CaseStatementDesign'
+          application/*+json:
+            example:
+              selectedField: currency
+              caseStatementItems:
+              - filter: Eq
+                source: USD
+                target: US
+            schema:
+              $ref: '#/components/schemas/CaseStatementDesign'
+        description: Structured file read design object to generate SQL from
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement\
+        \ queries from a structured design"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/fromdesign:
     put:
@@ -4104,6 +4194,82 @@ paths:
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/Sql/tocasestatementdesign:
+    put:
+      description: SQL to attempt to create an case statement Design object from
+      operationId: PutCaseStatementDesignSqlToDesign
+      requestBody:
+        content:
+          text/plain:
+            example: "CASE \n WHEN [currency] = 'US' THEN 'USD' \n WHEN [currency]\
+              \ = 'Gb' THEN 'GBP' \n ELSE [currency] \n END"
+            schema:
+              type: string
+        description: SQL query to generate the case statement design object from
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+                selectedField: currency
+                caseStatementItems:
+                - filter: Eq
+                  source: USD
+                  target: US
+              schema:
+                $ref: '#/components/schemas/CaseStatementDesign'
+            application/json:
+              example:
+                selectedField: currency
+                caseStatementItems:
+                - filter: Eq
+                  source: USD
+                  target: US
+              schema:
+                $ref: '#/components/schemas/CaseStatementDesign'
+            text/json:
+              example:
+                selectedField: currency
+                caseStatementItems:
+                - filter: Eq
+                  source: USD
+                  target: US
+              schema:
+                $ref: '#/components/schemas/CaseStatementDesign'
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries\
+        \ to a CaseStatementDesign object."
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
+      x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/todesign:
     put:
@@ -7482,6 +7648,61 @@ components:
       - Disposed
       - OwnerTerminated
       type: string
+    CaseStatementDesign:
+      additionalProperties: false
+      description: "Representation of the selected field and a list of: filter, source,\
+        \ and target."
+      example:
+        selectedField: selectedField
+        caseStatementItems:
+        - filter: filter
+          source: source
+          target: target
+        - filter: filter
+          source: source
+          target: target
+      properties:
+        selectedField:
+          description: Selected field in the SQL query.
+          nullable: true
+          type: string
+        caseStatementItems:
+          description: "A list containing the filter, source, and target."
+          items:
+            $ref: '#/components/schemas/CaseStatementItem'
+          nullable: true
+          type: array
+      type: object
+    CaseStatementItem:
+      additionalProperties: false
+      description: "Information about a case statement.\r\nA typical case statement\
+        \ would look like:\r\nCASE WHEN Field {Filter} Source THEN Target\r\nFor example:\
+        \ CASE WHEN 'currency' = 'USD' THEN 'US'\r\nHere the Field is 'currency',\
+        \ the Source is 'USD', the Filter is '=', and the Target is 'US'"
+      example:
+        filter: filter
+        source: source
+        target: target
+      properties:
+        filter:
+          description: The operator in the case statement SQL expression
+          minLength: 1
+          type: string
+        source:
+          description: "The expression that is on the LHS of the operator\r\nA typical\
+            \ case statement would look like:\r\nCASE Field {Filter} Source THEN Target"
+          minLength: 1
+          type: string
+        target:
+          description: "The expression that is on the RHS of the operator\r\nA typical\
+            \ case statement would look like:\r\nCASE Field {Filter} Source THEN Target"
+          minLength: 1
+          type: string
+      required:
+      - filter
+      - source
+      - target
+      type: object
     CertificateAction:
       description: The action to take with a certificate
       enum:

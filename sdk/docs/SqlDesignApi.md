@@ -4,6 +4,8 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**putCaseStatementDesignSqlToDesign**](SqlDesignApi.md#putCaseStatementDesignSqlToDesign) | **PUT** /api/Sql/tocasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries to a CaseStatementDesign object. |
+| [**putCaseStatementDesignToSql**](SqlDesignApi.md#putCaseStatementDesignToSql) | **PUT** /api/Sql/fromcasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement queries from a structured design |
 | [**putFileReadDesignToSql**](SqlDesignApi.md#putFileReadDesignToSql) | **PUT** /api/Sql/fromfilereaddesign | [EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from a structured query design |
 | [**putInlinedPropertiesDesignSqlToDesign**](SqlDesignApi.md#putInlinedPropertiesDesignSqlToDesign) | **PUT** /api/Sql/toinlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Generates a SQL-inlined-properties-design object from SQL string, if possible. |
 | [**putInlinedPropertiesDesignToSql**](SqlDesignApi.md#putInlinedPropertiesDesignToSql) | **PUT** /api/Sql/frominlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Generates inlined properties SQL from a structured design |
@@ -19,6 +21,192 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**putViewDesignToSql**](SqlDesignApi.md#putViewDesignToSql) | **PUT** /api/Sql/fromviewdesign | [EXPERIMENTAL] PutViewDesignToSql: Generates view creation sql from a structured view creation design |
 | [**putWriterDesignToSql**](SqlDesignApi.md#putWriterDesignToSql) | **PUT** /api/Sql/fromwriterdesign | [EXPERIMENTAL] PutWriterDesignToSql: Generates writer SQL from a valid writer-design structure |
 
+
+
+## putCaseStatementDesignSqlToDesign
+
+> CaseStatementDesign putCaseStatementDesignSqlToDesign(body)
+
+[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries to a CaseStatementDesign object.
+
+SQL to attempt to create an case statement Design object from
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlDesignApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
+        SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
+        String body = CASE 
+ WHEN [currency] = 'US' THEN 'USD' 
+ WHEN [currency] = 'Gb' THEN 'GBP' 
+ ELSE [currency] 
+ END; // String | SQL query to generate the case statement design object from
+        try {
+            // uncomment the below to set overrides at the request level
+            // CaseStatementDesign result = apiInstance.putCaseStatementDesignSqlToDesign(body).execute(opts);
+
+            CaseStatementDesign result = apiInstance.putCaseStatementDesignSqlToDesign(body).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlDesignApi#putCaseStatementDesignSqlToDesign");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | **String**| SQL query to generate the case statement design object from | [optional] |
+
+### Return type
+
+[**CaseStatementDesign**](CaseStatementDesign.md)
+
+### HTTP request headers
+
+- **Content-Type**: text/plain
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## putCaseStatementDesignToSql
+
+> String putCaseStatementDesignToSql(caseStatementDesign)
+
+[EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement queries from a structured design
+
+CaseStatementDesign object to try and create a SQL query from
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlDesignApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
+        SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
+        CaseStatementDesign caseStatementDesign = new CaseStatementDesign(); // CaseStatementDesign | Structured file read design object to generate SQL from
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putCaseStatementDesignToSql(caseStatementDesign).execute(opts);
+
+            String result = apiInstance.putCaseStatementDesignToSql(caseStatementDesign).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlDesignApi#putCaseStatementDesignToSql");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caseStatementDesign** | [**CaseStatementDesign**](CaseStatementDesign.md)| Structured file read design object to generate SQL from | |
+
+### Return type
+
+**String**
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 
 ## putFileReadDesignToSql
