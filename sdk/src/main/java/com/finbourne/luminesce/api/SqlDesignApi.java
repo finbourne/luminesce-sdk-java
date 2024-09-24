@@ -176,7 +176,7 @@ public class SqlDesignApi {
 
         /**
          * Set body
-         * @param body SQL query to generate the case statement design object from (optional)
+         * @param body SQL to attempt to create an case statement Design object from (optional)
          * @return APIputCaseStatementDesignSqlToDesignRequest
          */
         public APIputCaseStatementDesignSqlToDesignRequest body(String body) {
@@ -303,8 +303,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries to a CaseStatementDesign object.
-     * SQL to attempt to create an case statement Design object from
+     * [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL to a case statement design object
+     * Converts a SQL query to a CaseStatementDesign object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @return APIputCaseStatementDesignSqlToDesignRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -537,9 +537,9 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement queries from a structured design
-     * CaseStatementDesign object to try and create a SQL query from
-     * @param caseStatementDesign Structured file read design object to generate SQL from (required)
+     * [EXPERIMENTAL] PutCaseStatementDesignToSql: Converts a case statement design object to SQL
+     * Generates a SQL case statement query from a structured CaseStatementDesign object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param caseStatementDesign CaseStatementDesign object to try and create a SQL query from (required)
      * @return APIputCaseStatementDesignToSqlRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -787,8 +787,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from a structured query design
-     * SQL Designer specification to generate SQL from
+     * [EXPERIMENTAL] PutFileReadDesignToSql: Makes file read SQL from a design object
+     * Generates SQL from a FileReaderBuilderDef object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param fileReaderBuilderDef Structured file read design object to generate SQL from (required)
      * @return APIputFileReadDesignToSqlRequest
      * @http.response.details
@@ -896,7 +896,7 @@ public class SqlDesignApi {
 
         /**
          * Set body
-         * @param body SQL query to generate the inlined properties design object from (optional)
+         * @param body SQL query to attempt to generate the inlined properties design object from (optional)
          * @return APIputInlinedPropertiesDesignSqlToDesignRequest
          */
         public APIputInlinedPropertiesDesignSqlToDesignRequest body(String body) {
@@ -1023,8 +1023,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Generates a SQL-inlined-properties-design object from SQL string, if possible.
-     * SQL to attempt to create an inlined properties Design object from
+     * [EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Makes an inlined properties design from SQL
+     * Generates a SQL-inlined-properties-design object from SQL string, if possible.  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @return APIputInlinedPropertiesDesignSqlToDesignRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1257,9 +1257,9 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Generates inlined properties SQL from a structured design
-     * Inlined properties Designer specification to generate SQL from
-     * @param inlinedPropertyDesign Structured file read design object to generate SQL from (required)
+     * [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Makes inlined properties SQL from a design object
+     * Generates inlined properties SQL from a structured design  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param inlinedPropertyDesign Inlined properties Designer specification to generate SQL from (required)
      * @return APIputInlinedPropertiesDesignToSqlRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1492,9 +1492,9 @@ public class SqlDesignApi {
     }
 
     /**
-     * PutIntellisense: Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid) and cursor location
-     * SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from.
-     * @param intellisenseRequest  (required)
+     * PutIntellisense: Makes a intellisense prompts given an SQL snip-it
+     * Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid SQL) and cursor location  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param intellisenseRequest SQL and a row/colum position within it from which to determine intellisense options for the user to potentially choose from. (required)
      * @return APIputIntellisenseRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1727,9 +1727,9 @@ public class SqlDesignApi {
     }
 
     /**
-     * PutIntellisenseError: Generate a set of error ranges, if any, in the given SQL (expressed as Lines)
-     * SQL (by line) to syntax check and return error ranges from within, if any.
-     * @param errorHighlightRequest  (required)
+     * PutIntellisenseError: Expresses error ranges from SQL
+     * Generate a set of error ranges, if any, in the given SQL (expressed as Lines)  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param errorHighlightRequest SQL (by line) to syntax check and return error ranges from within, if any. (required)
      * @return APIputIntellisenseErrorRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -1962,8 +1962,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutQueryDesignToSql: Generates SQL from a structured query design
-     * SQL Designer specification to generate SQL from
+     * [EXPERIMENTAL] PutQueryDesignToSql: Makes SQL from a structured query design
+     * Generates SQL from a QueryDesign object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param queryDesign Structured Query design object to generate SQL from (required)
      * @return APIputQueryDesignToSqlRequest
      * @http.response.details
@@ -2389,8 +2389,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * PutQueryToFormat: Formats SQL into a more readable form, a.k.a. Pretty-Print the SQL.
-     *  This formats SQL (given a set of options as to how to do so). It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. &#x60;&#x60;&#x60;sql select x,y,z from a inner join b on a.x&#x3D;b.x where x&gt;y or y!&#x3D;z &#x60;&#x60;&#x60; becomes &#x60;&#x60;&#x60;sql select x, y, z from a inner join b  on a.x &#x3D; b.x where x &gt; y  or y !&#x3D; z &#x60;&#x60;&#x60; 
+     * PutQueryToFormat: Formats SQL into a more readable form
+     *  This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. &#x60;&#x60;&#x60;sql select x,y,z from a inner join b on a.x&#x3D;b.x where x&gt;y or y!&#x3D;z &#x60;&#x60;&#x60; becomes &#x60;&#x60;&#x60;sql select x, y, z from a inner join b  on a.x &#x3D; b.x where x &gt; y  or y !&#x3D; z &#x60;&#x60;&#x60; 
      * @param body LuminesceSql to Pretty-Print. Even if it doesn&#39;t parse an attempt will be made to format it (required)
      * @return APIputQueryToFormatRequest
      * @http.response.details
@@ -2621,8 +2621,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutSqlToExtractScalarParameters: Generates information about all the scalar parameters defined in the given SQL statement
-     * SQL to extract scalar parameters from
+     * [EXPERIMENTAL] PutSqlToExtractScalarParameters: Extracts scalar parameter information from SQL
+     * Extracts information about all the scalar parameters defined in the given SQL statement  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param body SQL query to generate the design object from (required)
      * @return APIputSqlToExtractScalarParametersRequest
      * @http.response.details
@@ -2872,8 +2872,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design object from SQL string, if possible.
-     * SQL to attempt to create a Design object from
+     * [EXPERIMENTAL] PutSqlToFileReadDesign: Makes a design object from file-read SQL
+     * Generates a SQL-file-read-design object from SQL string, if possible.  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @return APIputSqlToFileReadDesignRequest
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -3118,8 +3118,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutSqlToQueryDesign: Generates a SQL-design object from SQL string, if possible.
-     * SQL to attempt to create a Design object from
+     * [EXPERIMENTAL] PutSqlToQueryDesign: Makes a SQL-design object from SQL if possible
+     * Generates a QueryDesign object from simple SQL if possible  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param body SQL query to generate the design object from (required)
      * @return APIputSqlToQueryDesignRequest
      * @http.response.details
@@ -3350,8 +3350,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation design from existing view creation SQL.
-     * SQL which creates a view into a structured ConvertToViewData object
+     * [EXPERIMENTAL] PutSqlToViewDesign: Makes a view-design from view creation SQL
+     * Converts SQL which creates a view into a structured ConvertToViewData object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param body SQL Query to generate the ConvertToViewData object from (required)
      * @return APIputSqlToViewDesignRequest
      * @http.response.details
@@ -3597,8 +3597,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutSqlToWriterDesign: Generates a SQL-writer-design object from SQL string, if possible.
-     * SQL to attempt to create a Writer Design object from
+     * [EXPERIMENTAL] PutSqlToWriterDesign: Makes a SQL-writer-design object from SQL
+     * Generates a SQL-writer-design object (WriterDesign) from a SQL query, if possible  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param body SQL query to generate the writer design object from (required)
      * @return APIputSqlToWriterDesignRequest
      * @http.response.details
@@ -3832,8 +3832,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutViewDesignToSql: Generates view creation sql from a structured view creation design
-     * Converts a ConvertToView specification into SQL that creates a view
+     * [EXPERIMENTAL] PutViewDesignToSql: Makes view creation sql from a view-design
+     * Converts a ConvertToView specification into SQL that creates a view  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param convertToViewData Structured Query design object to generate SQL from (required)
      * @return APIputViewDesignToSqlRequest
      * @http.response.details
@@ -4067,8 +4067,8 @@ public class SqlDesignApi {
     }
 
     /**
-     * [EXPERIMENTAL] PutWriterDesignToSql: Generates writer SQL from a valid writer-design structure
-     * SQL Writer Design specification to generate Writer SQL from
+     * [EXPERIMENTAL] PutWriterDesignToSql: Makes writer SQL from a writer-design object
+     * Generates writer SQL from a valid WriterDesign structure  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param writerDesign Structured Writer Design design object to generate Writer SQL from (required)
      * @return APIputWriterDesignToSqlRequest
      * @http.response.details

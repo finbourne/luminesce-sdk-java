@@ -4,11 +4,11 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**cancelHistory**](HistoricallyExecutedQueriesApi.md#cancelHistory) | **DELETE** /api/History/{executionId} | CancelHistory: Cancels (if running) or clears the data from (if completed) a previously started History query |
-| [**fetchHistoryResultHistogram**](HistoricallyExecutedQueriesApi.md#fetchHistoryResultHistogram) | **GET** /api/History/{executionId}/histogram | FetchHistoryResultHistogram: Fetches the result from a previously started query, converts it to a histogram (counts in buckets). |
-| [**fetchHistoryResultJson**](HistoricallyExecutedQueriesApi.md#fetchHistoryResultJson) | **GET** /api/History/{executionId}/json | FetchHistoryResultJson: Fetches the result from a previously started query, in JSON format. |
-| [**getHistory**](HistoricallyExecutedQueriesApi.md#getHistory) | **GET** /api/History | GetHistory: Shows queries executed in a given historical time window (in Json format). |
-| [**getProgressOfHistory**](HistoricallyExecutedQueriesApi.md#getProgressOfHistory) | **GET** /api/History/{executionId} | GetProgressOfHistory: View progress information (up until this point) of a history query |
+| [**cancelHistory**](HistoricallyExecutedQueriesApi.md#cancelHistory) | **DELETE** /api/History/{executionId} | CancelHistory: Cancels / Clears data from a query history search |
+| [**fetchHistoryResultHistogram**](HistoricallyExecutedQueriesApi.md#fetchHistoryResultHistogram) | **GET** /api/History/{executionId}/histogram | FetchHistoryResultHistogram: Makes a histogram of results from a query history search |
+| [**fetchHistoryResultJson**](HistoricallyExecutedQueriesApi.md#fetchHistoryResultJson) | **GET** /api/History/{executionId}/json | FetchHistoryResultJson: Fetches JSON results from a query history search |
+| [**getHistory**](HistoricallyExecutedQueriesApi.md#getHistory) | **GET** /api/History | GetHistory: Starts a background query history search |
+| [**getProgressOfHistory**](HistoricallyExecutedQueriesApi.md#getProgressOfHistory) | **GET** /api/History/{executionId} | GetProgressOfHistory: View progress of a query history search |
 
 
 
@@ -16,7 +16,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > BackgroundQueryCancelResponse cancelHistory(executionId)
 
-CancelHistory: Cancels (if running) or clears the data from (if completed) a previously started History query
+CancelHistory: Cancels / Clears data from a query history search
 
 Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
 
@@ -105,7 +105,7 @@ public class HistoricallyExecutedQueriesApiExample {
 
 > String fetchHistoryResultHistogram(executionId, bucketSize, filter, jsonProper)
 
-FetchHistoryResultHistogram: Fetches the result from a previously started query, converts it to a histogram (counts in buckets).
+FetchHistoryResultHistogram: Makes a histogram of results from a query history search
 
 Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -202,7 +202,7 @@ public class HistoricallyExecutedQueriesApiExample {
 
 > String fetchHistoryResultJson(executionId, sortBy, filter, select, groupBy, limit, page, jsonProper)
 
-FetchHistoryResultJson: Fetches the result from a previously started query, in JSON format.
+FetchHistoryResultJson: Fetches JSON results from a query history search
 
 Fetch the data in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -307,7 +307,7 @@ public class HistoricallyExecutedQueriesApiExample {
 
 > BackgroundQueryResponse getHistory(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore)
 
-GetHistory: Shows queries executed in a given historical time window (in Json format).
+GetHistory: Starts a background query history search
 
  Starts to load the historical query logs for a certain time range, search criteria, etc.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
@@ -404,7 +404,7 @@ public class HistoricallyExecutedQueriesApiExample {
 
 > BackgroundQueryProgressResponse getProgressOfHistory(executionId)
 
-GetProgressOfHistory: View progress information (up until this point) of a history query
+GetProgressOfHistory: View progress of a query history search
 
 View progress information (up until this point) of previously started History query The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 

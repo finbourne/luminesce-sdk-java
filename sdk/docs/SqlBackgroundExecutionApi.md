@@ -4,18 +4,18 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**cancelQuery**](SqlBackgroundExecutionApi.md#cancelQuery) | **DELETE** /api/SqlBackground/{executionId} | CancelQuery: Cancels (if running) or clears the data from (if completed) a previously started query |
-| [**fetchQueryResultCsv**](SqlBackgroundExecutionApi.md#fetchQueryResultCsv) | **GET** /api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetches the result from a previously started query, in CSV format. |
-| [**fetchQueryResultExcel**](SqlBackgroundExecutionApi.md#fetchQueryResultExcel) | **GET** /api/SqlBackground/{executionId}/excel | FetchQueryResultExcel: Fetches the result from a previously started query, in Excel format. |
-| [**fetchQueryResultHistogram**](SqlBackgroundExecutionApi.md#fetchQueryResultHistogram) | **GET** /api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Fetches the result from a previously started query, converts it to a histogram (counts in buckets). |
-| [**fetchQueryResultJson**](SqlBackgroundExecutionApi.md#fetchQueryResultJson) | **GET** /api/SqlBackground/{executionId}/json | FetchQueryResultJson: Fetches the result from a previously started query, in JSON string format.  Please move to &#39;/jsonProper&#39; instead. This may be marked as Deprecated in the future. |
-| [**fetchQueryResultJsonProper**](SqlBackgroundExecutionApi.md#fetchQueryResultJsonProper) | **GET** /api/SqlBackground/{executionId}/jsonProper | FetchQueryResultJsonProper: Fetches the result from a previously started query, in JSON format. |
-| [**fetchQueryResultParquet**](SqlBackgroundExecutionApi.md#fetchQueryResultParquet) | **GET** /api/SqlBackground/{executionId}/parquet | FetchQueryResultParquet: Fetches the result from a previously started query, in Parquet format. |
-| [**fetchQueryResultPipe**](SqlBackgroundExecutionApi.md#fetchQueryResultPipe) | **GET** /api/SqlBackground/{executionId}/pipe | FetchQueryResultPipe: Fetches the result from a previously started query, in pipe-delimited format. |
-| [**fetchQueryResultSqlite**](SqlBackgroundExecutionApi.md#fetchQueryResultSqlite) | **GET** /api/SqlBackground/{executionId}/sqlite | FetchQueryResultSqlite: Fetches the result from a previously started query, in SqLite format. |
-| [**fetchQueryResultXml**](SqlBackgroundExecutionApi.md#fetchQueryResultXml) | **GET** /api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetches the result from a previously started query, in Xml format. |
-| [**getProgressOf**](SqlBackgroundExecutionApi.md#getProgressOf) | **GET** /api/SqlBackground/{executionId} | GetProgressOf: View progress information (up until this point) |
-| [**startQuery**](SqlBackgroundExecutionApi.md#startQuery) | **PUT** /api/SqlBackground | StartQuery: Starts to Execute LuminesceSql in the background. |
+| [**cancelQuery**](SqlBackgroundExecutionApi.md#cancelQuery) | **DELETE** /api/SqlBackground/{executionId} | CancelQuery: Cancels / Clears data from a previously run query |
+| [**fetchQueryResultCsv**](SqlBackgroundExecutionApi.md#fetchQueryResultCsv) | **GET** /api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetches the result of a query as CSV |
+| [**fetchQueryResultExcel**](SqlBackgroundExecutionApi.md#fetchQueryResultExcel) | **GET** /api/SqlBackground/{executionId}/excel | FetchQueryResultExcel: Fetches the result of a query as an Excel file |
+| [**fetchQueryResultHistogram**](SqlBackgroundExecutionApi.md#fetchQueryResultHistogram) | **GET** /api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Constructs a histogram of the result of a query |
+| [**fetchQueryResultJson**](SqlBackgroundExecutionApi.md#fetchQueryResultJson) | **GET** /api/SqlBackground/{executionId}/json | FetchQueryResultJson: Fetches the result of a query as a JSON string |
+| [**fetchQueryResultJsonProper**](SqlBackgroundExecutionApi.md#fetchQueryResultJsonProper) | **GET** /api/SqlBackground/{executionId}/jsonProper | FetchQueryResultJsonProper: Fetches the result of a query as JSON |
+| [**fetchQueryResultParquet**](SqlBackgroundExecutionApi.md#fetchQueryResultParquet) | **GET** /api/SqlBackground/{executionId}/parquet | FetchQueryResultParquet: Fetches the result of a query as Parquet |
+| [**fetchQueryResultPipe**](SqlBackgroundExecutionApi.md#fetchQueryResultPipe) | **GET** /api/SqlBackground/{executionId}/pipe | FetchQueryResultPipe: Fetches the result of a query as pipe-delimited |
+| [**fetchQueryResultSqlite**](SqlBackgroundExecutionApi.md#fetchQueryResultSqlite) | **GET** /api/SqlBackground/{executionId}/sqlite | FetchQueryResultSqlite: Fetches the result of a query as SqLite |
+| [**fetchQueryResultXml**](SqlBackgroundExecutionApi.md#fetchQueryResultXml) | **GET** /api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetches the result of a query as XML |
+| [**getProgressOf**](SqlBackgroundExecutionApi.md#getProgressOf) | **GET** /api/SqlBackground/{executionId} | GetProgressOf: View progress information up until this point |
+| [**startQuery**](SqlBackgroundExecutionApi.md#startQuery) | **PUT** /api/SqlBackground | StartQuery: Starts to Execute Sql in the background |
 
 
 
@@ -23,7 +23,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > BackgroundQueryCancelResponse cancelQuery(executionId)
 
-CancelQuery: Cancels (if running) or clears the data from (if completed) a previously started query
+CancelQuery: Cancels / Clears data from a previously run query
 
 Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
 
@@ -112,9 +112,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > String fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape)
 
-FetchQueryResultCsv: Fetches the result from a previously started query, in CSV format.
+FetchQueryResultCsv: Fetches the result of a query as CSV
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -221,9 +221,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > File fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy)
 
-FetchQueryResultExcel: Fetches the result from a previously started query, in Excel format.
+FetchQueryResultExcel: Fetches the result of a query as an Excel file
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -320,7 +320,7 @@ public class SqlBackgroundExecutionApiExample {
 
 > String fetchQueryResultHistogram(executionId, timestampFieldName, startAt, endAt, bucketSize, filter, jsonProper)
 
-FetchQueryResultHistogram: Fetches the result from a previously started query, converts it to a histogram (counts in buckets).
+FetchQueryResultHistogram: Constructs a histogram of the result of a query
 
 Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -423,9 +423,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > String fetchQueryResultJson(executionId, sortBy, filter, select, groupBy, limit, page)
 
-FetchQueryResultJson: Fetches the result from a previously started query, in JSON string format.  Please move to &#39;/jsonProper&#39; instead. This may be marked as Deprecated in the future.
+FetchQueryResultJson: Fetches the result of a query as a JSON string
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+ *Please move to &#39;/jsonProper&#39; instead. This may be marked as Deprecated in the future.*  Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -526,9 +526,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > String fetchQueryResultJsonProper(executionId, download, sortBy, filter, select, groupBy, limit, page)
 
-FetchQueryResultJsonProper: Fetches the result from a previously started query, in JSON format.
+FetchQueryResultJsonProper: Fetches the result of a query as JSON
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -631,9 +631,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > File fetchQueryResultParquet(executionId, sortBy, filter, select, groupBy)
 
-FetchQueryResultParquet: Fetches the result from a previously started query, in Parquet format.
+FetchQueryResultParquet: Fetches the result of a query as Parquet
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -730,9 +730,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > String fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page)
 
-FetchQueryResultPipe: Fetches the result from a previously started query, in pipe-delimited format.
+FetchQueryResultPipe: Fetches the result of a query as pipe-delimited
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -835,9 +835,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > File fetchQueryResultSqlite(executionId, sortBy, filter, select, groupBy)
 
-FetchQueryResultSqlite: Fetches the result from a previously started query, in SqLite format.
+FetchQueryResultSqlite: Fetches the result of a query as SqLite
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -934,9 +934,9 @@ public class SqlBackgroundExecutionApiExample {
 
 > String fetchQueryResultXml(executionId, download, sortBy, filter, select, groupBy, limit, page)
 
-FetchQueryResultXml: Fetches the result from a previously started query, in Xml format.
+FetchQueryResultXml: Fetches the result of a query as XML
 
-Fetch the data in various formats (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -1039,7 +1039,7 @@ public class SqlBackgroundExecutionApiExample {
 
 > BackgroundQueryProgressResponse getProgressOf(executionId, buildFromLogs)
 
-GetProgressOf: View progress information (up until this point)
+GetProgressOf: View progress information up until this point
 
 View progress information (up until this point) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -1130,7 +1130,7 @@ public class SqlBackgroundExecutionApiExample {
 
 > BackgroundQueryResponse startQuery(body, scalarParameters, queryName, timeoutSeconds, keepForSeconds)
 
-StartQuery: Starts to Execute LuminesceSql in the background.
+StartQuery: Starts to Execute Sql in the background
 
  Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready) - view progress information (up until this point) - cancel the query (if still running) / clear the data (if already returned)  This can still error on things like an outright syntax error, but more runtime errors (e.g. from providers) will not cause this to error (that will happen when attempting to fetch data)  Here is an example that intentionally takes one minute to run:  &#x60;&#x60;&#x60;sql select Str, Takes500Ms from Testing1K where UseLinq &#x3D; true and [Int] &lt;&#x3D; 120 &#x60;&#x60;&#x60;  This is the only place in the Luminesce WebAPI where the following is supported. This will allow for the same user running a character-identical query not kick off a new query but simply be returned a reference  to the already running one for up to &#x60;N&#x60; seconds (where &#x60;N&#x60; should be &#x60;&lt;&#x3D;&#x60; &#x60;keepForSeconds&#x60;).  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden 
 

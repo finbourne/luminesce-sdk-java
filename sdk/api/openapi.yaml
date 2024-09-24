@@ -7,7 +7,7 @@ info:
   description: "\n```\n> __ _ \n / / __ ______ ___ (_)___ ___ _____________ \n / /\
     \ / / / / __ `__ \\/ / __ \\/ _ \\/ ___/ ___/ _ \\\n / /___/ /_/ / / / / / / /\
     \ / / / __(__ ) /__/ __/\n/_____/\\__,_/_/ /_/ /_/_/_/ /_/\\___/____/\\___/\\\
-    ___/ \n```\n\n### Introduction to Luminesce\n\n[Luminesce](https://support.lusid.com/knowledgebase/article/KA-01677/)\
+    ___/ \n```\n\n[Luminesce](https://support.lusid.com/knowledgebase/article/KA-01677/)\
     \ is a data virtualization engine for LUSID and other applications. \nIt is proprietary\
     \ technology designed and developed by FINBOURNE Technology Limited. \n[Understanding\
     \ the Luminesce platform architecture.](https://support.lusid.com/knowledgebase/article/KA-01707/)\n\
@@ -36,10 +36,36 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.626
+  version: 1.16.635
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
+  x-fbn-error-codes:
+    "233":
+      description: Query Parser Failure
+    "850":
+      description: "Required provider not visible; provider may not exist, be temporarily\
+        \ unavailable, or you may not have the necessary permissions"
+    "851":
+      description: Query reached a timeout period or was cancelled
+    "852":
+      description: Query failed during execution
+    "853":
+      description: Query failed during execution for an unexpected reason
+    "854":
+      description: Query failed during execution for a reason known to be an internal
+        error (e.g. a Lusid provider where a corresponding API would return a 500)
+    "855":
+      description: Required column is not in the queried provider(s)
+    "856":
+      description: One or more columns are ambiguously referenced in the query
+    "857":
+      description: "Query failed during execution of a provider (e.g. in a way that\
+        \ might be transient, like an upstream issue)"
+    "858":
+      description: Query failed during execution within the Query Engine's SQL processing
+    "859":
+      description: A variable has been defined more than once
 servers:
 - url: https://fbn-prd.lusid.com/honeycomb
 security:
@@ -52,10 +78,9 @@ tags:
     These are to allow various functionalities to be run outside of Finbourne cloud infrastructure.
     For example to connection to internal databases, run providers on users' machines, or obtain the LuminesceCLI.
   name: Binary Downloading
-- description: "List, Mint, Renew and Revoke your Honeycomb / Luminesce TLS Certificates."
+- description: List / Mint / Renew / Revoke Luminesce TLS Certs
   name: Certificate Management
-- description: Shows Table and Field level information on Providers that are currently
-    running that you have access to.
+- description: Table/Field information on available Providers
   name: Current Table/Field Catalog
 - description: Allows for checking health
   name: Health checking endpoint
@@ -75,13 +100,14 @@ tags:
 paths:
   /api/Catalog:
     get:
-      description: |2
-
-        Returns the User's full version of the catalog (Providers and their fields)
-
-        The following error codes are to be anticipated with standard Problem Detail reports:
-        - 401 Unauthorized
-        - 403 Forbidden
+      description: "\nReturns the User's full version of the catalog (Providers, their\
+        \ fields and associated information)\nthat are currently running that you\
+        \ have access to (in Json format).\n\nThis is the entire catalog flattened,\
+        \ which is often quite large and always a bit repetitive. \nThe internal results\
+        \ are cached for several minutes.\n\nConsider using `api/Catalog/providers`\
+        \ and `api/Catalog/fields` for a more granular and incremental loading flow.\n\
+        \nThe following error codes are to be anticipated with standard Problem Detail\
+        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetCatalog
       parameters:
       - description: Limit the catalog to only things in some way dealing with the
@@ -129,8 +155,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "GetCatalog: Shows Table and Field level information on Providers that\
-        \ are currently running that you have access to (in Json format)"
+      summary: "GetCatalog: Flattened Table/Faield Catalog"
       tags:
       - Current Table/Field Catalog
       x-fbn-apistatus: Stable
@@ -140,8 +165,9 @@ paths:
       description: "\nReturns the User's full version of the catalog but only the\
         \ field/parameter-level information \n(as well as the TableName they refer\
         \ to, of course) for tables matching the `tableLike` (manually include wildcards\
-        \ if desired).\n\nThe following error codes are to be anticipated with standard\
-        \ Problem Detail reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
+        \ if desired).\n\nThe internal results are cached for several minutes.\n\n\
+        The following error codes are to be anticipated with standard Problem Detail\
+        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetFields
       parameters:
       - explode: true
@@ -167,8 +193,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "GetFields: Shows Table level information on Providers that are currently\
-        \ running that you have access to (in Json format)"
+      summary: "GetFields: Lists field/parameter information for providers"
       tags:
       - Current Table/Field Catalog
       x-fbn-apistatus: Stable
@@ -177,7 +202,9 @@ paths:
     get:
       description: |2
 
-        Returns the User's full version of the catalog but only the table/provider-level information
+        Returns the User's full version of the catalog but only the table/provider-level information they have access to.
+
+        The internal results are cached for several minutes.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
@@ -219,8 +246,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "GetProviders: Shows Table level information on Providers that are\
-        \ currently running that you have access to (in Json format)"
+      summary: "GetProviders: Lists providers available"
       tags:
       - Current Table/Field Catalog
       x-fbn-apistatus: Stable
@@ -229,7 +255,7 @@ paths:
     get:
       description: |2
 
-        Downloads your latest Domain or User certificate's public or private key - if any.
+        Downloads your latest Domain or your User certificate's public or private key - if any.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - certificate is not available for some reason
@@ -309,8 +335,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DownloadCertificate: Downloads your latest Domain or\
-        \ User certificate's public or private key - if any"
+      summary: "[EXPERIMENTAL] DownloadCertificate: Download Domain or your personal\
+        \ certificates"
       tags:
       - Certificate Management
       x-fbn-apistatus: Experimental
@@ -370,8 +396,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListCertificates: Lists all the certificates previously\
-        \ minted to which you have access"
+      summary: "[EXPERIMENTAL] ListCertificates: Lists previously minted certificates"
       tags:
       - Certificate Management
       x-fbn-apistatus: Experimental
@@ -490,8 +515,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ManageCertificate: Manages a new certificate (Create\
-        \ / Renew / Revoke)"
+      summary: "[EXPERIMENTAL] ManageCertificate: Create / Renew / Revoke a certificate"
       tags:
       - Certificate Management
       x-fbn-apistatus: Experimental
@@ -499,17 +523,16 @@ paths:
   /api/Download/download:
     get:
       description: "\nDownloads the latest version (or specific if needs be) of the\
-        \ specified Luminesce Binary, given the required entitlements.\n\n*NOTE:*\
-        \ This endpoint is an alternative to time-consuming manual distribution via\
-        \ Drive or Email.\n> it relies on as underlying datastore that is not quite\
-        \ as \"Highly Available\" to the degree \n> that FINBOURNE services generally\
-        \ are. \n> Thus it is not subject to the same SLAs as other API endpoints\
-        \ are.\n> *If you perceive an outage, please try again later.*\n\nOnce a file\
-        \ has been downloaded the following steps can be used to install it (for the\
-        \ dotnet tools at least):\n\n1. Open a terminal and cd to the directory you\
-        \ downloaded it to\n2. Install / extract files from that package via:\n```\n\
-        dotnet tool install NameOfFileWithoutVersionNumberOrExtension -g --add-source\
-        \ \".\"\n```\ne.g.\n```\ndotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake\
+        \ specified Luminesce Binary, given the required entitlements.\n\n> This endpoint\
+        \ is an alternative to time-consuming manual distribution via Drive or Email.\n\
+        > it relies on an underlying datastore that is not quite as \"Highly Available\"\
+        \ to the degree \n> that FINBOURNE services generally are. \n> Thus it is\
+        \ not subject to the same SLAs as other API endpoints are.\n> *If you perceive\
+        \ an outage, please try again later.*\n\nOnce a file has been downloaded the\
+        \ following steps can be used to install it (for the dotnet tools at least):\n\
+        \n1. Open a terminal and cd to the directory you downloaded it to\n2. Install\
+        \ / extract files from that package via:\n```\ndotnet tool install NameOfFileWithoutVersionNumberOrExtension\
+        \ -g --add-source \".\"\n```\ne.g.\n```\ndotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake\
         \ -g --add-source \".\"\n```\n3. Execute them (see documentation for specific\
         \ binary)...\n\nThe installed binaries can then be found in\n- Windows - `%USERPROFILE%\\\
         .dotnet\\tools\\.store\\`\n- Linux/macOS - `$HOME/.dotnet/tools/.store/`\n\
@@ -571,8 +594,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DownloadBinary: Downloads the latest version (or specific\
-        \ if needs be) of the specified Luminesce Binary, given the required entitlements."
+      summary: "[EXPERIMENTAL] DownloadBinary: Download Luminesce Binaries you may\
+        \ run on site"
       tags:
       - Binary Downloading
       x-fbn-apistatus: Experimental
@@ -639,8 +662,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetBinaryVersions: Gets the list of available versions\
-        \ of a user-downloadable binary from Nexus"
+      summary: "[EXPERIMENTAL] GetBinaryVersions: Lists the available versions of\
+        \ binaries"
       tags:
       - Binary Downloading
       x-fbn-apistatus: Experimental
@@ -721,8 +744,7 @@ paths:
           description: Accepted
       security:
       - oauth2: []
-      summary: "GetHistory: Shows queries executed in a given historical time window\
-        \ (in Json format)."
+      summary: "GetHistory: Starts a background query history search"
       tags:
       - Historically Executed Queries
       x-fbn-apistatus: Stable
@@ -760,8 +782,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "CancelHistory: Cancels (if running) or clears the data from (if completed)\
-        \ a previously started History query"
+      summary: "CancelHistory: Cancels / Clears data from a query history search"
       tags:
       - Historically Executed Queries
       x-fbn-apistatus: Stable
@@ -802,8 +823,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "GetProgressOfHistory: View progress information (up until this point)\
-        \ of a history query"
+      summary: "GetProgressOfHistory: View progress of a query history search"
       tags:
       - Historically Executed Queries
       x-fbn-apistatus: Stable
@@ -900,8 +920,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchHistoryResultHistogram: Fetches the result from a previously\
-        \ started query, converts it to a histogram (counts in buckets)."
+      summary: "FetchHistoryResultHistogram: Makes a histogram of results from a query\
+        \ history search"
       tags:
       - Historically Executed Queries
       x-fbn-apistatus: Stable
@@ -1060,8 +1080,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchHistoryResultJson: Fetches the result from a previously started\
-        \ query, in JSON format."
+      summary: "FetchHistoryResultJson: Fetches JSON results from a query history\
+        \ search"
       tags:
       - Historically Executed Queries
       x-fbn-apistatus: Stable
@@ -1264,8 +1284,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "StartQueries: Starts to Execute the LuminesceSql statements in the\
-        \ background."
+      summary: "StartQueries: Runs a given set of Sql queries in the background"
       tags:
       - Multi-Query Execution
       x-fbn-apistatus: Stable
@@ -1304,8 +1323,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "CancelMultiQuery: Cancels (if running) or clears the data from (if\
-        \ completed) a previously started query-set"
+      summary: "CancelMultiQuery: Cancels / Clears a previously started query-set"
       tags:
       - Multi-Query Execution
       x-fbn-apistatus: Stable
@@ -1346,8 +1364,8 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "GetProgressOfMultiQuery: View progress information (up until this\
-        \ point) for the entire query-set"
+      summary: "GetProgressOfMultiQuery: View progress information for the entire\
+        \ query-set"
       tags:
       - Multi-Query Execution
       x-fbn-apistatus: Stable
@@ -1356,7 +1374,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -1485,8 +1503,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQueryCsv: Executes Sql, returned in CSV format, where the sql\
-        \ is the post-body url."
+      summary: "PutByQueryCsv: Executes Sql from the body returning CSV"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -1496,8 +1513,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -1616,8 +1633,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQueryCsv: Executes Sql, returned in CSV format, where the sql\
-        \ is simply in the url."
+      summary: "GetByQueryCsv: Executes Sql from the url returning CSV"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -1626,7 +1642,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -1731,8 +1747,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as\
-        \ a file to be downloaded), where the sql is the post-body url."
+      summary: "PutByQueryExcel: Executes Sql from the body making an Excel file"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -1742,8 +1757,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -1838,15 +1853,17 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQueryExcel: Executes Sql, returned in Excel (xlsx) format (as\
-        \ a file to be downloaded) format, where the sql is simply in the url."
+      summary: "GetByQueryExcel: Executes Sql from the url returning an Excel file"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Sql/extractscalarparameters:
     put:
-      description: SQL to extract scalar parameters from
+      description: "Extracts information about all the scalar parameters defined in\
+        \ the given SQL statement\n\n> This method is generally only intended for\
+        \ IDE generation purposes. \n> It is largely internal to the Finbourne web\
+        \ user interfaces and subject to change without notice.\n"
       operationId: PutSqlToExtractScalarParameters
       requestBody:
         content:
@@ -1929,8 +1946,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToExtractScalarParameters: Generates information\
-        \ about all the scalar parameters defined in the given SQL statement"
+      summary: "[EXPERIMENTAL] PutSqlToExtractScalarParameters: Extracts scalar parameter\
+        \ information from SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -1938,7 +1955,10 @@ paths:
       x-accepts: application/json
   /api/Sql/fromcasestatementdesign:
     put:
-      description: CaseStatementDesign object to try and create a SQL query from
+      description: "Generates a SQL case statement query from a structured CaseStatementDesign\
+        \ object\n\n> This method is generally only intended for IDE generation purposes.\
+        \ \n> It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutCaseStatementDesignToSql
       requestBody:
         content:
@@ -1978,7 +1998,7 @@ paths:
                 target: US
             schema:
               $ref: '#/components/schemas/CaseStatementDesign'
-        description: Structured file read design object to generate SQL from
+        description: CaseStatementDesign object to try and create a SQL query from
         required: true
       responses:
         "200":
@@ -2019,8 +2039,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutCaseStatementDesignToSql: Generates SQL case statement\
-        \ queries from a structured design"
+      summary: "[EXPERIMENTAL] PutCaseStatementDesignToSql: Converts a case statement\
+        \ design object to SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -2028,7 +2048,9 @@ paths:
       x-accepts: application/json
   /api/Sql/fromdesign:
     put:
-      description: SQL Designer specification to generate SQL from
+      description: "Generates SQL from a QueryDesign object\n\n> This method is generally\
+        \ only intended for IDE generation purposes. \n> It is largely internal to\
+        \ the Finbourne web user interfaces and subject to change without notice.\n"
       operationId: PutQueryDesignToSql
       requestBody:
         content:
@@ -2177,8 +2199,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutQueryDesignToSql: Generates SQL from a structured\
-        \ query design"
+      summary: "[EXPERIMENTAL] PutQueryDesignToSql: Makes SQL from a structured query\
+        \ design"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -2186,7 +2208,10 @@ paths:
       x-accepts: application/json
   /api/Sql/fromfilereaddesign:
     put:
-      description: SQL Designer specification to generate SQL from
+      description: "Generates SQL from a FileReaderBuilderDef object\n\n> This method\
+        \ is generally only intended for IDE generation purposes. \n> It is largely\
+        \ internal to the Finbourne web user interfaces and subject to change without\
+        \ notice.\n"
       operationId: PutFileReadDesignToSql
       parameters:
       - description: Should the generated query be executed to build preview data
@@ -2287,8 +2312,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutFileReadDesignToSql: Generates file read SQL from\
-        \ a structured query design"
+      summary: "[EXPERIMENTAL] PutFileReadDesignToSql: Makes file read SQL from a\
+        \ design object"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -2296,7 +2321,10 @@ paths:
       x-accepts: application/json
   /api/Sql/frominlinedpropertiesdesign:
     put:
-      description: Inlined properties Designer specification to generate SQL from
+      description: "Generates inlined properties SQL from a structured design\n\n\
+        > This method is generally only intended for IDE generation purposes. \n>\
+        \ It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutInlinedPropertiesDesignToSql
       requestBody:
         content:
@@ -2340,7 +2368,7 @@ paths:
                 description: some description
             schema:
               $ref: '#/components/schemas/InlinedPropertyDesign'
-        description: Structured file read design object to generate SQL from
+        description: Inlined properties Designer specification to generate SQL from
         required: true
       responses:
         "200":
@@ -2381,8 +2409,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Generates inlined\
-        \ properties SQL from a structured design"
+      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Makes inlined properties\
+        \ SQL from a design object"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -2390,8 +2418,10 @@ paths:
       x-accepts: application/json
   /api/Sql/fromviewdesign:
     put:
-      description: Converts a ConvertToView specification into SQL that creates a
-        view
+      description: "Converts a ConvertToView specification into SQL that creates a\
+        \ view\n\n> This method is generally only intended for IDE generation purposes.\
+        \ \n> It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutViewDesignToSql
       requestBody:
         content:
@@ -2560,8 +2590,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutViewDesignToSql: Generates view creation sql from\
-        \ a structured view creation design"
+      summary: "[EXPERIMENTAL] PutViewDesignToSql: Makes view creation sql from a\
+        \ view-design"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -2569,7 +2599,10 @@ paths:
       x-accepts: application/json
   /api/Sql/fromwriterdesign:
     put:
-      description: SQL Writer Design specification to generate Writer SQL from
+      description: "Generates writer SQL from a valid WriterDesign structure\n\n>\
+        \ This method is generally only intended for IDE generation purposes. \n>\
+        \ It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutWriterDesignToSql
       requestBody:
         content:
@@ -2795,8 +2828,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutWriterDesignToSql: Generates writer SQL from a valid\
-        \ writer-design structure"
+      summary: "[EXPERIMENTAL] PutWriterDesignToSql: Makes writer SQL from a writer-design\
+        \ object"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -2804,8 +2837,10 @@ paths:
       x-accepts: application/json
   /api/Sql/intellisense:
     put:
-      description: SQL and a row/colum position within it from which to determine
-        intellisense options for the user to potentially choose from.
+      description: "Generate a set of possible intellisense prompts given a SQL snip-it\
+        \ (in need not yet be valid SQL) and cursor location\n\n> This method is generally\
+        \ only intended for IDE generation purposes. \n> It is largely internal to\
+        \ the Finbourne web user interfaces and subject to change without notice.\n"
       operationId: PutIntellisense
       requestBody:
         content:
@@ -2849,6 +2884,8 @@ paths:
                 column: 4
             schema:
               $ref: '#/components/schemas/IntellisenseRequest'
+        description: SQL and a row/colum position within it from which to determine
+          intellisense options for the user to potentially choose from.
         required: true
       responses:
         "200":
@@ -2943,8 +2980,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutIntellisense: Generate a set of possible intellisense prompts given\
-        \ a SQL snip-it (in need not yet be valid) and cursor location"
+      summary: "PutIntellisense: Makes a intellisense prompts given an SQL snip-it"
       tags:
       - Sql Design
       x-fbn-apistatus: Stable
@@ -2952,8 +2988,10 @@ paths:
       x-accepts: application/json
   /api/Sql/intellisenseError:
     put:
-      description: "SQL (by line) to syntax check and return error ranges from within,\
-        \ if any."
+      description: "Generate a set of error ranges, if any, in the given SQL (expressed\
+        \ as Lines)\n\n> This method is generally only intended for IDE generation\
+        \ purposes. \n> It is largely internal to the Finbourne web user interfaces\
+        \ and subject to change without notice.\n"
       operationId: PutIntellisenseError
       requestBody:
         content:
@@ -2985,6 +3023,8 @@ paths:
               ensureSomeTextIsSelected: false
             schema:
               $ref: '#/components/schemas/ErrorHighlightRequest'
+        description: "SQL (by line) to syntax check and return error ranges from within,\
+          \ if any."
         required: true
       responses:
         "200":
@@ -3061,8 +3101,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutIntellisenseError: Generate a set of error ranges, if any, in the\
-        \ given SQL (expressed as Lines)"
+      summary: "PutIntellisenseError: Expresses error ranges from SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Stable
@@ -3072,7 +3111,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -3184,8 +3223,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQueryJson: Executes Sql, returned in JSON format, where the sql\
-        \ is the post-body url."
+      summary: "PutByQueryJson: Executes Sql from the body returning JSON"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -3195,8 +3233,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -3298,8 +3336,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQueryJson: Executes Sql, returned in JSON format, where the sql\
-        \ is simply in the url."
+      summary: "GetByQueryJson: Executes Sql from the url returning JSON"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -3308,7 +3345,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -3413,8 +3450,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQueryParquet: Executes Sql, returned in Parquet format, where\
-        \ the sql is the post-body url."
+      summary: "PutByQueryParquet: Executes Sql from the body making a Parquet file"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -3424,8 +3460,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -3520,8 +3556,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQueryParquet: Executes Sql, returned in Parquet (.parquet) format\
-        \ (as a file to be downloaded) format, where the sql is simply in the url."
+      summary: "GetByQueryParquet: Executes Sql from the url returning a Parquet file"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -3530,7 +3565,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -3643,8 +3678,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQueryPipe: Executes Sql, returned in pipe-delimited format, where\
-        \ the sql is the post-body url."
+      summary: "PutByQueryPipe: Executes Sql from the body making pipe-delimited"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -3654,8 +3688,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -3758,8 +3792,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQueryPipe: Executes Sql, returned in pipe-delimited format, where\
-        \ the sql is simply in the url."
+      summary: "GetByQueryPipe: Executes Sql from the url returning pipe-delimited"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -3768,7 +3801,7 @@ paths:
     put:
       description: |2
 
-        This formats SQL (given a set of options as to how to do so).
+        This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL.
         It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly)
         and returns the reformatted version.
         e.g.
@@ -3966,8 +3999,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutQueryToFormat: Formats SQL into a more readable form, a.k.a. Pretty-Print\
-        \ the SQL."
+      summary: "PutQueryToFormat: Formats SQL into a more readable form"
       tags:
       - Sql Design
       x-fbn-apistatus: Stable
@@ -3977,7 +4009,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -4082,8 +4114,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format\
-        \ (as a file to be downloaded), where the sql is the post-body url."
+      summary: "PutByQuerySqlite: Executes Sql from the body returning SqLite DB"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -4093,8 +4124,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -4189,15 +4220,17 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQuerySqlite: Executes Sql, returned in SqLite DB (sqlite3) format\
-        \ (as a file to be downloaded) format, where the sql is simply in the url."
+      summary: "GetByQuerySqlite: Executes Sql from the url returning SqLite DB"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Sql/tocasestatementdesign:
     put:
-      description: SQL to attempt to create an case statement Design object from
+      description: "Converts a SQL query to a CaseStatementDesign object\n\n> This\
+        \ method is generally only intended for IDE generation purposes. \n> It is\
+        \ largely internal to the Finbourne web user interfaces and subject to change\
+        \ without notice.\n"
       operationId: PutCaseStatementDesignSqlToDesign
       requestBody:
         content:
@@ -4206,7 +4239,7 @@ paths:
               \ = 'Gb' THEN 'GBP' \n ELSE [currency] \n END"
             schema:
               type: string
-        description: SQL query to generate the case statement design object from
+        description: SQL to attempt to create an case statement Design object from
       responses:
         "200":
           content:
@@ -4264,8 +4297,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL queries\
-        \ to a CaseStatementDesign object."
+      summary: "[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL to\
+        \ a case statement design object"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -4273,7 +4306,10 @@ paths:
       x-accepts: application/json
   /api/Sql/todesign:
     put:
-      description: SQL to attempt to create a Design object from
+      description: "Generates a QueryDesign object from simple SQL if possible\n\n\
+        > This method is generally only intended for IDE generation purposes. \n>\
+        \ It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutSqlToQueryDesign
       parameters:
       - description: "Should the table be validated against the users' view of Sys.Field\
@@ -4415,8 +4451,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToQueryDesign: Generates a SQL-design object\
-        \ from SQL string, if possible."
+      summary: "[EXPERIMENTAL] PutSqlToQueryDesign: Makes a SQL-design object from\
+        \ SQL if possible"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -4424,7 +4460,10 @@ paths:
       x-accepts: application/json
   /api/Sql/tofilereaddesign:
     put:
-      description: SQL to attempt to create a Design object from
+      description: "Generates a SQL-file-read-design object from SQL string, if possible.\n\
+        \n> This method is generally only intended for IDE generation purposes. \n\
+        > It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutSqlToFileReadDesign
       parameters:
       - description: Should the available sources be determined from `Sys.Registration`
@@ -4509,8 +4548,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Generates a SQL-file-read-design\
-        \ object from SQL string, if possible."
+      summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Makes a design object from\
+        \ file-read SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -4518,7 +4557,10 @@ paths:
       x-accepts: application/json
   /api/Sql/toinlinedpropertiesdesign:
     put:
-      description: SQL to attempt to create an inlined properties Design object from
+      description: "Generates a SQL-inlined-properties-design object from SQL string,\
+        \ if possible.\n\n> This method is generally only intended for IDE generation\
+        \ purposes. \n> It is largely internal to the Finbourne web user interfaces\
+        \ and subject to change without notice.\n"
       operationId: PutInlinedPropertiesDesignSqlToDesign
       requestBody:
         content:
@@ -4531,7 +4573,8 @@ paths:
               \ where Provider = 'Lusid.Portfolio' and Configuration = @config;"
             schema:
               type: string
-        description: SQL query to generate the inlined properties design object from
+        description: SQL query to attempt to generate the inlined properties design
+          object from
       responses:
         "200":
           content:
@@ -4592,8 +4635,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Generates a\
-        \ SQL-inlined-properties-design object from SQL string, if possible."
+      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Makes an inlined\
+        \ properties design from SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -4601,7 +4644,10 @@ paths:
       x-accepts: application/json
   /api/Sql/toviewdesign:
     put:
-      description: SQL which creates a view into a structured ConvertToViewData object
+      description: "Converts SQL which creates a view into a structured ConvertToViewData\
+        \ object\n\n> This method is generally only intended for IDE generation purposes.\
+        \ \n> It is largely internal to the Finbourne web user interfaces and subject\
+        \ to change without notice.\n"
       operationId: PutSqlToViewDesign
       requestBody:
         content:
@@ -4738,8 +4784,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToViewDesign: Generates a structured view creation\
-        \ design from existing view creation SQL."
+      summary: "[EXPERIMENTAL] PutSqlToViewDesign: Makes a view-design from view creation\
+        \ SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -4747,7 +4793,10 @@ paths:
       x-accepts: application/json
   /api/Sql/towriterdesign:
     put:
-      description: SQL to attempt to create a Writer Design object from
+      description: "Generates a SQL-writer-design object (WriterDesign) from a SQL\
+        \ query, if possible\n\n> This method is generally only intended for IDE generation\
+        \ purposes. \n> It is largely internal to the Finbourne web user interfaces\
+        \ and subject to change without notice.\n"
       operationId: PutSqlToWriterDesign
       parameters:
       - description: Should `Sys.Field` be used to find additional potential fields
@@ -4934,8 +4983,8 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToWriterDesign: Generates a SQL-writer-design\
-        \ object from SQL string, if possible."
+      summary: "[EXPERIMENTAL] PutSqlToWriterDesign: Makes a SQL-writer-design object\
+        \ from SQL"
       tags:
       - Sql Design
       x-fbn-apistatus: Experimental
@@ -4945,7 +4994,7 @@ paths:
     put:
       description: |2
 
-        For more complex LuminesceSql a PUT will allow for longer Sql.
+        For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name.
         e.g.:
         ```sql
         @@cutoff = select #2020-02-01#;
@@ -5058,8 +5107,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "PutByQueryXml: Executes Sql, returned in Xml format, where the sql\
-        \ is the post-body url."
+      summary: "PutByQueryXml: Executes Sql from the body returning XML"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -5069,8 +5117,8 @@ paths:
     get:
       description: |2
 
-        For simple single-line query execution via the url.
-        e.g. `select ^ from Sys.Field order by 1, 2`
+        Returns data from a simple single-line query execution which is specified on the url.
+        e.g. `select ^ from Sys.Field order by 1, 2`, returned in the format of the method name.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 400 BadRequest - something failed with the execution or parsing of your query
@@ -5173,8 +5221,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "GetByQueryXml: Executes Sql, returned in Xml format, where the sql\
-        \ is simply in the url."
+      summary: "GetByQueryXml: Executes Sql from the url returning XML"
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
@@ -5299,7 +5346,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "StartQuery: Starts to Execute LuminesceSql in the background."
+      summary: "StartQuery: Starts to Execute Sql in the background"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -5338,8 +5385,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "CancelQuery: Cancels (if running) or clears the data from (if completed)\
-        \ a previously started query"
+      summary: "CancelQuery: Cancels / Clears data from a previously run query"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -5393,7 +5439,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "GetProgressOf: View progress information (up until this point)"
+      summary: "GetProgressOf: View progress information up until this point"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -5401,7 +5447,8 @@ paths:
   /api/SqlBackground/{executionId}/csv:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -5570,8 +5617,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultCsv: Fetches the result from a previously started\
-        \ query, in CSV format."
+      summary: "FetchQueryResultCsv: Fetches the result of a query as CSV"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -5579,7 +5625,8 @@ paths:
   /api/SqlBackground/{executionId}/excel:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -5700,8 +5747,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultExcel: Fetches the result from a previously started\
-        \ query, in Excel format."
+      summary: "FetchQueryResultExcel: Fetches the result of a query as an Excel file"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -5826,16 +5872,20 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultHistogram: Fetches the result from a previously started\
-        \ query, converts it to a histogram (counts in buckets)."
+      summary: "FetchQueryResultHistogram: Constructs a histogram of the result of\
+        \ a query"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/SqlBackground/{executionId}/json:
     get:
-      description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+      description: |2-
+
+        *Please move to '/jsonProper' instead. This may be marked as Deprecated in the future.*
+
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -5977,9 +6027,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultJson: Fetches the result from a previously started\
-        \ query, in JSON string format.\r\nPlease move to '/jsonProper' instead. This\
-        \ may be marked as Deprecated in the future."
+      summary: "FetchQueryResultJson: Fetches the result of a query as a JSON string"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -5987,7 +6035,8 @@ paths:
   /api/SqlBackground/{executionId}/jsonProper:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -6140,8 +6189,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultJsonProper: Fetches the result from a previously started\
-        \ query, in JSON format."
+      summary: "FetchQueryResultJsonProper: Fetches the result of a query as JSON"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -6149,7 +6197,8 @@ paths:
   /api/SqlBackground/{executionId}/parquet:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -6270,8 +6319,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultParquet: Fetches the result from a previously started\
-        \ query, in Parquet format."
+      summary: "FetchQueryResultParquet: Fetches the result of a query as Parquet"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -6279,7 +6327,8 @@ paths:
   /api/SqlBackground/{executionId}/pipe:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -6432,8 +6481,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultPipe: Fetches the result from a previously started\
-        \ query, in pipe-delimited format."
+      summary: "FetchQueryResultPipe: Fetches the result of a query as pipe-delimited"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -6441,7 +6489,8 @@ paths:
   /api/SqlBackground/{executionId}/sqlite:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -6562,8 +6611,7 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultSqlite: Fetches the result from a previously started\
-        \ query, in SqLite format."
+      summary: "FetchQueryResultSqlite: Fetches the result of a query as SqLite"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -6571,7 +6619,8 @@ paths:
   /api/SqlBackground/{executionId}/xml:
     get:
       description: |-
-        Fetch the data in various formats (if available, or if not simply being informed it is not yet ready)
+        Fetch the data in the format of the method's name (if available, or if not simply being informed it is not yet ready).
+
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
@@ -6724,16 +6773,17 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "FetchQueryResultXml: Fetches the result from a previously started\
-        \ query, in Xml format."
+      summary: "FetchQueryResultXml: Fetches the result of a query as XML"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
   /fakeNodeReclaim:
     get:
-      description: "Internal testing controller to simulate having received an AWS\
-        \ node reclaim warning, or similar."
+      description: |2-
+
+        An internal Method used to mark the next SIGTERM as though an Aws Node reclaim were about to take place.
+        Simulates having received an AWS node reclaim warning, or similar.
       operationId: FakeNodeReclaim
       parameters:
       - description: the number of seconds from which to assume node termination
@@ -6762,8 +6812,7 @@ paths:
           description: Success
       security:
       - oauth2: []
-      summary: "[INTERNAL] FakeNodeReclaim: An internal Method used to mark the next\
-        \ SIGTERM as though an Aws Node reclaim were about to take place."
+      summary: "[INTERNAL] FakeNodeReclaim: Helps testing of AWS node reclaim behaviour"
       tags:
       - Health checking endpoint
       x-fbn-apistatus: Internal

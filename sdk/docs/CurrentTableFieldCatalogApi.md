@@ -4,9 +4,9 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCatalog**](CurrentTableFieldCatalogApi.md#getCatalog) | **GET** /api/Catalog | GetCatalog: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format) |
-| [**getFields**](CurrentTableFieldCatalogApi.md#getFields) | **GET** /api/Catalog/fields | GetFields: Shows Table level information on Providers that are currently running that you have access to (in Json format) |
-| [**getProviders**](CurrentTableFieldCatalogApi.md#getProviders) | **GET** /api/Catalog/providers | GetProviders: Shows Table level information on Providers that are currently running that you have access to (in Json format) |
+| [**getCatalog**](CurrentTableFieldCatalogApi.md#getCatalog) | **GET** /api/Catalog | GetCatalog: Flattened Table/Faield Catalog |
+| [**getFields**](CurrentTableFieldCatalogApi.md#getFields) | **GET** /api/Catalog/fields | GetFields: Lists field/parameter information for providers |
+| [**getProviders**](CurrentTableFieldCatalogApi.md#getProviders) | **GET** /api/Catalog/providers | GetProviders: Lists providers available |
 
 
 
@@ -14,9 +14,9 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > String getCatalog(freeTextSearch, jsonProper, useCache)
 
-GetCatalog: Shows Table and Field level information on Providers that are currently running that you have access to (in Json format)
+GetCatalog: Flattened Table/Faield Catalog
 
- Returns the User&#39;s full version of the catalog (Providers and their fields)  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Returns the User&#39;s full version of the catalog (Providers, their fields and associated information) that are currently running that you have access to (in Json format).  This is the entire catalog flattened, which is often quite large and always a bit repetitive.  The internal results are cached for several minutes.  Consider using &#x60;api/Catalog/providers&#x60; and &#x60;api/Catalog/fields&#x60; for a more granular and incremental loading flow.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 
@@ -107,9 +107,9 @@ public class CurrentTableFieldCatalogApiExample {
 
 > String getFields(tableLike)
 
-GetFields: Shows Table level information on Providers that are currently running that you have access to (in Json format)
+GetFields: Lists field/parameter information for providers
 
- Returns the User&#39;s full version of the catalog but only the field/parameter-level information  (as well as the TableName they refer to, of course) for tables matching the &#x60;tableLike&#x60; (manually include wildcards if desired).  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Returns the User&#39;s full version of the catalog but only the field/parameter-level information  (as well as the TableName they refer to, of course) for tables matching the &#x60;tableLike&#x60; (manually include wildcards if desired).  The internal results are cached for several minutes.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 
@@ -196,9 +196,9 @@ public class CurrentTableFieldCatalogApiExample {
 
 > String getProviders(freeTextSearch, useCache)
 
-GetProviders: Shows Table level information on Providers that are currently running that you have access to (in Json format)
+GetProviders: Lists providers available
 
- Returns the User&#39;s full version of the catalog but only the table/provider-level information  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Returns the User&#39;s full version of the catalog but only the table/provider-level information they have access to.  The internal results are cached for several minutes.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 

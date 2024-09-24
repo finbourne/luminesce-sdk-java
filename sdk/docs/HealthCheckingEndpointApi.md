@@ -4,7 +4,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**fakeNodeReclaim**](HealthCheckingEndpointApi.md#fakeNodeReclaim) | **GET** /fakeNodeReclaim | [INTERNAL] FakeNodeReclaim: An internal Method used to mark the next SIGTERM as though an Aws Node reclaim were about to take place. |
+| [**fakeNodeReclaim**](HealthCheckingEndpointApi.md#fakeNodeReclaim) | **GET** /fakeNodeReclaim | [INTERNAL] FakeNodeReclaim: Helps testing of AWS node reclaim behaviour |
 
 
 
@@ -12,9 +12,9 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > Object fakeNodeReclaim(secondsUntilReclaim)
 
-[INTERNAL] FakeNodeReclaim: An internal Method used to mark the next SIGTERM as though an Aws Node reclaim were about to take place.
+[INTERNAL] FakeNodeReclaim: Helps testing of AWS node reclaim behaviour
 
-Internal testing controller to simulate having received an AWS node reclaim warning, or similar.
+ An internal Method used to mark the next SIGTERM as though an Aws Node reclaim were about to take place. Simulates having received an AWS node reclaim warning, or similar.
 
 ### Example
 

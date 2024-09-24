@@ -279,8 +279,8 @@ public class HealthCheckingEndpointApi {
     }
 
     /**
-     * [INTERNAL] FakeNodeReclaim: An internal Method used to mark the next SIGTERM as though an Aws Node reclaim were about to take place.
-     * Internal testing controller to simulate having received an AWS node reclaim warning, or similar.
+     * [INTERNAL] FakeNodeReclaim: Helps testing of AWS node reclaim behaviour
+     *  An internal Method used to mark the next SIGTERM as though an Aws Node reclaim were about to take place. Simulates having received an AWS node reclaim warning, or similar.
      * @return APIfakeNodeReclaimRequest
      * @http.response.details
      <table summary="Response Details" border="1">
