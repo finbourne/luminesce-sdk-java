@@ -4,8 +4,8 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | [EXPERIMENTAL] DownloadCertificate: Download Domain or your personal certificates |
-| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] ListCertificates: Lists previously minted certificates |
+| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | [EXPERIMENTAL] DownloadCertificate: Download domain or your personal certificates |
+| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] ListCertificates: List previously minted certificates |
 | [**manageCertificate**](CertificateManagementApi.md#manageCertificate) | **PUT** /api/Certificate/manage | [EXPERIMENTAL] ManageCertificate: Create / Renew / Revoke a certificate |
 
 
@@ -14,7 +14,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > File downloadCertificate(type, fileType, mayAutoCreate)
 
-[EXPERIMENTAL] DownloadCertificate: Download Domain or your personal certificates
+[EXPERIMENTAL] DownloadCertificate: Download domain or your personal certificates
 
  Downloads your latest Domain or your User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized - 403 Forbidden 
 
@@ -109,7 +109,7 @@ public class CertificateManagementApiExample {
 
 > List&lt;CertificateState&gt; listCertificates()
 
-[EXPERIMENTAL] ListCertificates: Lists previously minted certificates
+[EXPERIMENTAL] ListCertificates: List previously minted certificates
 
  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 

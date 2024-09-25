@@ -312,7 +312,7 @@ public class BinaryDownloadingApi {
     }
 
     /**
-     * [EXPERIMENTAL] DownloadBinary: Download Luminesce Binaries you may run on site
+     * [EXPERIMENTAL] DownloadBinary: Download a Luminesce Binary you may run on-site
      *  Downloads the latest version (or specific if needs be) of the specified Luminesce Binary, given the required entitlements.  &gt; This endpoint is an alternative to time-consuming manual distribution via Drive or Email. &gt; it relies on an underlying datastore that is not quite as \&quot;Highly Available\&quot; to the degree  &gt; that FINBOURNE services generally are.  &gt; Thus it is not subject to the same SLAs as other API endpoints are. &gt; *If you perceive an outage, please try again later.*  Once a file has been downloaded the following steps can be used to install it (for the dotnet tools at least):  1. Open a terminal and cd to the directory you downloaded it to 2. Install / extract files from that package via: &#x60;&#x60;&#x60; dotnet tool install NameOfFileWithoutVersionNumberOrExtension -g --add-source \&quot;.\&quot; &#x60;&#x60;&#x60; e.g. &#x60;&#x60;&#x60; dotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake -g --add-source \&quot;.\&quot; &#x60;&#x60;&#x60; 3. Execute them (see documentation for specific binary)...  The installed binaries can then be found in - Windows - &#x60;%USERPROFILE%\\.dotnet\\tools\\.store\\&#x60; - Linux/macOS - &#x60;$HOME/.dotnet/tools/.store/&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - binary file is not available for some reason (e.g. permissions or invalid version) - 401 Unauthorized - 403 Forbidden 
      * @return APIdownloadBinaryRequest
      * @http.response.details
@@ -550,7 +550,7 @@ public class BinaryDownloadingApi {
     }
 
     /**
-     * [EXPERIMENTAL] GetBinaryVersions: Lists the available versions of binaries
+     * [EXPERIMENTAL] GetBinaryVersions: List available versions of binaries
      *  Gets all available versions of a given binary type (from newest to oldest) This does not mean you are entitled to download them.
      * @return APIgetBinaryVersionsRequest
      * @http.response.details

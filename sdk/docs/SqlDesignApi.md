@@ -4,22 +4,22 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**putCaseStatementDesignSqlToDesign**](SqlDesignApi.md#putCaseStatementDesignSqlToDesign) | **PUT** /api/Sql/tocasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL to a case statement design object |
-| [**putCaseStatementDesignToSql**](SqlDesignApi.md#putCaseStatementDesignToSql) | **PUT** /api/Sql/fromcasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignToSql: Converts a case statement design object to SQL |
-| [**putFileReadDesignToSql**](SqlDesignApi.md#putFileReadDesignToSql) | **PUT** /api/Sql/fromfilereaddesign | [EXPERIMENTAL] PutFileReadDesignToSql: Makes file read SQL from a design object |
-| [**putInlinedPropertiesDesignSqlToDesign**](SqlDesignApi.md#putInlinedPropertiesDesignSqlToDesign) | **PUT** /api/Sql/toinlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Makes an inlined properties design from SQL |
-| [**putInlinedPropertiesDesignToSql**](SqlDesignApi.md#putInlinedPropertiesDesignToSql) | **PUT** /api/Sql/frominlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Makes inlined properties SQL from a design object |
-| [**putIntellisense**](SqlDesignApi.md#putIntellisense) | **PUT** /api/Sql/intellisense | PutIntellisense: Makes a intellisense prompts given an SQL snip-it |
-| [**putIntellisenseError**](SqlDesignApi.md#putIntellisenseError) | **PUT** /api/Sql/intellisenseError | PutIntellisenseError: Expresses error ranges from SQL |
-| [**putQueryDesignToSql**](SqlDesignApi.md#putQueryDesignToSql) | **PUT** /api/Sql/fromdesign | [EXPERIMENTAL] PutQueryDesignToSql: Makes SQL from a structured query design |
-| [**putQueryToFormat**](SqlDesignApi.md#putQueryToFormat) | **PUT** /api/Sql/pretty | PutQueryToFormat: Formats SQL into a more readable form |
-| [**putSqlToExtractScalarParameters**](SqlDesignApi.md#putSqlToExtractScalarParameters) | **PUT** /api/Sql/extractscalarparameters | [EXPERIMENTAL] PutSqlToExtractScalarParameters: Extracts scalar parameter information from SQL |
-| [**putSqlToFileReadDesign**](SqlDesignApi.md#putSqlToFileReadDesign) | **PUT** /api/Sql/tofilereaddesign | [EXPERIMENTAL] PutSqlToFileReadDesign: Makes a design object from file-read SQL |
-| [**putSqlToQueryDesign**](SqlDesignApi.md#putSqlToQueryDesign) | **PUT** /api/Sql/todesign | [EXPERIMENTAL] PutSqlToQueryDesign: Makes a SQL-design object from SQL if possible |
-| [**putSqlToViewDesign**](SqlDesignApi.md#putSqlToViewDesign) | **PUT** /api/Sql/toviewdesign | [EXPERIMENTAL] PutSqlToViewDesign: Makes a view-design from view creation SQL |
-| [**putSqlToWriterDesign**](SqlDesignApi.md#putSqlToWriterDesign) | **PUT** /api/Sql/towriterdesign | [EXPERIMENTAL] PutSqlToWriterDesign: Makes a SQL-writer-design object from SQL |
-| [**putViewDesignToSql**](SqlDesignApi.md#putViewDesignToSql) | **PUT** /api/Sql/fromviewdesign | [EXPERIMENTAL] PutViewDesignToSql: Makes view creation sql from a view-design |
-| [**putWriterDesignToSql**](SqlDesignApi.md#putWriterDesignToSql) | **PUT** /api/Sql/fromwriterdesign | [EXPERIMENTAL] PutWriterDesignToSql: Makes writer SQL from a writer-design object |
+| [**putCaseStatementDesignSqlToDesign**](SqlDesignApi.md#putCaseStatementDesignSqlToDesign) | **PUT** /api/Sql/tocasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object |
+| [**putCaseStatementDesignToSql**](SqlDesignApi.md#putCaseStatementDesignToSql) | **PUT** /api/Sql/fromcasestatementdesign | [EXPERIMENTAL] PutCaseStatementDesignToSql: Convert a case statement design object to SQL |
+| [**putFileReadDesignToSql**](SqlDesignApi.md#putFileReadDesignToSql) | **PUT** /api/Sql/fromfilereaddesign | [EXPERIMENTAL] PutFileReadDesignToSql: Make file read SQL from a design object |
+| [**putInlinedPropertiesDesignSqlToDesign**](SqlDesignApi.md#putInlinedPropertiesDesignSqlToDesign) | **PUT** /api/Sql/toinlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL |
+| [**putInlinedPropertiesDesignToSql**](SqlDesignApi.md#putInlinedPropertiesDesignToSql) | **PUT** /api/Sql/frominlinedpropertiesdesign | [EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object |
+| [**putIntellisense**](SqlDesignApi.md#putIntellisense) | **PUT** /api/Sql/intellisense | PutIntellisense: Make intellisense prompts given an SQL snip-it |
+| [**putIntellisenseError**](SqlDesignApi.md#putIntellisenseError) | **PUT** /api/Sql/intellisenseError | PutIntellisenseError: Get error ranges from SQL |
+| [**putQueryDesignToSql**](SqlDesignApi.md#putQueryDesignToSql) | **PUT** /api/Sql/fromdesign | [EXPERIMENTAL] PutQueryDesignToSql: Make SQL from a structured query design |
+| [**putQueryToFormat**](SqlDesignApi.md#putQueryToFormat) | **PUT** /api/Sql/pretty | PutQueryToFormat: Format SQL into a more readable form |
+| [**putSqlToExtractScalarParameters**](SqlDesignApi.md#putSqlToExtractScalarParameters) | **PUT** /api/Sql/extractscalarparameters | [EXPERIMENTAL] PutSqlToExtractScalarParameters: Extract scalar parameter information from SQL |
+| [**putSqlToFileReadDesign**](SqlDesignApi.md#putSqlToFileReadDesign) | **PUT** /api/Sql/tofilereaddesign | [EXPERIMENTAL] PutSqlToFileReadDesign: Make a design object from file-read SQL |
+| [**putSqlToQueryDesign**](SqlDesignApi.md#putSqlToQueryDesign) | **PUT** /api/Sql/todesign | [EXPERIMENTAL] PutSqlToQueryDesign: Make a SQL-design object from SQL if possible |
+| [**putSqlToViewDesign**](SqlDesignApi.md#putSqlToViewDesign) | **PUT** /api/Sql/toviewdesign | [EXPERIMENTAL] PutSqlToViewDesign: Make a view-design from view creation SQL |
+| [**putSqlToWriterDesign**](SqlDesignApi.md#putSqlToWriterDesign) | **PUT** /api/Sql/towriterdesign | [EXPERIMENTAL] PutSqlToWriterDesign: Make a SQL-writer-design object from SQL |
+| [**putViewDesignToSql**](SqlDesignApi.md#putViewDesignToSql) | **PUT** /api/Sql/fromviewdesign | [EXPERIMENTAL] PutViewDesignToSql: Make view creation sql from a view-design |
+| [**putWriterDesignToSql**](SqlDesignApi.md#putWriterDesignToSql) | **PUT** /api/Sql/fromwriterdesign | [EXPERIMENTAL] PutWriterDesignToSql: Make writer SQL from a writer-design object |
 
 
 
@@ -27,7 +27,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > CaseStatementDesign putCaseStatementDesignSqlToDesign(body)
 
-[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Converts SQL to a case statement design object
+[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object
 
 Converts a SQL query to a CaseStatementDesign object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -122,7 +122,7 @@ public class SqlDesignApiExample {
 
 > String putCaseStatementDesignToSql(caseStatementDesign)
 
-[EXPERIMENTAL] PutCaseStatementDesignToSql: Converts a case statement design object to SQL
+[EXPERIMENTAL] PutCaseStatementDesignToSql: Convert a case statement design object to SQL
 
 Generates a SQL case statement query from a structured CaseStatementDesign object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -213,7 +213,7 @@ public class SqlDesignApiExample {
 
 > FileReaderBuilderResponse putFileReadDesignToSql(fileReaderBuilderDef, executeQuery)
 
-[EXPERIMENTAL] PutFileReadDesignToSql: Makes file read SQL from a design object
+[EXPERIMENTAL] PutFileReadDesignToSql: Make file read SQL from a design object
 
 Generates SQL from a FileReaderBuilderDef object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -306,7 +306,7 @@ public class SqlDesignApiExample {
 
 > InlinedPropertyDesign putInlinedPropertiesDesignSqlToDesign(body)
 
-[EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Makes an inlined properties design from SQL
+[EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL
 
 Generates a SQL-inlined-properties-design object from SQL string, if possible.  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -399,7 +399,7 @@ public class SqlDesignApiExample {
 
 > String putInlinedPropertiesDesignToSql(inlinedPropertyDesign)
 
-[EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Makes inlined properties SQL from a design object
+[EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object
 
 Generates inlined properties SQL from a structured design  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -490,7 +490,7 @@ public class SqlDesignApiExample {
 
 > IntellisenseResponse putIntellisense(intellisenseRequest)
 
-PutIntellisense: Makes a intellisense prompts given an SQL snip-it
+PutIntellisense: Make intellisense prompts given an SQL snip-it
 
 Generate a set of possible intellisense prompts given a SQL snip-it (in need not yet be valid SQL) and cursor location  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -581,7 +581,7 @@ public class SqlDesignApiExample {
 
 > ErrorHighlightResponse putIntellisenseError(errorHighlightRequest)
 
-PutIntellisenseError: Expresses error ranges from SQL
+PutIntellisenseError: Get error ranges from SQL
 
 Generate a set of error ranges, if any, in the given SQL (expressed as Lines)  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -672,7 +672,7 @@ public class SqlDesignApiExample {
 
 > String putQueryDesignToSql(queryDesign)
 
-[EXPERIMENTAL] PutQueryDesignToSql: Makes SQL from a structured query design
+[EXPERIMENTAL] PutQueryDesignToSql: Make SQL from a structured query design
 
 Generates SQL from a QueryDesign object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -763,7 +763,7 @@ public class SqlDesignApiExample {
 
 > String putQueryToFormat(body, trailingCommas, uppercaseKeywords, breakJoinOnSections, spaceAfterExpandedComma, keywordStandardization, expandCommaLists, expandInLists, expandBooleanExpressions, expandBetweenConditions, expandCaseStatements, maxLineWidth, spaceBeforeTrailingSingleLineComments, multilineCommentExtraLineBreak)
 
-PutQueryToFormat: Formats SQL into a more readable form
+PutQueryToFormat: Format SQL into a more readable form
 
  This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. &#x60;&#x60;&#x60;sql select x,y,z from a inner join b on a.x&#x3D;b.x where x&gt;y or y!&#x3D;z &#x60;&#x60;&#x60; becomes &#x60;&#x60;&#x60;sql select x, y, z from a inner join b  on a.x &#x3D; b.x where x &gt; y  or y !&#x3D; z &#x60;&#x60;&#x60; 
 
@@ -880,7 +880,7 @@ public class SqlDesignApiExample {
 
 > List&lt;ScalarParameter&gt; putSqlToExtractScalarParameters(body)
 
-[EXPERIMENTAL] PutSqlToExtractScalarParameters: Extracts scalar parameter information from SQL
+[EXPERIMENTAL] PutSqlToExtractScalarParameters: Extract scalar parameter information from SQL
 
 Extracts information about all the scalar parameters defined in the given SQL statement  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -971,7 +971,7 @@ public class SqlDesignApiExample {
 
 > FileReaderBuilderDef putSqlToFileReadDesign(determineAvailableSources, body)
 
-[EXPERIMENTAL] PutSqlToFileReadDesign: Makes a design object from file-read SQL
+[EXPERIMENTAL] PutSqlToFileReadDesign: Make a design object from file-read SQL
 
 Generates a SQL-file-read-design object from SQL string, if possible.  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -1069,7 +1069,7 @@ select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs g
 
 > QueryDesign putSqlToQueryDesign(body, validateWithMetadata)
 
-[EXPERIMENTAL] PutSqlToQueryDesign: Makes a SQL-design object from SQL if possible
+[EXPERIMENTAL] PutSqlToQueryDesign: Make a SQL-design object from SQL if possible
 
 Generates a QueryDesign object from simple SQL if possible  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -1173,7 +1173,7 @@ LIMIT 42; // String | SQL query to generate the design object from
 
 > ConvertToViewData putSqlToViewDesign(body)
 
-[EXPERIMENTAL] PutSqlToViewDesign: Makes a view-design from view creation SQL
+[EXPERIMENTAL] PutSqlToViewDesign: Make a view-design from view creation SQL
 
 Converts SQL which creates a view into a structured ConvertToViewData object  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -1271,7 +1271,7 @@ select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs g
 
 > WriterDesign putSqlToWriterDesign(body, mergeAdditionalMappingFields)
 
-[EXPERIMENTAL] PutSqlToWriterDesign: Makes a SQL-writer-design object from SQL
+[EXPERIMENTAL] PutSqlToWriterDesign: Make a SQL-writer-design object from SQL
 
 Generates a SQL-writer-design object (WriterDesign) from a SQL query, if possible  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -1364,7 +1364,7 @@ public class SqlDesignApiExample {
 
 > String putViewDesignToSql(convertToViewData)
 
-[EXPERIMENTAL] PutViewDesignToSql: Makes view creation sql from a view-design
+[EXPERIMENTAL] PutViewDesignToSql: Make view creation sql from a view-design
 
 Converts a ConvertToView specification into SQL that creates a view  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
@@ -1455,7 +1455,7 @@ public class SqlDesignApiExample {
 
 > String putWriterDesignToSql(writerDesign)
 
-[EXPERIMENTAL] PutWriterDesignToSql: Makes writer SQL from a writer-design object
+[EXPERIMENTAL] PutWriterDesignToSql: Make writer SQL from a writer-design object
 
 Generates writer SQL from a valid WriterDesign structure  &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 

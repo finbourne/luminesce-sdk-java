@@ -277,7 +277,7 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     /**
-     * CancelHistory: Cancels / Clears data from a query history search
+     * CancelHistory: Cancel / Clear data from a history search
      * Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIcancelHistoryRequest
@@ -552,7 +552,7 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     /**
-     * FetchHistoryResultHistogram: Makes a histogram of results from a query history search
+     * FetchHistoryResultHistogram: Make a histogram of results of a history search
      * Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchHistoryResultHistogramRequest
@@ -889,7 +889,7 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     /**
-     * FetchHistoryResultJson: Fetches JSON results from a query history search
+     * FetchHistoryResultJson: Fetch JSON results from a query history search
      * Fetch the data in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchHistoryResultJsonRequest
@@ -1174,7 +1174,7 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     /**
-     * GetHistory: Starts a background query history search
+     * GetHistory: Start a background history search
      *  Starts to load the historical query logs for a certain time range, search criteria, etc.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
      * @return APIgetHistoryRequest
      * @http.response.details
@@ -1389,7 +1389,7 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     /**
-     * GetProgressOfHistory: View progress of a query history search
+     * GetProgressOfHistory: View progress of a history search
      * View progress information (up until this point) of previously started History query The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIgetProgressOfHistoryRequest

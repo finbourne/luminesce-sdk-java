@@ -4,9 +4,9 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCatalog**](CurrentTableFieldCatalogApi.md#getCatalog) | **GET** /api/Catalog | GetCatalog: Flattened Table/Faield Catalog |
-| [**getFields**](CurrentTableFieldCatalogApi.md#getFields) | **GET** /api/Catalog/fields | GetFields: Lists field/parameter information for providers |
-| [**getProviders**](CurrentTableFieldCatalogApi.md#getProviders) | **GET** /api/Catalog/providers | GetProviders: Lists providers available |
+| [**getCatalog**](CurrentTableFieldCatalogApi.md#getCatalog) | **GET** /api/Catalog | GetCatalog: Get a Flattened Table/Field Catalog |
+| [**getFields**](CurrentTableFieldCatalogApi.md#getFields) | **GET** /api/Catalog/fields | GetFields: List field and parameters for providers |
+| [**getProviders**](CurrentTableFieldCatalogApi.md#getProviders) | **GET** /api/Catalog/providers | GetProviders: List available providers |
 
 
 
@@ -14,7 +14,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > String getCatalog(freeTextSearch, jsonProper, useCache)
 
-GetCatalog: Flattened Table/Faield Catalog
+GetCatalog: Get a Flattened Table/Field Catalog
 
  Returns the User&#39;s full version of the catalog (Providers, their fields and associated information) that are currently running that you have access to (in Json format).  This is the entire catalog flattened, which is often quite large and always a bit repetitive.  The internal results are cached for several minutes.  Consider using &#x60;api/Catalog/providers&#x60; and &#x60;api/Catalog/fields&#x60; for a more granular and incremental loading flow.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
@@ -107,7 +107,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 > String getFields(tableLike)
 
-GetFields: Lists field/parameter information for providers
+GetFields: List field and parameters for providers
 
  Returns the User&#39;s full version of the catalog but only the field/parameter-level information  (as well as the TableName they refer to, of course) for tables matching the &#x60;tableLike&#x60; (manually include wildcards if desired).  The internal results are cached for several minutes.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
@@ -196,7 +196,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 > String getProviders(freeTextSearch, useCache)
 
-GetProviders: Lists providers available
+GetProviders: List available providers
 
  Returns the User&#39;s full version of the catalog but only the table/provider-level information they have access to.  The internal results are cached for several minutes.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 

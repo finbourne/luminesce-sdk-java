@@ -378,7 +378,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQueryCsv: Executes Sql from the url returning CSV
+     * GetByQueryCsv: Execute Sql from the url returning CSV
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryCsvRequest
@@ -655,7 +655,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQueryExcel: Executes Sql from the url returning an Excel file
+     * GetByQueryExcel: Execute Sql from the url returning an Excel file
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryExcelRequest
@@ -947,7 +947,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQueryJson: Executes Sql from the url returning JSON
+     * GetByQueryJson: Execute Sql from the url returning JSON
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryJsonRequest
@@ -1224,7 +1224,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQueryParquet: Executes Sql from the url returning a Parquet file
+     * GetByQueryParquet: Execute Sql from the url returning a Parquet file
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryParquetRequest
@@ -1516,7 +1516,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQueryPipe: Executes Sql from the url returning pipe-delimited
+     * GetByQueryPipe: Execute Sql from the url returning pipe-delimited
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryPipeRequest
@@ -1793,7 +1793,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQuerySqlite: Executes Sql from the url returning SqLite DB
+     * GetByQuerySqlite: Execute Sql from the url returning SqLite DB
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQuerySqliteRequest
@@ -2085,7 +2085,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * GetByQueryXml: Executes Sql from the url returning XML
+     * GetByQueryXml: Execute Sql from the url returning XML
      *  Returns data from a simple single-line query execution which is specified on the url. e.g. &#x60;select ^ from Sys.Field order by 1, 2&#x60;, returned in the format of the method name.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param query LuminesceSql to Execute (must be one line only) (required)
      * @return APIgetByQueryXmlRequest
@@ -2407,7 +2407,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQueryCsv: Executes Sql from the body returning CSV
+     * PutByQueryCsv: Execute Sql from the body returning CSV
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryCsvRequest
@@ -2684,7 +2684,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQueryExcel: Executes Sql from the body making an Excel file
+     * PutByQueryExcel: Execute Sql from the body making an Excel file
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryExcelRequest
@@ -2976,7 +2976,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQueryJson: Executes Sql from the body returning JSON
+     * PutByQueryJson: Execute Sql from the body returning JSON
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryJsonRequest
@@ -3253,7 +3253,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQueryParquet: Executes Sql from the body making a Parquet file
+     * PutByQueryParquet: Execute Sql from the body making a Parquet file
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryParquetRequest
@@ -3545,7 +3545,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQueryPipe: Executes Sql from the body making pipe-delimited
+     * PutByQueryPipe: Execute Sql from the body making pipe-delimited
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryPipeRequest
@@ -3822,7 +3822,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQuerySqlite: Executes Sql from the body returning SqLite DB
+     * PutByQuerySqlite: Execute Sql from the body returning SqLite DB
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQuerySqliteRequest
@@ -4114,7 +4114,7 @@ public class SqlExecutionApi {
     }
 
     /**
-     * PutByQueryXml: Executes Sql from the body returning XML
+     * PutByQueryXml: Execute Sql from the body returning XML
      *  For more complex LuminesceSql a PUT will allow for longer and line break delimited Sql, whic will be returned in the format of the method name. e.g.: &#x60;&#x60;&#x60;sql @@cutoff &#x3D; select #2020-02-01#; @issues &#x3D; select Id, SortId, Summary, Created, Updated from Dev.Jira.Issue where Project&#x3D;&#39;HC&#39; and Created &lt; @@cutoff and Updated &gt; @@cutoff;  select i.Id, i.SortId, i.Summary, LinkText, LinkedIssueId, LinkedIssueSortId, LinkedIssueSummary from @issues i inner join Dev.Jira.Issue.Link li  on i.Id &#x3D; li.IssueId &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something failed with the execution or parsing of your query - 401 Unauthorized - 403 Forbidden 
      * @param body LuminesceSql to Execute (may be multi-line) (required)
      * @return APIputByQueryXmlRequest
