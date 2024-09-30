@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.647
+  version: 1.16.660
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -4038,6 +4038,76 @@ paths:
       - Sql Design
       x-fbn-apistatus: Stable
       x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/providertemplateforexport:
+    get:
+      description: Generates a template file for all the writable fields for a given
+        provider returned in CSV or Excel (xlsx) format (as a file to be downloaded)
+      operationId: GetProviderTemplateForExport
+      parameters:
+      - description: Name of the provider for which this template is for
+        explode: true
+        in: query
+        name: provider
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: File content type for the Template. csv or excel
+        explode: true
+        in: query
+        name: contentType
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: Success
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "GetProviderTemplateForExport: Makes a fields template for file importing\
+        \ via a writer"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Sql/sqlite:
     put:

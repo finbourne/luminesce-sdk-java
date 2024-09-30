@@ -29,6 +29,7 @@ import com.finbourne.luminesce.model.CaseStatementDesign;
 import com.finbourne.luminesce.model.ConvertToViewData;
 import com.finbourne.luminesce.model.ErrorHighlightRequest;
 import com.finbourne.luminesce.model.ErrorHighlightResponse;
+import java.io.File;
 import com.finbourne.luminesce.model.FileReaderBuilderDef;
 import com.finbourne.luminesce.model.FileReaderBuilderResponse;
 import com.finbourne.luminesce.model.InlinedPropertyDesign;
@@ -82,6 +83,253 @@ public class SqlDesignApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    private okhttp3.Call getProviderTemplateForExportCall(String provider, String contentType, final ApiCallback _callback) throws ApiException {
+        return getProviderTemplateForExportCall(provider, contentType,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getProviderTemplateForExportCall(String provider, String contentType, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/providertemplateforexport";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (provider != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("provider", provider));
+        }
+
+        if (contentType != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("contentType", contentType));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getProviderTemplateForExportValidateBeforeCall(String provider, String contentType, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'provider' is set
+        if (provider == null) {
+            throw new ApiException("Missing the required parameter 'provider' when calling getProviderTemplateForExport(Async)");
+        }
+
+        // verify the required parameter 'contentType' is set
+        if (contentType == null) {
+            throw new ApiException("Missing the required parameter 'contentType' when calling getProviderTemplateForExport(Async)");
+        }
+
+        return getProviderTemplateForExportCall(provider, contentType, _callback, opts);
+
+    }
+
+
+    private ApiResponse<File> getProviderTemplateForExportWithHttpInfo(String provider, String contentType) throws ApiException {
+        okhttp3.Call localVarCall = getProviderTemplateForExportValidateBeforeCall(provider, contentType, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> getProviderTemplateForExportWithHttpInfo(String provider, String contentType, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProviderTemplateForExportValidateBeforeCall(provider, contentType, null, opts);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call getProviderTemplateForExportAsync(String provider, String contentType, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getProviderTemplateForExportValidateBeforeCall(provider, contentType, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getProviderTemplateForExportAsync(String provider, String contentType, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getProviderTemplateForExportValidateBeforeCall(provider, contentType, _callback, opts);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetProviderTemplateForExportRequest {
+        private final String provider;
+        private final String contentType;
+
+        private APIgetProviderTemplateForExportRequest(String provider, String contentType) {
+            this.provider = provider;
+            this.contentType = contentType;
+        }
+
+        /**
+         * Build call for getProviderTemplateForExport
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getProviderTemplateForExportCall(provider, contentType, _callback);
+        }
+
+        /**
+         * Execute getProviderTemplateForExport request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = getProviderTemplateForExportWithHttpInfo(provider, contentType);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute getProviderTemplateForExport request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = getProviderTemplateForExportWithHttpInfo(provider, contentType, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute getProviderTemplateForExport request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return getProviderTemplateForExportWithHttpInfo(provider, contentType);
+        }
+
+        /**
+         * Execute getProviderTemplateForExport request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getProviderTemplateForExportWithHttpInfo(provider, contentType, opts);
+        }
+
+        /**
+         * Execute getProviderTemplateForExport request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return getProviderTemplateForExportAsync(provider, contentType, _callback);
+        }
+
+        /**
+         * Execute getProviderTemplateForExport request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return getProviderTemplateForExportAsync(provider, contentType, _callback, opts);
+        }
+    }
+
+    /**
+     * GetProviderTemplateForExport: Makes a fields template for file importing via a writer
+     * Generates a template file for all the writable fields for a given provider returned in CSV or Excel (xlsx) format (as a file to be downloaded)
+     * @param provider Name of the provider for which this template is for (required)
+     * @param contentType File content type for the Template. csv or excel (required)
+     * @return APIgetProviderTemplateForExportRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetProviderTemplateForExportRequest getProviderTemplateForExport(String provider, String contentType) {
+        return new APIgetProviderTemplateForExportRequest(provider, contentType);
+    }
     private okhttp3.Call putCaseStatementDesignSqlToDesignCall(String body, final ApiCallback _callback) throws ApiException {
         return putCaseStatementDesignSqlToDesignCall(body,  _callback, new ConfigurationOptions());
     }
