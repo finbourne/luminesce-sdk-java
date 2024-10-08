@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.676
+  version: 1.16.682
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -5682,6 +5682,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -5809,6 +5821,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6092,6 +6116,18 @@ paths:
           type: integer
         style: form
         x-nullable: true
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6254,6 +6290,18 @@ paths:
           type: integer
         style: form
         x-nullable: true
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6381,6 +6429,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6546,6 +6606,18 @@ paths:
           type: integer
         style: form
         x-nullable: true
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6673,6 +6745,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6831,6 +6915,18 @@ paths:
         explode: true
         in: query
         name: page
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: Optional period to wait for results deserialization if in progress
+          when this method is called.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
         required: false
         schema:
           default: 0
