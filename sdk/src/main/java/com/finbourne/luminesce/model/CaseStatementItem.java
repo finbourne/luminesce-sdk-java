@@ -61,6 +61,10 @@ public class CaseStatementItem {
   @SerializedName(SERIALIZED_NAME_TARGET)
   private String target;
 
+  public static final String SERIALIZED_NAME_IS_TARGET_NON_LITERAL = "isTargetNonLiteral";
+  @SerializedName(SERIALIZED_NAME_IS_TARGET_NON_LITERAL)
+  private Boolean isTargetNonLiteral;
+
   public CaseStatementItem() {
   }
 
@@ -127,6 +131,27 @@ public class CaseStatementItem {
   }
 
 
+  public CaseStatementItem isTargetNonLiteral(Boolean isTargetNonLiteral) {
+    
+    this.isTargetNonLiteral = isTargetNonLiteral;
+    return this;
+  }
+
+   /**
+   * The Target can be a literal value or a non literal (field) and  hence will be interpreted differently.  This can be determined from the UI and passed down as a true / false
+   * @return isTargetNonLiteral
+  **/
+  @jakarta.annotation.Nullable
+  public Boolean getIsTargetNonLiteral() {
+    return isTargetNonLiteral;
+  }
+
+
+  public void setIsTargetNonLiteral(Boolean isTargetNonLiteral) {
+    this.isTargetNonLiteral = isTargetNonLiteral;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -139,12 +164,13 @@ public class CaseStatementItem {
     CaseStatementItem caseStatementItem = (CaseStatementItem) o;
     return Objects.equals(this.filter, caseStatementItem.filter) &&
         Objects.equals(this.source, caseStatementItem.source) &&
-        Objects.equals(this.target, caseStatementItem.target);
+        Objects.equals(this.target, caseStatementItem.target) &&
+        Objects.equals(this.isTargetNonLiteral, caseStatementItem.isTargetNonLiteral);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filter, source, target);
+    return Objects.hash(filter, source, target, isTargetNonLiteral);
   }
 
   @Override
@@ -154,6 +180,7 @@ public class CaseStatementItem {
     sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    target: ").append(toIndentedString(target)).append("\n");
+    sb.append("    isTargetNonLiteral: ").append(toIndentedString(isTargetNonLiteral)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +206,7 @@ public class CaseStatementItem {
     openapiFields.add("filter");
     openapiFields.add("source");
     openapiFields.add("target");
+    openapiFields.add("isTargetNonLiteral");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

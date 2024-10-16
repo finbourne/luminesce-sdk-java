@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.699
+  version: 1.16.723
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2004,6 +2004,7 @@ paths:
               - filter: Eq
                 source: USD
                 target: US
+                isTargetNonLiteral: false
             schema:
               $ref: '#/components/schemas/CaseStatementDesign'
           application/json:
@@ -2013,6 +2014,7 @@ paths:
               - filter: Eq
                 source: USD
                 target: US
+                isTargetNonLiteral: false
             schema:
               $ref: '#/components/schemas/CaseStatementDesign'
           text/json:
@@ -2022,6 +2024,7 @@ paths:
               - filter: Eq
                 source: USD
                 target: US
+                isTargetNonLiteral: false
             schema:
               $ref: '#/components/schemas/CaseStatementDesign'
           application/*+json:
@@ -2031,6 +2034,7 @@ paths:
               - filter: Eq
                 source: USD
                 target: US
+                isTargetNonLiteral: false
             schema:
               $ref: '#/components/schemas/CaseStatementDesign'
         description: CaseStatementDesign object to try and create a SQL query from
@@ -4354,6 +4358,7 @@ paths:
                 - filter: Eq
                   source: USD
                   target: US
+                  isTargetNonLiteral: false
               schema:
                 $ref: '#/components/schemas/CaseStatementDesign'
             application/json:
@@ -4363,6 +4368,7 @@ paths:
                 - filter: Eq
                   source: USD
                   target: US
+                  isTargetNonLiteral: false
               schema:
                 $ref: '#/components/schemas/CaseStatementDesign'
             text/json:
@@ -4372,6 +4378,7 @@ paths:
                 - filter: Eq
                   source: USD
                   target: US
+                  isTargetNonLiteral: false
               schema:
                 $ref: '#/components/schemas/CaseStatementDesign'
           description: Success
@@ -7905,9 +7912,11 @@ components:
         selectedField: selectedField
         caseStatementItems:
         - filter: filter
+          isTargetNonLiteral: true
           source: source
           target: target
         - filter: filter
+          isTargetNonLiteral: true
           source: source
           target: target
       properties:
@@ -7930,6 +7939,7 @@ components:
         \ the Source is 'USD', the Filter is '=', and the Target is 'US'"
       example:
         filter: filter
+        isTargetNonLiteral: true
         source: source
         target: target
       properties:
@@ -7947,6 +7957,11 @@ components:
             \ case statement would look like:\r\nCASE Field {Filter} Source THEN Target"
           minLength: 1
           type: string
+        isTargetNonLiteral:
+          description: "The Target can be a literal value or a non literal (field)\
+            \ and\r\nhence will be interpreted differently.\r\nThis can be determined\
+            \ from the UI and passed down as a true / false"
+          type: boolean
       required:
       - filter
       - source

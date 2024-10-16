@@ -11,6 +11,7 @@ Information about a case statement.  A typical case statement would look like:  
 |**filter** | **String** | The operator in the case statement SQL expression |  |
 |**source** | **String** | The expression that is on the LHS of the operator  A typical case statement would look like:  CASE Field {Filter} Source THEN Target |  |
 |**target** | **String** | The expression that is on the RHS of the operator  A typical case statement would look like:  CASE Field {Filter} Source THEN Target |  |
+|**isTargetNonLiteral** | **Boolean** | The Target can be a literal value or a non literal (field) and  hence will be interpreted differently.  This can be determined from the UI and passed down as a true / false |  [optional] |
 
 
 
