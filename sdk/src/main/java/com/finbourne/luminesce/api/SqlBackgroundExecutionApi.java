@@ -531,7 +531,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultCsvRequest
          */
         public APIfetchQueryResultCsvRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -838,7 +838,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultExcelRequest
          */
         public APIfetchQueryResultExcelRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -1494,7 +1494,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultJsonRequest
          */
         public APIfetchQueryResultJsonRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -1846,7 +1846,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultJsonProperRequest
          */
         public APIfetchQueryResultJsonProperRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -2153,7 +2153,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultParquetRequest
          */
         public APIfetchQueryResultParquetRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -2505,7 +2505,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultPipeRequest
          */
         public APIfetchQueryResultPipeRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -2812,7 +2812,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultSqliteRequest
          */
         public APIfetchQueryResultSqliteRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
@@ -3164,7 +3164,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set loadWaitMilliseconds
-         * @param loadWaitMilliseconds Optional period to wait for results deserialization if in progress when this method is called. (optional, default to 0)
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
          * @return APIfetchQueryResultXmlRequest
          */
         public APIfetchQueryResultXmlRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {

@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.736
+  version: 1.16.747
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -5700,8 +5700,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -5839,8 +5839,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -6134,8 +6134,8 @@ paths:
           type: integer
         style: form
         x-nullable: true
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -6308,8 +6308,8 @@ paths:
           type: integer
         style: form
         x-nullable: true
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -6447,8 +6447,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -6624,8 +6624,8 @@ paths:
           type: integer
         style: form
         x-nullable: true
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -6763,8 +6763,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
@@ -6940,8 +6940,8 @@ paths:
           type: integer
         style: form
         x-nullable: true
-      - description: Optional period to wait for results deserialization if in progress
-          when this method is called.
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
         explode: true
         in: query
         name: loadWaitMilliseconds
