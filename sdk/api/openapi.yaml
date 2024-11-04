@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.781
+  version: 1.16.787
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2950,6 +2950,9 @@ paths:
                 startReplacementPosition:
                   row: 0
                   column: 1
+                endReplacementPosition:
+                  row: 0
+                  column: 2
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
             application/json:
@@ -2974,6 +2977,9 @@ paths:
                 startReplacementPosition:
                   row: 0
                   column: 1
+                endReplacementPosition:
+                  row: 0
+                  column: 2
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
             text/json:
@@ -2998,6 +3004,9 @@ paths:
                 startReplacementPosition:
                   row: 0
                   column: 1
+                endReplacementPosition:
+                  row: 0
+                  column: 2
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
           description: Success
@@ -8765,10 +8774,15 @@ components:
           name: name
           description: description
           key: key
+        providerNameExtension: providerNameExtension
         providerName: providerName
       properties:
         providerName:
           description: The provider name for which these properties are to be inlined
+          nullable: true
+          type: string
+        providerNameExtension:
+          description: The provider extension name for extended providers
           nullable: true
           type: string
         inlinedPropertyItems:

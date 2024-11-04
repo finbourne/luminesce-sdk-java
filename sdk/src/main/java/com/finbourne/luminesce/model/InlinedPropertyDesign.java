@@ -57,6 +57,10 @@ public class InlinedPropertyDesign {
   @SerializedName(SERIALIZED_NAME_PROVIDER_NAME)
   private String providerName;
 
+  public static final String SERIALIZED_NAME_PROVIDER_NAME_EXTENSION = "providerNameExtension";
+  @SerializedName(SERIALIZED_NAME_PROVIDER_NAME_EXTENSION)
+  private String providerNameExtension;
+
   public static final String SERIALIZED_NAME_INLINED_PROPERTY_ITEMS = "inlinedPropertyItems";
   @SerializedName(SERIALIZED_NAME_INLINED_PROPERTY_ITEMS)
   private List<InlinedPropertyItem> inlinedPropertyItems;
@@ -82,6 +86,27 @@ public class InlinedPropertyDesign {
 
   public void setProviderName(String providerName) {
     this.providerName = providerName;
+  }
+
+
+  public InlinedPropertyDesign providerNameExtension(String providerNameExtension) {
+    
+    this.providerNameExtension = providerNameExtension;
+    return this;
+  }
+
+   /**
+   * The provider extension name for extended providers
+   * @return providerNameExtension
+  **/
+  @jakarta.annotation.Nullable
+  public String getProviderNameExtension() {
+    return providerNameExtension;
+  }
+
+
+  public void setProviderNameExtension(String providerNameExtension) {
+    this.providerNameExtension = providerNameExtension;
   }
 
 
@@ -125,6 +150,7 @@ public class InlinedPropertyDesign {
     }
     InlinedPropertyDesign inlinedPropertyDesign = (InlinedPropertyDesign) o;
     return Objects.equals(this.providerName, inlinedPropertyDesign.providerName) &&
+        Objects.equals(this.providerNameExtension, inlinedPropertyDesign.providerNameExtension) &&
         Objects.equals(this.inlinedPropertyItems, inlinedPropertyDesign.inlinedPropertyItems);
   }
 
@@ -134,7 +160,7 @@ public class InlinedPropertyDesign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(providerName, inlinedPropertyItems);
+    return Objects.hash(providerName, providerNameExtension, inlinedPropertyItems);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -149,6 +175,7 @@ public class InlinedPropertyDesign {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlinedPropertyDesign {\n");
     sb.append("    providerName: ").append(toIndentedString(providerName)).append("\n");
+    sb.append("    providerNameExtension: ").append(toIndentedString(providerNameExtension)).append("\n");
     sb.append("    inlinedPropertyItems: ").append(toIndentedString(inlinedPropertyItems)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -173,6 +200,7 @@ public class InlinedPropertyDesign {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("providerName");
+    openapiFields.add("providerNameExtension");
     openapiFields.add("inlinedPropertyItems");
 
     // a set of required properties/fields (JSON key names)
@@ -194,6 +222,9 @@ public class InlinedPropertyDesign {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("providerName") != null && !jsonObj.get("providerName").isJsonNull()) && !jsonObj.get("providerName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `providerName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("providerName").toString()));
+      }
+      if ((jsonObj.get("providerNameExtension") != null && !jsonObj.get("providerNameExtension").isJsonNull()) && !jsonObj.get("providerNameExtension").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `providerNameExtension` to be a primitive type in the JSON string but got `%s`", jsonObj.get("providerNameExtension").toString()));
       }
       if (jsonObj.get("inlinedPropertyItems") != null && !jsonObj.get("inlinedPropertyItems").isJsonNull()) {
         JsonArray jsonArrayinlinedPropertyItems = jsonObj.getAsJsonArray("inlinedPropertyItems");

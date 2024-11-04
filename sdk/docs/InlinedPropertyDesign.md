@@ -9,6 +9,7 @@ Representation of a set of inlined properties for a given provider so that SQL c
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**providerName** | **String** | The provider name for which these properties are to be inlined |  [optional] |
+|**providerNameExtension** | **String** | The provider extension name for extended providers |  [optional] |
 |**inlinedPropertyItems** | [**List&lt;InlinedPropertyItem&gt;**](InlinedPropertyItem.md) | Collection of Inlined properties |  [optional] |
 
 
