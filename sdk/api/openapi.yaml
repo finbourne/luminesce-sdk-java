@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.16.765
+  version: 1.16.781
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2947,6 +2947,9 @@ paths:
                 sqlWithMarker: ▷select◁︎ Dockerfile Dockerfile.cicd LICENSE.md README.md
                   docker-compose.yml docs generate justfile publish resources test_sdk
                   from somewhere
+                startReplacementPosition:
+                  row: 0
+                  column: 1
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
             application/json:
@@ -2968,6 +2971,9 @@ paths:
                 sqlWithMarker: ▷select◁︎ Dockerfile Dockerfile.cicd LICENSE.md README.md
                   docker-compose.yml docs generate justfile publish resources test_sdk
                   from somewhere
+                startReplacementPosition:
+                  row: 0
+                  column: 1
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
             text/json:
@@ -2989,6 +2995,9 @@ paths:
                 sqlWithMarker: ▷select◁︎ Dockerfile Dockerfile.cicd LICENSE.md README.md
                   docker-compose.yml docs generate justfile publish resources test_sdk
                   from somewhere
+                startReplacementPosition:
+                  row: 0
+                  column: 1
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
           description: Success
