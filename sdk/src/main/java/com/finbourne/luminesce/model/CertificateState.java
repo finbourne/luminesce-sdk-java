@@ -100,6 +100,10 @@ public class CertificateState {
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
 
+  public static final String SERIALIZED_NAME_PERMISSIONS_SET_AT = "permissionsSetAt";
+  @SerializedName(SERIALIZED_NAME_PERMISSIONS_SET_AT)
+  private OffsetDateTime permissionsSetAt;
+
   public static final String SERIALIZED_NAME_CREATED_BY = "createdBy";
   @SerializedName(SERIALIZED_NAME_CREATED_BY)
   private String createdBy;
@@ -346,6 +350,27 @@ public class CertificateState {
   }
 
 
+  public CertificateState permissionsSetAt(OffsetDateTime permissionsSetAt) {
+    
+    this.permissionsSetAt = permissionsSetAt;
+    return this;
+  }
+
+   /**
+   * The point at which permissions were adjusted by the system
+   * @return permissionsSetAt
+  **/
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getPermissionsSetAt() {
+    return permissionsSetAt;
+  }
+
+
+  public void setPermissionsSetAt(OffsetDateTime permissionsSetAt) {
+    this.permissionsSetAt = permissionsSetAt;
+  }
+
+
   public CertificateState createdBy(String createdBy) {
     
     this.createdBy = createdBy;
@@ -438,6 +463,7 @@ public class CertificateState {
         Objects.equals(this.revokedAt, certificateState.revokedAt) &&
         Objects.equals(this.revokedBy, certificateState.revokedBy) &&
         Objects.equals(this.createdAt, certificateState.createdAt) &&
+        Objects.equals(this.permissionsSetAt, certificateState.permissionsSetAt) &&
         Objects.equals(this.createdBy, certificateState.createdBy) &&
         Objects.equals(this.serialNumber, certificateState.serialNumber) &&
         Objects.equals(this.links, certificateState.links);
@@ -449,7 +475,7 @@ public class CertificateState {
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, version, commonName, type, creationStatus, revocationStatus, validityStart, validityEnd, revokedAt, revokedBy, createdAt, createdBy, serialNumber, links);
+    return Objects.hash(key, version, commonName, type, creationStatus, revocationStatus, validityStart, validityEnd, revokedAt, revokedBy, createdAt, permissionsSetAt, createdBy, serialNumber, links);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -474,6 +500,7 @@ public class CertificateState {
     sb.append("    revokedAt: ").append(toIndentedString(revokedAt)).append("\n");
     sb.append("    revokedBy: ").append(toIndentedString(revokedBy)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    permissionsSetAt: ").append(toIndentedString(permissionsSetAt)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    serialNumber: ").append(toIndentedString(serialNumber)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
@@ -510,6 +537,7 @@ public class CertificateState {
     openapiFields.add("revokedAt");
     openapiFields.add("revokedBy");
     openapiFields.add("createdAt");
+    openapiFields.add("permissionsSetAt");
     openapiFields.add("createdBy");
     openapiFields.add("serialNumber");
     openapiFields.add("links");

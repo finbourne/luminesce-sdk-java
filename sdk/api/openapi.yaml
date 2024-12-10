@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.17.39
+  version: 1.17.52
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -8026,6 +8026,7 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         createdBy: createdBy
         revocationStatus: null
+        permissionsSetAt: 2000-01-23T04:56:07.000+00:00
         revokedBy: revokedBy
         links:
         - method: method
@@ -8079,6 +8080,11 @@ components:
           type: string
         createdAt:
           description: The point at which this was created
+          format: date-time
+          nullable: true
+          type: string
+        permissionsSetAt:
+          description: The point at which permissions were adjusted by the system
           format: date-time
           nullable: true
           type: string

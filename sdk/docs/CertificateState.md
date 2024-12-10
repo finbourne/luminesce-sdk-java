@@ -19,6 +19,7 @@ Information held about the minting / revoking of a certificate.  It does *not* c
 |**revokedAt** | **OffsetDateTime** | The point at which this was revoked, if any |  [optional] |
 |**revokedBy** | **String** | The user which revoked this, if any |  [optional] |
 |**createdAt** | **OffsetDateTime** | The point at which this was created |  [optional] |
+|**permissionsSetAt** | **OffsetDateTime** | The point at which permissions were adjusted by the system |  [optional] |
 |**createdBy** | **String** | The user which created this |  [optional] |
 |**serialNumber** | **String** | The Vault-issued serial number of the certificate, if any - used for revocation |  [optional] |
 |**links** | [**List&lt;Link&gt;**](Link.md) | The location within Configuration Store that this is saved to |  [optional] |
