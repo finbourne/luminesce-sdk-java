@@ -105,14 +105,6 @@ public class Column {
   public Column() {
   }
 
-  
-  public Column(
-     String name
-  ) {
-    this();
-    this.name = name;
-  }
-
   public Column isPrimaryKey(Boolean isPrimaryKey) {
     
     this.isPrimaryKey = isPrimaryKey;
@@ -226,6 +218,12 @@ public class Column {
   }
 
 
+  public Column name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
    /**
    * Get name
    * @return name
@@ -236,6 +234,9 @@ public class Column {
   }
 
 
+  public void setName(String name) {
+    this.name = name;
+  }
 
 
   public Column type(DataType type) {

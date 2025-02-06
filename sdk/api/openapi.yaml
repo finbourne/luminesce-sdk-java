@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.17.94
+  version: 1.17.364
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -190,7 +190,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetCatalog: Get a Flattened Table/Field Catalog"
@@ -228,7 +228,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetFields: List field and parameters for providers"
@@ -281,7 +281,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetProviders: List available providers"
@@ -346,7 +346,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -393,21 +393,93 @@ paths:
         "200":
           content:
             text/plain:
+              example:
+              - key: client-fbn-ci_11wec04q1fddJnefp3e4
+                version: 1
+                commonName: client-fbn-ci_11wec04q1fddJnefp3e4
+                type: User
+                creationStatus: "Vault, Rabbit, ConfigStore"
+                revocationStatus: None
+                validityStart: 2024-12-19T11:59:39.9158324+00:00
+                validityEnd: 2026-01-19T00:00:00.0000000+00:00
+                createdAt: 2024-12-19T11:59:39.9158324+00:00
+                permissionsSetAt: 2024-12-20T14:52:24.1002537+00:00
+                createdBy: 11wec04q1fddJnefp3e4
+                serialNumber: 09:cd:7d:ff:c9:8d:9b:be:96:aa:38:82:7a:09:fa:b3:87:63:de:34
+                links:
+                - relation: GetItem-Client_cert-pem
+                  href: https://fbn-ci.lusid.com/configuration/api/sets/Personal/Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/items/client_cert-pem?reveal=true
+                  description: Gets the `Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/client_cert-pem`
+                    value
+                  method: GET
+                - relation: GetItem-Client_key-pem
+                  href: https://fbn-ci.lusid.com/configuration/api/sets/Personal/Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/items/client_key-pem?reveal=true
+                  description: Gets the `Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/client_key-pem`
+                    value
+                  method: GET
               schema:
                 items:
                   $ref: '#/components/schemas/CertificateState'
                 type: array
             application/json:
+              example:
+              - key: client-fbn-ci_11wec04q1fddJnefp3e4
+                version: 1
+                commonName: client-fbn-ci_11wec04q1fddJnefp3e4
+                type: User
+                creationStatus: "Vault, Rabbit, ConfigStore"
+                revocationStatus: None
+                validityStart: 2024-12-19T11:59:39.9158324+00:00
+                validityEnd: 2026-01-19T00:00:00.0000000+00:00
+                createdAt: 2024-12-19T11:59:39.9158324+00:00
+                permissionsSetAt: 2024-12-20T14:52:24.1002537+00:00
+                createdBy: 11wec04q1fddJnefp3e4
+                serialNumber: 09:cd:7d:ff:c9:8d:9b:be:96:aa:38:82:7a:09:fa:b3:87:63:de:34
+                links:
+                - relation: GetItem-Client_cert-pem
+                  href: https://fbn-ci.lusid.com/configuration/api/sets/Personal/Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/items/client_cert-pem?reveal=true
+                  description: Gets the `Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/client_cert-pem`
+                    value
+                  method: GET
+                - relation: GetItem-Client_key-pem
+                  href: https://fbn-ci.lusid.com/configuration/api/sets/Personal/Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/items/client_key-pem?reveal=true
+                  description: Gets the `Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/client_key-pem`
+                    value
+                  method: GET
               schema:
                 items:
                   $ref: '#/components/schemas/CertificateState'
                 type: array
             text/json:
+              example:
+              - key: client-fbn-ci_11wec04q1fddJnefp3e4
+                version: 1
+                commonName: client-fbn-ci_11wec04q1fddJnefp3e4
+                type: User
+                creationStatus: "Vault, Rabbit, ConfigStore"
+                revocationStatus: None
+                validityStart: 2024-12-19T11:59:39.9158324+00:00
+                validityEnd: 2026-01-19T00:00:00.0000000+00:00
+                createdAt: 2024-12-19T11:59:39.9158324+00:00
+                permissionsSetAt: 2024-12-20T14:52:24.1002537+00:00
+                createdBy: 11wec04q1fddJnefp3e4
+                serialNumber: 09:cd:7d:ff:c9:8d:9b:be:96:aa:38:82:7a:09:fa:b3:87:63:de:34
+                links:
+                - relation: GetItem-Client_cert-pem
+                  href: https://fbn-ci.lusid.com/configuration/api/sets/Personal/Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/items/client_cert-pem?reveal=true
+                  description: Gets the `Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/client_cert-pem`
+                    value
+                  method: GET
+                - relation: GetItem-Client_key-pem
+                  href: https://fbn-ci.lusid.com/configuration/api/sets/Personal/Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/items/client_key-pem?reveal=true
+                  description: Gets the `Luminesce-Certificates/client-fbn-ci_11wec04q1fddJnefp3e4/client_key-pem`
+                    value
+                  method: GET
               schema:
                 items:
                   $ref: '#/components/schemas/CertificateState'
                 type: array
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -526,7 +598,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/CertificateState'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -581,6 +653,7 @@ paths:
       parameters:
       - description: Type of binary to download (each requires separate licenses and
           entitlements)
+        example: SqlDb_Providers_Oracle_Snowflake
         explode: true
         in: query
         name: type
@@ -591,6 +664,7 @@ paths:
         x-nullable: true
       - description: An explicit version of the binary. Leave blank to get the latest
           version (recommended)
+        example: 1.17.274
         explode: true
         in: query
         name: version
@@ -647,6 +721,7 @@ paths:
       operationId: GetBinaryVersions
       parameters:
       - description: Type of binary to fetch available versions of
+        example: SqlDb_Providers_Snowflake
         explode: true
         in: query
         name: type
@@ -673,7 +748,7 @@ paths:
                 items:
                   type: string
                 type: array
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -816,7 +891,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/BackgroundQueryCancelResponse'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "CancelHistory: Cancel / Clear data from a history search"
@@ -857,7 +932,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/BackgroundQueryProgressResponse'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetProgressOfHistory: View progress of a history search"
@@ -930,7 +1005,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1090,7 +1165,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1145,7 +1220,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ResourceListOfAccessControlledResource'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetServicesAsAccessControlledResources: Get resources available for\
@@ -1356,7 +1431,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/BackgroundQueryCancelResponse'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "CancelMultiQuery: Cancel / Clear a previously started query-set"
@@ -1397,7 +1472,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/BackgroundMultiQueryProgressResponse'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetProgressOfMultiQuery: View progress of the entire query-set load"
@@ -1511,7 +1586,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1641,7 +1716,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1755,7 +1830,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1861,7 +1936,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -1954,7 +2029,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/ScalarParameter'
                 type: array
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -2051,7 +2126,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -2211,7 +2286,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -2268,6 +2343,7 @@ paths:
         content:
           application/json-patch+json:
             example:
+              autoDetect: Auto
               limit: 0
               source:
                 location: Drive
@@ -2279,6 +2355,7 @@ paths:
               $ref: '#/components/schemas/FileReaderBuilderDef'
           application/json:
             example:
+              autoDetect: Auto
               limit: 0
               source:
                 location: Drive
@@ -2290,6 +2367,7 @@ paths:
               $ref: '#/components/schemas/FileReaderBuilderDef'
           text/json:
             example:
+              autoDetect: Auto
               limit: 0
               source:
                 location: Drive
@@ -2301,6 +2379,7 @@ paths:
               $ref: '#/components/schemas/FileReaderBuilderDef'
           application/*+json:
             example:
+              autoDetect: Auto
               limit: 0
               source:
                 location: Drive
@@ -2324,7 +2403,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/FileReaderBuilderResponse'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -2421,7 +2500,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -2602,7 +2681,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -2839,7 +2918,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3009,7 +3088,7 @@ paths:
                   column: 2
               schema:
                 $ref: '#/components/schemas/IntellisenseResponse'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3130,7 +3209,7 @@ paths:
                 sqlWithMarker: select mx▷(◁︎x) x from y
               schema:
                 $ref: '#/components/schemas/ErrorHighlightResponse'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3252,7 +3331,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3365,7 +3444,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3479,7 +3558,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3585,7 +3664,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3707,7 +3786,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -3821,7 +3900,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4028,7 +4107,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4098,7 +4177,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4213,7 +4292,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4319,7 +4398,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4361,8 +4440,8 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: "CASE \n WHEN [currency] = 'US' THEN 'USD' \n WHEN [currency]\
-              \ = 'Gb' THEN 'GBP' \n ELSE [currency] \n END"
+            example: "CASE \\n WHEN [currency] = 'US' THEN 'USD' \\n WHEN [currency]\
+              \ = 'Gb' THEN 'GBP' \\n ELSE [currency] \\n END"
             schema:
               type: string
         description: SQL to attempt to create an case statement Design object from
@@ -4399,7 +4478,7 @@ paths:
                   isTargetNonLiteral: false
               schema:
                 $ref: '#/components/schemas/CaseStatementDesign'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4455,19 +4534,9 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: |-
-              SELECT
-               [TableName],
-               Count(distinct [FieldName]) as [NumberOfFields]
-              FROM
-               [Sys.Field]
-              WHERE
-               ([TableName] = 'Sys.Registration')
-              GROUP BY
-               [TableName]
-              ORDER BY
-               [DataType]
-              LIMIT 42
+            example: "SELECT\\n [TableName],\\n Count(distinct [FieldName]) as [NumberOfFields]\\\
+              nFROM\\n [Sys.Field]\\nWHERE\\n ([TableName] = 'Sys.Registration')\\\
+              nGROUP BY\\n [TableName]\\nORDER BY\\n [DataType]\\nLIMIT 42"
             schema:
               type: string
         description: SQL query to generate the design object from
@@ -4553,7 +4622,7 @@ paths:
                 availableFields: []
               schema:
                 $ref: '#/components/schemas/QueryDesign'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4608,9 +4677,9 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: "@x = \nuse Drive.Csv\n --file=/some/folder/somefile.csv\nenduse;\n\
-              \nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
-              \ docs generate justfile publish resources test_sdk from @x;"
+            example: '@x = \nuse Drive.Csv\n --file=/some/folder/somefile.csv\nenduse;\n\nselect
+              Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs
+              generate justfile publish resources test_sdk from @x;'
             schema:
               type: string
         description: SQL query to generate the file read design object from
@@ -4619,6 +4688,7 @@ paths:
           content:
             text/plain:
               example:
+                autoDetect: Auto
                 limit: 0
                 source:
                   location: Drive
@@ -4630,6 +4700,7 @@ paths:
                 $ref: '#/components/schemas/FileReaderBuilderDef'
             application/json:
               example:
+                autoDetect: Auto
                 limit: 0
                 source:
                   location: Drive
@@ -4641,6 +4712,7 @@ paths:
                 $ref: '#/components/schemas/FileReaderBuilderDef'
             text/json:
               example:
+                autoDetect: Auto
                 limit: 0
                 source:
                   location: Drive
@@ -4650,7 +4722,7 @@ paths:
                 addFileName: true
               schema:
                 $ref: '#/components/schemas/FileReaderBuilderDef'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4695,9 +4767,9 @@ paths:
         content:
           text/plain:
             example: "@keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location',\
-              \ 'PortfolioLocation', false, '');\n @config = select column1 as [Key],\
+              \ 'PortfolioLocation', false, '');\\n @config = select column1 as [Key],\
               \ column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog;\
-              \ \n select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
+              \ \\n select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
               \ docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure\
               \ where Provider = 'Lusid.Portfolio' and Configuration = @config;"
             schema:
@@ -4737,7 +4809,7 @@ paths:
                   description: some description
               schema:
                 $ref: '#/components/schemas/InlinedPropertyDesign'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -4781,11 +4853,11 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: "@x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\n\
-              select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
-              \ docs generate justfile publish resources test_sdk from Lusid.Instrument\n\
-              enduse;\n\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml\
-              \ docs generate justfile publish resources test_sdk from @x;"
+            example: '@x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\nselect
+              Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs
+              generate justfile publish resources test_sdk from Lusid.Instrument\nenduse;\n\nselect
+              Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs
+              generate justfile publish resources test_sdk from @x;'
             schema:
               type: string
         description: SQL Query to generate the ConvertToViewData object from
@@ -4886,7 +4958,7 @@ paths:
                 otherParameters: {}
               schema:
                 $ref: '#/components/schemas/ConvertToViewData'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -5085,7 +5157,7 @@ paths:
                     type: Text
               schema:
                 $ref: '#/components/schemas/WriterDesign'
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -5209,7 +5281,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -5323,7 +5395,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -5522,7 +5594,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/BackgroundQueryCancelResponse'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "CancelQuery: Cancel / Clear data from a previously run query"
@@ -5576,7 +5648,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/BackgroundQueryProgressResponse'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "GetProgressOf: View query progress up to this point"
@@ -5742,7 +5814,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -5884,7 +5956,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6009,7 +6081,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6176,7 +6248,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6350,7 +6422,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6492,7 +6564,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6666,7 +6738,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6808,7 +6880,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -6982,7 +7054,7 @@ paths:
             text/json:
               schema:
                 type: string
-          description: Success
+          description: OK
         "400":
           content:
             text/plain:
@@ -7045,7 +7117,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ActionResult'
-          description: Success
+          description: OK
       security:
       - oauth2: []
       summary: "[INTERNAL] FakeNodeReclaim: Helps testing of AWS node reclaim behaviour"
@@ -8155,7 +8227,6 @@ components:
           type: array
         name:
           nullable: true
-          readOnly: true
           type: string
         type:
           $ref: '#/components/schemas/DataType'
@@ -8744,6 +8815,7 @@ components:
       properties:
         identifier:
           additionalProperties:
+            nullable: true
             type: string
           minLength: 1
           type: object

@@ -110,7 +110,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -164,11 +164,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = CASE 
- WHEN [currency] = 'US' THEN 'USD' 
- WHEN [currency] = 'Gb' THEN 'GBP' 
- ELSE [currency] 
- END; // String | SQL to attempt to create an case statement Design object from
+        String body = CASE \n WHEN [currency] = 'US' THEN 'USD' \n WHEN [currency] = 'Gb' THEN 'GBP' \n ELSE [currency] \n END; // String | SQL to attempt to create an case statement Design object from
         try {
             // uncomment the below to set overrides at the request level
             // CaseStatementDesign result = apiInstance.putCaseStatementDesignSqlToDesign(body).execute(opts);
@@ -205,7 +201,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -296,7 +292,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -389,7 +385,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -443,9 +439,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');
- @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; 
- select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to attempt to generate the inlined properties design object from
+        String body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');\n @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; \n select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to attempt to generate the inlined properties design object from
         try {
             // uncomment the below to set overrides at the request level
             // InlinedPropertyDesign result = apiInstance.putInlinedPropertiesDesignSqlToDesign(body).execute(opts);
@@ -482,7 +476,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -573,7 +567,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -664,7 +658,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -755,7 +749,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -846,7 +840,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -963,7 +957,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1054,7 +1048,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1109,12 +1103,7 @@ public class SqlDesignApiExample {
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         Boolean determineAvailableSources = true; // Boolean | Should the available sources be determined from `Sys.Registration`
-        String body = @x = 
-use Drive.Csv
- --file=/some/folder/somefile.csv
-enduse;
-
-select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL query to generate the file read design object from
+        String body = @x = \nuse Drive.Csv\n --file=/some/folder/somefile.csv\nenduse;\n\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL query to generate the file read design object from
         try {
             // uncomment the below to set overrides at the request level
             // FileReaderBuilderDef result = apiInstance.putSqlToFileReadDesign(determineAvailableSources, body).execute(opts);
@@ -1152,7 +1141,7 @@ select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs g
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1206,18 +1195,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = SELECT
- [TableName],
- Count(distinct [FieldName]) as [NumberOfFields]
-FROM
- [Sys.Field]
-WHERE
- ([TableName] = 'Sys.Registration')
-GROUP BY
- [TableName]
-ORDER BY
- [DataType]
-LIMIT 42; // String | SQL query to generate the design object from
+        String body = SELECT\n [TableName],\n Count(distinct [FieldName]) as [NumberOfFields]\nFROM\n [Sys.Field]\nWHERE\n ([TableName] = 'Sys.Registration')\nGROUP BY\n [TableName]\nORDER BY\n [DataType]\nLIMIT 42; // String | SQL query to generate the design object from
         Boolean validateWithMetadata = true; // Boolean | Should the table be validated against the users' view of Sys.Field to fill in DataTypes, etc.?
         try {
             // uncomment the below to set overrides at the request level
@@ -1256,7 +1234,7 @@ LIMIT 42; // String | SQL query to generate the design object from
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1310,14 +1288,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = @x = 
-use Sys.Admin.SetupView
- --provider=YourView
-----
-select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument
-enduse;
-
-select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
+        String body = @x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument\nenduse;\n\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
         try {
             // uncomment the below to set overrides at the request level
             // ConvertToViewData result = apiInstance.putSqlToViewDesign(body).execute(opts);
@@ -1354,7 +1325,7 @@ select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs g
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1447,7 +1418,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1538,7 +1509,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 
@@ -1629,7 +1600,7 @@ public class SqlDesignApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 

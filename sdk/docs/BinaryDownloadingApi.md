@@ -57,7 +57,7 @@ public class BinaryDownloadingApiExample {
 
         BinaryDownloadingApi apiInstance = ApiFactoryBuilder.build(fileName).build(BinaryDownloadingApi.class);
         LuminesceBinaryType type = LuminesceBinaryType.fromValue("CommandLineTool"); // LuminesceBinaryType | Type of binary to download (each requires separate licenses and entitlements)
-        String version = "version_example"; // String | An explicit version of the binary. Leave blank to get the latest version (recommended)
+        String version = "1.17.274"; // String | An explicit version of the binary. Leave blank to get the latest version (recommended)
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.downloadBinary(type, version).execute(opts);
@@ -186,7 +186,7 @@ public class BinaryDownloadingApiExample {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
 

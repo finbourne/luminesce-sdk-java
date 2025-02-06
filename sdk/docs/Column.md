@@ -12,7 +12,7 @@
 |**isRequiredByProvider** | **Boolean** |  |  [optional] |
 |**mandatoryForActions** | **String** |  |  [optional] |
 |**clientIds** | **List&lt;String&gt;** |  |  [optional] |
-|**name** | **String** |  |  [optional] [readonly] |
+|**name** | **String** |  |  [optional] |
 |**type** | **DataType** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
