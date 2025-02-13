@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.17.383
+  version: 1.18.13
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -640,13 +640,20 @@ paths:
         \ not subject to the same SLAs as other API endpoints are.\n> *If you perceive\
         \ an outage, please try again later.*\n\nOnce a file has been downloaded the\
         \ following steps can be used to install it (for the dotnet tools at least):\n\
-        \n1. Open a terminal and cd to the directory you downloaded it to\n2. Install\
-        \ / extract files from that package via:\n```\ndotnet tool install NameOfFileWithoutVersionNumberOrExtension\
-        \ -g --add-source \".\"\n```\ne.g.\n```\ndotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake\
-        \ -g --add-source \".\"\n```\n3. Execute them (see documentation for specific\
-        \ binary)...\n\nThe installed binaries can then be found in\n- Windows - `%USERPROFILE%\\\
+        \n(1) Open a terminal and cd to the directory you downloaded it to\n\n(2)\
+        \ Install / extract files from that package via:\n\n```\ndotnet tool install\
+        \ NameOfFileWithoutVersionNumberOrExtension -g --add-source \".\"\n```\ne.g.\n\
+        ```\ndotnet tool install Finbourne.Luminesce.DbProviders.Oracle_Snowflake\
+        \ -g --add-source \".\"\n```\nMore information on the installations can be\
+        \ found [here](https://support.lusid.com/docs/how-do-i-use-the-luminesce-cli).\n\
+        \n(3) Execute them (see documentation for specific binary, e.g. [Sql.Db.Mine](https://support.lusid.com/docs/readwrite-to-sql-databases-sqldbmine)\
+        \ or [CLI](https://support.lusid.com/docs/how-do-i-use-the-luminesce-cli)).\n\
+        \nThe installed binaries can then be found in\n- Windows - `%USERPROFILE%\\\
         .dotnet\\tools\\.store\\`\n- Linux/macOS - `$HOME/.dotnet/tools/.store/`\n\
-        \nThe following error codes are to be anticipated with standard Problem Detail\
+        \nNote that the binaries all require the dotnet runtime to be installed.\n\
+        - `dotnet8` is required for all versions `1.18.X+`\n- `dotnet6` is required\
+        \ for all versions `1.17.X-` *Please upgrade if still running these*\n\nThe\
+        \ following error codes are to be anticipated with standard Problem Detail\
         \ reports:\n- 400 BadRequest - binary file is not available for some reason\
         \ (e.g. permissions or invalid version)\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: DownloadBinary
@@ -664,7 +671,6 @@ paths:
         x-nullable: true
       - description: An explicit version of the binary. Leave blank to get the latest
           version (recommended)
-        example: 1.17.274
         explode: true
         in: query
         name: version
