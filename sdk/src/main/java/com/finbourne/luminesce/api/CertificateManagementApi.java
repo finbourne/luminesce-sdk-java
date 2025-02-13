@@ -330,7 +330,7 @@ public class CertificateManagementApi {
     }
 
     /**
-     * [EXPERIMENTAL] DownloadCertificate: Download domain or your personal certificates
+     * DownloadCertificate: Download domain or your personal certificates
      *  Downloads your latest Domain or your User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized - 403 Forbidden 
      * @return APIdownloadCertificateRequest
      * @http.response.details
@@ -553,7 +553,7 @@ public class CertificateManagementApi {
     }
 
     /**
-     * [EXPERIMENTAL] ListCertificates: List previously minted certificates
+     * ListCertificates: List previously minted certificates
      *  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
      * @return APIlistCertificatesRequest
      * @http.response.details
@@ -866,7 +866,7 @@ public class CertificateManagementApi {
     }
 
     /**
-     * [EXPERIMENTAL] ManageCertificate: Create / Renew / Revoke a certificate
+     * ManageCertificate: Create / Renew / Revoke a certificate
      *  Manages a certificate. This could be creating a new one, renewing an old one or revoking one explicitly.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something about the request cannot be processed - 401 Unauthorized - 403 Forbidden 
      * @return APImanageCertificateRequest
      * @http.response.details

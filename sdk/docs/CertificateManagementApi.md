@@ -4,9 +4,9 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | [EXPERIMENTAL] DownloadCertificate: Download domain or your personal certificates |
-| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | [EXPERIMENTAL] ListCertificates: List previously minted certificates |
-| [**manageCertificate**](CertificateManagementApi.md#manageCertificate) | **PUT** /api/Certificate/manage | [EXPERIMENTAL] ManageCertificate: Create / Renew / Revoke a certificate |
+| [**downloadCertificate**](CertificateManagementApi.md#downloadCertificate) | **GET** /api/Certificate/certificate | DownloadCertificate: Download domain or your personal certificates |
+| [**listCertificates**](CertificateManagementApi.md#listCertificates) | **GET** /api/Certificate/certificates | ListCertificates: List previously minted certificates |
+| [**manageCertificate**](CertificateManagementApi.md#manageCertificate) | **PUT** /api/Certificate/manage | ManageCertificate: Create / Renew / Revoke a certificate |
 
 
 
@@ -14,7 +14,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 > File downloadCertificate(type, fileType, mayAutoCreate)
 
-[EXPERIMENTAL] DownloadCertificate: Download domain or your personal certificates
+DownloadCertificate: Download domain or your personal certificates
 
  Downloads your latest Domain or your User certificate&#39;s public or private key - if any.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - certificate is not available for some reason - 401 Unauthorized - 403 Forbidden 
 
@@ -109,7 +109,7 @@ public class CertificateManagementApiExample {
 
 > List&lt;CertificateState&gt; listCertificates()
 
-[EXPERIMENTAL] ListCertificates: List previously minted certificates
+ListCertificates: List previously minted certificates
 
  Lists all the certificates previously minted to which you have access.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
@@ -196,7 +196,7 @@ This endpoint does not need any parameter.
 
 > CertificateState manageCertificate(action, type, version, validityStart, validityEnd, dryRun)
 
-[EXPERIMENTAL] ManageCertificate: Create / Renew / Revoke a certificate
+ManageCertificate: Create / Renew / Revoke a certificate
 
  Manages a certificate. This could be creating a new one, renewing an old one or revoking one explicitly.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - something about the request cannot be processed - 401 Unauthorized - 403 Forbidden 
 

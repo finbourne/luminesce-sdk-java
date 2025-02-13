@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.13
+  version: 1.18.20
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -373,11 +373,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DownloadCertificate: Download domain or your personal\
-        \ certificates"
+      summary: "DownloadCertificate: Download domain or your personal certificates"
       tags:
       - Certificate Management
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Certificate/certificates:
     get:
@@ -506,10 +505,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListCertificates: List previously minted certificates"
+      summary: "ListCertificates: List previously minted certificates"
       tags:
       - Certificate Management
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Certificate/manage:
     put:
@@ -625,10 +624,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ManageCertificate: Create / Renew / Revoke a certificate"
+      summary: "ManageCertificate: Create / Renew / Revoke a certificate"
       tags:
       - Certificate Management
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Download/download:
     get:
@@ -712,11 +711,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DownloadBinary: Download a Luminesce Binary you may\
-        \ run on-site"
+      summary: "DownloadBinary: Download a Luminesce Binary you may run on-site"
       tags:
       - Binary Downloading
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Download/versions:
     get:
@@ -781,10 +779,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] GetBinaryVersions: List available versions of binaries"
+      summary: "GetBinaryVersions: List available versions of binaries"
       tags:
       - Binary Downloading
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/History:
     get:
@@ -2062,11 +2060,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToExtractScalarParameters: Extract scalar parameter\
-        \ information from SQL"
+      summary: "PutSqlToExtractScalarParameters: Extract scalar parameter information\
+        \ from SQL"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/fromcasestatementdesign:
@@ -2159,11 +2157,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutCaseStatementDesignToSql: Convert a case statement\
-        \ design object to SQL"
+      summary: "PutCaseStatementDesignToSql: Convert a case statement design object\
+        \ to SQL"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/fromdesign:
@@ -2319,11 +2317,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutQueryDesignToSql: Make SQL from a structured query\
-        \ design"
+      summary: "PutQueryDesignToSql: Make SQL from a structured query design"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/fromfilereaddesign:
@@ -2436,11 +2433,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutFileReadDesignToSql: Make file read SQL from a design\
-        \ object"
+      summary: "PutFileReadDesignToSql: Make file read SQL from a design object"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/frominlinedpropertiesdesign:
@@ -2533,11 +2529,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignToSql: Make inlined properties\
-        \ SQL from a design object"
+      summary: "PutInlinedPropertiesDesignToSql: Make inlined properties SQL from\
+        \ a design object"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/fromviewdesign:
@@ -2714,10 +2710,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutViewDesignToSql: Make view creation sql from a view-design"
+      summary: "PutViewDesignToSql: Make view creation sql from a view-design"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/fromwriterdesign:
@@ -2951,11 +2947,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutWriterDesignToSql: Make writer SQL from a writer-design\
-        \ object"
+      summary: "PutWriterDesignToSql: Make writer SQL from a writer-design object"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/intellisense:
@@ -4511,11 +4506,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutCaseStatementDesignSqlToDesign: Convert SQL to a\
-        \ case statement design object"
+      summary: "PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement\
+        \ design object"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/todesign:
@@ -4655,11 +4650,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToQueryDesign: Make a SQL-design object from\
-        \ SQL if possible"
+      summary: "PutSqlToQueryDesign: Make a SQL-design object from SQL if possible"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/tofilereaddesign:
@@ -4755,11 +4749,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToFileReadDesign: Make a design object from file-read\
-        \ SQL"
+      summary: "PutSqlToFileReadDesign: Make a design object from file-read SQL"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/toinlinedpropertiesdesign:
@@ -4842,11 +4835,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutInlinedPropertiesDesignSqlToDesign: Make an inlined\
-        \ properties design from SQL"
+      summary: "PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties\
+        \ design from SQL"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/toviewdesign:
@@ -4991,11 +4984,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToViewDesign: Make a view-design from view creation\
-        \ SQL"
+      summary: "PutSqlToViewDesign: Make a view-design from view creation SQL"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/towriterdesign:
@@ -5190,11 +5182,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] PutSqlToWriterDesign: Make a SQL-writer-design object\
-        \ from SQL"
+      summary: "PutSqlToWriterDesign: Make a SQL-writer-design object from SQL"
       tags:
       - Sql Design
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
   /api/Sql/xml:
