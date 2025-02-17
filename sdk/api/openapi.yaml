@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.32
+  version: 1.18.44
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -397,7 +397,7 @@ paths:
                 version: 1
                 commonName: client-fbn-ci_11wec04q1fddJnefp3e4
                 type: User
-                creationStatus: "Vault, Rabbit, ConfigStore"
+                creationStatus: VaultRabbitConfigStore
                 revocationStatus: None
                 validityStart: 2024-12-19T11:59:39.9158324+00:00
                 validityEnd: 2026-01-19T00:00:00.0000000+00:00
@@ -426,7 +426,7 @@ paths:
                 version: 1
                 commonName: client-fbn-ci_11wec04q1fddJnefp3e4
                 type: User
-                creationStatus: "Vault, Rabbit, ConfigStore"
+                creationStatus: VaultRabbitConfigStore
                 revocationStatus: None
                 validityStart: 2024-12-19T11:59:39.9158324+00:00
                 validityEnd: 2026-01-19T00:00:00.0000000+00:00
@@ -455,7 +455,7 @@ paths:
                 version: 1
                 commonName: client-fbn-ci_11wec04q1fddJnefp3e4
                 type: User
-                creationStatus: "Vault, Rabbit, ConfigStore"
+                creationStatus: VaultRabbitConfigStore
                 revocationStatus: None
                 validityStart: 2024-12-19T11:59:39.9158324+00:00
                 validityEnd: 2026-01-19T00:00:00.0000000+00:00
@@ -8180,8 +8180,18 @@ components:
       - None
       - WebApiPersistence
       - Vault
+      - WebApiPersistenceVault
       - Rabbit
+      - WebApiPersistenceRabbit
+      - VaultRabbit
+      - WebApiPersistenceVaultRabbit
       - ConfigStore
+      - WebApiPersistenceConfigStore
+      - VaultConfigStore
+      - WebApiPersistenceVaultConfigStore
+      - RabbitConfigStore
+      - WebApiPersistenceRabbitConfigStore
+      - VaultRabbitConfigStore
       - AllSystems
       type: string
     CertificateType:

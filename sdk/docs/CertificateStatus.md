@@ -11,9 +11,29 @@
 
 * `VAULT` (value: `"Vault"`)
 
+* `WEBAPIPERSISTENCEVAULT` (value: `"WebApiPersistenceVault"`)
+
 * `RABBIT` (value: `"Rabbit"`)
 
+* `WEBAPIPERSISTENCERABBIT` (value: `"WebApiPersistenceRabbit"`)
+
+* `VAULTRABBIT` (value: `"VaultRabbit"`)
+
+* `WEBAPIPERSISTENCEVAULTRABBIT` (value: `"WebApiPersistenceVaultRabbit"`)
+
 * `CONFIGSTORE` (value: `"ConfigStore"`)
+
+* `WEBAPIPERSISTENCECONFIGSTORE` (value: `"WebApiPersistenceConfigStore"`)
+
+* `VAULTCONFIGSTORE` (value: `"VaultConfigStore"`)
+
+* `WEBAPIPERSISTENCEVAULTCONFIGSTORE` (value: `"WebApiPersistenceVaultConfigStore"`)
+
+* `RABBITCONFIGSTORE` (value: `"RabbitConfigStore"`)
+
+* `WEBAPIPERSISTENCERABBITCONFIGSTORE` (value: `"WebApiPersistenceRabbitConfigStore"`)
+
+* `VAULTRABBITCONFIGSTORE` (value: `"VaultRabbitConfigStore"`)
 
 * `ALLSYSTEMS` (value: `"AllSystems"`)
 

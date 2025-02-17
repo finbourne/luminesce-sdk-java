@@ -31,9 +31,29 @@ public enum CertificateStatus {
   
   VAULT("Vault"),
   
+  WEBAPIPERSISTENCEVAULT("WebApiPersistenceVault"),
+  
   RABBIT("Rabbit"),
   
+  WEBAPIPERSISTENCERABBIT("WebApiPersistenceRabbit"),
+  
+  VAULTRABBIT("VaultRabbit"),
+  
+  WEBAPIPERSISTENCEVAULTRABBIT("WebApiPersistenceVaultRabbit"),
+  
   CONFIGSTORE("ConfigStore"),
+  
+  WEBAPIPERSISTENCECONFIGSTORE("WebApiPersistenceConfigStore"),
+  
+  VAULTCONFIGSTORE("VaultConfigStore"),
+  
+  WEBAPIPERSISTENCEVAULTCONFIGSTORE("WebApiPersistenceVaultConfigStore"),
+  
+  RABBITCONFIGSTORE("RabbitConfigStore"),
+  
+  WEBAPIPERSISTENCERABBITCONFIGSTORE("WebApiPersistenceRabbitConfigStore"),
+  
+  VAULTRABBITCONFIGSTORE("VaultRabbitConfigStore"),
   
   ALLSYSTEMS("AllSystems");
 
