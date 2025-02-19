@@ -19,9 +19,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -69,10 +67,6 @@ public class Column {
   public static final String SERIALIZED_NAME_MANDATORY_FOR_ACTIONS = "mandatoryForActions";
   @SerializedName(SERIALIZED_NAME_MANDATORY_FOR_ACTIONS)
   private String mandatoryForActions;
-
-  public static final String SERIALIZED_NAME_CLIENT_IDS = "clientIds";
-  @SerializedName(SERIALIZED_NAME_CLIENT_IDS)
-  private List<String> clientIds;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -186,35 +180,6 @@ public class Column {
 
   public void setMandatoryForActions(String mandatoryForActions) {
     this.mandatoryForActions = mandatoryForActions;
-  }
-
-
-  public Column clientIds(List<String> clientIds) {
-    
-    this.clientIds = clientIds;
-    return this;
-  }
-
-  public Column addClientIdsItem(String clientIdsItem) {
-    if (this.clientIds == null) {
-      this.clientIds = new ArrayList<>();
-    }
-    this.clientIds.add(clientIdsItem);
-    return this;
-  }
-
-   /**
-   * Get clientIds
-   * @return clientIds
-  **/
-  @jakarta.annotation.Nullable
-  public List<String> getClientIds() {
-    return clientIds;
-  }
-
-
-  public void setClientIds(List<String> clientIds) {
-    this.clientIds = clientIds;
   }
 
 
@@ -379,7 +344,6 @@ public class Column {
         Objects.equals(this.isMain, column.isMain) &&
         Objects.equals(this.isRequiredByProvider, column.isRequiredByProvider) &&
         Objects.equals(this.mandatoryForActions, column.mandatoryForActions) &&
-        Objects.equals(this.clientIds, column.clientIds) &&
         Objects.equals(this.name, column.name) &&
         Objects.equals(this.type, column.type) &&
         Objects.equals(this.description, column.description) &&
@@ -395,7 +359,7 @@ public class Column {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isPrimaryKey, isMain, isRequiredByProvider, mandatoryForActions, clientIds, name, type, description, displayName, conditionUsage, sampleValues, allowedValues);
+    return Objects.hash(isPrimaryKey, isMain, isRequiredByProvider, mandatoryForActions, name, type, description, displayName, conditionUsage, sampleValues, allowedValues);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -413,7 +377,6 @@ public class Column {
     sb.append("    isMain: ").append(toIndentedString(isMain)).append("\n");
     sb.append("    isRequiredByProvider: ").append(toIndentedString(isRequiredByProvider)).append("\n");
     sb.append("    mandatoryForActions: ").append(toIndentedString(mandatoryForActions)).append("\n");
-    sb.append("    clientIds: ").append(toIndentedString(clientIds)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -447,7 +410,6 @@ public class Column {
     openapiFields.add("isMain");
     openapiFields.add("isRequiredByProvider");
     openapiFields.add("mandatoryForActions");
-    openapiFields.add("clientIds");
     openapiFields.add("name");
     openapiFields.add("type");
     openapiFields.add("description");
@@ -475,10 +437,6 @@ public class Column {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("mandatoryForActions") != null && !jsonObj.get("mandatoryForActions").isJsonNull()) && !jsonObj.get("mandatoryForActions").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mandatoryForActions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mandatoryForActions").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("clientIds") != null && !jsonObj.get("clientIds").isJsonNull() && !jsonObj.get("clientIds").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `clientIds` to be an array in the JSON string but got `%s`", jsonObj.get("clientIds").toString()));
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));

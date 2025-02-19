@@ -11,7 +11,6 @@
 |**isMain** | **Boolean** |  |  [optional] |
 |**isRequiredByProvider** | **Boolean** |  |  [optional] |
 |**mandatoryForActions** | **String** |  |  [optional] |
-|**clientIds** | **List&lt;String&gt;** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**type** | **DataType** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
