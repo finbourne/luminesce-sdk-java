@@ -12,6 +12,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**putInlinedPropertiesDesignToSql**](SqlDesignApi.md#putInlinedPropertiesDesignToSql) | **PUT** /api/Sql/frominlinedpropertiesdesign | PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object |
 | [**putIntellisense**](SqlDesignApi.md#putIntellisense) | **PUT** /api/Sql/intellisense | PutIntellisense: Make intellisense prompts given an SQL snip-it |
 | [**putIntellisenseError**](SqlDesignApi.md#putIntellisenseError) | **PUT** /api/Sql/intellisenseError | PutIntellisenseError: Get error ranges from SQL |
+| [**putLusidGridToQuery**](SqlDesignApi.md#putLusidGridToQuery) | **PUT** /api/Sql/fromlusidgrid | [EXPERIMENTAL] PutLusidGridToQuery: Generates SQL from a dashboard view |
 | [**putQueryDesignToSql**](SqlDesignApi.md#putQueryDesignToSql) | **PUT** /api/Sql/fromdesign | PutQueryDesignToSql: Make SQL from a structured query design |
 | [**putQueryToFormat**](SqlDesignApi.md#putQueryToFormat) | **PUT** /api/Sql/pretty | PutQueryToFormat: Format SQL into a more readable form |
 | [**putSqlToExtractScalarParameters**](SqlDesignApi.md#putSqlToExtractScalarParameters) | **PUT** /api/Sql/extractscalarparameters | PutSqlToExtractScalarParameters: Extract scalar parameter information from SQL |
@@ -739,6 +740,97 @@ public class SqlDesignApiExample {
 ### Return type
 
 [**ErrorHighlightResponse**](ErrorHighlightResponse.md)
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## putLusidGridToQuery
+
+> String putLusidGridToQuery(lusidGridData)
+
+[EXPERIMENTAL] PutLusidGridToQuery: Generates SQL from a dashboard view
+
+Used to convert dashboard views in LUSID to SQL that can be run in Lumi
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlDesignApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
+        SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
+        LusidGridData lusidGridData = new LusidGridData(); // LusidGridData | 
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putLusidGridToQuery(lusidGridData).execute(opts);
+
+            String result = apiInstance.putLusidGridToQuery(lusidGridData).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlDesignApi#putLusidGridToQuery");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **lusidGridData** | [**LusidGridData**](LusidGridData.md)|  | |
+
+### Return type
+
+**String**
 
 ### HTTP request headers
 

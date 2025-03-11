@@ -35,6 +35,7 @@ import com.finbourne.luminesce.model.FileReaderBuilderResponse;
 import com.finbourne.luminesce.model.InlinedPropertyDesign;
 import com.finbourne.luminesce.model.IntellisenseRequest;
 import com.finbourne.luminesce.model.IntellisenseResponse;
+import com.finbourne.luminesce.model.LusidGridData;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import com.finbourne.luminesce.model.QueryDesign;
 import com.finbourne.luminesce.model.ScalarParameter;
@@ -1989,6 +1990,241 @@ public class SqlDesignApi {
      */
     public APIputIntellisenseErrorRequest putIntellisenseError(ErrorHighlightRequest errorHighlightRequest) {
         return new APIputIntellisenseErrorRequest(errorHighlightRequest);
+    }
+    private okhttp3.Call putLusidGridToQueryCall(LusidGridData lusidGridData, final ApiCallback _callback) throws ApiException {
+        return putLusidGridToQueryCall(lusidGridData,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putLusidGridToQueryCall(LusidGridData lusidGridData, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = lusidGridData;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/fromlusidgrid";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json-patch+json",
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putLusidGridToQueryValidateBeforeCall(LusidGridData lusidGridData, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'lusidGridData' is set
+        if (lusidGridData == null) {
+            throw new ApiException("Missing the required parameter 'lusidGridData' when calling putLusidGridToQuery(Async)");
+        }
+
+        return putLusidGridToQueryCall(lusidGridData, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> putLusidGridToQueryWithHttpInfo(LusidGridData lusidGridData) throws ApiException {
+        okhttp3.Call localVarCall = putLusidGridToQueryValidateBeforeCall(lusidGridData, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putLusidGridToQueryWithHttpInfo(LusidGridData lusidGridData, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putLusidGridToQueryValidateBeforeCall(lusidGridData, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putLusidGridToQueryAsync(LusidGridData lusidGridData, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putLusidGridToQueryValidateBeforeCall(lusidGridData, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putLusidGridToQueryAsync(LusidGridData lusidGridData, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putLusidGridToQueryValidateBeforeCall(lusidGridData, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputLusidGridToQueryRequest {
+        private final LusidGridData lusidGridData;
+
+        private APIputLusidGridToQueryRequest(LusidGridData lusidGridData) {
+            this.lusidGridData = lusidGridData;
+        }
+
+        /**
+         * Build call for putLusidGridToQuery
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putLusidGridToQueryCall(lusidGridData, _callback);
+        }
+
+        /**
+         * Execute putLusidGridToQuery request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = putLusidGridToQueryWithHttpInfo(lusidGridData);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putLusidGridToQuery request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putLusidGridToQueryWithHttpInfo(lusidGridData, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putLusidGridToQuery request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return putLusidGridToQueryWithHttpInfo(lusidGridData);
+        }
+
+        /**
+         * Execute putLusidGridToQuery request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putLusidGridToQueryWithHttpInfo(lusidGridData, opts);
+        }
+
+        /**
+         * Execute putLusidGridToQuery request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return putLusidGridToQueryAsync(lusidGridData, _callback);
+        }
+
+        /**
+         * Execute putLusidGridToQuery request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putLusidGridToQueryAsync(lusidGridData, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] PutLusidGridToQuery: Generates SQL from a dashboard view
+     * Used to convert dashboard views in LUSID to SQL that can be run in Lumi
+     * @param lusidGridData  (required)
+     * @return APIputLusidGridToQueryRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputLusidGridToQueryRequest putLusidGridToQuery(LusidGridData lusidGridData) {
+        return new APIputLusidGridToQueryRequest(lusidGridData);
     }
     private okhttp3.Call putQueryDesignToSqlCall(QueryDesign queryDesign, final ApiCallback _callback) throws ApiException {
         return putQueryDesignToSqlCall(queryDesign,  _callback, new ConfigurationOptions());

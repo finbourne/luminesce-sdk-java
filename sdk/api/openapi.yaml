@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.111
+  version: 1.18.116
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2534,6 +2534,468 @@ paths:
       tags:
       - Sql Design
       x-fbn-apistatus: Stable
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
+  /api/Sql/fromlusidgrid:
+    put:
+      description: Used to convert dashboard views in LUSID to SQL that can be run
+        in Lumi
+      operationId: PutLusidGridToQuery
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              lusidGridDesign:
+                headerNames:
+                  instrumentUid: Lusid Instrument ID*
+                  instrumentScope: Instrument Scope
+                  type: Type
+                  transactionId: Transaction Id
+                  transactionPrice: Transaction Price
+                  transactionPrice.type: Transaction Price Type
+                  units: Units
+                  transactionDate: Transaction Date
+                  transactionTime: Transaction Time
+                  settlementDate: Settlement Date
+                  totalConsideration: Total Consideration
+                  totalConsideration.currency: Total Consideration (Currency)
+                  transactionCurrency: Transaction Currency
+                  exchangeRate: Exchange Rate
+                  source: Source
+                  counterpartyId: Counterparty Id
+                  transactionStatus: Transaction Status
+                  allocationId.scope: Allocation Scope
+                  allocationId.code: Allocation Code
+                  orderId.scope: Order Scope
+                  orderId.code: Order Code
+                  custodianAccount.custodian.displayName: Custodian
+                  custodianAccount.accountName: Custodian Account
+                columnState:
+                - colId: multi-select
+                  hide: true
+                - colId: instrumentUid
+                  hide: false
+                - colId: instrumentScope
+                  hide: true
+                - colId: type
+                  hide: true
+                - colId: units
+                  hide: false
+                  sort: Asc
+                  sortIndex: 0
+                - colId: transactionId
+                  hide: false
+                - colId: transactionPrice
+                  hide: false
+                - colId: transactionPrice.type
+                  hide: true
+                - colId: transactionDate
+                  hide: false
+                - colId: settlementDate
+                  hide: false
+                - colId: transactionTime
+                  hide: true
+                - colId: totalConsideration
+                  hide: false
+                - colId: totalConsideration.currency
+                  hide: false
+                - colId: transactionCurrency
+                  hide: false
+                - colId: exchangeRate
+                  hide: false
+                - colId: source
+                  hide: false
+                - colId: transactionStatus
+                  hide: false
+                - colId: counterpartyId
+                  hide: false
+                - colId: allocationId.scope
+                  hide: false
+                - colId: allocationId.code
+                  hide: false
+                - colId: orderId.scope
+                  hide: false
+                - colId: orderId.code
+                  hide: false
+                - colId: custodianAccount.custodian.displayName
+                  hide: true
+                - colId: custodianAccount.accountName
+                  hide: true
+                - colId: actions
+                  hide: false
+                filters:
+                  instrumentUid:
+                    filterType: text
+                    type: startsWith
+                    filter: LUID
+                  transactionPrice:
+                    filterType: number
+                    type: inRange
+                    filter: "1"
+                    filterTo: 5
+                meta:
+                  tableId: all-transactions
+              resourceId:
+                scope: luminesce-test-portfolios
+                code: txn-pf-100
+              dashboardType: input
+              dates:
+                dateFrom: 2010-01-01T00:00:00.0000000+00:00
+                dateTo: 2010-01-16T00:00:00.0000000+00:00
+                asAt: 2010-01-16T00:00:00.0000000+00:00
+            schema:
+              $ref: '#/components/schemas/LusidGridData'
+          application/json:
+            example:
+              lusidGridDesign:
+                headerNames:
+                  instrumentUid: Lusid Instrument ID*
+                  instrumentScope: Instrument Scope
+                  type: Type
+                  transactionId: Transaction Id
+                  transactionPrice: Transaction Price
+                  transactionPrice.type: Transaction Price Type
+                  units: Units
+                  transactionDate: Transaction Date
+                  transactionTime: Transaction Time
+                  settlementDate: Settlement Date
+                  totalConsideration: Total Consideration
+                  totalConsideration.currency: Total Consideration (Currency)
+                  transactionCurrency: Transaction Currency
+                  exchangeRate: Exchange Rate
+                  source: Source
+                  counterpartyId: Counterparty Id
+                  transactionStatus: Transaction Status
+                  allocationId.scope: Allocation Scope
+                  allocationId.code: Allocation Code
+                  orderId.scope: Order Scope
+                  orderId.code: Order Code
+                  custodianAccount.custodian.displayName: Custodian
+                  custodianAccount.accountName: Custodian Account
+                columnState:
+                - colId: multi-select
+                  hide: true
+                - colId: instrumentUid
+                  hide: false
+                - colId: instrumentScope
+                  hide: true
+                - colId: type
+                  hide: true
+                - colId: units
+                  hide: false
+                  sort: Asc
+                  sortIndex: 0
+                - colId: transactionId
+                  hide: false
+                - colId: transactionPrice
+                  hide: false
+                - colId: transactionPrice.type
+                  hide: true
+                - colId: transactionDate
+                  hide: false
+                - colId: settlementDate
+                  hide: false
+                - colId: transactionTime
+                  hide: true
+                - colId: totalConsideration
+                  hide: false
+                - colId: totalConsideration.currency
+                  hide: false
+                - colId: transactionCurrency
+                  hide: false
+                - colId: exchangeRate
+                  hide: false
+                - colId: source
+                  hide: false
+                - colId: transactionStatus
+                  hide: false
+                - colId: counterpartyId
+                  hide: false
+                - colId: allocationId.scope
+                  hide: false
+                - colId: allocationId.code
+                  hide: false
+                - colId: orderId.scope
+                  hide: false
+                - colId: orderId.code
+                  hide: false
+                - colId: custodianAccount.custodian.displayName
+                  hide: true
+                - colId: custodianAccount.accountName
+                  hide: true
+                - colId: actions
+                  hide: false
+                filters:
+                  instrumentUid:
+                    filterType: text
+                    type: startsWith
+                    filter: LUID
+                  transactionPrice:
+                    filterType: number
+                    type: inRange
+                    filter: "1"
+                    filterTo: 5
+                meta:
+                  tableId: all-transactions
+              resourceId:
+                scope: luminesce-test-portfolios
+                code: txn-pf-100
+              dashboardType: input
+              dates:
+                dateFrom: 2010-01-01T00:00:00.0000000+00:00
+                dateTo: 2010-01-16T00:00:00.0000000+00:00
+                asAt: 2010-01-16T00:00:00.0000000+00:00
+            schema:
+              $ref: '#/components/schemas/LusidGridData'
+          text/json:
+            example:
+              lusidGridDesign:
+                headerNames:
+                  instrumentUid: Lusid Instrument ID*
+                  instrumentScope: Instrument Scope
+                  type: Type
+                  transactionId: Transaction Id
+                  transactionPrice: Transaction Price
+                  transactionPrice.type: Transaction Price Type
+                  units: Units
+                  transactionDate: Transaction Date
+                  transactionTime: Transaction Time
+                  settlementDate: Settlement Date
+                  totalConsideration: Total Consideration
+                  totalConsideration.currency: Total Consideration (Currency)
+                  transactionCurrency: Transaction Currency
+                  exchangeRate: Exchange Rate
+                  source: Source
+                  counterpartyId: Counterparty Id
+                  transactionStatus: Transaction Status
+                  allocationId.scope: Allocation Scope
+                  allocationId.code: Allocation Code
+                  orderId.scope: Order Scope
+                  orderId.code: Order Code
+                  custodianAccount.custodian.displayName: Custodian
+                  custodianAccount.accountName: Custodian Account
+                columnState:
+                - colId: multi-select
+                  hide: true
+                - colId: instrumentUid
+                  hide: false
+                - colId: instrumentScope
+                  hide: true
+                - colId: type
+                  hide: true
+                - colId: units
+                  hide: false
+                  sort: Asc
+                  sortIndex: 0
+                - colId: transactionId
+                  hide: false
+                - colId: transactionPrice
+                  hide: false
+                - colId: transactionPrice.type
+                  hide: true
+                - colId: transactionDate
+                  hide: false
+                - colId: settlementDate
+                  hide: false
+                - colId: transactionTime
+                  hide: true
+                - colId: totalConsideration
+                  hide: false
+                - colId: totalConsideration.currency
+                  hide: false
+                - colId: transactionCurrency
+                  hide: false
+                - colId: exchangeRate
+                  hide: false
+                - colId: source
+                  hide: false
+                - colId: transactionStatus
+                  hide: false
+                - colId: counterpartyId
+                  hide: false
+                - colId: allocationId.scope
+                  hide: false
+                - colId: allocationId.code
+                  hide: false
+                - colId: orderId.scope
+                  hide: false
+                - colId: orderId.code
+                  hide: false
+                - colId: custodianAccount.custodian.displayName
+                  hide: true
+                - colId: custodianAccount.accountName
+                  hide: true
+                - colId: actions
+                  hide: false
+                filters:
+                  instrumentUid:
+                    filterType: text
+                    type: startsWith
+                    filter: LUID
+                  transactionPrice:
+                    filterType: number
+                    type: inRange
+                    filter: "1"
+                    filterTo: 5
+                meta:
+                  tableId: all-transactions
+              resourceId:
+                scope: luminesce-test-portfolios
+                code: txn-pf-100
+              dashboardType: input
+              dates:
+                dateFrom: 2010-01-01T00:00:00.0000000+00:00
+                dateTo: 2010-01-16T00:00:00.0000000+00:00
+                asAt: 2010-01-16T00:00:00.0000000+00:00
+            schema:
+              $ref: '#/components/schemas/LusidGridData'
+          application/*+json:
+            example:
+              lusidGridDesign:
+                headerNames:
+                  instrumentUid: Lusid Instrument ID*
+                  instrumentScope: Instrument Scope
+                  type: Type
+                  transactionId: Transaction Id
+                  transactionPrice: Transaction Price
+                  transactionPrice.type: Transaction Price Type
+                  units: Units
+                  transactionDate: Transaction Date
+                  transactionTime: Transaction Time
+                  settlementDate: Settlement Date
+                  totalConsideration: Total Consideration
+                  totalConsideration.currency: Total Consideration (Currency)
+                  transactionCurrency: Transaction Currency
+                  exchangeRate: Exchange Rate
+                  source: Source
+                  counterpartyId: Counterparty Id
+                  transactionStatus: Transaction Status
+                  allocationId.scope: Allocation Scope
+                  allocationId.code: Allocation Code
+                  orderId.scope: Order Scope
+                  orderId.code: Order Code
+                  custodianAccount.custodian.displayName: Custodian
+                  custodianAccount.accountName: Custodian Account
+                columnState:
+                - colId: multi-select
+                  hide: true
+                - colId: instrumentUid
+                  hide: false
+                - colId: instrumentScope
+                  hide: true
+                - colId: type
+                  hide: true
+                - colId: units
+                  hide: false
+                  sort: Asc
+                  sortIndex: 0
+                - colId: transactionId
+                  hide: false
+                - colId: transactionPrice
+                  hide: false
+                - colId: transactionPrice.type
+                  hide: true
+                - colId: transactionDate
+                  hide: false
+                - colId: settlementDate
+                  hide: false
+                - colId: transactionTime
+                  hide: true
+                - colId: totalConsideration
+                  hide: false
+                - colId: totalConsideration.currency
+                  hide: false
+                - colId: transactionCurrency
+                  hide: false
+                - colId: exchangeRate
+                  hide: false
+                - colId: source
+                  hide: false
+                - colId: transactionStatus
+                  hide: false
+                - colId: counterpartyId
+                  hide: false
+                - colId: allocationId.scope
+                  hide: false
+                - colId: allocationId.code
+                  hide: false
+                - colId: orderId.scope
+                  hide: false
+                - colId: orderId.code
+                  hide: false
+                - colId: custodianAccount.custodian.displayName
+                  hide: true
+                - colId: custodianAccount.accountName
+                  hide: true
+                - colId: actions
+                  hide: false
+                filters:
+                  instrumentUid:
+                    filterType: text
+                    type: startsWith
+                    filter: LUID
+                  transactionPrice:
+                    filterType: number
+                    type: inRange
+                    filter: "1"
+                    filterTo: 5
+                meta:
+                  tableId: all-transactions
+              resourceId:
+                scope: luminesce-test-portfolios
+                code: txn-pf-100
+              dashboardType: input
+              dates:
+                dateFrom: 2010-01-01T00:00:00.0000000+00:00
+                dateTo: 2010-01-16T00:00:00.0000000+00:00
+                asAt: 2010-01-16T00:00:00.0000000+00:00
+            schema:
+              $ref: '#/components/schemas/LusidGridData'
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] PutLusidGridToQuery: Generates SQL from a dashboard\
+        \ view"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Experimental
       x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/Sql/fromviewdesign:
@@ -8253,6 +8715,36 @@ components:
           nullable: true
           type: string
       type: object
+    ColumnStateType:
+      additionalProperties: false
+      description: Representation of a column within the grid
+      example:
+        hide: true
+        sortIndex: 0
+        sort: sort
+        colId: colId
+      properties:
+        colId:
+          description: Unique identifier for the column
+          minLength: 1
+          type: string
+        hide:
+          description: Flag to determine whether the column is visible in the grid
+          type: boolean
+        sort:
+          description: The sort order (asc or desc)
+          nullable: true
+          type: string
+        sortIndex:
+          description: The index of the sort to determine the order in which the sorts
+            are applied
+          format: int32
+          nullable: true
+          type: integer
+      required:
+      - colId
+      - hide
+      type: object
     ConditionAttributes:
       enum:
       - None
@@ -8349,6 +8841,12 @@ components:
       - column
       - row
       type: object
+    DashboardType:
+      description: Dashboard type (input or output)
+      enum:
+      - input
+      - output
+      type: string
     DataType:
       enum:
       - Boolean
@@ -8361,6 +8859,37 @@ components:
       - Text
       - Table
       type: string
+    DateParameters:
+      additionalProperties: false
+      description: Collection of date parameters used in dashboards
+      example:
+        dateTo: 2000-01-23T04:56:07.000+00:00
+        effectiveAt: 2000-01-23T04:56:07.000+00:00
+        asAt: 2000-01-23T04:56:07.000+00:00
+        dateFrom: 2000-01-23T04:56:07.000+00:00
+      properties:
+        dateFrom:
+          description: Parameter to determine the lower bound in a date range
+          format: date-time
+          nullable: true
+          type: string
+        dateTo:
+          description: Parameter to determine the upper bound in a date range
+          format: date-time
+          nullable: true
+          type: string
+        effectiveAt:
+          description: EffectiveAt of the dashboard
+          format: date-time
+          nullable: true
+          type: string
+        asAt:
+          description: AsAt of the dashboard
+          format: date-time
+          type: string
+      required:
+      - asAt
+      type: object
     ErrorHighlightItem:
       additionalProperties: false
       description: Representation of a sql error
@@ -8760,6 +9289,50 @@ components:
           description: The resulting data from running the Query
           nullable: true
       type: object
+    FilterModel:
+      additionalProperties: false
+      description: Representation of the data used in a filter for the where clause
+      example:
+        filter: filter
+        filterTo: 6.027456183070403
+        values:
+        - values
+        - values
+        dateTo: dateTo
+        filterType: null
+        type: null
+        dateFrom: dateFrom
+      properties:
+        filterType:
+          $ref: '#/components/schemas/FilterType'
+        type:
+          $ref: '#/components/schemas/Type'
+        filter:
+          description: The filter value
+          nullable: true
+          type: string
+        filterTo:
+          description: The upper bound filter value for the number filter type
+          format: double
+          nullable: true
+          type: number
+        values:
+          description: An array of possible values for the set filter type
+          items:
+            type: string
+          nullable: true
+          type: array
+        dateFrom:
+          description: A lower bound date for the date filter type
+          nullable: true
+          type: string
+        dateTo:
+          description: An upper bound date for the date filter type
+          nullable: true
+          type: string
+      required:
+      - filterType
+      type: object
     FilterTermDesign:
       additionalProperties: false
       description: A single filter clause
@@ -8779,6 +9352,15 @@ components:
       - operator
       - value
       type: object
+    FilterType:
+      description: Filter categories
+      enum:
+      - text
+      - number
+      - boolean
+      - date
+      - set
+      type: string
     IdSelectorDefinition:
       additionalProperties: false
       example:
@@ -9049,6 +9631,62 @@ components:
       - PowerBi_Connector
       - Odbc_Win64_Driver
       type: string
+    LusidGridData:
+      additionalProperties: false
+      description: Representation of the data we will get from the dashboard
+      example:
+        resourceId:
+          code: code
+          scope: scope
+        lusidGridDesign:
+          meta:
+            tableId: tableId
+          headerNames:
+            key: headerNames
+          filters:
+            key:
+              filter: filter
+              filterTo: 6.027456183070403
+              values:
+              - values
+              - values
+              dateTo: dateTo
+              filterType: null
+              type: null
+              dateFrom: dateFrom
+          columnState:
+          - hide: true
+            sortIndex: 0
+            sort: sort
+            colId: colId
+          - hide: true
+            sortIndex: 0
+            sort: sort
+            colId: colId
+        dates:
+          dateTo: 2000-01-23T04:56:07.000+00:00
+          effectiveAt: 2000-01-23T04:56:07.000+00:00
+          asAt: 2000-01-23T04:56:07.000+00:00
+          dateFrom: 2000-01-23T04:56:07.000+00:00
+        dashboardType: null
+        useSettleDate: true
+      properties:
+        lusidGridDesign:
+          $ref: '#/components/schemas/TableView'
+        resourceId:
+          $ref: '#/components/schemas/ResourceId'
+        dashboardType:
+          $ref: '#/components/schemas/DashboardType'
+        useSettleDate:
+          description: Whether to use the Settlement date or the Transaction date
+          nullable: true
+          type: boolean
+        dates:
+          $ref: '#/components/schemas/DateParameters'
+      required:
+      - lusidGridDesign
+      - resourceId
+      type: object
     LusidProblemDetails:
       additionalProperties: false
       properties:
@@ -9490,6 +10128,24 @@ components:
       - StartsWith
       - EndsWith
       type: string
+    ResourceId:
+      additionalProperties: false
+      description: Unique identifier for a resource
+      example:
+        code: code
+        scope: scope
+      properties:
+        scope:
+          description: The scope used to identify a resource
+          minLength: 1
+          type: string
+        code:
+          description: The code used to identify a resource
+          nullable: true
+          type: string
+      required:
+      - scope
+      type: object
     ResourceListOfAccessControlledResource:
       additionalProperties: false
       example:
@@ -9729,6 +10385,72 @@ components:
       - Parquet
       - RawText
       type: string
+    TableMeta:
+      additionalProperties: false
+      description: Representation of the table metadata
+      example:
+        tableId: tableId
+      properties:
+        tableId:
+          description: A unique identifier for the table
+          minLength: 1
+          type: string
+      required:
+      - tableId
+      type: object
+    TableView:
+      additionalProperties: false
+      description: Representation of the table structure
+      example:
+        meta:
+          tableId: tableId
+        headerNames:
+          key: headerNames
+        filters:
+          key:
+            filter: filter
+            filterTo: 6.027456183070403
+            values:
+            - values
+            - values
+            dateTo: dateTo
+            filterType: null
+            type: null
+            dateFrom: dateFrom
+        columnState:
+        - hide: true
+          sortIndex: 0
+          sort: sort
+          colId: colId
+        - hide: true
+          sortIndex: 0
+          sort: sort
+          colId: colId
+      properties:
+        headerNames:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: Mapping of column ids to aliases
+          type: object
+        columnState:
+          description: Array of all columns in the dashboard
+          items:
+            $ref: '#/components/schemas/ColumnStateType'
+          type: array
+        filters:
+          additionalProperties:
+            $ref: '#/components/schemas/FilterModel'
+          description: Filters applied to columns in the dashboard
+          nullable: true
+          type: object
+        meta:
+          $ref: '#/components/schemas/TableMeta'
+      required:
+      - columnState
+      - headerNames
+      - meta
+      type: object
     TaskStatus:
       enum:
       - Created
@@ -9739,6 +10461,24 @@ components:
       - RanToCompletion
       - Canceled
       - Faulted
+      type: string
+    Type:
+      description: Filter types
+      enum:
+      - Unset
+      - contains
+      - startsWith
+      - set
+      - equals
+      - lessThan
+      - greaterThan
+      - greaterThanOrEqual
+      - lessThanOrEqual
+      - notEqual
+      - Exists
+      - NotExists
+      - inRange
+      - AnyOf
       type: string
     ViewParameter:
       additionalProperties: false
