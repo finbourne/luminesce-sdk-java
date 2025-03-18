@@ -79,6 +79,10 @@ public class FieldDesign {
   @SerializedName(SERIALIZED_NAME_AGGREGATIONS)
   private List<Aggregation> aggregations;
 
+  public static final String SERIALIZED_NAME_IS_EXPRESSION = "isExpression";
+  @SerializedName(SERIALIZED_NAME_IS_EXPRESSION)
+  private Boolean isExpression;
+
   public FieldDesign() {
   }
 
@@ -89,7 +93,7 @@ public class FieldDesign {
   }
 
    /**
-   * Name of the Field
+   * Name of the Field (column name, constant, complex expression, etc.)
    * @return name
   **/
   @jakarta.annotation.Nonnull
@@ -224,6 +228,27 @@ public class FieldDesign {
   }
 
 
+  public FieldDesign isExpression(Boolean isExpression) {
+    
+    this.isExpression = isExpression;
+    return this;
+  }
+
+   /**
+   * Is this field an expression
+   * @return isExpression
+  **/
+  @jakarta.annotation.Nullable
+  public Boolean getIsExpression() {
+    return isExpression;
+  }
+
+
+  public void setIsExpression(Boolean isExpression) {
+    this.isExpression = isExpression;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -239,7 +264,8 @@ public class FieldDesign {
         Objects.equals(this.dataType, fieldDesign.dataType) &&
         Objects.equals(this.shouldSelect, fieldDesign.shouldSelect) &&
         Objects.equals(this.filters, fieldDesign.filters) &&
-        Objects.equals(this.aggregations, fieldDesign.aggregations);
+        Objects.equals(this.aggregations, fieldDesign.aggregations) &&
+        Objects.equals(this.isExpression, fieldDesign.isExpression);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -248,7 +274,7 @@ public class FieldDesign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, alias, dataType, shouldSelect, filters, aggregations);
+    return Objects.hash(name, alias, dataType, shouldSelect, filters, aggregations, isExpression);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -268,6 +294,7 @@ public class FieldDesign {
     sb.append("    shouldSelect: ").append(toIndentedString(shouldSelect)).append("\n");
     sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
     sb.append("    aggregations: ").append(toIndentedString(aggregations)).append("\n");
+    sb.append("    isExpression: ").append(toIndentedString(isExpression)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -296,6 +323,7 @@ public class FieldDesign {
     openapiFields.add("shouldSelect");
     openapiFields.add("filters");
     openapiFields.add("aggregations");
+    openapiFields.add("isExpression");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

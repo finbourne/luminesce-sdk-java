@@ -1287,7 +1287,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = SELECT\n [TableName],\n Count(distinct [FieldName]) as [NumberOfFields]\nFROM\n [Sys.Field]\nWHERE\n ([TableName] = 'Sys.Registration')\nGROUP BY\n [TableName]\nORDER BY\n [DataType]\nLIMIT 42; // String | SQL query to generate the design object from
+        String body = SELECT [TableName], Count(distinct [FieldName]) as [NumberOfFields], case [FieldType] when 'Column' then 'col' else [FieldType] end as FieldType2 FROM [Sys.Field] WHERE ([TableName] = 'Sys.Registration') GROUP BY [TableName], [FieldType2] ORDER BY [DataType] LIMIT 42; // String | SQL query to generate the design object from
         Boolean validateWithMetadata = true; // Boolean | Should the table be validated against the users' view of Sys.Field to fill in DataTypes, etc.?
         try {
             // uncomment the below to set overrides at the request level

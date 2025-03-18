@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.139
+  version: 1.18.163
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2183,6 +2183,7 @@ paths:
                 - operator: Eq
                   value: Sys.Registration
                 aggregations: []
+                isExpression: false
               - name: FieldName
                 dataType: Text
                 shouldSelect: true
@@ -2190,6 +2191,15 @@ paths:
                 aggregations:
                 - type: count_distinct
                   alias: NumberOfFields
+                isExpression: false
+              - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                  \ end"
+                alias: FieldType2
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: true
               orderBy:
               - field: DataType
                 direction: asc
@@ -2209,6 +2219,7 @@ paths:
                 - operator: Eq
                   value: Sys.Registration
                 aggregations: []
+                isExpression: false
               - name: FieldName
                 dataType: Text
                 shouldSelect: true
@@ -2216,6 +2227,15 @@ paths:
                 aggregations:
                 - type: count_distinct
                   alias: NumberOfFields
+                isExpression: false
+              - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                  \ end"
+                alias: FieldType2
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: true
               orderBy:
               - field: DataType
                 direction: asc
@@ -2235,6 +2255,7 @@ paths:
                 - operator: Eq
                   value: Sys.Registration
                 aggregations: []
+                isExpression: false
               - name: FieldName
                 dataType: Text
                 shouldSelect: true
@@ -2242,6 +2263,15 @@ paths:
                 aggregations:
                 - type: count_distinct
                   alias: NumberOfFields
+                isExpression: false
+              - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                  \ end"
+                alias: FieldType2
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: true
               orderBy:
               - field: DataType
                 direction: asc
@@ -2261,6 +2291,7 @@ paths:
                 - operator: Eq
                   value: Sys.Registration
                 aggregations: []
+                isExpression: false
               - name: FieldName
                 dataType: Text
                 shouldSelect: true
@@ -2268,6 +2299,15 @@ paths:
                 aggregations:
                 - type: count_distinct
                   alias: NumberOfFields
+                isExpression: false
+              - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                  \ end"
+                alias: FieldType2
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: true
               orderBy:
               - field: DataType
                 direction: asc
@@ -4997,9 +5037,10 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: "SELECT\\n [TableName],\\n Count(distinct [FieldName]) as [NumberOfFields]\\\
-              nFROM\\n [Sys.Field]\\nWHERE\\n ([TableName] = 'Sys.Registration')\\\
-              nGROUP BY\\n [TableName]\\nORDER BY\\n [DataType]\\nLIMIT 42"
+            example: "SELECT [TableName], Count(distinct [FieldName]) as [NumberOfFields],\
+              \ case [FieldType] when 'Column' then 'col' else [FieldType] end as\
+              \ FieldType2 FROM [Sys.Field] WHERE ([TableName] = 'Sys.Registration')\
+              \ GROUP BY [TableName], [FieldType2] ORDER BY [DataType] LIMIT 42"
             schema:
               type: string
         description: SQL query to generate the design object from
@@ -5018,6 +5059,7 @@ paths:
                   - operator: Eq
                     value: Sys.Registration
                   aggregations: []
+                  isExpression: false
                 - name: FieldName
                   dataType: Text
                   shouldSelect: true
@@ -5025,6 +5067,15 @@ paths:
                   aggregations:
                   - type: count_distinct
                     alias: NumberOfFields
+                  isExpression: false
+                - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                    \ end"
+                  alias: FieldType2
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations: []
+                  isExpression: true
                 orderBy:
                 - field: DataType
                   direction: asc
@@ -5044,6 +5095,7 @@ paths:
                   - operator: Eq
                     value: Sys.Registration
                   aggregations: []
+                  isExpression: false
                 - name: FieldName
                   dataType: Text
                   shouldSelect: true
@@ -5051,6 +5103,15 @@ paths:
                   aggregations:
                   - type: count_distinct
                     alias: NumberOfFields
+                  isExpression: false
+                - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                    \ end"
+                  alias: FieldType2
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations: []
+                  isExpression: true
                 orderBy:
                 - field: DataType
                   direction: asc
@@ -5070,6 +5131,7 @@ paths:
                   - operator: Eq
                     value: Sys.Registration
                   aggregations: []
+                  isExpression: false
                 - name: FieldName
                   dataType: Text
                   shouldSelect: true
@@ -5077,6 +5139,15 @@ paths:
                   aggregations:
                   - type: count_distinct
                     alias: NumberOfFields
+                  isExpression: false
+                - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
+                    \ end"
+                  alias: FieldType2
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations: []
+                  isExpression: true
                 orderBy:
                 - field: DataType
                   direction: asc
@@ -9076,6 +9147,7 @@ components:
       additionalProperties: false
       description: Treatment of a single field within a QueryDesign
       example:
+        isExpression: true
         dataType: null
         name: name
         alias: alias
@@ -9092,9 +9164,9 @@ components:
           type: null
       properties:
         name:
-          description: Name of the Field
-          maxLength: 256
-          minLength: 0
+          description: "Name of the Field (column name, constant, complex expression,\
+            \ etc.)"
+          minLength: 1
           type: string
         alias:
           description: Alias if any (if none the Name is used)
@@ -9120,6 +9192,9 @@ components:
             $ref: '#/components/schemas/Aggregation'
           nullable: true
           type: array
+        isExpression:
+          description: Is this field an expression
+          type: boolean
       required:
       - name
       type: object
@@ -10040,7 +10115,8 @@ components:
         - field: field
           direction: null
         fields:
-        - dataType: null
+        - isExpression: true
+          dataType: null
           name: name
           alias: alias
           shouldSelect: true
@@ -10054,7 +10130,8 @@ components:
             type: null
           - alias: alias
             type: null
-        - dataType: null
+        - isExpression: true
+          dataType: null
           name: name
           alias: alias
           shouldSelect: true
