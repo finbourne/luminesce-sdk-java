@@ -11,6 +11,8 @@ Describes a scalar parameter as defined in the SQL
 |**name** | **String** | Name of the scalar parameter |  |
 |**type** | **DataType** |  |  |
 |**value** | **Object** | the default value of the parameter |  [optional] |
+|**valueOptions** | **List&lt;Object&gt;** | Values of the parameter listed as being available for choosing from. |  [optional] |
+|**valueMustBeFromOptions** | **Boolean** | Must Value be one of ValueOptions (if any)? |  [optional] |
 
 
 

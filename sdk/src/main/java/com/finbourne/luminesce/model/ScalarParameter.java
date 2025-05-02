@@ -18,7 +18,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
@@ -62,6 +64,14 @@ public class ScalarParameter {
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
   private Object value = null;
+
+  public static final String SERIALIZED_NAME_VALUE_OPTIONS = "valueOptions";
+  @SerializedName(SERIALIZED_NAME_VALUE_OPTIONS)
+  private List<Object> valueOptions;
+
+  public static final String SERIALIZED_NAME_VALUE_MUST_BE_FROM_OPTIONS = "valueMustBeFromOptions";
+  @SerializedName(SERIALIZED_NAME_VALUE_MUST_BE_FROM_OPTIONS)
+  private Boolean valueMustBeFromOptions;
 
   public ScalarParameter() {
   }
@@ -129,6 +139,56 @@ public class ScalarParameter {
   }
 
 
+  public ScalarParameter valueOptions(List<Object> valueOptions) {
+    
+    this.valueOptions = valueOptions;
+    return this;
+  }
+
+  public ScalarParameter addValueOptionsItem(Object valueOptionsItem) {
+    if (this.valueOptions == null) {
+      this.valueOptions = new ArrayList<>();
+    }
+    this.valueOptions.add(valueOptionsItem);
+    return this;
+  }
+
+   /**
+   * Values of the parameter listed as being available for choosing from.
+   * @return valueOptions
+  **/
+  @jakarta.annotation.Nullable
+  public List<Object> getValueOptions() {
+    return valueOptions;
+  }
+
+
+  public void setValueOptions(List<Object> valueOptions) {
+    this.valueOptions = valueOptions;
+  }
+
+
+  public ScalarParameter valueMustBeFromOptions(Boolean valueMustBeFromOptions) {
+    
+    this.valueMustBeFromOptions = valueMustBeFromOptions;
+    return this;
+  }
+
+   /**
+   * Must Value be one of ValueOptions (if any)?
+   * @return valueMustBeFromOptions
+  **/
+  @jakarta.annotation.Nullable
+  public Boolean getValueMustBeFromOptions() {
+    return valueMustBeFromOptions;
+  }
+
+
+  public void setValueMustBeFromOptions(Boolean valueMustBeFromOptions) {
+    this.valueMustBeFromOptions = valueMustBeFromOptions;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -141,7 +201,9 @@ public class ScalarParameter {
     ScalarParameter scalarParameter = (ScalarParameter) o;
     return Objects.equals(this.name, scalarParameter.name) &&
         Objects.equals(this.type, scalarParameter.type) &&
-        Objects.equals(this.value, scalarParameter.value);
+        Objects.equals(this.value, scalarParameter.value) &&
+        Objects.equals(this.valueOptions, scalarParameter.valueOptions) &&
+        Objects.equals(this.valueMustBeFromOptions, scalarParameter.valueMustBeFromOptions);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -150,7 +212,7 @@ public class ScalarParameter {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, type, value);
+    return Objects.hash(name, type, value, valueOptions, valueMustBeFromOptions);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -167,6 +229,8 @@ public class ScalarParameter {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    valueOptions: ").append(toIndentedString(valueOptions)).append("\n");
+    sb.append("    valueMustBeFromOptions: ").append(toIndentedString(valueMustBeFromOptions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -192,6 +256,8 @@ public class ScalarParameter {
     openapiFields.add("name");
     openapiFields.add("type");
     openapiFields.add("value");
+    openapiFields.add("valueOptions");
+    openapiFields.add("valueMustBeFromOptions");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -221,6 +287,10 @@ public class ScalarParameter {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("valueOptions") != null && !jsonObj.get("valueOptions").isJsonNull() && !jsonObj.get("valueOptions").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `valueOptions` to be an array in the JSON string but got `%s`", jsonObj.get("valueOptions").toString()));
       }
   }
 

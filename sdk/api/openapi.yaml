@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.276
+  version: 1.18.277
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1982,7 +1982,7 @@ paths:
       requestBody:
         content:
           text/plain:
-            example: "select abc, :p1:'this' as c1 from xxx where abc = :abcP:123\
+            example: "select abc, :p1:'this' as c1 from xxx where abc = :abcP:{1,2,3}\
               \ or xyz in (:p2:, 'zzz')"
             schema:
               type: string
@@ -1996,11 +1996,31 @@ paths:
               - name: p1
                 type: Text
                 value: this
+                valueMustBeFromOptions: false
               - name: abcP
                 type: Decimal
                 value: "123"
+                valueMustBeFromOptions: false
               - name: p2
                 type: Text
+                valueMustBeFromOptions: false
+              - name: p3
+                type: Text
+                value: A
+                valueOptions:
+                - A
+                - B
+                - C
+                - D
+                valueMustBeFromOptions: true
+              - name: p4
+                type: Int
+                value: 12
+                valueOptions:
+                - 23
+                - 42
+                - 677
+                valueMustBeFromOptions: false
               schema:
                 items:
                   $ref: '#/components/schemas/ScalarParameter'
@@ -2010,11 +2030,31 @@ paths:
               - name: p1
                 type: Text
                 value: this
+                valueMustBeFromOptions: false
               - name: abcP
                 type: Decimal
                 value: "123"
+                valueMustBeFromOptions: false
               - name: p2
                 type: Text
+                valueMustBeFromOptions: false
+              - name: p3
+                type: Text
+                value: A
+                valueOptions:
+                - A
+                - B
+                - C
+                - D
+                valueMustBeFromOptions: true
+              - name: p4
+                type: Int
+                value: 12
+                valueOptions:
+                - 23
+                - 42
+                - 677
+                valueMustBeFromOptions: false
               schema:
                 items:
                   $ref: '#/components/schemas/ScalarParameter'
@@ -2024,11 +2064,31 @@ paths:
               - name: p1
                 type: Text
                 value: this
+                valueMustBeFromOptions: false
               - name: abcP
                 type: Decimal
                 value: "123"
+                valueMustBeFromOptions: false
               - name: p2
                 type: Text
+                valueMustBeFromOptions: false
+              - name: p3
+                type: Text
+                value: A
+                valueOptions:
+                - A
+                - B
+                - C
+                - D
+                valueMustBeFromOptions: true
+              - name: p4
+                type: Int
+                value: 12
+                valueOptions:
+                - 23
+                - 42
+                - 677
+                valueMustBeFromOptions: false
               schema:
                 items:
                   $ref: '#/components/schemas/ScalarParameter'
@@ -10416,9 +10476,13 @@ components:
       additionalProperties: false
       description: Describes a scalar parameter as defined in the SQL
       example:
+        valueMustBeFromOptions: true
         name: name
         type: null
         value: ""
+        valueOptions:
+        - ""
+        - ""
       properties:
         name:
           description: Name of the scalar parameter
@@ -10430,6 +10494,15 @@ components:
         value:
           description: the default value of the parameter
           nullable: true
+        valueOptions:
+          description: Values of the parameter listed as being available for choosing
+            from.
+          items: {}
+          nullable: true
+          type: array
+        valueMustBeFromOptions:
+          description: Must Value be one of ValueOptions (if any)?
+          type: boolean
       required:
       - name
       - type

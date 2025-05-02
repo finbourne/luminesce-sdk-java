@@ -1103,7 +1103,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = select abc, :p1:'this' as c1 from xxx where abc = :abcP:123 or xyz in (:p2:, 'zzz'); // String | SQL query to generate the design object from
+        String body = select abc, :p1:'this' as c1 from xxx where abc = :abcP:{1,2,3} or xyz in (:p2:, 'zzz'); // String | SQL query to generate the design object from
         try {
             // uncomment the below to set overrides at the request level
             // List<ScalarParameter> result = apiInstance.putSqlToExtractScalarParameters(body).execute(opts);
