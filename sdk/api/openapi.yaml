@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.284
+  version: 1.18.286
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1541,8 +1541,8 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -1680,8 +1680,8 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout
@@ -1798,8 +1798,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -1913,8 +1913,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout
@@ -3851,8 +3851,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -3973,8 +3973,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout
@@ -4085,8 +4085,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -4200,8 +4200,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout
@@ -4316,8 +4316,8 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -4439,8 +4439,8 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout
@@ -4819,8 +4819,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -4934,8 +4934,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout
@@ -5838,8 +5838,8 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeoutSeconds
@@ -5961,8 +5961,8 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "In seconds: <0 → ∞, 0 → 120s"
-        example: 120
+      - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
+        example: 150
         explode: true
         in: query
         name: timeout

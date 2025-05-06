@@ -72,7 +72,7 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
         try {
@@ -100,7 +100,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **delimiter** | **String**| Delimiter string to override the default | [optional] |
 | **escape** | **String**| Escape character to override the default | [optional] |
 
@@ -174,7 +174,7 @@ public class SqlExecutionApiExample {
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, timeout).execute(opts);
@@ -199,7 +199,7 @@ public class SqlExecutionApiExample {
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -271,7 +271,7 @@ public class SqlExecutionApiExample {
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
             // uncomment the below to set overrides at the request level
@@ -297,7 +297,7 @@ public class SqlExecutionApiExample {
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
 
 ### Return type
@@ -370,7 +370,7 @@ public class SqlExecutionApiExample {
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.getByQueryParquet(query, scalarParameters, queryName, timeout).execute(opts);
@@ -395,7 +395,7 @@ public class SqlExecutionApiExample {
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -468,7 +468,7 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, timeout).execute(opts);
@@ -494,7 +494,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -566,7 +566,7 @@ public class SqlExecutionApiExample {
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.getByQuerySqlite(query, scalarParameters, queryName, timeout).execute(opts);
@@ -591,7 +591,7 @@ public class SqlExecutionApiExample {
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -664,7 +664,7 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
-        Integer timeout = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // String result = apiInstance.getByQueryXml(query, scalarParameters, queryName, download, timeout).execute(opts);
@@ -690,7 +690,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
-| **timeout** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -763,7 +763,7 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
         try {
@@ -791,7 +791,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **delimiter** | **String**| Delimiter string to override the default | [optional] |
 | **escape** | **String**| Escape character to override the default | [optional] |
 
@@ -865,7 +865,7 @@ public class SqlExecutionApiExample {
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
@@ -890,7 +890,7 @@ public class SqlExecutionApiExample {
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -962,7 +962,7 @@ public class SqlExecutionApiExample {
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
             // uncomment the below to set overrides at the request level
@@ -988,7 +988,7 @@ public class SqlExecutionApiExample {
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
 
 ### Return type
@@ -1061,7 +1061,7 @@ public class SqlExecutionApiExample {
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.putByQueryParquet(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
@@ -1086,7 +1086,7 @@ public class SqlExecutionApiExample {
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -1159,7 +1159,7 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, timeoutSeconds).execute(opts);
@@ -1185,7 +1185,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -1257,7 +1257,7 @@ public class SqlExecutionApiExample {
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // File result = apiInstance.putByQuerySqlite(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
@@ -1282,7 +1282,7 @@ public class SqlExecutionApiExample {
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 
@@ -1355,7 +1355,7 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
-        Integer timeoutSeconds = 0; // Integer | In seconds: <0 → ∞, 0 → 120s
+        Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
             // String result = apiInstance.putByQueryXml(body, scalarParameters, queryName, download, timeoutSeconds).execute(opts);
@@ -1381,7 +1381,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
-| **timeoutSeconds** | **Integer**| In seconds: &lt;0 → ∞, 0 → 120s | [optional] [default to 0] |
+| **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
 

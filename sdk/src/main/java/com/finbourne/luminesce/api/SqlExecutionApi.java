@@ -231,7 +231,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryCsvRequest
          */
         public APIgetByQueryCsvRequest timeout(Integer timeout) {
@@ -528,7 +528,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryExcelRequest
          */
         public APIgetByQueryExcelRequest timeout(Integer timeout) {
@@ -810,7 +810,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryJsonRequest
          */
         public APIgetByQueryJsonRequest timeout(Integer timeout) {
@@ -1097,7 +1097,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryParquetRequest
          */
         public APIgetByQueryParquetRequest timeout(Integer timeout) {
@@ -1389,7 +1389,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryPipeRequest
          */
         public APIgetByQueryPipeRequest timeout(Integer timeout) {
@@ -1666,7 +1666,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQuerySqliteRequest
          */
         public APIgetByQuerySqliteRequest timeout(Integer timeout) {
@@ -1958,7 +1958,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeout
-         * @param timeout In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryXmlRequest
          */
         public APIgetByQueryXmlRequest timeout(Integer timeout) {
@@ -2260,7 +2260,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryCsvRequest
          */
         public APIputByQueryCsvRequest timeoutSeconds(Integer timeoutSeconds) {
@@ -2557,7 +2557,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryExcelRequest
          */
         public APIputByQueryExcelRequest timeoutSeconds(Integer timeoutSeconds) {
@@ -2839,7 +2839,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryJsonRequest
          */
         public APIputByQueryJsonRequest timeoutSeconds(Integer timeoutSeconds) {
@@ -3126,7 +3126,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryParquetRequest
          */
         public APIputByQueryParquetRequest timeoutSeconds(Integer timeoutSeconds) {
@@ -3418,7 +3418,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryPipeRequest
          */
         public APIputByQueryPipeRequest timeoutSeconds(Integer timeoutSeconds) {
@@ -3695,7 +3695,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQuerySqliteRequest
          */
         public APIputByQuerySqliteRequest timeoutSeconds(Integer timeoutSeconds) {
@@ -3987,7 +3987,7 @@ public class SqlExecutionApi {
 
         /**
          * Set timeoutSeconds
-         * @param timeoutSeconds In seconds: &lt;0 → ∞, 0 → 120s (optional, default to 0)
+         * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryXmlRequest
          */
         public APIputByQueryXmlRequest timeoutSeconds(Integer timeoutSeconds) {
