@@ -66,6 +66,10 @@ public class InlinedPropertyItem {
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
+  public static final String SERIALIZED_NAME_DATA_TYPE = "dataType";
+  @SerializedName(SERIALIZED_NAME_DATA_TYPE)
+  private String dataType;
+
   public InlinedPropertyItem() {
   }
 
@@ -153,6 +157,27 @@ public class InlinedPropertyItem {
   }
 
 
+  public InlinedPropertyItem dataType(String dataType) {
+    
+    this.dataType = dataType;
+    return this;
+  }
+
+   /**
+   * Data type of the property
+   * @return dataType
+  **/
+  @jakarta.annotation.Nullable
+  public String getDataType() {
+    return dataType;
+  }
+
+
+  public void setDataType(String dataType) {
+    this.dataType = dataType;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -166,7 +191,8 @@ public class InlinedPropertyItem {
     return Objects.equals(this.key, inlinedPropertyItem.key) &&
         Objects.equals(this.name, inlinedPropertyItem.name) &&
         Objects.equals(this.isMain, inlinedPropertyItem.isMain) &&
-        Objects.equals(this.description, inlinedPropertyItem.description);
+        Objects.equals(this.description, inlinedPropertyItem.description) &&
+        Objects.equals(this.dataType, inlinedPropertyItem.dataType);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -175,7 +201,7 @@ public class InlinedPropertyItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, name, isMain, description);
+    return Objects.hash(key, name, isMain, description, dataType);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,6 +219,7 @@ public class InlinedPropertyItem {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    isMain: ").append(toIndentedString(isMain)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -219,6 +246,7 @@ public class InlinedPropertyItem {
     openapiFields.add("name");
     openapiFields.add("isMain");
     openapiFields.add("description");
+    openapiFields.add("dataType");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -253,6 +281,9 @@ public class InlinedPropertyItem {
       }
       if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if ((jsonObj.get("dataType") != null && !jsonObj.get("dataType").isJsonNull()) && !jsonObj.get("dataType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `dataType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dataType").toString()));
       }
   }
 

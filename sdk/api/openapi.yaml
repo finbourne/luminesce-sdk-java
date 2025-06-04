@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.376
+  version: 1.18.377
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -9543,10 +9543,12 @@ components:
       example:
         inlinedPropertyItems:
         - isMain: true
+          dataType: dataType
           name: name
           description: description
           key: key
         - isMain: true
+          dataType: dataType
           name: name
           description: description
           key: key
@@ -9574,6 +9576,7 @@ components:
         can be inlined into luminesce
       example:
         isMain: true
+        dataType: dataType
         name: name
         description: description
         key: key
@@ -9591,6 +9594,10 @@ components:
           type: boolean
         description:
           description: Description of the property
+          nullable: true
+          type: string
+        dataType:
+          description: Data type of the property
           nullable: true
           type: string
       required:

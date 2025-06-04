@@ -12,6 +12,7 @@ Information about a inlined property so that decorated properties can be inlined
 |**name** | **String** | Name of the property |  [optional] |
 |**isMain** | **Boolean** | Is Main indicator for the property |  [optional] |
 |**description** | **String** | Description of the property |  [optional] |
+|**dataType** | **String** | Data type of the property |  [optional] |
 
 
 
