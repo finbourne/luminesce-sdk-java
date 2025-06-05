@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.385
+  version: 1.18.390
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -9933,6 +9933,7 @@ components:
       - InsightsMetricsEntitlement
       - InstrumentDiscovery
       - InstrumentUpsert
+      - InsightsApplicationRequestLogs
       type: string
     OptionsCsv:
       additionalProperties: false
