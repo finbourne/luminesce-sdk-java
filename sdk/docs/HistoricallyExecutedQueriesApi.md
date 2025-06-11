@@ -354,7 +354,7 @@ public class HistoricallyExecutedQueriesApiExample {
         OffsetDateTime endAt = OffsetDateTime.now(); // OffsetDateTime | Date time to end the search at. Defaults to now.
         String freeTextSearch = "freeTextSearch_example"; // String | Some test that must be in at least one field returned.
         Boolean showAll = false; // Boolean | For users with extra permissions, they may optionally see other users' queries.
-        Boolean mayUseNativeStore = true; // Boolean | Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?
+        Boolean mayUseNativeStore = true; // Boolean | Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?  This is no longer supported and effectively always true.
         try {
             // uncomment the below to set overrides at the request level
             // BackgroundQueryResponse result = apiInstance.getHistory(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore).execute(opts);
@@ -380,7 +380,7 @@ public class HistoricallyExecutedQueriesApiExample {
 | **endAt** | **OffsetDateTime**| Date time to end the search at. Defaults to now. | [optional] |
 | **freeTextSearch** | **String**| Some test that must be in at least one field returned. | [optional] |
 | **showAll** | **Boolean**| For users with extra permissions, they may optionally see other users&#39; queries. | [optional] [default to false] |
-| **mayUseNativeStore** | **Boolean**| Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available? | [optional] [default to true] |
+| **mayUseNativeStore** | **Boolean**| Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?  This is no longer supported and effectively always true. | [optional] [default to true] |
 
 ### Return type
 

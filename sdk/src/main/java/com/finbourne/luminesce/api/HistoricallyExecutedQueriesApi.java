@@ -1061,7 +1061,7 @@ public class HistoricallyExecutedQueriesApi {
 
         /**
          * Set mayUseNativeStore
-         * @param mayUseNativeStore Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available? (optional, default to true)
+         * @param mayUseNativeStore Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?  This is no longer supported and effectively always true. (optional, default to true)
          * @return APIgetHistoryRequest
          */
         public APIgetHistoryRequest mayUseNativeStore(Boolean mayUseNativeStore) {

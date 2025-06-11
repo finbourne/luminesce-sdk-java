@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.411
+  version: 1.18.414
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -834,8 +834,9 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should a native data store (e.g. Athena or Fabric) be used over
-          Elastic Search if available?
+      - description: "Should a native data store (e.g. Athena or Fabric) be used over\
+          \ Elastic Search if available?\r\nThis is no longer supported and effectively\
+          \ always true."
         explode: true
         in: query
         name: mayUseNativeStore
@@ -6214,15 +6215,17 @@ paths:
           type: string
         style: simple
       - description: "Should the response state be build from query logs if missing\
-          \ from the shared-db-state?\r\nFalse will mean `404 Not Found` in cases\
-          \ where it was a real query but has passed its `keepForSeconds`\r\nsince\
-          \ the query completed (as well as 'this was not a query at all' of course)"
+          \ from the shared-db-state?\r\n\r\nDeprecated.\r\nRegardless of the value\
+          \ here it is now the case that: \r\nFalse [and now even True] will mean\
+          \ `404 Not Found` in cases where it was a real query but has passed its\
+          \ `keepForSeconds`\r\nsince the query completed (as well as 'this was not\
+          \ a query at all' of course)"
         explode: true
         in: query
         name: buildFromLogs
         required: false
         schema:
-          default: true
+          default: false
           type: boolean
         style: form
         x-nullable: true
