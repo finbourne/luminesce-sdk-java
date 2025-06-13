@@ -45,7 +45,9 @@ public enum MultiQueryDefinitionType {
   
   INSTRUMENTUPSERT("InstrumentUpsert"),
   
-  INSIGHTSAPPLICATIONREQUESTLOGS("InsightsApplicationRequestLogs");
+  INSIGHTSAPPLICATIONREQUESTLOGS("InsightsApplicationRequestLogs"),
+  
+  INSIGHTSVENDORLOGS("InsightsVendorLogs");
 
   private String value;
 
