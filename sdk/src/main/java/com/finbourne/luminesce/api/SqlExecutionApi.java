@@ -71,11 +71,11 @@ public class SqlExecutionApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    private okhttp3.Call getByQueryCsvCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
-        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getByQueryCsvCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat, final ApiCallback _callback) throws ApiException {
+        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getByQueryCsvCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryCsvCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -125,6 +125,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("escape", escape));
         }
 
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -147,40 +151,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryCsvValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryCsvValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryCsv(Async)");
         }
 
-        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, opts);
+        return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getByQueryCsvWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, null, new ConfigurationOptions());
+    private ApiResponse<String> getByQueryCsvWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getByQueryCsvWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, null, opts);
+    private ApiResponse<String> getByQueryCsvWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getByQueryCsvAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getByQueryCsvAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getByQueryCsvAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryCsvAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, String delimiter, String escape, String dateTimeFormat, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, opts);
+        okhttp3.Call localVarCall = getByQueryCsvValidateBeforeCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -194,6 +198,7 @@ public class SqlExecutionApi {
         private Integer timeout;
         private String delimiter;
         private String escape;
+        private String dateTimeFormat;
 
         private APIgetByQueryCsvRequest(String query) {
             this.query = query;
@@ -260,6 +265,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIgetByQueryCsvRequest
+         */
+        public APIgetByQueryCsvRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
          * Build call for getByQueryCsv
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -273,7 +288,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback);
+            return getByQueryCsvCall(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, _callback);
         }
 
         /**
@@ -289,7 +304,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape);
+            ApiResponse<String> localVarResp = getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat);
             return localVarResp.getData();
         }
 
@@ -306,7 +321,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, opts);
+            ApiResponse<String> localVarResp = getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, opts);
             return localVarResp.getData();
         }
 
@@ -323,7 +338,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape);
+            return getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat);
         }
 
         /**
@@ -339,7 +354,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, opts);
+            return getByQueryCsvWithHttpInfo(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, opts);
         }
 
         /**
@@ -356,7 +371,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getByQueryCsvAsync(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback);
+            return getByQueryCsvAsync(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, _callback);
         }
 
         /**
@@ -373,7 +388,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getByQueryCsvAsync(query, scalarParameters, queryName, download, timeout, delimiter, escape, _callback, opts);
+            return getByQueryCsvAsync(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat, _callback, opts);
         }
     }
 
@@ -393,11 +408,11 @@ public class SqlExecutionApi {
     public APIgetByQueryCsvRequest getByQueryCsv(String query) {
         return new APIgetByQueryCsvRequest(query);
     }
-    private okhttp3.Call getByQueryExcelCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback) throws ApiException {
-        return getByQueryExcelCall(query, scalarParameters, queryName, timeout,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getByQueryExcelCall(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQueryExcelCall(query, scalarParameters, queryName, dateTimeFormat, timeout,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getByQueryExcelCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryExcelCall(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -431,6 +446,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("queryName", queryName));
         }
 
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
         if (timeout != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("timeout", timeout));
         }
@@ -457,40 +476,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryExcelValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryExcelValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryExcel(Async)");
         }
 
-        return getByQueryExcelCall(query, scalarParameters, queryName, timeout, _callback, opts);
+        return getByQueryExcelCall(query, scalarParameters, queryName, dateTimeFormat, timeout, _callback, opts);
 
     }
 
 
-    private ApiResponse<File> getByQueryExcelWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, null, new ConfigurationOptions());
+    private ApiResponse<File> getByQueryExcelWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, dateTimeFormat, timeout, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<File> getByQueryExcelWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, null, opts);
+    private ApiResponse<File> getByQueryExcelWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, dateTimeFormat, timeout, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getByQueryExcelAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call getByQueryExcelAsync(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, dateTimeFormat, timeout, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getByQueryExcelAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryExcelAsync(String query, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeout, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, timeout, _callback, opts);
+        okhttp3.Call localVarCall = getByQueryExcelValidateBeforeCall(query, scalarParameters, queryName, dateTimeFormat, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -500,6 +519,7 @@ public class SqlExecutionApi {
         private final String query;
         private Map<String, String> scalarParameters;
         private String queryName;
+        private String dateTimeFormat;
         private Integer timeout;
 
         private APIgetByQueryExcelRequest(String query) {
@@ -527,6 +547,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.000&#x60; (Excel support for this is limited) (optional)
+         * @return APIgetByQueryExcelRequest
+         */
+        public APIgetByQueryExcelRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
          * Set timeout
          * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryExcelRequest
@@ -550,7 +580,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getByQueryExcelCall(query, scalarParameters, queryName, timeout, _callback);
+            return getByQueryExcelCall(query, scalarParameters, queryName, dateTimeFormat, timeout, _callback);
         }
 
         /**
@@ -566,7 +596,7 @@ public class SqlExecutionApi {
          </table>
          */
         public File execute() throws ApiException {
-            ApiResponse<File> localVarResp = getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout);
+            ApiResponse<File> localVarResp = getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, dateTimeFormat, timeout);
             return localVarResp.getData();
         }
 
@@ -583,7 +613,7 @@ public class SqlExecutionApi {
          </table>
          */
         public File execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<File> localVarResp = getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
+            ApiResponse<File> localVarResp = getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, dateTimeFormat, timeout, opts);
             return localVarResp.getData();
         }
 
@@ -600,7 +630,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
-            return getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout);
+            return getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, dateTimeFormat, timeout);
         }
 
         /**
@@ -616,7 +646,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, timeout, opts);
+            return getByQueryExcelWithHttpInfo(query, scalarParameters, queryName, dateTimeFormat, timeout, opts);
         }
 
         /**
@@ -633,7 +663,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
-            return getByQueryExcelAsync(query, scalarParameters, queryName, timeout, _callback);
+            return getByQueryExcelAsync(query, scalarParameters, queryName, dateTimeFormat, timeout, _callback);
         }
 
         /**
@@ -650,7 +680,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
-            return getByQueryExcelAsync(query, scalarParameters, queryName, timeout, _callback, opts);
+            return getByQueryExcelAsync(query, scalarParameters, queryName, dateTimeFormat, timeout, _callback, opts);
         }
     }
 
@@ -1239,11 +1269,11 @@ public class SqlExecutionApi {
     public APIgetByQueryParquetRequest getByQueryParquet(String query) {
         return new APIgetByQueryParquetRequest(query);
     }
-    private okhttp3.Call getByQueryPipeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback) throws ApiException {
-        return getByQueryPipeCall(query, scalarParameters, queryName, download, timeout,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getByQueryPipeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout, final ApiCallback _callback) throws ApiException {
+        return getByQueryPipeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getByQueryPipeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryPipeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1281,6 +1311,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("download", download));
         }
 
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
         if (timeout != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("timeout", timeout));
         }
@@ -1307,40 +1341,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryPipeValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryPipeValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryPipe(Async)");
         }
 
-        return getByQueryPipeCall(query, scalarParameters, queryName, download, timeout, _callback, opts);
+        return getByQueryPipeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getByQueryPipeWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null, new ConfigurationOptions());
+    private ApiResponse<String> getByQueryPipeWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getByQueryPipeWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, null, opts);
+    private ApiResponse<String> getByQueryPipeWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getByQueryPipeAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getByQueryPipeAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getByQueryPipeAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeout, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryPipeAsync(String query, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeout, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, timeout, _callback, opts);
+        okhttp3.Call localVarCall = getByQueryPipeValidateBeforeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1351,6 +1385,7 @@ public class SqlExecutionApi {
         private Map<String, String> scalarParameters;
         private String queryName;
         private Boolean download;
+        private String dateTimeFormat;
         private Integer timeout;
 
         private APIgetByQueryPipeRequest(String query) {
@@ -1388,6 +1423,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIgetByQueryPipeRequest
+         */
+        public APIgetByQueryPipeRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
          * Set timeout
          * @param timeout In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIgetByQueryPipeRequest
@@ -1411,7 +1456,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getByQueryPipeCall(query, scalarParameters, queryName, download, timeout, _callback);
+            return getByQueryPipeCall(query, scalarParameters, queryName, download, dateTimeFormat, timeout, _callback);
         }
 
         /**
@@ -1427,7 +1472,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout);
+            ApiResponse<String> localVarResp = getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, dateTimeFormat, timeout);
             return localVarResp.getData();
         }
 
@@ -1444,7 +1489,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout, opts);
+            ApiResponse<String> localVarResp = getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, dateTimeFormat, timeout, opts);
             return localVarResp.getData();
         }
 
@@ -1461,7 +1506,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout);
+            return getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, dateTimeFormat, timeout);
         }
 
         /**
@@ -1477,7 +1522,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, timeout, opts);
+            return getByQueryPipeWithHttpInfo(query, scalarParameters, queryName, download, dateTimeFormat, timeout, opts);
         }
 
         /**
@@ -1494,7 +1539,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getByQueryPipeAsync(query, scalarParameters, queryName, download, timeout, _callback);
+            return getByQueryPipeAsync(query, scalarParameters, queryName, download, dateTimeFormat, timeout, _callback);
         }
 
         /**
@@ -1511,7 +1556,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getByQueryPipeAsync(query, scalarParameters, queryName, download, timeout, _callback, opts);
+            return getByQueryPipeAsync(query, scalarParameters, queryName, download, dateTimeFormat, timeout, _callback, opts);
         }
     }
 
@@ -2100,11 +2145,11 @@ public class SqlExecutionApi {
     public APIgetByQueryXmlRequest getByQueryXml(String query) {
         return new APIgetByQueryXmlRequest(query);
     }
-    private okhttp3.Call putByQueryCsvCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback) throws ApiException {
-        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape,  _callback, new ConfigurationOptions());
+    private okhttp3.Call putByQueryCsvCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat, final ApiCallback _callback) throws ApiException {
+        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call putByQueryCsvCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryCsvCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2153,6 +2198,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("escape", escape));
         }
 
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -2176,40 +2225,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryCsvValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryCsvValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryCsv(Async)");
         }
 
-        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, opts);
+        return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> putByQueryCsvWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, null, new ConfigurationOptions());
+    private ApiResponse<String> putByQueryCsvWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> putByQueryCsvWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, null, opts);
+    private ApiResponse<String> putByQueryCsvWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putByQueryCsvAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putByQueryCsvAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call putByQueryCsvAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryCsvAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, String delimiter, String escape, String dateTimeFormat, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, opts);
+        okhttp3.Call localVarCall = putByQueryCsvValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2223,6 +2272,7 @@ public class SqlExecutionApi {
         private Integer timeoutSeconds;
         private String delimiter;
         private String escape;
+        private String dateTimeFormat;
 
         private APIputByQueryCsvRequest(String body) {
             this.body = body;
@@ -2289,6 +2339,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIputByQueryCsvRequest
+         */
+        public APIputByQueryCsvRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
          * Build call for putByQueryCsv
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -2302,7 +2362,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback);
+            return putByQueryCsvCall(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, _callback);
         }
 
         /**
@@ -2318,7 +2378,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape);
+            ApiResponse<String> localVarResp = putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat);
             return localVarResp.getData();
         }
 
@@ -2335,7 +2395,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, opts);
+            ApiResponse<String> localVarResp = putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, opts);
             return localVarResp.getData();
         }
 
@@ -2352,7 +2412,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape);
+            return putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat);
         }
 
         /**
@@ -2368,7 +2428,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, opts);
+            return putByQueryCsvWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, opts);
         }
 
         /**
@@ -2385,7 +2445,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return putByQueryCsvAsync(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback);
+            return putByQueryCsvAsync(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, _callback);
         }
 
         /**
@@ -2402,7 +2462,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return putByQueryCsvAsync(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, _callback, opts);
+            return putByQueryCsvAsync(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat, _callback, opts);
         }
     }
 
@@ -2422,11 +2482,11 @@ public class SqlExecutionApi {
     public APIputByQueryCsvRequest putByQueryCsv(String body) {
         return new APIputByQueryCsvRequest(body);
     }
-    private okhttp3.Call putByQueryExcelCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
-        return putByQueryExcelCall(body, scalarParameters, queryName, timeoutSeconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call putByQueryExcelCall(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQueryExcelCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call putByQueryExcelCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryExcelCall(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2459,6 +2519,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("queryName", queryName));
         }
 
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
         if (timeoutSeconds != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("timeoutSeconds", timeoutSeconds));
         }
@@ -2486,40 +2550,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryExcelValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryExcelValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryExcel(Async)");
         }
 
-        return putByQueryExcelCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
+        return putByQueryExcelCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<File> putByQueryExcelWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, new ConfigurationOptions());
+    private ApiResponse<File> putByQueryExcelWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<File> putByQueryExcelWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, null, opts);
+    private ApiResponse<File> putByQueryExcelWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putByQueryExcelAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call putByQueryExcelAsync(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call putByQueryExcelAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryExcelAsync(String body, Map<String, String> scalarParameters, String queryName, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
+        okhttp3.Call localVarCall = putByQueryExcelValidateBeforeCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2529,6 +2593,7 @@ public class SqlExecutionApi {
         private final String body;
         private Map<String, String> scalarParameters;
         private String queryName;
+        private String dateTimeFormat;
         private Integer timeoutSeconds;
 
         private APIputByQueryExcelRequest(String body) {
@@ -2556,6 +2621,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.000&#x60; (Excel support for this is limited) (optional)
+         * @return APIputByQueryExcelRequest
+         */
+        public APIputByQueryExcelRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
          * Set timeoutSeconds
          * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryExcelRequest
@@ -2579,7 +2654,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putByQueryExcelCall(body, scalarParameters, queryName, timeoutSeconds, _callback);
+            return putByQueryExcelCall(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, _callback);
         }
 
         /**
@@ -2595,7 +2670,7 @@ public class SqlExecutionApi {
          </table>
          */
         public File execute() throws ApiException {
-            ApiResponse<File> localVarResp = putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds);
+            ApiResponse<File> localVarResp = putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds);
             return localVarResp.getData();
         }
 
@@ -2612,7 +2687,7 @@ public class SqlExecutionApi {
          </table>
          */
         public File execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<File> localVarResp = putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
+            ApiResponse<File> localVarResp = putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, opts);
             return localVarResp.getData();
         }
 
@@ -2629,7 +2704,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
-            return putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds);
+            return putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds);
         }
 
         /**
@@ -2645,7 +2720,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, opts);
+            return putByQueryExcelWithHttpInfo(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, opts);
         }
 
         /**
@@ -2662,7 +2737,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
-            return putByQueryExcelAsync(body, scalarParameters, queryName, timeoutSeconds, _callback);
+            return putByQueryExcelAsync(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, _callback);
         }
 
         /**
@@ -2679,7 +2754,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
-            return putByQueryExcelAsync(body, scalarParameters, queryName, timeoutSeconds, _callback, opts);
+            return putByQueryExcelAsync(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds, _callback, opts);
         }
     }
 
@@ -3268,11 +3343,11 @@ public class SqlExecutionApi {
     public APIputByQueryParquetRequest putByQueryParquet(String body) {
         return new APIputByQueryParquetRequest(body);
     }
-    private okhttp3.Call putByQueryPipeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
-        return putByQueryPipeCall(body, scalarParameters, queryName, download, timeoutSeconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call putByQueryPipeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback _callback) throws ApiException {
+        return putByQueryPipeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call putByQueryPipeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryPipeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3309,6 +3384,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("download", download));
         }
 
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
         if (timeoutSeconds != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("timeoutSeconds", timeoutSeconds));
         }
@@ -3336,40 +3415,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryPipeValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryPipeValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryPipe(Async)");
         }
 
-        return putByQueryPipeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
+        return putByQueryPipeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> putByQueryPipeWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null, new ConfigurationOptions());
+    private ApiResponse<String> putByQueryPipeWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> putByQueryPipeWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, null, opts);
+    private ApiResponse<String> putByQueryPipeWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putByQueryPipeAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putByQueryPipeAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call putByQueryPipeAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, Integer timeoutSeconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryPipeAsync(String body, Map<String, String> scalarParameters, String queryName, Boolean download, String dateTimeFormat, Integer timeoutSeconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
+        okhttp3.Call localVarCall = putByQueryPipeValidateBeforeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3380,6 +3459,7 @@ public class SqlExecutionApi {
         private Map<String, String> scalarParameters;
         private String queryName;
         private Boolean download;
+        private String dateTimeFormat;
         private Integer timeoutSeconds;
 
         private APIputByQueryPipeRequest(String body) {
@@ -3417,6 +3497,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIputByQueryPipeRequest
+         */
+        public APIputByQueryPipeRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
          * Set timeoutSeconds
          * @param timeoutSeconds In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s (optional, default to 0)
          * @return APIputByQueryPipeRequest
@@ -3440,7 +3530,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putByQueryPipeCall(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+            return putByQueryPipeCall(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, _callback);
         }
 
         /**
@@ -3456,7 +3546,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds);
+            ApiResponse<String> localVarResp = putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds);
             return localVarResp.getData();
         }
 
@@ -3473,7 +3563,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, opts);
+            ApiResponse<String> localVarResp = putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, opts);
             return localVarResp.getData();
         }
 
@@ -3490,7 +3580,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds);
+            return putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds);
         }
 
         /**
@@ -3506,7 +3596,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, timeoutSeconds, opts);
+            return putByQueryPipeWithHttpInfo(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, opts);
         }
 
         /**
@@ -3523,7 +3613,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return putByQueryPipeAsync(body, scalarParameters, queryName, download, timeoutSeconds, _callback);
+            return putByQueryPipeAsync(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, _callback);
         }
 
         /**
@@ -3540,7 +3630,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return putByQueryPipeAsync(body, scalarParameters, queryName, download, timeoutSeconds, _callback, opts);
+            return putByQueryPipeAsync(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds, _callback, opts);
         }
     }
 

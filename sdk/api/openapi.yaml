@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.469
+  version: 1.18.476
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1570,6 +1570,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
       requestBody:
         content:
           text/plain:
@@ -1709,6 +1718,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1795,6 +1813,16 @@ paths:
         explode: true
         in: query
         name: queryName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.000` (Excel support for\
+          \ this is limited)"
+        explode: true
+        in: query
+        name: dateTimeFormat
         required: false
         schema:
           type: string
@@ -1910,6 +1938,16 @@ paths:
         explode: true
         in: query
         name: queryName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.000` (Excel support for\
+          \ this is limited)"
+        explode: true
+        in: query
+        name: dateTimeFormat
         required: false
         schema:
           type: string
@@ -4317,6 +4355,15 @@ paths:
           type: boolean
         style: form
         x-nullable: true
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
       - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
         example: 150
         explode: true
@@ -4440,6 +4487,15 @@ paths:
           type: boolean
         style: form
         x-nullable: true
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
       - description: "In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s"
         example: 150
         explode: true
@@ -6383,6 +6439,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Optional maximum additional wait period for post execution platform
           processing.
         explode: true
@@ -6518,6 +6583,15 @@ paths:
         explode: true
         in: query
         name: groupBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
         required: false
         schema:
           type: string
@@ -7307,6 +7381,15 @@ paths:
           type: integer
         style: form
         x-nullable: true
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Optional maximum additional wait period for post execution platform
           processing.
         explode: true

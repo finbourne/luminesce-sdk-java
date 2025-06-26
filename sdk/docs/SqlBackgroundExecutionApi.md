@@ -110,7 +110,7 @@ public class SqlBackgroundExecutionApiExample {
 
 ## fetchQueryResultCsv
 
-> String fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, loadWaitMilliseconds)
+> String fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds)
 
 FetchQueryResultCsv: Fetch the result of a query as CSV
 
@@ -165,12 +165,13 @@ public class SqlBackgroundExecutionApiExample {
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer loadWaitMilliseconds = 0; // Integer | Optional maximum additional wait period for post execution platform processing.
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, loadWaitMilliseconds).execute(opts);
+            // String result = apiInstance.fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds).execute(opts);
 
-            String result = apiInstance.fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, loadWaitMilliseconds).execute();
+            String result = apiInstance.fetchQueryResultCsv(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#fetchQueryResultCsv");
@@ -197,6 +198,7 @@ public class SqlBackgroundExecutionApiExample {
 | **page** | **Integer**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0] |
 | **delimiter** | **String**| Delimiter string to override the default | [optional] |
 | **escape** | **String**| Escape character to override the default | [optional] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **loadWaitMilliseconds** | **Integer**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0] |
 
 ### Return type
@@ -221,7 +223,7 @@ public class SqlBackgroundExecutionApiExample {
 
 ## fetchQueryResultExcel
 
-> File fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds)
+> File fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds)
 
 FetchQueryResultExcel: Fetch the result of a query as an Excel file
 
@@ -271,12 +273,13 @@ public class SqlBackgroundExecutionApiExample {
         String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
         String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - `MyField`  - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name)  - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works)  - `count(distinct x) as numOfXs`  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`   where you would likely want to pass `1` as the `groupBy` also.
         String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer loadWaitMilliseconds = 0; // Integer | Optional maximum additional wait period for post execution platform processing.
         try {
             // uncomment the below to set overrides at the request level
-            // File result = apiInstance.fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds).execute(opts);
+            // File result = apiInstance.fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds).execute(opts);
 
-            File result = apiInstance.fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds).execute();
+            File result = apiInstance.fetchQueryResultExcel(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#fetchQueryResultExcel");
@@ -298,6 +301,7 @@ public class SqlBackgroundExecutionApiExample {
 | **filter** | **String**| An ODATA filter per Finbourne.Filtering syntax. | [optional] |
 | **select** | **String**| Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] |
 | **groupBy** | **String**| Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **loadWaitMilliseconds** | **Integer**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0] |
 
 ### Return type
@@ -738,7 +742,7 @@ public class SqlBackgroundExecutionApiExample {
 
 ## fetchQueryResultPipe
 
-> String fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds)
+> String fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds)
 
 FetchQueryResultPipe: Fetch the result of a query as pipe-delimited
 
@@ -791,12 +795,13 @@ public class SqlBackgroundExecutionApiExample {
         String groupBy = "groupBy_example"; // String | Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. `2,3`, `myColumn`.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.   Only specify this if you are selecting aggregations in the \"select\" parameter.
         Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
         Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer loadWaitMilliseconds = 0; // Integer | Optional maximum additional wait period for post execution platform processing.
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds).execute(opts);
+            // String result = apiInstance.fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds).execute(opts);
 
-            String result = apiInstance.fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds).execute();
+            String result = apiInstance.fetchQueryResultPipe(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#fetchQueryResultPipe");
@@ -821,6 +826,7 @@ public class SqlBackgroundExecutionApiExample {
 | **groupBy** | **String**| Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] |
 | **limit** | **Integer**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0] |
 | **page** | **Integer**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **loadWaitMilliseconds** | **Integer**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0] |
 
 ### Return type

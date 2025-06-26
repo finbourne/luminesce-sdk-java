@@ -23,7 +23,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 ## getByQueryCsv
 
-> String getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape)
+> String getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat)
 
 GetByQueryCsv: Execute Sql from the url returning CSV
 
@@ -75,11 +75,12 @@ public class SqlExecutionApiExample {
         Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape).execute(opts);
+            // String result = apiInstance.getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat).execute(opts);
 
-            String result = apiInstance.getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape).execute();
+            String result = apiInstance.getByQueryCsv(query, scalarParameters, queryName, download, timeout, delimiter, escape, dateTimeFormat).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#getByQueryCsv");
@@ -103,6 +104,7 @@ public class SqlExecutionApiExample {
 | **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **delimiter** | **String**| Delimiter string to override the default | [optional] |
 | **escape** | **String**| Escape character to override the default | [optional] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 
 ### Return type
 
@@ -126,7 +128,7 @@ public class SqlExecutionApiExample {
 
 ## getByQueryExcel
 
-> File getByQueryExcel(query, scalarParameters, queryName, timeout)
+> File getByQueryExcel(query, scalarParameters, queryName, dateTimeFormat, timeout)
 
 GetByQueryExcel: Execute Sql from the url returning an Excel file
 
@@ -174,12 +176,13 @@ public class SqlExecutionApiExample {
         String query = "select ^ from Sys.Field order by 1, 2"; // String | LuminesceSql to Execute (must be one line only)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.000` (Excel support for this is limited)
         Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
-            // File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, timeout).execute(opts);
+            // File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, dateTimeFormat, timeout).execute(opts);
 
-            File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, timeout).execute();
+            File result = apiInstance.getByQueryExcel(query, scalarParameters, queryName, dateTimeFormat, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#getByQueryExcel");
@@ -199,6 +202,7 @@ public class SqlExecutionApiExample {
 | **query** | **String**| LuminesceSql to Execute (must be one line only) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.000&#x60; (Excel support for this is limited) | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
@@ -419,7 +423,7 @@ public class SqlExecutionApiExample {
 
 ## getByQueryPipe
 
-> String getByQueryPipe(query, scalarParameters, queryName, download, timeout)
+> String getByQueryPipe(query, scalarParameters, queryName, download, dateTimeFormat, timeout)
 
 GetByQueryPipe: Execute Sql from the url returning pipe-delimited
 
@@ -468,12 +472,13 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, timeout).execute(opts);
+            // String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, dateTimeFormat, timeout).execute(opts);
 
-            String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, timeout).execute();
+            String result = apiInstance.getByQueryPipe(query, scalarParameters, queryName, download, dateTimeFormat, timeout).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#getByQueryPipe");
@@ -494,6 +499,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
@@ -714,7 +720,7 @@ public class SqlExecutionApiExample {
 
 ## putByQueryCsv
 
-> String putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape)
+> String putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat)
 
 PutByQueryCsv: Execute Sql from the body returning CSV
 
@@ -766,11 +772,12 @@ public class SqlExecutionApiExample {
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         String delimiter = "delimiter_example"; // String | Delimiter string to override the default
         String escape = "escape_example"; // String | Escape character to override the default
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape).execute(opts);
+            // String result = apiInstance.putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat).execute(opts);
 
-            String result = apiInstance.putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape).execute();
+            String result = apiInstance.putByQueryCsv(body, scalarParameters, queryName, download, timeoutSeconds, delimiter, escape, dateTimeFormat).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#putByQueryCsv");
@@ -794,6 +801,7 @@ public class SqlExecutionApiExample {
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **delimiter** | **String**| Delimiter string to override the default | [optional] |
 | **escape** | **String**| Escape character to override the default | [optional] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 
 ### Return type
 
@@ -817,7 +825,7 @@ public class SqlExecutionApiExample {
 
 ## putByQueryExcel
 
-> File putByQueryExcel(body, scalarParameters, queryName, timeoutSeconds)
+> File putByQueryExcel(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds)
 
 PutByQueryExcel: Execute Sql from the body making an Excel file
 
@@ -865,12 +873,13 @@ public class SqlExecutionApiExample {
         String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.000` (Excel support for this is limited)
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
-            // File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, timeoutSeconds).execute(opts);
+            // File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds).execute(opts);
 
-            File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, timeoutSeconds).execute();
+            File result = apiInstance.putByQueryExcel(body, scalarParameters, queryName, dateTimeFormat, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#putByQueryExcel");
@@ -890,6 +899,7 @@ public class SqlExecutionApiExample {
 | **body** | **String**| LuminesceSql to Execute (may be multi-line) | |
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.000&#x60; (Excel support for this is limited) | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
@@ -1110,7 +1120,7 @@ public class SqlExecutionApiExample {
 
 ## putByQueryPipe
 
-> String putByQueryPipe(body, scalarParameters, queryName, download, timeoutSeconds)
+> String putByQueryPipe(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds)
 
 PutByQueryPipe: Execute Sql from the body making pipe-delimited
 
@@ -1159,12 +1169,13 @@ public class SqlExecutionApiExample {
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
+        String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, timeoutSeconds).execute(opts);
+            // String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds).execute(opts);
 
-            String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, timeoutSeconds).execute();
+            String result = apiInstance.putByQueryPipe(body, scalarParameters, queryName, download, dateTimeFormat, timeoutSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#putByQueryPipe");
@@ -1185,6 +1196,7 @@ public class SqlExecutionApiExample {
 | **scalarParameters** | [**Map&lt;String, String&gt;**](String.md)| Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution. | [optional] |
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
+| **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 
 ### Return type
