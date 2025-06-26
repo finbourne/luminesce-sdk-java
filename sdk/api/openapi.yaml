@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.476
+  version: 1.18.478
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -3777,7 +3777,7 @@ paths:
                     column: 10
                   length: 1
                   message: "extraneous input '(' expecting {<EOF>, '@', '@@', ';',\
-                    \ K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
+                    \ K_EXPLAIN, K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
                 sqlWithMarker: select mx▷(◁︎x) x from y
               schema:
                 $ref: '#/components/schemas/ErrorHighlightResponse'
@@ -3792,7 +3792,7 @@ paths:
                     column: 10
                   length: 1
                   message: "extraneous input '(' expecting {<EOF>, '@', '@@', ';',\
-                    \ K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
+                    \ K_EXPLAIN, K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
                 sqlWithMarker: select mx▷(◁︎x) x from y
               schema:
                 $ref: '#/components/schemas/ErrorHighlightResponse'
@@ -3807,7 +3807,7 @@ paths:
                     column: 10
                   length: 1
                   message: "extraneous input '(' expecting {<EOF>, '@', '@@', ';',\
-                    \ K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
+                    \ K_EXPLAIN, K_PRAGMA, K_SELECT, K_TYPES, K_VALUES, UNEXPECTED_CHAR}"
                 sqlWithMarker: select mx▷(◁︎x) x from y
               schema:
                 $ref: '#/components/schemas/ErrorHighlightResponse'
