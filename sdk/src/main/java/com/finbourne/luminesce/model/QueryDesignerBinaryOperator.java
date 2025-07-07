@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets QueryDesignerBinaryOperator
+ * Binary operators
  */
 @JsonAdapter(QueryDesignerBinaryOperator.Adapter.class)
 public enum QueryDesignerBinaryOperator {
