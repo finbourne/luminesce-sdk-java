@@ -13,6 +13,7 @@ package com.finbourne.luminesce.model;
 import java.util.Objects;
 import com.finbourne.luminesce.model.AvailableField;
 import com.finbourne.luminesce.model.FieldDesign;
+import com.finbourne.luminesce.model.JoinedTableDesign;
 import com.finbourne.luminesce.model.OrderByTermDesign;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -67,6 +68,10 @@ public class QueryDesign {
   @SerializedName(SERIALIZED_NAME_FIELDS)
   private List<FieldDesign> fields = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_JOINED_TABLES = "joinedTables";
+  @SerializedName(SERIALIZED_NAME_JOINED_TABLES)
+  private List<JoinedTableDesign> joinedTables;
+
   public static final String SERIALIZED_NAME_ORDER_BY = "orderBy";
   @SerializedName(SERIALIZED_NAME_ORDER_BY)
   private List<OrderByTermDesign> orderBy;
@@ -74,6 +79,10 @@ public class QueryDesign {
   public static final String SERIALIZED_NAME_LIMIT = "limit";
   @SerializedName(SERIALIZED_NAME_LIMIT)
   private Integer limit;
+
+  public static final String SERIALIZED_NAME_OFFSET = "offset";
+  @SerializedName(SERIALIZED_NAME_OFFSET)
+  private Integer offset;
 
   public static final String SERIALIZED_NAME_WARNINGS = "warnings";
   @SerializedName(SERIALIZED_NAME_WARNINGS)
@@ -157,6 +166,35 @@ public class QueryDesign {
   }
 
 
+  public QueryDesign joinedTables(List<JoinedTableDesign> joinedTables) {
+    
+    this.joinedTables = joinedTables;
+    return this;
+  }
+
+  public QueryDesign addJoinedTablesItem(JoinedTableDesign joinedTablesItem) {
+    if (this.joinedTables == null) {
+      this.joinedTables = new ArrayList<>();
+    }
+    this.joinedTables.add(joinedTablesItem);
+    return this;
+  }
+
+   /**
+   * Joined in table to the main TableName / Alias
+   * @return joinedTables
+  **/
+  @jakarta.annotation.Nullable
+  public List<JoinedTableDesign> getJoinedTables() {
+    return joinedTables;
+  }
+
+
+  public void setJoinedTables(List<JoinedTableDesign> joinedTables) {
+    this.joinedTables = joinedTables;
+  }
+
+
   public QueryDesign orderBy(List<OrderByTermDesign> orderBy) {
     
     this.orderBy = orderBy;
@@ -204,6 +242,27 @@ public class QueryDesign {
 
   public void setLimit(Integer limit) {
     this.limit = limit;
+  }
+
+
+  public QueryDesign offset(Integer offset) {
+    
+    this.offset = offset;
+    return this;
+  }
+
+   /**
+   * Row offset to apply, if any
+   * @return offset
+  **/
+  @jakarta.annotation.Nullable
+  public Integer getOffset() {
+    return offset;
+  }
+
+
+  public void setOffset(Integer offset) {
+    this.offset = offset;
   }
 
 
@@ -278,8 +337,10 @@ public class QueryDesign {
     return Objects.equals(this.tableName, queryDesign.tableName) &&
         Objects.equals(this.alias, queryDesign.alias) &&
         Objects.equals(this.fields, queryDesign.fields) &&
+        Objects.equals(this.joinedTables, queryDesign.joinedTables) &&
         Objects.equals(this.orderBy, queryDesign.orderBy) &&
         Objects.equals(this.limit, queryDesign.limit) &&
+        Objects.equals(this.offset, queryDesign.offset) &&
         Objects.equals(this.warnings, queryDesign.warnings) &&
         Objects.equals(this.availableFields, queryDesign.availableFields);
   }
@@ -290,7 +351,7 @@ public class QueryDesign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(tableName, alias, fields, orderBy, limit, warnings, availableFields);
+    return Objects.hash(tableName, alias, fields, joinedTables, orderBy, limit, offset, warnings, availableFields);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -307,8 +368,10 @@ public class QueryDesign {
     sb.append("    tableName: ").append(toIndentedString(tableName)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
+    sb.append("    joinedTables: ").append(toIndentedString(joinedTables)).append("\n");
     sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
+    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
     sb.append("    availableFields: ").append(toIndentedString(availableFields)).append("\n");
     sb.append("}");
@@ -336,8 +399,10 @@ public class QueryDesign {
     openapiFields.add("tableName");
     openapiFields.add("alias");
     openapiFields.add("fields");
+    openapiFields.add("joinedTables");
     openapiFields.add("orderBy");
     openapiFields.add("limit");
+    openapiFields.add("offset");
     openapiFields.add("warnings");
     openapiFields.add("availableFields");
 
@@ -383,6 +448,20 @@ public class QueryDesign {
       for (int i = 0; i < jsonArrayfields.size(); i++) {
         FieldDesign.validateJsonElement(jsonArrayfields.get(i));
       };
+      if (jsonObj.get("joinedTables") != null && !jsonObj.get("joinedTables").isJsonNull()) {
+        JsonArray jsonArrayjoinedTables = jsonObj.getAsJsonArray("joinedTables");
+        if (jsonArrayjoinedTables != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("joinedTables").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `joinedTables` to be an array in the JSON string but got `%s`", jsonObj.get("joinedTables").toString()));
+          }
+
+          // validate the optional field `joinedTables` (array)
+          for (int i = 0; i < jsonArrayjoinedTables.size(); i++) {
+            JoinedTableDesign.validateJsonElement(jsonArrayjoinedTables.get(i));
+          };
+        }
+      }
       if (jsonObj.get("orderBy") != null && !jsonObj.get("orderBy").isJsonNull()) {
         JsonArray jsonArrayorderBy = jsonObj.getAsJsonArray("orderBy");
         if (jsonArrayorderBy != null) {

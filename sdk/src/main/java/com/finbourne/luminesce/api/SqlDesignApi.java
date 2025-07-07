@@ -38,6 +38,7 @@ import com.finbourne.luminesce.model.IntellisenseResponse;
 import com.finbourne.luminesce.model.LusidGridData;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import com.finbourne.luminesce.model.QueryDesign;
+import com.finbourne.luminesce.model.QueryDesignerVersion;
 import com.finbourne.luminesce.model.ScalarParameter;
 import com.finbourne.luminesce.model.WriterDesign;
 
@@ -3370,11 +3371,11 @@ public class SqlDesignApi {
     public APIputSqlToFileReadDesignRequest putSqlToFileReadDesign() {
         return new APIputSqlToFileReadDesignRequest();
     }
-    private okhttp3.Call putSqlToQueryDesignCall(String body, Boolean validateWithMetadata, final ApiCallback _callback) throws ApiException {
-        return putSqlToQueryDesignCall(body, validateWithMetadata,  _callback, new ConfigurationOptions());
+    private okhttp3.Call putSqlToQueryDesignCall(String body, Boolean validateWithMetadata, QueryDesignerVersion version, final ApiCallback _callback) throws ApiException {
+        return putSqlToQueryDesignCall(body, validateWithMetadata, version,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call putSqlToQueryDesignCall(String body, Boolean validateWithMetadata, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putSqlToQueryDesignCall(String body, Boolean validateWithMetadata, QueryDesignerVersion version, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3403,6 +3404,10 @@ public class SqlDesignApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("validateWithMetadata", validateWithMetadata));
         }
 
+        if (version != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("version", version));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -3426,40 +3431,40 @@ public class SqlDesignApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putSqlToQueryDesignValidateBeforeCall(String body, Boolean validateWithMetadata, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putSqlToQueryDesignValidateBeforeCall(String body, Boolean validateWithMetadata, QueryDesignerVersion version, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putSqlToQueryDesign(Async)");
         }
 
-        return putSqlToQueryDesignCall(body, validateWithMetadata, _callback, opts);
+        return putSqlToQueryDesignCall(body, validateWithMetadata, version, _callback, opts);
 
     }
 
 
-    private ApiResponse<QueryDesign> putSqlToQueryDesignWithHttpInfo(String body, Boolean validateWithMetadata) throws ApiException {
-        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, null, new ConfigurationOptions());
+    private ApiResponse<QueryDesign> putSqlToQueryDesignWithHttpInfo(String body, Boolean validateWithMetadata, QueryDesignerVersion version) throws ApiException {
+        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, version, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<QueryDesign>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<QueryDesign> putSqlToQueryDesignWithHttpInfo(String body, Boolean validateWithMetadata, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, null, opts);
+    private ApiResponse<QueryDesign> putSqlToQueryDesignWithHttpInfo(String body, Boolean validateWithMetadata, QueryDesignerVersion version, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, version, null, opts);
         Type localVarReturnType = new TypeToken<QueryDesign>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putSqlToQueryDesignAsync(String body, Boolean validateWithMetadata, final ApiCallback<QueryDesign> _callback) throws ApiException {
+    private okhttp3.Call putSqlToQueryDesignAsync(String body, Boolean validateWithMetadata, QueryDesignerVersion version, final ApiCallback<QueryDesign> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, version, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<QueryDesign>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call putSqlToQueryDesignAsync(String body, Boolean validateWithMetadata, final ApiCallback<QueryDesign> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putSqlToQueryDesignAsync(String body, Boolean validateWithMetadata, QueryDesignerVersion version, final ApiCallback<QueryDesign> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, _callback, opts);
+        okhttp3.Call localVarCall = putSqlToQueryDesignValidateBeforeCall(body, validateWithMetadata, version, _callback, opts);
         Type localVarReturnType = new TypeToken<QueryDesign>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3468,6 +3473,7 @@ public class SqlDesignApi {
     public class APIputSqlToQueryDesignRequest {
         private final String body;
         private Boolean validateWithMetadata;
+        private QueryDesignerVersion version;
 
         private APIputSqlToQueryDesignRequest(String body) {
             this.body = body;
@@ -3480,6 +3486,16 @@ public class SqlDesignApi {
          */
         public APIputSqlToQueryDesignRequest validateWithMetadata(Boolean validateWithMetadata) {
             this.validateWithMetadata = validateWithMetadata;
+            return this;
+        }
+
+        /**
+         * Set version
+         * @param version Designer version number used to support multiple web user interface versions.  Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). (optional)
+         * @return APIputSqlToQueryDesignRequest
+         */
+        public APIputSqlToQueryDesignRequest version(QueryDesignerVersion version) {
+            this.version = version;
             return this;
         }
 
@@ -3497,7 +3513,7 @@ public class SqlDesignApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putSqlToQueryDesignCall(body, validateWithMetadata, _callback);
+            return putSqlToQueryDesignCall(body, validateWithMetadata, version, _callback);
         }
 
         /**
@@ -3513,7 +3529,7 @@ public class SqlDesignApi {
          </table>
          */
         public QueryDesign execute() throws ApiException {
-            ApiResponse<QueryDesign> localVarResp = putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata);
+            ApiResponse<QueryDesign> localVarResp = putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata, version);
             return localVarResp.getData();
         }
 
@@ -3530,7 +3546,7 @@ public class SqlDesignApi {
          </table>
          */
         public QueryDesign execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<QueryDesign> localVarResp = putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata, opts);
+            ApiResponse<QueryDesign> localVarResp = putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata, version, opts);
             return localVarResp.getData();
         }
 
@@ -3547,7 +3563,7 @@ public class SqlDesignApi {
          </table>
          */
         public ApiResponse<QueryDesign> executeWithHttpInfo() throws ApiException {
-            return putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata);
+            return putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata, version);
         }
 
         /**
@@ -3563,7 +3579,7 @@ public class SqlDesignApi {
          </table>
          */
         public ApiResponse<QueryDesign> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata, opts);
+            return putSqlToQueryDesignWithHttpInfo(body, validateWithMetadata, version, opts);
         }
 
         /**
@@ -3580,7 +3596,7 @@ public class SqlDesignApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<QueryDesign> _callback) throws ApiException {
-            return putSqlToQueryDesignAsync(body, validateWithMetadata, _callback);
+            return putSqlToQueryDesignAsync(body, validateWithMetadata, version, _callback);
         }
 
         /**
@@ -3597,7 +3613,7 @@ public class SqlDesignApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<QueryDesign> _callback, ConfigurationOptions opts) throws ApiException {
-            return putSqlToQueryDesignAsync(body, validateWithMetadata, _callback, opts);
+            return putSqlToQueryDesignAsync(body, validateWithMetadata, version, _callback, opts);
         }
     }
 

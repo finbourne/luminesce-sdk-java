@@ -9,6 +9,7 @@ Treatment of a single field within a QueryDesign
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Name of the Field (column name, constant, complex expression, etc.) |  |
+|**tableAlias** | **String** | Alias of the Table the field belongs to |  [optional] |
 |**alias** | **String** | Alias if any (if none the Name is used) |  [optional] |
 |**dataType** | **DataType** |  |  [optional] |
 |**shouldSelect** | **Boolean** | Should this be selected? False would imply it is only being filtered on.  Ignored when Aggregations are present |  [optional] |

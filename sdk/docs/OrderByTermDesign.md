@@ -10,6 +10,7 @@ A single clause within an Order BY
 |------------ | ------------- | ------------- | -------------|
 |**field** | **String** | Name of the field to order by |  |
 |**direction** | **OrderByDirection** |  |  [optional] |
+|**tableAlias** | **String** | Table Alias of the field to order by |  [optional] |
 
 
 

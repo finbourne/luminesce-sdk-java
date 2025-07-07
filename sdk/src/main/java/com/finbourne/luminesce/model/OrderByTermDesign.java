@@ -19,6 +19,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,6 +58,10 @@ public class OrderByTermDesign {
   public static final String SERIALIZED_NAME_DIRECTION = "direction";
   @SerializedName(SERIALIZED_NAME_DIRECTION)
   private OrderByDirection direction;
+
+  public static final String SERIALIZED_NAME_TABLE_ALIAS = "tableAlias";
+  @SerializedName(SERIALIZED_NAME_TABLE_ALIAS)
+  private String tableAlias;
 
   public OrderByTermDesign() {
   }
@@ -103,6 +108,27 @@ public class OrderByTermDesign {
   }
 
 
+  public OrderByTermDesign tableAlias(String tableAlias) {
+    
+    this.tableAlias = tableAlias;
+    return this;
+  }
+
+   /**
+   * Table Alias of the field to order by
+   * @return tableAlias
+  **/
+  @jakarta.annotation.Nullable
+  public String getTableAlias() {
+    return tableAlias;
+  }
+
+
+  public void setTableAlias(String tableAlias) {
+    this.tableAlias = tableAlias;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -114,12 +140,24 @@ public class OrderByTermDesign {
     }
     OrderByTermDesign orderByTermDesign = (OrderByTermDesign) o;
     return Objects.equals(this.field, orderByTermDesign.field) &&
-        Objects.equals(this.direction, orderByTermDesign.direction);
+        Objects.equals(this.direction, orderByTermDesign.direction) &&
+        Objects.equals(this.tableAlias, orderByTermDesign.tableAlias);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(field, direction);
+    return Objects.hash(field, direction, tableAlias);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -128,6 +166,7 @@ public class OrderByTermDesign {
     sb.append("class OrderByTermDesign {\n");
     sb.append("    field: ").append(toIndentedString(field)).append("\n");
     sb.append("    direction: ").append(toIndentedString(direction)).append("\n");
+    sb.append("    tableAlias: ").append(toIndentedString(tableAlias)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -152,6 +191,7 @@ public class OrderByTermDesign {
     openapiFields = new HashSet<String>();
     openapiFields.add("field");
     openapiFields.add("direction");
+    openapiFields.add("tableAlias");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -180,6 +220,9 @@ public class OrderByTermDesign {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("field").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `field` to be a primitive type in the JSON string but got `%s`", jsonObj.get("field").toString()));
+      }
+      if ((jsonObj.get("tableAlias") != null && !jsonObj.get("tableAlias").isJsonNull()) && !jsonObj.get("tableAlias").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tableAlias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tableAlias").toString()));
       }
   }
 

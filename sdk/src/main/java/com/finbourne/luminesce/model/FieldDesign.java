@@ -59,6 +59,10 @@ public class FieldDesign {
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_TABLE_ALIAS = "tableAlias";
+  @SerializedName(SERIALIZED_NAME_TABLE_ALIAS)
+  private String tableAlias;
+
   public static final String SERIALIZED_NAME_ALIAS = "alias";
   @SerializedName(SERIALIZED_NAME_ALIAS)
   private String alias;
@@ -104,6 +108,27 @@ public class FieldDesign {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public FieldDesign tableAlias(String tableAlias) {
+    
+    this.tableAlias = tableAlias;
+    return this;
+  }
+
+   /**
+   * Alias of the Table the field belongs to
+   * @return tableAlias
+  **/
+  @jakarta.annotation.Nullable
+  public String getTableAlias() {
+    return tableAlias;
+  }
+
+
+  public void setTableAlias(String tableAlias) {
+    this.tableAlias = tableAlias;
   }
 
 
@@ -260,6 +285,7 @@ public class FieldDesign {
     }
     FieldDesign fieldDesign = (FieldDesign) o;
     return Objects.equals(this.name, fieldDesign.name) &&
+        Objects.equals(this.tableAlias, fieldDesign.tableAlias) &&
         Objects.equals(this.alias, fieldDesign.alias) &&
         Objects.equals(this.dataType, fieldDesign.dataType) &&
         Objects.equals(this.shouldSelect, fieldDesign.shouldSelect) &&
@@ -274,7 +300,7 @@ public class FieldDesign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, alias, dataType, shouldSelect, filters, aggregations, isExpression);
+    return Objects.hash(name, tableAlias, alias, dataType, shouldSelect, filters, aggregations, isExpression);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -289,6 +315,7 @@ public class FieldDesign {
     StringBuilder sb = new StringBuilder();
     sb.append("class FieldDesign {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    tableAlias: ").append(toIndentedString(tableAlias)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("    dataType: ").append(toIndentedString(dataType)).append("\n");
     sb.append("    shouldSelect: ").append(toIndentedString(shouldSelect)).append("\n");
@@ -318,6 +345,7 @@ public class FieldDesign {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("name");
+    openapiFields.add("tableAlias");
     openapiFields.add("alias");
     openapiFields.add("dataType");
     openapiFields.add("shouldSelect");
@@ -352,6 +380,9 @@ public class FieldDesign {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if (!jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
+      if ((jsonObj.get("tableAlias") != null && !jsonObj.get("tableAlias").isJsonNull()) && !jsonObj.get("tableAlias").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tableAlias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tableAlias").toString()));
       }
       if ((jsonObj.get("alias") != null && !jsonObj.get("alias").isJsonNull()) && !jsonObj.get("alias").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `alias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alias").toString()));

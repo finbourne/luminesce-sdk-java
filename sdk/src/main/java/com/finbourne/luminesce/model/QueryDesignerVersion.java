@@ -20,38 +20,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets QueryDesignerBinaryOperator
+ * Versions of the Query Designer as evolving over time.  Generally only the two largest values will be supported at any one time.
  */
-@JsonAdapter(QueryDesignerBinaryOperator.Adapter.class)
-public enum QueryDesignerBinaryOperator {
+@JsonAdapter(QueryDesignerVersion.Adapter.class)
+public enum QueryDesignerVersion {
   
-  LT("Lt"),
+  ORIGINAL("Original"),
   
-  LTE("Lte"),
-  
-  GT("Gt"),
-  
-  GTE("Gte"),
-  
-  EQ("Eq"),
-  
-  NEQ("Neq"),
-  
-  LIKE("Like"),
-  
-  CONTAINS("Contains"),
-  
-  STARTSWITH("StartsWith"),
-  
-  ENDSWITH("EndsWith"),
-  
-  ISNULL("IsNull"),
-  
-  ISNOTNULL("IsNotNull");
+  JOINSANDISNULL("JoinsAndIsNull");
 
   private String value;
 
-  QueryDesignerBinaryOperator(String value) {
+  QueryDesignerVersion(String value) {
     this.value = value;
   }
 
@@ -64,8 +44,8 @@ public enum QueryDesignerBinaryOperator {
     return String.valueOf(value);
   }
 
-  public static QueryDesignerBinaryOperator fromValue(String value) {
-    for (QueryDesignerBinaryOperator b : QueryDesignerBinaryOperator.values()) {
+  public static QueryDesignerVersion fromValue(String value) {
+    for (QueryDesignerVersion b : QueryDesignerVersion.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -73,16 +53,16 @@ public enum QueryDesignerBinaryOperator {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<QueryDesignerBinaryOperator> {
+  public static class Adapter extends TypeAdapter<QueryDesignerVersion> {
     @Override
-    public void write(final JsonWriter jsonWriter, final QueryDesignerBinaryOperator enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final QueryDesignerVersion enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public QueryDesignerBinaryOperator read(final JsonReader jsonReader) throws IOException {
+    public QueryDesignerVersion read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return QueryDesignerBinaryOperator.fromValue(value);
+      return QueryDesignerVersion.fromValue(value);
     }
   }
 }

@@ -20,38 +20,20 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets QueryDesignerBinaryOperator
+ * Type of join between two tables
  */
-@JsonAdapter(QueryDesignerBinaryOperator.Adapter.class)
-public enum QueryDesignerBinaryOperator {
+@JsonAdapter(DesignJoinType.Adapter.class)
+public enum DesignJoinType {
   
-  LT("Lt"),
+  LEFTOUTER("LeftOuter"),
   
-  LTE("Lte"),
+  INNER("Inner"),
   
-  GT("Gt"),
-  
-  GTE("Gte"),
-  
-  EQ("Eq"),
-  
-  NEQ("Neq"),
-  
-  LIKE("Like"),
-  
-  CONTAINS("Contains"),
-  
-  STARTSWITH("StartsWith"),
-  
-  ENDSWITH("EndsWith"),
-  
-  ISNULL("IsNull"),
-  
-  ISNOTNULL("IsNotNull");
+  FULLOUTER("FullOuter");
 
   private String value;
 
-  QueryDesignerBinaryOperator(String value) {
+  DesignJoinType(String value) {
     this.value = value;
   }
 
@@ -64,8 +46,8 @@ public enum QueryDesignerBinaryOperator {
     return String.valueOf(value);
   }
 
-  public static QueryDesignerBinaryOperator fromValue(String value) {
-    for (QueryDesignerBinaryOperator b : QueryDesignerBinaryOperator.values()) {
+  public static DesignJoinType fromValue(String value) {
+    for (DesignJoinType b : DesignJoinType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -73,16 +55,16 @@ public enum QueryDesignerBinaryOperator {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<QueryDesignerBinaryOperator> {
+  public static class Adapter extends TypeAdapter<DesignJoinType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final QueryDesignerBinaryOperator enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final DesignJoinType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public QueryDesignerBinaryOperator read(final JsonReader jsonReader) throws IOException {
+    public DesignJoinType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return QueryDesignerBinaryOperator.fromValue(value);
+      return DesignJoinType.fromValue(value);
     }
   }
 }

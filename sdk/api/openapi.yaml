@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.492
+  version: 1.18.508
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2274,8 +2274,10 @@ paths:
           application/json-patch+json:
             example:
               tableName: Sys.Field
+              alias: f
               fields:
               - name: TableName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters:
@@ -2283,7 +2285,15 @@ paths:
                   value: Sys.Registration
                 aggregations: []
                 isExpression: false
+              - name: DataType
+                tableAlias: f
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: false
               - name: FieldName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters: []
@@ -2293,16 +2303,32 @@ paths:
                 isExpression: false
               - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                   \ end"
+                tableAlias: f
                 alias: FieldType2
                 dataType: Text
                 shouldSelect: true
                 filters: []
                 aggregations: []
                 isExpression: true
+              joinedTables:
+              - joinedTableName: Sys.Registration
+                joinedTableAlias: r
+                leftTableAlias: f
+                joinType: Inner
+                onClauseTerms:
+                - leftTableField: TableName
+                  rightTableField: Name
+                  operator: Eq
+                - rightTableField: Name
+                  operator: Eq
+                  filterValue: Sys.Registration
+                rightTableAvailableFields: []
               orderBy:
               - field: DataType
                 direction: asc
+                tableAlias: f
               limit: 42
+              offset: 10
               warnings: []
               availableFields: []
             schema:
@@ -2310,8 +2336,10 @@ paths:
           application/json:
             example:
               tableName: Sys.Field
+              alias: f
               fields:
               - name: TableName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters:
@@ -2319,7 +2347,15 @@ paths:
                   value: Sys.Registration
                 aggregations: []
                 isExpression: false
+              - name: DataType
+                tableAlias: f
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: false
               - name: FieldName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters: []
@@ -2329,16 +2365,32 @@ paths:
                 isExpression: false
               - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                   \ end"
+                tableAlias: f
                 alias: FieldType2
                 dataType: Text
                 shouldSelect: true
                 filters: []
                 aggregations: []
                 isExpression: true
+              joinedTables:
+              - joinedTableName: Sys.Registration
+                joinedTableAlias: r
+                leftTableAlias: f
+                joinType: Inner
+                onClauseTerms:
+                - leftTableField: TableName
+                  rightTableField: Name
+                  operator: Eq
+                - rightTableField: Name
+                  operator: Eq
+                  filterValue: Sys.Registration
+                rightTableAvailableFields: []
               orderBy:
               - field: DataType
                 direction: asc
+                tableAlias: f
               limit: 42
+              offset: 10
               warnings: []
               availableFields: []
             schema:
@@ -2346,8 +2398,10 @@ paths:
           text/json:
             example:
               tableName: Sys.Field
+              alias: f
               fields:
               - name: TableName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters:
@@ -2355,7 +2409,15 @@ paths:
                   value: Sys.Registration
                 aggregations: []
                 isExpression: false
+              - name: DataType
+                tableAlias: f
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: false
               - name: FieldName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters: []
@@ -2365,16 +2427,32 @@ paths:
                 isExpression: false
               - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                   \ end"
+                tableAlias: f
                 alias: FieldType2
                 dataType: Text
                 shouldSelect: true
                 filters: []
                 aggregations: []
                 isExpression: true
+              joinedTables:
+              - joinedTableName: Sys.Registration
+                joinedTableAlias: r
+                leftTableAlias: f
+                joinType: Inner
+                onClauseTerms:
+                - leftTableField: TableName
+                  rightTableField: Name
+                  operator: Eq
+                - rightTableField: Name
+                  operator: Eq
+                  filterValue: Sys.Registration
+                rightTableAvailableFields: []
               orderBy:
               - field: DataType
                 direction: asc
+                tableAlias: f
               limit: 42
+              offset: 10
               warnings: []
               availableFields: []
             schema:
@@ -2382,8 +2460,10 @@ paths:
           application/*+json:
             example:
               tableName: Sys.Field
+              alias: f
               fields:
               - name: TableName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters:
@@ -2391,7 +2471,15 @@ paths:
                   value: Sys.Registration
                 aggregations: []
                 isExpression: false
+              - name: DataType
+                tableAlias: f
+                dataType: Text
+                shouldSelect: true
+                filters: []
+                aggregations: []
+                isExpression: false
               - name: FieldName
+                tableAlias: f
                 dataType: Text
                 shouldSelect: true
                 filters: []
@@ -2401,16 +2489,32 @@ paths:
                 isExpression: false
               - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                   \ end"
+                tableAlias: f
                 alias: FieldType2
                 dataType: Text
                 shouldSelect: true
                 filters: []
                 aggregations: []
                 isExpression: true
+              joinedTables:
+              - joinedTableName: Sys.Registration
+                joinedTableAlias: r
+                leftTableAlias: f
+                joinType: Inner
+                onClauseTerms:
+                - leftTableField: TableName
+                  rightTableField: Name
+                  operator: Eq
+                - rightTableField: Name
+                  operator: Eq
+                  filterValue: Sys.Registration
+                rightTableAvailableFields: []
               orderBy:
               - field: DataType
                 direction: asc
+                tableAlias: f
               limit: 42
+              offset: 10
               warnings: []
               availableFields: []
             schema:
@@ -5151,6 +5255,18 @@ paths:
           type: boolean
         style: form
         x-nullable: true
+      - description: "Designer version number used to support multiple web user interface\
+          \ versions.\r\nOnly some values will be allowed and this will change over\
+          \ time (as mentioned this whole method is largely internal to the Finbourne\
+          \ web user interfaces and evolves over time)."
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          $ref: '#/components/schemas/QueryDesignerVersion'
+        style: form
+        x-nullable: true
       requestBody:
         content:
           text/plain:
@@ -5168,8 +5284,10 @@ paths:
             text/plain:
               example:
                 tableName: Sys.Field
+                alias: f
                 fields:
                 - name: TableName
+                  tableAlias: f
                   dataType: Text
                   shouldSelect: true
                   filters:
@@ -5177,7 +5295,15 @@ paths:
                     value: Sys.Registration
                   aggregations: []
                   isExpression: false
+                - name: DataType
+                  tableAlias: f
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations: []
+                  isExpression: false
                 - name: FieldName
+                  tableAlias: f
                   dataType: Text
                   shouldSelect: true
                   filters: []
@@ -5187,16 +5313,32 @@ paths:
                   isExpression: false
                 - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                     \ end"
+                  tableAlias: f
                   alias: FieldType2
                   dataType: Text
                   shouldSelect: true
                   filters: []
                   aggregations: []
                   isExpression: true
+                joinedTables:
+                - joinedTableName: Sys.Registration
+                  joinedTableAlias: r
+                  leftTableAlias: f
+                  joinType: Inner
+                  onClauseTerms:
+                  - leftTableField: TableName
+                    rightTableField: Name
+                    operator: Eq
+                  - rightTableField: Name
+                    operator: Eq
+                    filterValue: Sys.Registration
+                  rightTableAvailableFields: []
                 orderBy:
                 - field: DataType
                   direction: asc
+                  tableAlias: f
                 limit: 42
+                offset: 10
                 warnings: []
                 availableFields: []
               schema:
@@ -5204,8 +5346,10 @@ paths:
             application/json:
               example:
                 tableName: Sys.Field
+                alias: f
                 fields:
                 - name: TableName
+                  tableAlias: f
                   dataType: Text
                   shouldSelect: true
                   filters:
@@ -5213,7 +5357,15 @@ paths:
                     value: Sys.Registration
                   aggregations: []
                   isExpression: false
+                - name: DataType
+                  tableAlias: f
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations: []
+                  isExpression: false
                 - name: FieldName
+                  tableAlias: f
                   dataType: Text
                   shouldSelect: true
                   filters: []
@@ -5223,16 +5375,32 @@ paths:
                   isExpression: false
                 - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                     \ end"
+                  tableAlias: f
                   alias: FieldType2
                   dataType: Text
                   shouldSelect: true
                   filters: []
                   aggregations: []
                   isExpression: true
+                joinedTables:
+                - joinedTableName: Sys.Registration
+                  joinedTableAlias: r
+                  leftTableAlias: f
+                  joinType: Inner
+                  onClauseTerms:
+                  - leftTableField: TableName
+                    rightTableField: Name
+                    operator: Eq
+                  - rightTableField: Name
+                    operator: Eq
+                    filterValue: Sys.Registration
+                  rightTableAvailableFields: []
                 orderBy:
                 - field: DataType
                   direction: asc
+                  tableAlias: f
                 limit: 42
+                offset: 10
                 warnings: []
                 availableFields: []
               schema:
@@ -5240,8 +5408,10 @@ paths:
             text/json:
               example:
                 tableName: Sys.Field
+                alias: f
                 fields:
                 - name: TableName
+                  tableAlias: f
                   dataType: Text
                   shouldSelect: true
                   filters:
@@ -5249,7 +5419,15 @@ paths:
                     value: Sys.Registration
                   aggregations: []
                   isExpression: false
+                - name: DataType
+                  tableAlias: f
+                  dataType: Text
+                  shouldSelect: true
+                  filters: []
+                  aggregations: []
+                  isExpression: false
                 - name: FieldName
+                  tableAlias: f
                   dataType: Text
                   shouldSelect: true
                   filters: []
@@ -5259,16 +5437,32 @@ paths:
                   isExpression: false
                 - name: "case [FieldType] when 'Column' then 'col' else [FieldType]\
                     \ end"
+                  tableAlias: f
                   alias: FieldType2
                   dataType: Text
                   shouldSelect: true
                   filters: []
                   aggregations: []
                   isExpression: true
+                joinedTables:
+                - joinedTableName: Sys.Registration
+                  joinedTableAlias: r
+                  leftTableAlias: f
+                  joinType: Inner
+                  onClauseTerms:
+                  - leftTableField: TableName
+                    rightTableField: Name
+                    operator: Eq
+                  - rightTableField: Name
+                    operator: Eq
+                    filterValue: Sys.Registration
+                  rightTableAvailableFields: []
                 orderBy:
                 - field: DataType
                   direction: asc
+                  tableAlias: f
                 limit: 42
+                offset: 10
                 warnings: []
                 availableFields: []
               schema:
@@ -9107,6 +9301,13 @@ components:
       required:
       - asAt
       type: object
+    DesignJoinType:
+      description: Type of join between two tables
+      enum:
+      - LeftOuter
+      - Inner
+      - FullOuter
+      type: string
     ErrorHighlightItem:
       additionalProperties: false
       description: Representation of a sql error
@@ -9298,6 +9499,7 @@ components:
         name: name
         alias: alias
         shouldSelect: true
+        tableAlias: tableAlias
         filters:
         - value: value
           operator: null
@@ -9313,6 +9515,12 @@ components:
           description: "Name of the Field (column name, constant, complex expression,\
             \ etc.)"
           minLength: 1
+          type: string
+        tableAlias:
+          description: Alias of the Table the field belongs to
+          maxLength: 256
+          minLength: 0
+          nullable: true
           type: string
         alias:
           description: Alias if any (if none the Name is used)
@@ -9811,6 +10019,73 @@ components:
       - Parameter
       - ScalarVariable
       type: string
+    JoinedTableDesign:
+      additionalProperties: false
+      description: Treatment of a joined-to-table a QueryDesign
+      example:
+        onClauseTerms:
+        - filterValueDataType: null
+          filterValue: filterValue
+          rightTableField: rightTableField
+          operator: null
+          leftTableField: leftTableField
+        - filterValueDataType: null
+          filterValue: filterValue
+          rightTableField: rightTableField
+          operator: null
+          leftTableField: leftTableField
+        joinType: null
+        rightTableAvailableFields:
+        - isMain: true
+          dataType: null
+          name: name
+          isPrimaryKey: true
+          fieldType: null
+        - isMain: true
+          dataType: null
+          name: name
+          isPrimaryKey: true
+          fieldType: null
+        joinedTableName: joinedTableName
+        joinedTableAlias: joinedTableAlias
+        leftTableAlias: leftTableAlias
+      properties:
+        joinedTableName:
+          description: Name of the table on the right side of the join
+          maxLength: 256
+          minLength: 0
+          type: string
+        joinedTableAlias:
+          description: Alias for the table on the right side of the join
+          maxLength: 256
+          minLength: 0
+          type: string
+        leftTableAlias:
+          description: Alias for the table on the left side of the join
+          maxLength: 256
+          minLength: 0
+          type: string
+        joinType:
+          $ref: '#/components/schemas/DesignJoinType'
+        onClauseTerms:
+          description: Filter clauses to apply to this join in the on clause
+          items:
+            $ref: '#/components/schemas/OnClauseTermDesign'
+          type: array
+        rightTableAvailableFields:
+          description: "Fields that are known to be available for design when parsing\
+            \ SQL, of the right hand table"
+          items:
+            $ref: '#/components/schemas/AvailableField'
+          nullable: true
+          type: array
+      required:
+      - joinType
+      - joinedTableAlias
+      - joinedTableName
+      - leftTableAlias
+      - onClauseTerms
+      type: object
     Link:
       additionalProperties: false
       example:
@@ -10022,6 +10297,45 @@ components:
       - InsightsApplicationRequestLogs
       - InsightsVendorLogs
       type: string
+    OnClauseTermDesign:
+      additionalProperties: false
+      description: A single on clause term (a pair of columns to join or a column
+        to filter on)
+      example:
+        filterValueDataType: null
+        filterValue: filterValue
+        rightTableField: rightTableField
+        operator: null
+        leftTableField: leftTableField
+      properties:
+        leftTableField:
+          description: Name of field in the left table to join to (complex expressions
+            are not supported at this time)
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        rightTableField:
+          description: Name of field in the left table to join to (complex expressions
+            are not supported at this time)
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        operator:
+          $ref: '#/components/schemas/QueryDesignerBinaryOperator'
+        filterValue:
+          description: "The value to compare against (always as a string, but will\
+            \ be formatted to the correct type)"
+          maxLength: 2048
+          minLength: 0
+          nullable: true
+          type: string
+        filterValueDataType:
+          $ref: '#/components/schemas/DataType'
+      required:
+      - operator
+      type: object
     OptionsCsv:
       additionalProperties: false
       description: Additional options applicable to the given SourceType
@@ -10231,6 +10545,7 @@ components:
       description: A single clause within an Order BY
       example:
         field: field
+        tableAlias: tableAlias
         direction: null
       properties:
         field:
@@ -10240,6 +10555,12 @@ components:
           type: string
         direction:
           $ref: '#/components/schemas/OrderByDirection'
+        tableAlias:
+          description: Table Alias of the field to order by
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
       required:
       - field
       type: object
@@ -10259,6 +10580,7 @@ components:
           name: name
           isPrimaryKey: true
           fieldType: null
+        offset: 6
         warnings:
         - warnings
         - warnings
@@ -10266,8 +10588,10 @@ components:
         alias: alias
         orderBy:
         - field: field
+          tableAlias: tableAlias
           direction: null
         - field: field
+          tableAlias: tableAlias
           direction: null
         fields:
         - isExpression: true
@@ -10275,6 +10599,7 @@ components:
           name: name
           alias: alias
           shouldSelect: true
+          tableAlias: tableAlias
           filters:
           - value: value
             operator: null
@@ -10290,6 +10615,7 @@ components:
           name: name
           alias: alias
           shouldSelect: true
+          tableAlias: tableAlias
           filters:
           - value: value
             operator: null
@@ -10301,6 +10627,59 @@ components:
           - alias: alias
             type: null
         tableName: tableName
+        joinedTables:
+        - onClauseTerms:
+          - filterValueDataType: null
+            filterValue: filterValue
+            rightTableField: rightTableField
+            operator: null
+            leftTableField: leftTableField
+          - filterValueDataType: null
+            filterValue: filterValue
+            rightTableField: rightTableField
+            operator: null
+            leftTableField: leftTableField
+          joinType: null
+          rightTableAvailableFields:
+          - isMain: true
+            dataType: null
+            name: name
+            isPrimaryKey: true
+            fieldType: null
+          - isMain: true
+            dataType: null
+            name: name
+            isPrimaryKey: true
+            fieldType: null
+          joinedTableName: joinedTableName
+          joinedTableAlias: joinedTableAlias
+          leftTableAlias: leftTableAlias
+        - onClauseTerms:
+          - filterValueDataType: null
+            filterValue: filterValue
+            rightTableField: rightTableField
+            operator: null
+            leftTableField: leftTableField
+          - filterValueDataType: null
+            filterValue: filterValue
+            rightTableField: rightTableField
+            operator: null
+            leftTableField: leftTableField
+          joinType: null
+          rightTableAvailableFields:
+          - isMain: true
+            dataType: null
+            name: name
+            isPrimaryKey: true
+            fieldType: null
+          - isMain: true
+            dataType: null
+            name: name
+            isPrimaryKey: true
+            fieldType: null
+          joinedTableName: joinedTableName
+          joinedTableAlias: joinedTableAlias
+          leftTableAlias: leftTableAlias
       properties:
         tableName:
           description: Name of the table being designed
@@ -10318,6 +10697,12 @@ components:
           items:
             $ref: '#/components/schemas/FieldDesign'
           type: array
+        joinedTables:
+          description: Joined in table to the main TableName / Alias
+          items:
+            $ref: '#/components/schemas/JoinedTableDesign'
+          nullable: true
+          type: array
         orderBy:
           description: Order By clauses to apply
           items:
@@ -10326,6 +10711,11 @@ components:
           type: array
         limit:
           description: "Row limit to apply, if any"
+          format: int32
+          nullable: true
+          type: integer
+        offset:
+          description: "Row offset to apply, if any"
           format: int32
           nullable: true
           type: integer
@@ -10359,6 +10749,15 @@ components:
       - Contains
       - StartsWith
       - EndsWith
+      - IsNull
+      - IsNotNull
+      type: string
+    QueryDesignerVersion:
+      description: "Versions of the Query Designer as evolving over time.\r\nGenerally\
+        \ only the two largest values will be supported at any one time."
+      enum:
+      - Original
+      - JoinsAndIsNull
       type: string
     ResourceId:
       additionalProperties: false
