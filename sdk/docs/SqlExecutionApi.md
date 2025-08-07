@@ -765,7 +765,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
@@ -870,7 +870,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.000` (Excel support for this is limited)
@@ -969,7 +969,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
@@ -1068,7 +1068,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
@@ -1165,7 +1165,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
@@ -1266,7 +1266,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
@@ -1363,7 +1363,7 @@ public class SqlExecutionApiExample {
         // SqlExecutionApi apiInstance = apiFactory.build(SqlExecutionApi.class);
 
         SqlExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlExecutionApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Execute (may be multi-line)
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)

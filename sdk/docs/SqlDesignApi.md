@@ -440,7 +440,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');\n @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; \n select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to attempt to generate the inlined properties design object from
+        String body = @keysToCatalog = values('Portfolio/3897-78d4-e91c-26/location', 'PortfolioLocation', false, '');\n @config = select column1 as [Key], column2 as Name, column3 as IsMain, column4 as Description from @keysToCatalog; \n select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from Sys.Admin.Lusid.Provider.Configure where Provider = 'Lusid.Portfolio' and Configuration = @config;; // String | SQL query to attempt to generate the inlined properties design object from
         try {
             // uncomment the below to set overrides at the request level
             // InlinedPropertyDesign result = apiInstance.putInlinedPropertiesDesignSqlToDesign(body).execute(opts);
@@ -986,7 +986,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = select Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
+        String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
         Boolean trailingCommas = true; // Boolean | Should commas be after an expression (as opposed to before)
         Boolean uppercaseKeywords = false; // Boolean | Should key words be capitalized
         Boolean breakJoinOnSections = true; // Boolean | Should clauses on joins be given line breaks?
@@ -1195,7 +1195,7 @@ public class SqlDesignApiExample {
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         Boolean determineAvailableSources = true; // Boolean | Should the available sources be determined from `Sys.Registration`
-        String body = @x = \nuse Drive.Csv\n --file=/some/folder/somefile.csv\nenduse;\n\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL query to generate the file read design object from
+        String body = @x = \nuse Drive.Csv\n --file=/some/folder/somefile.csv\nenduse;\n\nselect docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @x;; // String | SQL query to generate the file read design object from
         try {
             // uncomment the below to set overrides at the request level
             // FileReaderBuilderDef result = apiInstance.putSqlToFileReadDesign(determineAvailableSources, body).execute(opts);
@@ -1382,7 +1382,7 @@ public class SqlDesignApiExample {
         // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
-        String body = @x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from Lusid.Instrument\nenduse;\n\nselect Dockerfile Dockerfile.cicd LICENSE.md README.md docker-compose.yml docs generate justfile publish resources test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
+        String body = @x = \nuse Sys.Admin.SetupView\n --provider=YourView\n----\nselect docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from Lusid.Instrument\nenduse;\n\nselect docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @x;; // String | SQL Query to generate the ConvertToViewData object from
         try {
             // uncomment the below to set overrides at the request level
             // ConvertToViewData result = apiInstance.putSqlToViewDesign(body).execute(opts);
