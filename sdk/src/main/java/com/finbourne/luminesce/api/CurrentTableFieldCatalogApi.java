@@ -69,11 +69,11 @@ public class CurrentTableFieldCatalogApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    private okhttp3.Call getCatalogCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback) throws ApiException {
-        return getCatalogCall(freeTextSearch, jsonProper, useCache,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getCatalogCall(String freeTextSearch, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
+        return getCatalogCall(freeTextSearch, jsonProper,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getCatalogCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getCatalogCall(String freeTextSearch, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -106,10 +106,6 @@ public class CurrentTableFieldCatalogApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("jsonProper", jsonProper));
         }
 
-        if (useCache != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useCache", useCache));
-        }
-
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -132,35 +128,35 @@ public class CurrentTableFieldCatalogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getCatalogValidateBeforeCall(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getCatalogCall(freeTextSearch, jsonProper, useCache, _callback, opts);
+    private okhttp3.Call getCatalogValidateBeforeCall(String freeTextSearch, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getCatalogCall(freeTextSearch, jsonProper, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getCatalogWithHttpInfo(String freeTextSearch, Boolean jsonProper, Boolean useCache) throws ApiException {
-        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, null, new ConfigurationOptions());
+    private ApiResponse<String> getCatalogWithHttpInfo(String freeTextSearch, Boolean jsonProper) throws ApiException {
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getCatalogWithHttpInfo(String freeTextSearch, Boolean jsonProper, Boolean useCache, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, null, opts);
+    private ApiResponse<String> getCatalogWithHttpInfo(String freeTextSearch, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getCatalogAsync(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getCatalogAsync(String freeTextSearch, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getCatalogAsync(String freeTextSearch, Boolean jsonProper, Boolean useCache, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getCatalogAsync(String freeTextSearch, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, useCache, _callback, opts);
+        okhttp3.Call localVarCall = getCatalogValidateBeforeCall(freeTextSearch, jsonProper, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -169,7 +165,6 @@ public class CurrentTableFieldCatalogApi {
     public class APIgetCatalogRequest {
         private String freeTextSearch;
         private Boolean jsonProper;
-        private Boolean useCache;
 
         private APIgetCatalogRequest() {
         }
@@ -195,16 +190,6 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
-         * Set useCache
-         * @param useCache Should the available cache be used? false is effectively to pick up a change in the catalog (optional, default to false)
-         * @return APIgetCatalogRequest
-         */
-        public APIgetCatalogRequest useCache(Boolean useCache) {
-            this.useCache = useCache;
-            return this;
-        }
-
-        /**
          * Build call for getCatalog
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -216,7 +201,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getCatalogCall(freeTextSearch, jsonProper, useCache, _callback);
+            return getCatalogCall(freeTextSearch, jsonProper, _callback);
         }
 
         /**
@@ -230,7 +215,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache);
+            ApiResponse<String> localVarResp = getCatalogWithHttpInfo(freeTextSearch, jsonProper);
             return localVarResp.getData();
         }
 
@@ -245,7 +230,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache, opts);
+            ApiResponse<String> localVarResp = getCatalogWithHttpInfo(freeTextSearch, jsonProper, opts);
             return localVarResp.getData();
         }
 
@@ -260,7 +245,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache);
+            return getCatalogWithHttpInfo(freeTextSearch, jsonProper);
         }
 
         /**
@@ -274,7 +259,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getCatalogWithHttpInfo(freeTextSearch, jsonProper, useCache, opts);
+            return getCatalogWithHttpInfo(freeTextSearch, jsonProper, opts);
         }
 
         /**
@@ -289,7 +274,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getCatalogAsync(freeTextSearch, jsonProper, useCache, _callback);
+            return getCatalogAsync(freeTextSearch, jsonProper, _callback);
         }
 
         /**
@@ -304,7 +289,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getCatalogAsync(freeTextSearch, jsonProper, useCache, _callback, opts);
+            return getCatalogAsync(freeTextSearch, jsonProper, _callback, opts);
         }
     }
 
@@ -543,11 +528,11 @@ public class CurrentTableFieldCatalogApi {
     public APIgetFieldsRequest getFields() {
         return new APIgetFieldsRequest();
     }
-    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback) throws ApiException {
-        return getProvidersCall(freeTextSearch, useCache,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getProvidersCall(String freeTextSearch, final ApiCallback _callback) throws ApiException {
+        return getProvidersCall(freeTextSearch,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProvidersCall(String freeTextSearch, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -576,10 +561,6 @@ public class CurrentTableFieldCatalogApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("freeTextSearch", freeTextSearch));
         }
 
-        if (useCache != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useCache", useCache));
-        }
-
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -602,35 +583,35 @@ public class CurrentTableFieldCatalogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, Boolean useCache, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getProvidersCall(freeTextSearch, useCache, _callback, opts);
+    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getProvidersCall(freeTextSearch, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean useCache) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, null, new ConfigurationOptions());
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean useCache, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, null, opts);
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean useCache, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean useCache, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, useCache, _callback, opts);
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -638,7 +619,6 @@ public class CurrentTableFieldCatalogApi {
 
     public class APIgetProvidersRequest {
         private String freeTextSearch;
-        private Boolean useCache;
 
         private APIgetProvidersRequest() {
         }
@@ -654,16 +634,6 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
-         * Set useCache
-         * @param useCache Should the available cache be used? false is effectively to pick up a change in the catalog (optional, default to true)
-         * @return APIgetProvidersRequest
-         */
-        public APIgetProvidersRequest useCache(Boolean useCache) {
-            this.useCache = useCache;
-            return this;
-        }
-
-        /**
          * Build call for getProviders
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -675,7 +645,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getProvidersCall(freeTextSearch, useCache, _callback);
+            return getProvidersCall(freeTextSearch, _callback);
         }
 
         /**
@@ -689,7 +659,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, useCache);
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch);
             return localVarResp.getData();
         }
 
@@ -704,7 +674,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, useCache, opts);
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, opts);
             return localVarResp.getData();
         }
 
@@ -719,7 +689,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getProvidersWithHttpInfo(freeTextSearch, useCache);
+            return getProvidersWithHttpInfo(freeTextSearch);
         }
 
         /**
@@ -733,7 +703,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getProvidersWithHttpInfo(freeTextSearch, useCache, opts);
+            return getProvidersWithHttpInfo(freeTextSearch, opts);
         }
 
         /**
@@ -748,7 +718,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getProvidersAsync(freeTextSearch, useCache, _callback);
+            return getProvidersAsync(freeTextSearch, _callback);
         }
 
         /**
@@ -763,7 +733,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getProvidersAsync(freeTextSearch, useCache, _callback, opts);
+            return getProvidersAsync(freeTextSearch, _callback, opts);
         }
     }
 

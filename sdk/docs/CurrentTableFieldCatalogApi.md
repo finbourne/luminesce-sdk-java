@@ -12,7 +12,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 ## getCatalog
 
-> String getCatalog(freeTextSearch, jsonProper, useCache)
+> String getCatalog(freeTextSearch, jsonProper)
 
 GetCatalog: Get a Flattened Table/Field Catalog
 
@@ -59,12 +59,11 @@ public class CurrentTableFieldCatalogApiExample {
         CurrentTableFieldCatalogApi apiInstance = ApiFactoryBuilder.build(fileName).build(CurrentTableFieldCatalogApi.class);
         String freeTextSearch = "freeTextSearch_example"; // String | Limit the catalog to only things in some way dealing with the passed in text string
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
-        Boolean useCache = false; // Boolean | Should the available cache be used? false is effectively to pick up a change in the catalog
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getCatalog(freeTextSearch, jsonProper, useCache).execute(opts);
+            // String result = apiInstance.getCatalog(freeTextSearch, jsonProper).execute(opts);
 
-            String result = apiInstance.getCatalog(freeTextSearch, jsonProper, useCache).execute();
+            String result = apiInstance.getCatalog(freeTextSearch, jsonProper).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling CurrentTableFieldCatalogApi#getCatalog");
@@ -83,7 +82,6 @@ public class CurrentTableFieldCatalogApiExample {
 |------------- | ------------- | ------------- | -------------|
 | **freeTextSearch** | **String**| Limit the catalog to only things in some way dealing with the passed in text string | [optional] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
-| **useCache** | **Boolean**| Should the available cache be used? false is effectively to pick up a change in the catalog | [optional] [default to false] |
 
 ### Return type
 
@@ -194,7 +192,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 ## getProviders
 
-> String getProviders(freeTextSearch, useCache)
+> String getProviders(freeTextSearch)
 
 GetProviders: List available providers
 
@@ -240,12 +238,11 @@ public class CurrentTableFieldCatalogApiExample {
 
         CurrentTableFieldCatalogApi apiInstance = ApiFactoryBuilder.build(fileName).build(CurrentTableFieldCatalogApi.class);
         String freeTextSearch = "freeTextSearch_example"; // String | Limit the catalog to only things in some way dealing with the passed in text string
-        Boolean useCache = true; // Boolean | Should the available cache be used? false is effectively to pick up a change in the catalog
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getProviders(freeTextSearch, useCache).execute(opts);
+            // String result = apiInstance.getProviders(freeTextSearch).execute(opts);
 
-            String result = apiInstance.getProviders(freeTextSearch, useCache).execute();
+            String result = apiInstance.getProviders(freeTextSearch).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling CurrentTableFieldCatalogApi#getProviders");
@@ -263,7 +260,6 @@ public class CurrentTableFieldCatalogApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **freeTextSearch** | **String**| Limit the catalog to only things in some way dealing with the passed in text string | [optional] |
-| **useCache** | **Boolean**| Should the available cache be used? false is effectively to pick up a change in the catalog | [optional] [default to true] |
 
 ### Return type
 
