@@ -47,7 +47,11 @@ public enum MultiQueryDefinitionType {
   
   INSIGHTSAPPLICATIONREQUESTLOGS("InsightsApplicationRequestLogs"),
   
-  INSIGHTSVENDORLOGS("InsightsVendorLogs");
+  INSIGHTSVENDORLOGS("InsightsVendorLogs"),
+  
+  CANDELATRACELOGS("CandelaTraceLogs"),
+  
+  CANDELATRACEEVENTLOGS("CandelaTraceEventLogs");
 
   private String value;
 
