@@ -16,7 +16,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 
 GetCatalog: Get a Flattened Table/Field Catalog
 
- Returns the User&#39;s full version of the catalog (Providers, their fields and associated information) that are currently running that you have access to (in Json format).  This is the entire catalog flattened, which is often quite large and always a bit repetitive.  The internal results are cached for several minutes.  Consider using &#x60;api/Catalog/providers&#x60; and &#x60;api/Catalog/fields&#x60; for a more granular and incremental loading flow.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Returns the User&#39;s full version of the catalog (Providers, their fields and associated information) that are currently running that you have access to (in Json format).  This is the entire catalog flattened, which is often quite large and always a bit repetitive.  The internal results are cached for several minutes.  Consider using &#x60;api/Catalog/providers&#x60; and &#x60;api/Catalog/fields&#x60; for a more granular and incremental loading flow.  It is possible to be throttled if you make too many requests in a short period of time, receiving a: - 429 Too Many Requests : Please try your request again soon  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 
@@ -107,7 +107,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 GetFields: List field and parameters for providers
 
- Returns the User&#39;s full version of the catalog but only the field/parameter-level information  (as well as the TableName they refer to, of course) for tables matching the &#x60;tableLike&#x60; (manually include wildcards if desired).  The internal results are cached for several minutes.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Returns the User&#39;s full version of the catalog but only the field/parameter-level information  (as well as the TableName they refer to, of course) for tables matching the &#x60;tableLike&#x60; (manually include wildcards if desired).  The internal results are cached for several minutes.  It is possible to be throttled if you make too many requests in a short period of time, receiving a: - 429 Too Many Requests : Please try your request again soon  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 
@@ -196,7 +196,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 GetProviders: List available providers
 
- Returns the User&#39;s full version of the catalog but only the table/provider-level information they have access to.  The internal results are cached for several minutes.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Returns the User&#39;s full version of the catalog but only the table/provider-level information they have access to.  The internal results are cached for several minutes.  It is possible to be throttled if you make too many requests in a short period of time, receiving a: - 429 Too Many Requests : Please try your request again soon  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 

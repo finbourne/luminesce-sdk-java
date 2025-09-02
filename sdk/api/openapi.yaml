@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.625
+  version: 1.18.644
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -144,8 +144,10 @@ paths:
         \ which is often quite large and always a bit repetitive. \nThe internal results\
         \ are cached for several minutes.\n\nConsider using `api/Catalog/providers`\
         \ and `api/Catalog/fields` for a more granular and incremental loading flow.\n\
-        \nThe following error codes are to be anticipated with standard Problem Detail\
-        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
+        \nIt is possible to be throttled if you make too many requests in a short\
+        \ period of time, receiving a:\n- 429 Too Many Requests : Please try your\
+        \ request again soon\n\nThe following error codes are to be anticipated with\
+        \ standard Problem Detail reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetCatalog
       parameters:
       - description: Limit the catalog to only things in some way dealing with the
@@ -193,8 +195,10 @@ paths:
         \ field/parameter-level information \n(as well as the TableName they refer\
         \ to, of course) for tables matching the `tableLike` (manually include wildcards\
         \ if desired).\n\nThe internal results are cached for several minutes.\n\n\
-        The following error codes are to be anticipated with standard Problem Detail\
-        \ reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
+        It is possible to be throttled if you make too many requests in a short period\
+        \ of time, receiving a:\n- 429 Too Many Requests : Please try your request\
+        \ again soon\n\nThe following error codes are to be anticipated with standard\
+        \ Problem Detail reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetFields
       parameters:
       - explode: true
@@ -232,6 +236,9 @@ paths:
         Returns the User's full version of the catalog but only the table/provider-level information they have access to.
 
         The internal results are cached for several minutes.
+
+        It is possible to be throttled if you make too many requests in a short period of time, receiving a:
+        - 429 Too Many Requests : Please try your request again soon
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
