@@ -236,12 +236,12 @@ public class MultiQueryExecutionApiExample {
 
         MultiQueryExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(MultiQueryExecutionApi.class);
         MultiQueryDefinitionType type = MultiQueryDefinitionType.fromValue("Instrument"); // MultiQueryDefinitionType | An enum value defining the set of statements being executed
-        String body = Apple; // String | A \"search\" value (e.g. 'Apple' on an instrument search, a `Finbourne.Filtering` expression of Insights, etc.)  In the cases where \"Nothing\" is valid for a `Finbourne.Filtering` expression, pass `True`.
+        String body = Apple; // String | A \"search\" value (e.g. 'Apple' on an instrument search, a `Finbourne.Filtering` expression of Insights, etc.) In the cases where \"Nothing\" is valid for a `Finbourne.Filtering` expression, pass `True`.
         OffsetDateTime asAt = OffsetDateTime.now(); // OffsetDateTime | The AsAt time used by any bitemporal provider in the queries.
         OffsetDateTime effectiveAt = OffsetDateTime.now(); // OffsetDateTime | The EffectiveAt time used by any bitemporal provider in the queries.
         Integer limit1 = 56; // Integer | A limit that is applied to first-level queries (e.g. Instruments themselves)
         Integer limit2 = 56; // Integer | A limit that is applied to second-level queries (e.g. Holdings based on the set of Instruments found)
-        String input1 = "input1_example"; // String | A value available to queries, these vary by 'type' and are only used by some types at all.  e.g. a start-date of some sort
+        String input1 = "input1_example"; // String | A value available to queries, these vary by 'type' and are only used by some types at all. e.g. a start-date of some sort
         String input2 = "input2_example"; // String | A second value available to queries, these vary by 'type' and are only used by some types at all.
         String input3 = "input3_example"; // String | A third value available to queries, these vary by 'type' and are only used by some types at all.
         Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 1200s (20m)
@@ -268,12 +268,12 @@ public class MultiQueryExecutionApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **type** | [**MultiQueryDefinitionType**](.md)| An enum value defining the set of statements being executed | [enum: Instrument, Expiry, CorporateActions, EdiInstrument, EdiInstrumentWriter, Testing, MarketplaceClientLoadHistory, InsightsMetricsEntitlement, InstrumentDiscovery, InstrumentUpsert, InsightsApplicationRequestLogs, InsightsVendorLogs, CandelaTraceLogs, CandelaTraceEventLogs] |
-| **body** | **String**| A \&quot;search\&quot; value (e.g. &#39;Apple&#39; on an instrument search, a &#x60;Finbourne.Filtering&#x60; expression of Insights, etc.)  In the cases where \&quot;Nothing\&quot; is valid for a &#x60;Finbourne.Filtering&#x60; expression, pass &#x60;True&#x60;. | |
+| **body** | **String**| A \&quot;search\&quot; value (e.g. &#39;Apple&#39; on an instrument search, a &#x60;Finbourne.Filtering&#x60; expression of Insights, etc.) In the cases where \&quot;Nothing\&quot; is valid for a &#x60;Finbourne.Filtering&#x60; expression, pass &#x60;True&#x60;. | |
 | **asAt** | **OffsetDateTime**| The AsAt time used by any bitemporal provider in the queries. | [optional] |
 | **effectiveAt** | **OffsetDateTime**| The EffectiveAt time used by any bitemporal provider in the queries. | [optional] |
 | **limit1** | **Integer**| A limit that is applied to first-level queries (e.g. Instruments themselves) | [optional] |
 | **limit2** | **Integer**| A limit that is applied to second-level queries (e.g. Holdings based on the set of Instruments found) | [optional] |
-| **input1** | **String**| A value available to queries, these vary by &#39;type&#39; and are only used by some types at all.  e.g. a start-date of some sort | [optional] |
+| **input1** | **String**| A value available to queries, these vary by &#39;type&#39; and are only used by some types at all. e.g. a start-date of some sort | [optional] |
 | **input2** | **String**| A second value available to queries, these vary by &#39;type&#39; and are only used by some types at all. | [optional] |
 | **input3** | **String**| A third value available to queries, these vary by &#39;type&#39; and are only used by some types at all. | [optional] |
 | **timeoutSeconds** | **Integer**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 1200s (20m) | [optional] [default to 0] |

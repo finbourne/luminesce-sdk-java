@@ -339,7 +339,7 @@ public class OptionsCsv {
   }
 
    /**
-   * Skip invalid data rows (totally invalid ones),   This also allows for potentially wrong data if it can be handled somewhat e.g. embedded quotes misused (and still returns such rows).  In either case a warning will show in the progress feedback.
+   * Skip invalid data rows (totally invalid ones),  This also allows for potentially wrong data if it can be handled somewhat e.g. embedded quotes misused (and still returns such rows). In either case a warning will show in the progress feedback.
    * @return skipInvalidRows
   **/
   @jakarta.annotation.Nullable

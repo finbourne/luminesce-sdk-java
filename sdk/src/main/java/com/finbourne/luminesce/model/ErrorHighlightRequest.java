@@ -98,7 +98,7 @@ public class ErrorHighlightRequest {
   }
 
    /**
-   * If an editor requires some selection of non-whitespace this can be set to true to force  at least one visible character to be selected.
+   * If an editor requires some selection of non-whitespace this can be set to true to force at least one visible character to be selected.
    * @return ensureSomeTextIsSelected
   **/
   @jakarta.annotation.Nullable

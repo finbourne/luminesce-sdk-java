@@ -456,7 +456,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultCsvRequest
          */
         public APIfetchQueryResultCsvRequest sortBy(String sortBy) {
@@ -476,7 +476,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultCsvRequest
          */
         public APIfetchQueryResultCsvRequest select(String select) {
@@ -486,7 +486,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultCsvRequest
          */
         public APIfetchQueryResultCsvRequest groupBy(String groupBy) {
@@ -818,7 +818,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultExcelRequest
          */
         public APIfetchQueryResultExcelRequest sortBy(String sortBy) {
@@ -838,7 +838,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultExcelRequest
          */
         public APIfetchQueryResultExcelRequest select(String select) {
@@ -848,7 +848,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultExcelRequest
          */
         public APIfetchQueryResultExcelRequest groupBy(String groupBy) {
@@ -1464,7 +1464,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultJsonRequest
          */
         public APIfetchQueryResultJsonRequest sortBy(String sortBy) {
@@ -1484,7 +1484,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultJsonRequest
          */
         public APIfetchQueryResultJsonRequest select(String select) {
@@ -1494,7 +1494,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultJsonRequest
          */
         public APIfetchQueryResultJsonRequest groupBy(String groupBy) {
@@ -1816,7 +1816,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultJsonProperRequest
          */
         public APIfetchQueryResultJsonProperRequest sortBy(String sortBy) {
@@ -1836,7 +1836,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultJsonProperRequest
          */
         public APIfetchQueryResultJsonProperRequest select(String select) {
@@ -1846,7 +1846,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultJsonProperRequest
          */
         public APIfetchQueryResultJsonProperRequest groupBy(String groupBy) {
@@ -2143,7 +2143,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultParquetRequest
          */
         public APIfetchQueryResultParquetRequest sortBy(String sortBy) {
@@ -2163,7 +2163,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultParquetRequest
          */
         public APIfetchQueryResultParquetRequest select(String select) {
@@ -2173,7 +2173,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultParquetRequest
          */
         public APIfetchQueryResultParquetRequest groupBy(String groupBy) {
@@ -2480,7 +2480,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultPipeRequest
          */
         public APIfetchQueryResultPipeRequest sortBy(String sortBy) {
@@ -2500,7 +2500,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultPipeRequest
          */
         public APIfetchQueryResultPipeRequest select(String select) {
@@ -2510,7 +2510,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultPipeRequest
          */
         public APIfetchQueryResultPipeRequest groupBy(String groupBy) {
@@ -2817,7 +2817,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultSqliteRequest
          */
         public APIfetchQueryResultSqliteRequest sortBy(String sortBy) {
@@ -2837,7 +2837,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultSqliteRequest
          */
         public APIfetchQueryResultSqliteRequest select(String select) {
@@ -2847,7 +2847,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultSqliteRequest
          */
         public APIfetchQueryResultSqliteRequest groupBy(String groupBy) {
@@ -3149,7 +3149,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchQueryResultXmlRequest
          */
         public APIfetchQueryResultXmlRequest sortBy(String sortBy) {
@@ -3169,7 +3169,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchQueryResultXmlRequest
          */
         public APIfetchQueryResultXmlRequest select(String select) {
@@ -3179,7 +3179,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchQueryResultXmlRequest
          */
         public APIfetchQueryResultXmlRequest groupBy(String groupBy) {
@@ -3456,7 +3456,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set buildFromLogs
-         * @param buildFromLogs Should the response state be build from query logs if missing from the shared-db-state?    Deprecated.  Regardless of the value here it is now the case that:   False [and now even True] will mean &#x60;404 Not Found&#x60; in cases where it was a real query but has passed its &#x60;keepForSeconds&#x60;  since the query completed (as well as &#39;this was not a query at all&#39; of course) (optional, default to false)
+         * @param buildFromLogs Should the response state be build from query logs if missing from the shared-db-state?  Deprecated. Regardless of the value here it is now the case that:  False [and now even True] will mean &#x60;404 Not Found&#x60; in cases where it was a real query but has passed its &#x60;keepForSeconds&#x60; since the query completed (as well as &#39;this was not a query at all&#39; of course) (optional, default to false)
          * @return APIgetProgressOfRequest
          */
         public APIgetProgressOfRequest buildFromLogs(Boolean buildFromLogs) {
@@ -3707,7 +3707,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set executionId
-         * @param executionId An explicit ExecutionId to use. This must be blank OR assigned to a valid GUID-as-a-string.  It might be ignored / replaced, for example if using the query cache and a cached query is found. (optional)
+         * @param executionId An explicit ExecutionId to use. This must be blank OR assigned to a valid GUID-as-a-string. It might be ignored / replaced, for example if using the query cache and a cached query is found. (optional)
          * @return APIstartQueryRequest
          */
         public APIstartQueryRequest executionId(String executionId) {

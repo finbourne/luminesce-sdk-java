@@ -181,7 +181,7 @@ public class FieldDesign {
   }
 
    /**
-   * Should this be selected? False would imply it is only being filtered on.  Ignored when Aggregations are present
+   * Should this be selected? False would imply it is only being filtered on. Ignored when Aggregations are present
    * @return shouldSelect
   **/
   @jakarta.annotation.Nullable

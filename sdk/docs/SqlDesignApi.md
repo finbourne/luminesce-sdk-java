@@ -1289,7 +1289,7 @@ public class SqlDesignApiExample {
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = SELECT [TableName], Count(distinct [FieldName]) as [NumberOfFields], case [FieldType] when 'Column' then 'col' else [FieldType] end as FieldType2 FROM [Sys.Field] WHERE ([TableName] = 'Sys.Registration') GROUP BY [TableName], [FieldType2] ORDER BY [DataType] LIMIT 42; // String | SQL query to generate the design object from
         Boolean validateWithMetadata = true; // Boolean | Should the table be validated against the users' view of Sys.Field to fill in DataTypes, etc.?
-        QueryDesignerVersion version = QueryDesignerVersion.fromValue("Original"); // QueryDesignerVersion | Designer version number used to support multiple web user interface versions.  Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time).
+        QueryDesignerVersion version = QueryDesignerVersion.fromValue("Original"); // QueryDesignerVersion | Designer version number used to support multiple web user interface versions. Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time).
         try {
             // uncomment the below to set overrides at the request level
             // QueryDesign result = apiInstance.putSqlToQueryDesign(body, validateWithMetadata, version).execute(opts);
@@ -1313,7 +1313,7 @@ public class SqlDesignApiExample {
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| SQL query to generate the design object from | |
 | **validateWithMetadata** | **Boolean**| Should the table be validated against the users&#39; view of Sys.Field to fill in DataTypes, etc.? | [optional] [default to true] |
-| **version** | [**QueryDesignerVersion**](.md)| Designer version number used to support multiple web user interface versions.  Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). | [optional] [enum: Original, JoinsAndIsNull] |
+| **version** | [**QueryDesignerVersion**](.md)| Designer version number used to support multiple web user interface versions. Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). | [optional] [enum: Original, JoinsAndIsNull] |
 
 ### Return type
 

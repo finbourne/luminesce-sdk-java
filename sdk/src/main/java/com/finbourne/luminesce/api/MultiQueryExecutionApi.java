@@ -703,7 +703,7 @@ public class MultiQueryExecutionApi {
 
         /**
          * Set input1
-         * @param input1 A value available to queries, these vary by &#39;type&#39; and are only used by some types at all.  e.g. a start-date of some sort (optional)
+         * @param input1 A value available to queries, these vary by &#39;type&#39; and are only used by some types at all. e.g. a start-date of some sort (optional)
          * @return APIstartQueriesRequest
          */
         public APIstartQueriesRequest input1(String input1) {
@@ -873,7 +873,7 @@ public class MultiQueryExecutionApi {
      * StartQueries: Run a given set of Sql queries in the background
      *  Allow for starting a potentially long running query and getting back an immediate response with how to  - fetch the data in various formats (if available, or if not simply being informed it is not yet ready), on a per result basis - view progress information (up until this point), for all results in one go - cancel the queries (if still running) / clear the data (if already returned)  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - there was something wrong with your query syntax (the issue was detected at parse-time) - 401 Unauthorized - 403 Forbidden 
      * @param type An enum value defining the set of statements being executed (required)
-     * @param body A \&quot;search\&quot; value (e.g. &#39;Apple&#39; on an instrument search, a &#x60;Finbourne.Filtering&#x60; expression of Insights, etc.)  In the cases where \&quot;Nothing\&quot; is valid for a &#x60;Finbourne.Filtering&#x60; expression, pass &#x60;True&#x60;. (required)
+     * @param body A \&quot;search\&quot; value (e.g. &#39;Apple&#39; on an instrument search, a &#x60;Finbourne.Filtering&#x60; expression of Insights, etc.) In the cases where \&quot;Nothing\&quot; is valid for a &#x60;Finbourne.Filtering&#x60; expression, pass &#x60;True&#x60;. (required)
      * @return APIstartQueriesRequest
      * @http.response.details
      <table summary="Response Details" border="1">

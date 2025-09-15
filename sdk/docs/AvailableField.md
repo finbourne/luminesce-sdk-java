@@ -2,7 +2,7 @@
 
 # AvailableField
 
-Information about a field that can be designed on (regardless if it currently is)  Kind of a \"mini-available catalog entry\"
+Information about a field that can be designed on (regardless if it currently is) Kind of a \"mini-available catalog entry\"
 
 ## Properties
 

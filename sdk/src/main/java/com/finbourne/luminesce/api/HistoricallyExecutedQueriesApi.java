@@ -702,7 +702,7 @@ public class HistoricallyExecutedQueriesApi {
 
         /**
          * Set sortBy
-         * @param sortBy Order the results by these fields.   Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.   Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.   Default is null, the sort order specified in the query itself. (optional)
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
          * @return APIfetchHistoryResultJsonRequest
          */
         public APIfetchHistoryResultJsonRequest sortBy(String sortBy) {
@@ -722,7 +722,7 @@ public class HistoricallyExecutedQueriesApi {
 
         /**
          * Set select
-         * @param select Default is null (meaning return all columns in the original query itself).  The values are in terms of the result column name from the original data set and are comma delimited.  The power of this comes in that you may aggregate the data if you wish  (that is the main reason for allowing this, in fact).  e.g.:  - &#x60;MyField&#x60;  - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name)  - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works)  - &#x60;count(distinct x) as numOfXs&#x60;  If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].   e.g.  - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;   where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
          * @return APIfetchHistoryResultJsonRequest
          */
         public APIfetchHistoryResultJsonRequest select(String select) {
@@ -732,7 +732,7 @@ public class HistoricallyExecutedQueriesApi {
 
         /**
          * Set groupBy
-         * @param groupBy Groups by the specified fields.   A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).   e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.   Default is null (meaning no grouping will be performed on the selected columns).   This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.   Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
          * @return APIfetchHistoryResultJsonRequest
          */
         public APIfetchHistoryResultJsonRequest groupBy(String groupBy) {
@@ -1061,7 +1061,7 @@ public class HistoricallyExecutedQueriesApi {
 
         /**
          * Set mayUseNativeStore
-         * @param mayUseNativeStore Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?  This is no longer supported and effectively always true. (optional, default to true)
+         * @param mayUseNativeStore Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available? This is no longer supported and effectively always true. (optional, default to true)
          * @return APIgetHistoryRequest
          */
         public APIgetHistoryRequest mayUseNativeStore(Boolean mayUseNativeStore) {

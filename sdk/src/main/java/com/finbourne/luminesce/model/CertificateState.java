@@ -52,7 +52,7 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * Information held about the minting / revoking of a certificate.  It does *not* contain the certificate itself
+ * Information held about the minting / revoking of a certificate. It does *not* contain the certificate itself
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CertificateState {
@@ -126,7 +126,7 @@ public class CertificateState {
   }
 
    /**
-   * The \&quot;key\&quot; to which this belongs in the dictionary,  basically the CN without any version information
+   * The \&quot;key\&quot; to which this belongs in the dictionary, basically the CN without any version information
    * @return key
   **/
   @jakarta.annotation.Nullable

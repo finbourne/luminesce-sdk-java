@@ -12,7 +12,7 @@ Treatment of a single field within a QueryDesign
 |**tableAlias** | **String** | Alias of the Table the field belongs to |  [optional] |
 |**alias** | **String** | Alias if any (if none the Name is used) |  [optional] |
 |**dataType** | **DataType** |  |  [optional] |
-|**shouldSelect** | **Boolean** | Should this be selected? False would imply it is only being filtered on.  Ignored when Aggregations are present |  [optional] |
+|**shouldSelect** | **Boolean** | Should this be selected? False would imply it is only being filtered on. Ignored when Aggregations are present |  [optional] |
 |**filters** | [**List&lt;FilterTermDesign&gt;**](FilterTermDesign.md) | Filter clauses to apply to this field (And&#39;ed together) |  [optional] |
 |**aggregations** | [**List&lt;Aggregation&gt;**](Aggregation.md) | Aggregations to apply (as opposed to simply selecting) |  [optional] |
 |**isExpression** | **Boolean** | Is this field an expression |  [optional] |

@@ -3491,7 +3491,7 @@ public class SqlDesignApi {
 
         /**
          * Set version
-         * @param version Designer version number used to support multiple web user interface versions.  Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). (optional)
+         * @param version Designer version number used to support multiple web user interface versions. Only some values will be allowed and this will change over time (as mentioned this whole method is largely internal to the Finbourne web user interfaces and evolves over time). (optional)
          * @return APIputSqlToQueryDesignRequest
          */
         public APIputSqlToQueryDesignRequest version(QueryDesignerVersion version) {

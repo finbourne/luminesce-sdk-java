@@ -48,7 +48,7 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * Information about a field that can be designed on (regardless if it currently is)  Kind of a \&quot;mini-available catalog entry\&quot;
+ * Information about a field that can be designed on (regardless if it currently is) Kind of a \&quot;mini-available catalog entry\&quot;
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AvailableParameter {

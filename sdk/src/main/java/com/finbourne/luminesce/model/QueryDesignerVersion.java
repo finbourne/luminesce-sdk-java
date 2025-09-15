@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Versions of the Query Designer as evolving over time.  Generally only the two largest values will be supported at any one time.
+ * Versions of the Query Designer as evolving over time. Generally only the two largest values will be supported at any one time.
  */
 @JsonAdapter(QueryDesignerVersion.Adapter.class)
 public enum QueryDesignerVersion {

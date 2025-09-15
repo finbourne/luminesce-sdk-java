@@ -214,7 +214,7 @@ public class ConvertToViewData {
   }
 
    /**
-   * Other parameters not explicitly handled by the ConvertToView generation.  These will be populated by the \&quot;From SQL\&quot; and should simply be returned by  the web GUI should the user edit / update / regenerate
+   * Other parameters not explicitly handled by the ConvertToView generation. These will be populated by the \&quot;From SQL\&quot; and should simply be returned by the web GUI should the user edit / update / regenerate
    * @return otherParameters
   **/
   @jakarta.annotation.Nullable

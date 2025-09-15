@@ -45,7 +45,7 @@ import java.util.Set;
 import com.finbourne.luminesce.JSON;
 
 /**
- * Information about a case statement.  A typical case statement would look like:  CASE WHEN Field {Filter} Source THEN Target  For example: CASE WHEN &#39;currency&#39; &#x3D; &#39;USD&#39; THEN &#39;US&#39;  Here the Field is &#39;currency&#39;, the Source is &#39;USD&#39;, the Filter is &#39;&#x3D;&#39;, and the Target is &#39;US&#39;
+ * Information about a case statement. A typical case statement would look like: CASE WHEN Field {Filter} Source THEN Target For example: CASE WHEN &#39;currency&#39; &#x3D; &#39;USD&#39; THEN &#39;US&#39; Here the Field is &#39;currency&#39;, the Source is &#39;USD&#39;, the Filter is &#39;&#x3D;&#39;, and the Target is &#39;US&#39;
  */
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CaseStatementItem {
@@ -96,7 +96,7 @@ public class CaseStatementItem {
   }
 
    /**
-   * The expression that is on the LHS of the operator  A typical case statement would look like:  CASE Field {Filter} Source THEN Target
+   * The expression that is on the LHS of the operator A typical case statement would look like: CASE Field {Filter} Source THEN Target
    * @return source
   **/
   @jakarta.annotation.Nonnull
@@ -117,7 +117,7 @@ public class CaseStatementItem {
   }
 
    /**
-   * The expression that is on the RHS of the operator  A typical case statement would look like:  CASE Field {Filter} Source THEN Target
+   * The expression that is on the RHS of the operator A typical case statement would look like: CASE Field {Filter} Source THEN Target
    * @return target
   **/
   @jakarta.annotation.Nonnull
@@ -138,7 +138,7 @@ public class CaseStatementItem {
   }
 
    /**
-   * The Target can be a literal value or a non literal (field) and  hence will be interpreted differently.  This can be determined from the UI and passed down as a true / false
+   * The Target can be a literal value or a non literal (field) and hence will be interpreted differently. This can be determined from the UI and passed down as a true / false
    * @return isTargetNonLiteral
   **/
   @jakarta.annotation.Nullable
