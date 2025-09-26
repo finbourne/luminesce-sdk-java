@@ -1,22 +1,25 @@
+# com.finbourne.luminesce.model.FilterType
+Filter categories
 
+## Properties
 
-# FilterType
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**FilterType** | [**String**](.md) | **Filter categories** | [default to String]
 
-## Enum
+```java
+import com.finbourne.luminesce.model.FilterType;
+import java.util.*;
+import java.lang.System;
+import java.net.URI;
 
-
-* `TEXT` (value: `"text"`)
-
-* `NUMBER` (value: `"number"`)
-
-* `BOOLEAN` (value: `"boolean"`)
-
-* `DATE` (value: `"date"`)
-
-* `SET` (value: `"set"`)
-
+// Example usage of FilterType:
+FilterType method = FilterType.TEXT;
+FilterType method = FilterType.NUMBER;
+FilterType method = FilterType.BOOLEAN;
+FilterType method = FilterType.DATE;
+FilterType method = FilterType.SET;
+```
 
 
 [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
-
-

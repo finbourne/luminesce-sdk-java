@@ -1,54 +1,41 @@
+# com.finbourne.luminesce.model.LuminesceBinaryType
+Binaries that can be downloaded
 
+## Properties
 
-# LuminesceBinaryType
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**LuminesceBinaryType** | [**String**](.md) | **Binaries that can be downloaded** | [default to String]
 
-## Enum
+```java
+import com.finbourne.luminesce.model.LuminesceBinaryType;
+import java.util.*;
+import java.lang.System;
+import java.net.URI;
 
-
-* `COMMANDLINETOOL` (value: `"CommandLineTool"`)
-
-* `LOCALFILESYSTEM_PROVIDERS` (value: `"LocalFileSystem_Providers"`)
-
-* `EMAIL_PROVIDERS` (value: `"Email_Providers"`)
-
-* `PYTHON_PROVIDERS` (value: `"Python_Providers"`)
-
-* `AWSS3_PROVIDERS` (value: `"AwsS3_Providers"`)
-
-* `AZURE_PROVIDERS` (value: `"Azure_Providers"`)
-
-* `SQLDB_PROVIDERS_DB2LINUX` (value: `"SqlDb_Providers_Db2Linux"`)
-
-* `SQLDB_PROVIDERS_MYSQL` (value: `"SqlDb_Providers_MySql"`)
-
-* `SQLDB_PROVIDERS_ORACLE` (value: `"SqlDb_Providers_Oracle"`)
-
-* `SQLDB_PROVIDERS_ORACLE_SNOWFLAKE` (value: `"SqlDb_Providers_Oracle_Snowflake"`)
-
-* `SQLDB_PROVIDERS_POSTGRESQL` (value: `"SqlDb_Providers_Postgresql"`)
-
-* `SQLDB_PROVIDERS_SNOWFLAKE` (value: `"SqlDb_Providers_Snowflake"`)
-
-* `SQLDB_PROVIDERS_SQLSERVER` (value: `"SqlDb_Providers_SqlServer"`)
-
-* `SQLDB_PROVIDERS_SYBASEASE` (value: `"SqlDb_Providers_SybaseAse"`)
-
-* `SQLDB_PROVIDERS_SQLITE` (value: `"SqlDb_Providers_SqLite"`)
-
-* `SQLDB_PROVIDERS_DUCKDB` (value: `"SqlDb_Providers_DuckDb"`)
-
-* `SQLDB_PROVIDERS_AWSDYNAMODB` (value: `"SqlDb_Providers_AwsDynamoDb"`)
-
-* `SQLDB_PROVIDERS_SQLSERVER_ORACLE` (value: `"SqlDb_Providers_SqlServer_Oracle"`)
-
-* `JDBC_DRIVER` (value: `"Jdbc_Driver"`)
-
-* `POWERBI_CONNECTOR` (value: `"PowerBi_Connector"`)
-
-* `ODBC_WIN64_DRIVER` (value: `"Odbc_Win64_Driver"`)
-
+// Example usage of LuminesceBinaryType:
+LuminesceBinaryType method = LuminesceBinaryType.COMMANDLINETOOL;
+LuminesceBinaryType method = LuminesceBinaryType.LOCALFILESYSTEM_PROVIDERS;
+LuminesceBinaryType method = LuminesceBinaryType.EMAIL_PROVIDERS;
+LuminesceBinaryType method = LuminesceBinaryType.PYTHON_PROVIDERS;
+LuminesceBinaryType method = LuminesceBinaryType.AWSS3_PROVIDERS;
+LuminesceBinaryType method = LuminesceBinaryType.AZURE_PROVIDERS;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_DB2LINUX;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_MYSQL;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_ORACLE;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_ORACLE_SNOWFLAKE;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_POSTGRESQL;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_SNOWFLAKE;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_SQLSERVER;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_SYBASEASE;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_SQLITE;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_DUCKDB;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_AWSDYNAMODB;
+LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_SQLSERVER_ORACLE;
+LuminesceBinaryType method = LuminesceBinaryType.JDBC_DRIVER;
+LuminesceBinaryType method = LuminesceBinaryType.POWERBI_CONNECTOR;
+LuminesceBinaryType method = LuminesceBinaryType.ODBC_WIN64_DRIVER;
+```
 
 
 [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
-
-

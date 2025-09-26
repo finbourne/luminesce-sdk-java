@@ -1,20 +1,23 @@
+# com.finbourne.luminesce.model.MappingFlags
 
+## Properties
 
-# MappingFlags
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**MappingFlags** | [**String**](.md) | **** | [default to String]
 
-## Enum
+```java
+import com.finbourne.luminesce.model.MappingFlags;
+import java.util.*;
+import java.lang.System;
+import java.net.URI;
 
-
-* `NONE` (value: `"None"`)
-
-* `EXACT` (value: `"Exact"`)
-
-* `SIMILAR` (value: `"Similar"`)
-
-* `ADDITIONAL` (value: `"Additional"`)
-
+// Example usage of MappingFlags:
+MappingFlags method = MappingFlags.NONE;
+MappingFlags method = MappingFlags.EXACT;
+MappingFlags method = MappingFlags.SIMILAR;
+MappingFlags method = MappingFlags.ADDITIONAL;
+```
 
 
 [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to README](../README.md)
-
-
