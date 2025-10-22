@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.783
+  version: 1.18.801
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6397,7 +6397,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't exist and is not running.
+        - 404 Not Found : The requested query result doesn't exist and is not running or the calling user did not run the query.
       operationId: CancelQuery
       parameters:
       - description: ExecutionId returned when starting the query
@@ -6434,7 +6434,7 @@ paths:
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't exist and is not running.
+        - 404 Not Found : The requested query result doesn't exist and is not running or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -6478,7 +6478,7 @@ paths:
           description: OK
       security:
       - oauth2: []
-      summary: "GetProgressOf: View query progress up to this point"
+      summary: "GetProgressOf: View query progress up to this point."
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -6492,7 +6492,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -6691,7 +6691,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -6840,7 +6840,7 @@ paths:
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -6959,6 +6959,51 @@ paths:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
+  /api/SqlBackground/{executionId}/historicalFeedback:
+    get:
+      description: |-
+        View full progress information, including historical feedback for queries which have passed their `keepForSeconds` time,
+        so long as they were executed in the last 31 days.
+        Unlike most methods here this may be called by a user that did not run the original query, as this is pure telemetry information.
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query result doesn't exist and is not running.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: GetHistoricalFeedback
+      parameters:
+      - description: ExecutionId returned when starting the query
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BackgroundQueryProgressResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackgroundQueryProgressResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BackgroundQueryProgressResponse'
+          description: OK
+      security:
+      - oauth2: []
+      summary: "GetHistoricalFeedback: View query progress up to this point"
+      tags:
+      - Sql Background Execution
+      x-fbn-apistatus: Stable
+      x-accepts: application/json
   /api/SqlBackground/{executionId}/json:
     get:
       description: |2-
@@ -6971,7 +7016,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -7134,7 +7179,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -7308,7 +7353,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -7450,7 +7495,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -7633,7 +7678,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
@@ -7775,7 +7820,7 @@ paths:
         - 400 BadRequest : Something failed with the execution of your query
         - 401 Unauthorized
         - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist.
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
         - 429 Too Many Requests : Please try your request again soon
          1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
          1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.

@@ -279,7 +279,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * CancelQuery: Cancel / Clear data from a previously run query
-     * Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. 
+     * Cancel the query (if still running) / clear the data (if already returned) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running or the calling user did not run the query. 
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIcancelQueryRequest
      * @http.response.details
@@ -674,7 +674,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultCsv: Fetch the result of a query as CSV
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultCsvRequest
      * @http.response.details
@@ -996,7 +996,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultExcel: Fetch the result of a query as an Excel file
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultExcelRequest
      * @http.response.details
@@ -1314,7 +1314,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultHistogram: Construct a histogram of the result of a query
-     * Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the histogram in Json format (if available, or if not simply being informed it is not yet ready) The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @param timestampFieldName Name of the timestamp field used in building the histogram (required)
      * @return APIfetchQueryResultHistogramRequest
@@ -1652,7 +1652,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultJson: Fetch the result of a query as a JSON string
-     *  *Please move to &#39;/jsonProper&#39; instead. This may be marked as Deprecated in the future.*  Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     *  *Please move to &#39;/jsonProper&#39; instead. This may be marked as Deprecated in the future.*  Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultJsonRequest
      * @http.response.details
@@ -2004,7 +2004,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultJsonProper: Fetch the result of a query as JSON
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultJsonProperRequest
      * @http.response.details
@@ -2311,7 +2311,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultParquet: Fetch the result of a query as Parquet
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultParquetRequest
      * @http.response.details
@@ -2678,7 +2678,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultPipe: Fetch the result of a query as pipe-delimited
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultPipeRequest
      * @http.response.details
@@ -2985,7 +2985,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultSqlite: Fetch the result of a query as SqLite
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultSqliteRequest
      * @http.response.details
@@ -3337,7 +3337,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * FetchQueryResultXml: Fetch the result of a query as XML
-     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * Fetch the data in the format of the method&#39;s name (if available, or if not simply being informed it is not yet ready).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIfetchQueryResultXmlRequest
      * @http.response.details
@@ -3350,6 +3350,222 @@ public class SqlBackgroundExecutionApi {
      */
     public APIfetchQueryResultXmlRequest fetchQueryResultXml(String executionId) {
         return new APIfetchQueryResultXmlRequest(executionId);
+    }
+    private okhttp3.Call getHistoricalFeedbackCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return getHistoricalFeedbackCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call getHistoricalFeedbackCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground/{executionId}/historicalFeedback"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getHistoricalFeedbackValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling getHistoricalFeedback(Async)");
+        }
+
+        return getHistoricalFeedbackCall(executionId, _callback, opts);
+
+    }
+
+
+    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId) throws ApiException {
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, null, opts);
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, _callback, opts);
+        Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIgetHistoricalFeedbackRequest {
+        private final String executionId;
+
+        private APIgetHistoricalFeedbackRequest(String executionId) {
+            this.executionId = executionId;
+        }
+
+        /**
+         * Build call for getHistoricalFeedback
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getHistoricalFeedbackCall(executionId, _callback);
+        }
+
+        /**
+         * Execute getHistoricalFeedback request
+         * @return BackgroundQueryProgressResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryProgressResponse execute() throws ApiException {
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute getHistoricalFeedback request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundQueryProgressResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute getHistoricalFeedback request with HTTP info returned
+         * @return ApiResponse&lt;BackgroundQueryProgressResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo() throws ApiException {
+            return getHistoricalFeedbackWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute getHistoricalFeedback request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundQueryProgressResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return getHistoricalFeedbackWithHttpInfo(executionId, opts);
+        }
+
+        /**
+         * Execute getHistoricalFeedback request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
+            return getHistoricalFeedbackAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute getHistoricalFeedback request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return getHistoricalFeedbackAsync(executionId, _callback, opts);
+        }
+    }
+
+    /**
+     * GetHistoricalFeedback: View query progress up to this point
+     * View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days. Unlike most methods here this may be called by a user that did not run the original query, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query (required)
+     * @return APIgetHistoricalFeedbackRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIgetHistoricalFeedbackRequest getHistoricalFeedback(String executionId) {
+        return new APIgetHistoricalFeedbackRequest(executionId);
     }
     private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback) throws ApiException {
         return getProgressOfCall(executionId, buildFromLogs,  _callback, new ConfigurationOptions());
@@ -3569,8 +3785,8 @@ public class SqlBackgroundExecutionApi {
     }
 
     /**
-     * GetProgressOf: View query progress up to this point
-     * View progress information (up until this point and starting from the last point requested) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * GetProgressOf: View query progress up to this point.
+     * View progress information (up until this point and starting from the last point requested) The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIgetProgressOfRequest
      * @http.response.details
