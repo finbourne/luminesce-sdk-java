@@ -1286,7 +1286,7 @@ public class SqlBackgroundExecutionApiExample {
 
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String body = select Str, Takes500Ms from Testing1K where UseLinq = true and [Int] <= 120; // String | The LuminesceSql query to kick off.
-        String executionId = "686a0b70-0e97-4187-a2ab-509cf6d1091b"; // String | An explicit ExecutionId to use. This must be blank OR assigned to a valid GUID-as-a-string. It might be ignored / replaced, for example if using the query cache and a cached query is found.
+        String executionId = "executionId_example"; // String | An explicit ExecutionId to use. This must be blank OR assigned to a valid GUID-as-a-string. It might be ignored / replaced, for example if using the query cache and a cached query is found.
         Map<String, String> scalarParameters = new HashMap(); // Map<String, String> | Json encoded dictionary of key-value pairs for scalar parameter values to use in the sql execution.
         String queryName = "Intentionally slow test query"; // String | A name for this query. This goes into logs and is available in `Sys.Logs.HcQueryStart`.
         Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 7200 (2h)

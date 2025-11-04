@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.828
+  version: 1.18.839
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6277,7 +6277,6 @@ paths:
       - description: |-
           An explicit ExecutionId to use. This must be blank OR assigned to a valid GUID-as-a-string.
           It might be ignored / replaced, for example if using the query cache and a cached query is found.
-        example: 686a0b70-0e97-4187-a2ab-509cf6d1091b
         explode: true
         in: query
         name: executionId
