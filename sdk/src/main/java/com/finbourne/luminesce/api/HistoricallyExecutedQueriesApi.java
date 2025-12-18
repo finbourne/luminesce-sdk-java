@@ -904,11 +904,11 @@ public class HistoricallyExecutedQueriesApi {
     public APIfetchHistoryResultJsonRequest fetchHistoryResultJson(String executionId) {
         return new APIfetchHistoryResultJsonRequest(executionId);
     }
-    private okhttp3.Call getHistoryCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback) throws ApiException {
-        return getHistoryCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getHistoryCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, final ApiCallback _callback) throws ApiException {
+        return getHistoryCall(startAt, endAt, freeTextSearch, showAll,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getHistoryCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoryCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -949,10 +949,6 @@ public class HistoricallyExecutedQueriesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("showAll", showAll));
         }
 
-        if (mayUseNativeStore != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("mayUseNativeStore", mayUseNativeStore));
-        }
-
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -975,35 +971,35 @@ public class HistoricallyExecutedQueriesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getHistoryValidateBeforeCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getHistoryCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, opts);
+    private okhttp3.Call getHistoryValidateBeforeCall(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getHistoryCall(startAt, endAt, freeTextSearch, showAll, _callback, opts);
 
     }
 
 
-    private ApiResponse<BackgroundQueryResponse> getHistoryWithHttpInfo(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore) throws ApiException {
-        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, null, new ConfigurationOptions());
+    private ApiResponse<BackgroundQueryResponse> getHistoryWithHttpInfo(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll) throws ApiException {
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<BackgroundQueryResponse> getHistoryWithHttpInfo(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, null, opts);
+    private ApiResponse<BackgroundQueryResponse> getHistoryWithHttpInfo(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getHistoryAsync(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
+    private okhttp3.Call getHistoryAsync(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getHistoryAsync(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, Boolean mayUseNativeStore, final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoryAsync(OffsetDateTime startAt, OffsetDateTime endAt, String freeTextSearch, Boolean showAll, final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, opts);
+        okhttp3.Call localVarCall = getHistoryValidateBeforeCall(startAt, endAt, freeTextSearch, showAll, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1014,7 +1010,6 @@ public class HistoricallyExecutedQueriesApi {
         private OffsetDateTime endAt;
         private String freeTextSearch;
         private Boolean showAll;
-        private Boolean mayUseNativeStore;
 
         private APIgetHistoryRequest() {
         }
@@ -1060,16 +1055,6 @@ public class HistoricallyExecutedQueriesApi {
         }
 
         /**
-         * Set mayUseNativeStore
-         * @param mayUseNativeStore Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available? This is no longer supported and effectively always true. (optional, default to true)
-         * @return APIgetHistoryRequest
-         */
-        public APIgetHistoryRequest mayUseNativeStore(Boolean mayUseNativeStore) {
-            this.mayUseNativeStore = mayUseNativeStore;
-            return this;
-        }
-
-        /**
          * Build call for getHistory
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -1081,7 +1066,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getHistoryCall(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback);
+            return getHistoryCall(startAt, endAt, freeTextSearch, showAll, _callback);
         }
 
         /**
@@ -1095,7 +1080,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public BackgroundQueryResponse execute() throws ApiException {
-            ApiResponse<BackgroundQueryResponse> localVarResp = getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore);
+            ApiResponse<BackgroundQueryResponse> localVarResp = getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll);
             return localVarResp.getData();
         }
 
@@ -1110,7 +1095,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public BackgroundQueryResponse execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<BackgroundQueryResponse> localVarResp = getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, opts);
+            ApiResponse<BackgroundQueryResponse> localVarResp = getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, opts);
             return localVarResp.getData();
         }
 
@@ -1125,7 +1110,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo() throws ApiException {
-            return getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore);
+            return getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll);
         }
 
         /**
@@ -1139,7 +1124,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, opts);
+            return getHistoryWithHttpInfo(startAt, endAt, freeTextSearch, showAll, opts);
         }
 
         /**
@@ -1154,7 +1139,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
-            return getHistoryAsync(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback);
+            return getHistoryAsync(startAt, endAt, freeTextSearch, showAll, _callback);
         }
 
         /**
@@ -1169,7 +1154,7 @@ public class HistoricallyExecutedQueriesApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
-            return getHistoryAsync(startAt, endAt, freeTextSearch, showAll, mayUseNativeStore, _callback, opts);
+            return getHistoryAsync(startAt, endAt, freeTextSearch, showAll, _callback, opts);
         }
     }
 

@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.18.873
+  version: 1.19.52
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -816,18 +816,6 @@ paths:
         required: false
         schema:
           default: false
-          type: boolean
-        style: form
-        x-nullable: true
-      - description: |-
-          Should a native data store (e.g. Athena or Fabric) be used over Elastic Search if available?
-          This is no longer supported and effectively always true.
-        explode: true
-        in: query
-        name: mayUseNativeStore
-        required: false
-        schema:
-          default: true
           type: boolean
         style: form
         x-nullable: true
@@ -6462,6 +6450,17 @@ paths:
           type: boolean
         style: form
         x-nullable: true
+      - description: Should all the feedback be returned? As opposed to just the new
+          feedback.
+        explode: true
+        in: query
+        name: includeAllFeedback
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -6963,7 +6962,7 @@ paths:
       description: |-
         View full progress information, including historical feedback for queries which have passed their `keepForSeconds` time,
         so long as they were executed in the last 31 days.
-        Unlike most methods here this may be called by a user that did not run the original query, as this is pure telemetry information.
+        Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.
 
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 401 Unauthorized
@@ -6998,7 +6997,7 @@ paths:
           description: OK
       security:
       - oauth2: []
-      summary: "GetHistoricalFeedback: View query progress up to this point"
+      summary: "GetHistoricalFeedback: View historical query progress (for older queries)"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable

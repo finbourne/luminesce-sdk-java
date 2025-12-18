@@ -3554,8 +3554,8 @@ public class SqlBackgroundExecutionApi {
     }
 
     /**
-     * GetHistoricalFeedback: View query progress up to this point
-     * View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days. Unlike most methods here this may be called by a user that did not run the original query, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * GetHistoricalFeedback: View historical query progress (for older queries)
+     * View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days. Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIgetHistoricalFeedbackRequest
      * @http.response.details
@@ -3567,11 +3567,11 @@ public class SqlBackgroundExecutionApi {
     public APIgetHistoricalFeedbackRequest getHistoricalFeedback(String executionId) {
         return new APIgetHistoricalFeedbackRequest(executionId);
     }
-    private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback) throws ApiException {
-        return getProgressOfCall(executionId, buildFromLogs,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback, final ApiCallback _callback) throws ApiException {
+        return getProgressOfCall(executionId, buildFromLogs, includeAllFeedback,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProgressOfCall(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3601,6 +3601,10 @@ public class SqlBackgroundExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("buildFromLogs", buildFromLogs));
         }
 
+        if (includeAllFeedback != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("includeAllFeedback", includeAllFeedback));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -3623,40 +3627,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProgressOfValidateBeforeCall(String executionId, Boolean buildFromLogs, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProgressOfValidateBeforeCall(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling getProgressOf(Async)");
         }
 
-        return getProgressOfCall(executionId, buildFromLogs, _callback, opts);
+        return getProgressOfCall(executionId, buildFromLogs, includeAllFeedback, _callback, opts);
 
     }
 
 
-    private ApiResponse<BackgroundQueryProgressResponse> getProgressOfWithHttpInfo(String executionId, Boolean buildFromLogs) throws ApiException {
-        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, null, new ConfigurationOptions());
+    private ApiResponse<BackgroundQueryProgressResponse> getProgressOfWithHttpInfo(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback) throws ApiException {
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, includeAllFeedback, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<BackgroundQueryProgressResponse> getProgressOfWithHttpInfo(String executionId, Boolean buildFromLogs, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, null, opts);
+    private ApiResponse<BackgroundQueryProgressResponse> getProgressOfWithHttpInfo(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, includeAllFeedback, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getProgressOfAsync(String executionId, Boolean buildFromLogs, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
+    private okhttp3.Call getProgressOfAsync(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, includeAllFeedback, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getProgressOfAsync(String executionId, Boolean buildFromLogs, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProgressOfAsync(String executionId, Boolean buildFromLogs, Boolean includeAllFeedback, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, _callback, opts);
+        okhttp3.Call localVarCall = getProgressOfValidateBeforeCall(executionId, buildFromLogs, includeAllFeedback, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3665,6 +3669,7 @@ public class SqlBackgroundExecutionApi {
     public class APIgetProgressOfRequest {
         private final String executionId;
         private Boolean buildFromLogs;
+        private Boolean includeAllFeedback;
 
         private APIgetProgressOfRequest(String executionId) {
             this.executionId = executionId;
@@ -3681,6 +3686,16 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Set includeAllFeedback
+         * @param includeAllFeedback Should all the feedback be returned? As opposed to just the new feedback. (optional, default to false)
+         * @return APIgetProgressOfRequest
+         */
+        public APIgetProgressOfRequest includeAllFeedback(Boolean includeAllFeedback) {
+            this.includeAllFeedback = includeAllFeedback;
+            return this;
+        }
+
+        /**
          * Build call for getProgressOf
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -3692,7 +3707,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getProgressOfCall(executionId, buildFromLogs, _callback);
+            return getProgressOfCall(executionId, buildFromLogs, includeAllFeedback, _callback);
         }
 
         /**
@@ -3706,7 +3721,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryProgressResponse execute() throws ApiException {
-            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getProgressOfWithHttpInfo(executionId, buildFromLogs);
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getProgressOfWithHttpInfo(executionId, buildFromLogs, includeAllFeedback);
             return localVarResp.getData();
         }
 
@@ -3721,7 +3736,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getProgressOfWithHttpInfo(executionId, buildFromLogs, opts);
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getProgressOfWithHttpInfo(executionId, buildFromLogs, includeAllFeedback, opts);
             return localVarResp.getData();
         }
 
@@ -3736,7 +3751,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo() throws ApiException {
-            return getProgressOfWithHttpInfo(executionId, buildFromLogs);
+            return getProgressOfWithHttpInfo(executionId, buildFromLogs, includeAllFeedback);
         }
 
         /**
@@ -3750,7 +3765,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getProgressOfWithHttpInfo(executionId, buildFromLogs, opts);
+            return getProgressOfWithHttpInfo(executionId, buildFromLogs, includeAllFeedback, opts);
         }
 
         /**
@@ -3765,7 +3780,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
-            return getProgressOfAsync(executionId, buildFromLogs, _callback);
+            return getProgressOfAsync(executionId, buildFromLogs, includeAllFeedback, _callback);
         }
 
         /**
@@ -3780,7 +3795,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
-            return getProgressOfAsync(executionId, buildFromLogs, _callback, opts);
+            return getProgressOfAsync(executionId, buildFromLogs, includeAllFeedback, _callback, opts);
         }
     }
 
