@@ -71,6 +71,10 @@ public class BackgroundQueryResponse {
   @SerializedName(SERIALIZED_NAME_FETCH_JSON_PROPER)
   private Link fetchJsonProper;
 
+  public static final String SERIALIZED_NAME_FETCH_JSON_PROPER_WITH_LINEAGE = "fetchJsonProperWithLineage";
+  @SerializedName(SERIALIZED_NAME_FETCH_JSON_PROPER_WITH_LINEAGE)
+  private Link fetchJsonProperWithLineage;
+
   public static final String SERIALIZED_NAME_FETCH_XML = "fetchXml";
   @SerializedName(SERIALIZED_NAME_FETCH_XML)
   private Link fetchXml;
@@ -204,6 +208,27 @@ public class BackgroundQueryResponse {
 
   public void setFetchJsonProper(Link fetchJsonProper) {
     this.fetchJsonProper = fetchJsonProper;
+  }
+
+
+  public BackgroundQueryResponse fetchJsonProperWithLineage(Link fetchJsonProperWithLineage) {
+    
+    this.fetchJsonProperWithLineage = fetchJsonProperWithLineage;
+    return this;
+  }
+
+   /**
+   * Get fetchJsonProperWithLineage
+   * @return fetchJsonProperWithLineage
+  **/
+  @jakarta.annotation.Nullable
+  public Link getFetchJsonProperWithLineage() {
+    return fetchJsonProperWithLineage;
+  }
+
+
+  public void setFetchJsonProperWithLineage(Link fetchJsonProperWithLineage) {
+    this.fetchJsonProperWithLineage = fetchJsonProperWithLineage;
   }
 
 
@@ -369,6 +394,7 @@ public class BackgroundQueryResponse {
         Objects.equals(this.cancel, backgroundQueryResponse.cancel) &&
         Objects.equals(this.fetchJson, backgroundQueryResponse.fetchJson) &&
         Objects.equals(this.fetchJsonProper, backgroundQueryResponse.fetchJsonProper) &&
+        Objects.equals(this.fetchJsonProperWithLineage, backgroundQueryResponse.fetchJsonProperWithLineage) &&
         Objects.equals(this.fetchXml, backgroundQueryResponse.fetchXml) &&
         Objects.equals(this.fetchParquet, backgroundQueryResponse.fetchParquet) &&
         Objects.equals(this.fetchCsv, backgroundQueryResponse.fetchCsv) &&
@@ -384,7 +410,7 @@ public class BackgroundQueryResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
+    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchJsonProperWithLineage, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -403,6 +429,7 @@ public class BackgroundQueryResponse {
     sb.append("    cancel: ").append(toIndentedString(cancel)).append("\n");
     sb.append("    fetchJson: ").append(toIndentedString(fetchJson)).append("\n");
     sb.append("    fetchJsonProper: ").append(toIndentedString(fetchJsonProper)).append("\n");
+    sb.append("    fetchJsonProperWithLineage: ").append(toIndentedString(fetchJsonProperWithLineage)).append("\n");
     sb.append("    fetchXml: ").append(toIndentedString(fetchXml)).append("\n");
     sb.append("    fetchParquet: ").append(toIndentedString(fetchParquet)).append("\n");
     sb.append("    fetchCsv: ").append(toIndentedString(fetchCsv)).append("\n");
@@ -437,6 +464,7 @@ public class BackgroundQueryResponse {
     openapiFields.add("cancel");
     openapiFields.add("fetchJson");
     openapiFields.add("fetchJsonProper");
+    openapiFields.add("fetchJsonProperWithLineage");
     openapiFields.add("fetchXml");
     openapiFields.add("fetchParquet");
     openapiFields.add("fetchCsv");
@@ -480,6 +508,10 @@ public class BackgroundQueryResponse {
       // validate the optional field `fetchJsonProper`
       if (jsonObj.get("fetchJsonProper") != null && !jsonObj.get("fetchJsonProper").isJsonNull()) {
         Link.validateJsonElement(jsonObj.get("fetchJsonProper"));
+      }
+      // validate the optional field `fetchJsonProperWithLineage`
+      if (jsonObj.get("fetchJsonProperWithLineage") != null && !jsonObj.get("fetchJsonProperWithLineage").isJsonNull()) {
+        Link.validateJsonElement(jsonObj.get("fetchJsonProperWithLineage"));
       }
       // validate the optional field `fetchXml`
       if (jsonObj.get("fetchXml") != null && !jsonObj.get("fetchXml").isJsonNull()) {

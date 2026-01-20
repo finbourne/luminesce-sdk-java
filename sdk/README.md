@@ -29,6 +29,8 @@ Class | Method | HTTP request | Description
 *SqlBackgroundExecutionApi* | [**fetchQueryResultHistogram**](docs/SqlBackgroundExecutionApi.md#fetchqueryresulthistogram) | **GET** /api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Construct a histogram of the result of a query
 *SqlBackgroundExecutionApi* | [**fetchQueryResultJson**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultjson) | **GET** /api/SqlBackground/{executionId}/json | FetchQueryResultJson: Fetch the result of a query as a JSON string
 *SqlBackgroundExecutionApi* | [**fetchQueryResultJsonProper**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultjsonproper) | **GET** /api/SqlBackground/{executionId}/jsonProper | FetchQueryResultJsonProper: Fetch the result of a query as JSON
+*SqlBackgroundExecutionApi* | [**fetchQueryResultJsonProperWithLineage**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultjsonproperwithlineage) | **GET** /api/SqlBackground/{executionId}/jsonProperWithLineage | FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)
+*SqlBackgroundExecutionApi* | [**fetchQueryResultLineage**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultlineage) | **GET** /api/SqlBackground/{executionId}/lineage | FetchQueryResultLineage: Gets the Lineage determined while the query was executed
 *SqlBackgroundExecutionApi* | [**fetchQueryResultParquet**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultparquet) | **GET** /api/SqlBackground/{executionId}/parquet | FetchQueryResultParquet: Fetch the result of a query as Parquet
 *SqlBackgroundExecutionApi* | [**fetchQueryResultPipe**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultpipe) | **GET** /api/SqlBackground/{executionId}/pipe | FetchQueryResultPipe: Fetch the result of a query as pipe-delimited
 *SqlBackgroundExecutionApi* | [**fetchQueryResultSqlite**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultsqlite) | **GET** /api/SqlBackground/{executionId}/sqlite | FetchQueryResultSqlite: Fetch the result of a query as SqLite
@@ -126,6 +128,7 @@ Class | Method | HTTP request | Description
  - [IntellisenseResponse](docs/IntellisenseResponse.md)
  - [IntellisenseType](docs/IntellisenseType.md)
  - [JoinedTableDesign](docs/JoinedTableDesign.md)
+ - [Lineage](docs/Lineage.md)
  - [Link](docs/Link.md)
  - [LuminesceBinaryType](docs/LuminesceBinaryType.md)
  - [LusidGridData](docs/LusidGridData.md)
@@ -149,6 +152,7 @@ Class | Method | HTTP request | Description
  - [ScalarParameter](docs/ScalarParameter.md)
  - [Source](docs/Source.md)
  - [SourceType](docs/SourceType.md)
+ - [SqlExecutionFlags](docs/SqlExecutionFlags.md)
  - [TableMeta](docs/TableMeta.md)
  - [TableView](docs/TableView.md)
  - [TaskStatus](docs/TaskStatus.md)

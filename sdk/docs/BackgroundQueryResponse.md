@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **cancel** | [**Link**](Link.md) |  | [optional] [default to Link]
 **fetchJson** | [**Link**](Link.md) |  | [optional] [default to Link]
 **fetchJsonProper** | [**Link**](Link.md) |  | [optional] [default to Link]
+**fetchJsonProperWithLineage** | [**Link**](Link.md) |  | [optional] [default to Link]
 **fetchXml** | [**Link**](Link.md) |  | [optional] [default to Link]
 **fetchParquet** | [**Link**](Link.md) |  | [optional] [default to Link]
 **fetchCsv** | [**Link**](Link.md) |  | [optional] [default to Link]
@@ -29,6 +30,7 @@ Link Progress = new Link();
 Link Cancel = new Link();
 Link FetchJson = new Link();
 Link FetchJsonProper = new Link();
+Link FetchJsonProperWithLineage = new Link();
 Link FetchXml = new Link();
 Link FetchParquet = new Link();
 Link FetchCsv = new Link();
@@ -44,6 +46,7 @@ BackgroundQueryResponse backgroundQueryResponseInstance = new BackgroundQueryRes
     .Cancel(Cancel)
     .FetchJson(FetchJson)
     .FetchJsonProper(FetchJsonProper)
+    .FetchJsonProperWithLineage(FetchJsonProperWithLineage)
     .FetchXml(FetchXml)
     .FetchParquet(FetchParquet)
     .FetchCsv(FetchCsv)

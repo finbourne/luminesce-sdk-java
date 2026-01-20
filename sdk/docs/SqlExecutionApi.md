@@ -227,7 +227,7 @@ public class SqlExecutionApiExample {
 
 ## getByQueryJson
 
-> String getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper)
+> String getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper, includeLineage)
 
 GetByQueryJson: Execute Sql from the url returning JSON
 
@@ -277,11 +277,12 @@ public class SqlExecutionApiExample {
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeout = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
+        Boolean includeLineage = false; // Boolean | Should lineage be included? If true this will be `properJson` and the jsonProper flag ignored
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper).execute(opts);
+            // String result = apiInstance.getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper, includeLineage).execute(opts);
 
-            String result = apiInstance.getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper).execute();
+            String result = apiInstance.getByQueryJson(query, scalarParameters, queryName, timeout, jsonProper, includeLineage).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#getByQueryJson");
@@ -303,6 +304,7 @@ public class SqlExecutionApiExample {
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeout** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
+| **includeLineage** | **Boolean**| Should lineage be included? If true this will be &#x60;properJson&#x60; and the jsonProper flag ignored | [optional] [default to false] |
 
 ### Return type
 
@@ -924,7 +926,7 @@ public class SqlExecutionApiExample {
 
 ## putByQueryJson
 
-> String putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper)
+> String putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage)
 
 PutByQueryJson: Execute Sql from the body returning JSON
 
@@ -974,11 +976,12 @@ public class SqlExecutionApiExample {
         String queryName = "Get tables/fields"; // String | Name to apply to the query in logs and `Sys.Logs.HcQueryStart`
         Integer timeoutSeconds = 0; // Integer | In seconds: <0 or > 175 → 175s (Maximum allowed), 0 → 120s
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
+        Boolean includeLineage = false; // Boolean | Should lineage be included? If true this will be `properJson` and the jsonProper flag ignored
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper).execute(opts);
+            // String result = apiInstance.putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage).execute(opts);
 
-            String result = apiInstance.putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper).execute();
+            String result = apiInstance.putByQueryJson(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlExecutionApi#putByQueryJson");
@@ -1000,6 +1003,7 @@ public class SqlExecutionApiExample {
 | **queryName** | **String**| Name to apply to the query in logs and &#x60;Sys.Logs.HcQueryStart&#x60; | [optional] |
 | **timeoutSeconds** | **Integer**| In seconds: &lt;0 or &gt; 175 → 175s (Maximum allowed), 0 → 120s | [optional] [default to 0] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
+| **includeLineage** | **Boolean**| Should lineage be included? If true this will be &#x60;properJson&#x60; and the jsonProper flag ignored | [optional] [default to false] |
 
 ### Return type
 

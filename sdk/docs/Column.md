@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **isMain** | **Boolean** |  | [optional] [default to Boolean]
 **isRequiredByProvider** | **Boolean** |  | [optional] [default to Boolean]
 **mandatoryForActions** | **String** |  | [optional] [default to String]
+**lineage** | [**Lineage**](Lineage.md) |  | [optional] [default to Lineage]
 **name** | **String** |  | [optional] [default to String]
 **type** | [**DataType**](DataType.md) |  | [optional] [default to DataType]
 **description** | **String** |  | [optional] [default to String]
@@ -26,6 +27,7 @@ Boolean IsPrimaryKey = true;
 Boolean IsMain = true;
 Boolean IsRequiredByProvider = true;
 @jakarta.annotation.Nullable String MandatoryForActions = "example MandatoryForActions";
+Lineage Lineage = new Lineage();
 @jakarta.annotation.Nullable String Name = "example Name";
 DataType @jakarta.annotation.Nullable String Description = "example Description";
 @jakarta.annotation.Nullable String DisplayName = "example DisplayName";
@@ -38,6 +40,7 @@ Column columnInstance = new Column()
     .IsMain(IsMain)
     .IsRequiredByProvider(IsRequiredByProvider)
     .MandatoryForActions(MandatoryForActions)
+    .Lineage(Lineage)
     .Name(Name)
     .Type(Type)
     .Description(Description)

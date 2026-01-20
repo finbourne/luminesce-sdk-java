@@ -13,6 +13,7 @@ package com.finbourne.luminesce.model;
 import java.util.Objects;
 import com.finbourne.luminesce.model.ConditionAttributes;
 import com.finbourne.luminesce.model.DataType;
+import com.finbourne.luminesce.model.Lineage;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -67,6 +68,10 @@ public class Column {
   public static final String SERIALIZED_NAME_MANDATORY_FOR_ACTIONS = "mandatoryForActions";
   @SerializedName(SERIALIZED_NAME_MANDATORY_FOR_ACTIONS)
   private String mandatoryForActions;
+
+  public static final String SERIALIZED_NAME_LINEAGE = "lineage";
+  @SerializedName(SERIALIZED_NAME_LINEAGE)
+  private Lineage lineage;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -180,6 +185,27 @@ public class Column {
 
   public void setMandatoryForActions(String mandatoryForActions) {
     this.mandatoryForActions = mandatoryForActions;
+  }
+
+
+  public Column lineage(Lineage lineage) {
+    
+    this.lineage = lineage;
+    return this;
+  }
+
+   /**
+   * Get lineage
+   * @return lineage
+  **/
+  @jakarta.annotation.Nullable
+  public Lineage getLineage() {
+    return lineage;
+  }
+
+
+  public void setLineage(Lineage lineage) {
+    this.lineage = lineage;
   }
 
 
@@ -344,6 +370,7 @@ public class Column {
         Objects.equals(this.isMain, column.isMain) &&
         Objects.equals(this.isRequiredByProvider, column.isRequiredByProvider) &&
         Objects.equals(this.mandatoryForActions, column.mandatoryForActions) &&
+        Objects.equals(this.lineage, column.lineage) &&
         Objects.equals(this.name, column.name) &&
         Objects.equals(this.type, column.type) &&
         Objects.equals(this.description, column.description) &&
@@ -359,7 +386,7 @@ public class Column {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isPrimaryKey, isMain, isRequiredByProvider, mandatoryForActions, name, type, description, displayName, conditionUsage, sampleValues, allowedValues);
+    return Objects.hash(isPrimaryKey, isMain, isRequiredByProvider, mandatoryForActions, lineage, name, type, description, displayName, conditionUsage, sampleValues, allowedValues);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -377,6 +404,7 @@ public class Column {
     sb.append("    isMain: ").append(toIndentedString(isMain)).append("\n");
     sb.append("    isRequiredByProvider: ").append(toIndentedString(isRequiredByProvider)).append("\n");
     sb.append("    mandatoryForActions: ").append(toIndentedString(mandatoryForActions)).append("\n");
+    sb.append("    lineage: ").append(toIndentedString(lineage)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -410,6 +438,7 @@ public class Column {
     openapiFields.add("isMain");
     openapiFields.add("isRequiredByProvider");
     openapiFields.add("mandatoryForActions");
+    openapiFields.add("lineage");
     openapiFields.add("name");
     openapiFields.add("type");
     openapiFields.add("description");
@@ -437,6 +466,10 @@ public class Column {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("mandatoryForActions") != null && !jsonObj.get("mandatoryForActions").isJsonNull()) && !jsonObj.get("mandatoryForActions").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mandatoryForActions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mandatoryForActions").toString()));
+      }
+      // validate the optional field `lineage`
+      if (jsonObj.get("lineage") != null && !jsonObj.get("lineage").isJsonNull()) {
+        Lineage.validateJsonElement(jsonObj.get("lineage"));
       }
       if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));

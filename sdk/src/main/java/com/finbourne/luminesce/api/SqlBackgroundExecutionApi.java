@@ -31,6 +31,7 @@ import com.finbourne.luminesce.model.BackgroundQueryResponse;
 import java.io.File;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import java.time.OffsetDateTime;
+import com.finbourne.luminesce.model.SqlExecutionFlags;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -2018,6 +2019,590 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultJsonProperRequest fetchQueryResultJsonProper(String executionId) {
         return new APIfetchQueryResultJsonProperRequest(executionId);
     }
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground/{executionId}/jsonProperWithLineage"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (download != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("download", download));
+        }
+
+        if (sortBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sortBy", sortBy));
+        }
+
+        if (filter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (select != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("select", select));
+        }
+
+        if (groupBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("groupBy", groupBy));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (loadWaitMilliseconds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loadWaitMilliseconds", loadWaitMilliseconds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultJsonProperWithLineage(Async)");
+        }
+
+        return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> fetchQueryResultJsonProperWithLineageWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultJsonProperWithLineageWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIfetchQueryResultJsonProperWithLineageRequest {
+        private final String executionId;
+        private Boolean download;
+        private String sortBy;
+        private String filter;
+        private String select;
+        private String groupBy;
+        private Integer limit;
+        private Integer page;
+        private Integer loadWaitMilliseconds;
+
+        private APIfetchQueryResultJsonProperWithLineageRequest(String executionId) {
+            this.executionId = executionId;
+        }
+
+        /**
+         * Set download
+         * @param download Makes this a file-download request (as opposed to returning the data in the response-body) (optional, default to false)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest download(Boolean download) {
+            this.download = download;
+            return this;
+        }
+
+        /**
+         * Set sortBy
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest sortBy(String sortBy) {
+            this.sortBy = sortBy;
+            return this;
+        }
+
+        /**
+         * Set filter
+         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest filter(String filter) {
+            this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set select
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest select(String select) {
+            this.select = select;
+            return this;
+        }
+
+        /**
+         * Set groupBy
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest groupBy(String groupBy) {
+            this.groupBy = groupBy;
+            return this;
+        }
+
+        /**
+         * Set limit
+         * @param limit When paginating, only return this number of records, page should also be specified. (optional, default to 0)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest limit(Integer limit) {
+            this.limit = limit;
+            return this;
+        }
+
+        /**
+         * Set page
+         * @param page 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. (optional, default to 0)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest page(Integer page) {
+            this.page = page;
+            return this;
+        }
+
+        /**
+         * Set loadWaitMilliseconds
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
+            this.loadWaitMilliseconds = loadWaitMilliseconds;
+            return this;
+        }
+
+        /**
+         * Build call for fetchQueryResultJsonProperWithLineage
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProperWithLineage request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProperWithLineage request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProperWithLineage request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProperWithLineage request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProperWithLineage request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return fetchQueryResultJsonProperWithLineageAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultJsonProperWithLineage request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultJsonProperWithLineageAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        }
+    }
+
+    /**
+     * FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)
+     * Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a &#x60;Data&#x60; node and Lineage (if requested when starting the execution) under a &#x60;Lineage&#x60; node. Lineage is just for the &#39;raw query&#39; it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query (required)
+     * @return APIfetchQueryResultJsonProperWithLineageRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIfetchQueryResultJsonProperWithLineageRequest fetchQueryResultJsonProperWithLineage(String executionId) {
+        return new APIfetchQueryResultJsonProperWithLineageRequest(executionId);
+    }
+    private okhttp3.Call fetchQueryResultLineageCall(String executionId, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultLineageCall(executionId,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call fetchQueryResultLineageCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground/{executionId}/lineage"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call fetchQueryResultLineageValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultLineage(Async)");
+        }
+
+        return fetchQueryResultLineageCall(executionId, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> fetchQueryResultLineageWithHttpInfo(String executionId) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultLineageValidateBeforeCall(executionId, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> fetchQueryResultLineageWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultLineageValidateBeforeCall(executionId, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call fetchQueryResultLineageAsync(String executionId, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultLineageValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call fetchQueryResultLineageAsync(String executionId, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = fetchQueryResultLineageValidateBeforeCall(executionId, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIfetchQueryResultLineageRequest {
+        private final String executionId;
+
+        private APIfetchQueryResultLineageRequest(String executionId) {
+            this.executionId = executionId;
+        }
+
+        /**
+         * Build call for fetchQueryResultLineage
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return fetchQueryResultLineageCall(executionId, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultLineage request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultLineageWithHttpInfo(executionId);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute fetchQueryResultLineage request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = fetchQueryResultLineageWithHttpInfo(executionId, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute fetchQueryResultLineage request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return fetchQueryResultLineageWithHttpInfo(executionId);
+        }
+
+        /**
+         * Execute fetchQueryResultLineage request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultLineageWithHttpInfo(executionId, opts);
+        }
+
+        /**
+         * Execute fetchQueryResultLineage request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return fetchQueryResultLineageAsync(executionId, _callback);
+        }
+
+        /**
+         * Execute fetchQueryResultLineage request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return fetchQueryResultLineageAsync(executionId, _callback, opts);
+        }
+    }
+
+    /**
+     * FetchQueryResultLineage: Gets the Lineage determined while the query was executed
+     * Fetch the Lineage of the query in Json format. - this must have been requested when starting the query - if available (which is only after the query has executed) or if not simply being informed it is not yet ready  This contains some or all of: - What result columns mean, per column, and where their data came from - Some information about the data set as a whole: source tables/providers, joins, filters, etc. - ... Or a reason the information could not be generated (e.g. DirectProviders with unknown shape currently cause this to fail)  Note Lineage will never take into account sorts/filters/grouping/etc. placed when requesting the data. It will take into account such concepts when part of the query itself.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query (required)
+     * @return APIfetchQueryResultLineageRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIfetchQueryResultLineageRequest fetchQueryResultLineage(String executionId) {
+        return new APIfetchQueryResultLineageRequest(executionId);
+    }
     private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
         return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
@@ -3813,11 +4398,11 @@ public class SqlBackgroundExecutionApi {
     public APIgetProgressOfRequest getProgressOf(String executionId) {
         return new APIgetProgressOfRequest(executionId);
     }
-    private okhttp3.Call startQueryCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
-        return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call startQueryCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, final ApiCallback _callback) throws ApiException {
+        return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call startQueryCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call startQueryCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3862,6 +4447,10 @@ public class SqlBackgroundExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("keepForSeconds", keepForSeconds));
         }
 
+        if (executionFlags != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("executionFlags", executionFlags));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -3885,40 +4474,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call startQueryValidateBeforeCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call startQueryValidateBeforeCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling startQuery(Async)");
         }
 
-        return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, opts);
+        return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, _callback, opts);
 
     }
 
 
-    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds) throws ApiException {
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, null, new ConfigurationOptions());
+    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags) throws ApiException {
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, null, opts);
+    private ApiResponse<BackgroundQueryResponse> startQueryWithHttpInfo(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call startQueryAsync(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
+    private okhttp3.Call startQueryAsync(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call startQueryAsync(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call startQueryAsync(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, opts);
+        okhttp3.Call localVarCall = startQueryValidateBeforeCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3931,6 +4520,7 @@ public class SqlBackgroundExecutionApi {
         private String queryName;
         private Integer timeoutSeconds;
         private Integer keepForSeconds;
+        private SqlExecutionFlags executionFlags;
 
         private APIstartQueryRequest(String body) {
             this.body = body;
@@ -3987,6 +4577,16 @@ public class SqlBackgroundExecutionApi {
         }
 
         /**
+         * Set executionFlags
+         * @param executionFlags Optional request flags for the execution. Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query? This must be set in order to later retrieve Lineage. (optional)
+         * @return APIstartQueryRequest
+         */
+        public APIstartQueryRequest executionFlags(SqlExecutionFlags executionFlags) {
+            this.executionFlags = executionFlags;
+            return this;
+        }
+
+        /**
          * Build call for startQuery
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -4000,7 +4600,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
+            return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, _callback);
         }
 
         /**
@@ -4016,7 +4616,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryResponse execute() throws ApiException {
-            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds);
+            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags);
             return localVarResp.getData();
         }
 
@@ -4033,7 +4633,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryResponse execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, opts);
+            ApiResponse<BackgroundQueryResponse> localVarResp = startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, opts);
             return localVarResp.getData();
         }
 
@@ -4050,7 +4650,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo() throws ApiException {
-            return startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds);
+            return startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags);
         }
 
         /**
@@ -4066,7 +4666,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, opts);
+            return startQueryWithHttpInfo(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, opts);
         }
 
         /**
@@ -4083,7 +4683,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback) throws ApiException {
-            return startQueryAsync(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback);
+            return startQueryAsync(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, _callback);
         }
 
         /**
@@ -4100,7 +4700,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
-            return startQueryAsync(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, _callback, opts);
+            return startQueryAsync(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, _callback, opts);
         }
     }
 

@@ -700,11 +700,11 @@ public class SqlExecutionApi {
     public APIgetByQueryExcelRequest getByQueryExcel(String query) {
         return new APIgetByQueryExcelRequest(query);
     }
-    private okhttp3.Call getByQueryJsonCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
-        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getByQueryJsonCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage, final ApiCallback _callback) throws ApiException {
+        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getByQueryJsonCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryJsonCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -746,6 +746,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("jsonProper", jsonProper));
         }
 
+        if (includeLineage != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("includeLineage", includeLineage));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -768,40 +772,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getByQueryJsonValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryJsonValidateBeforeCall(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'query' is set
         if (query == null) {
             throw new ApiException("Missing the required parameter 'query' when calling getByQueryJson(Async)");
         }
 
-        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, _callback, opts);
+        return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getByQueryJsonWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, null, new ConfigurationOptions());
+    private ApiResponse<String> getByQueryJsonWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getByQueryJsonWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, null, opts);
+    private ApiResponse<String> getByQueryJsonWithHttpInfo(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getByQueryJsonAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getByQueryJsonAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getByQueryJsonAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getByQueryJsonAsync(String query, Map<String, String> scalarParameters, String queryName, Integer timeout, Boolean jsonProper, Boolean includeLineage, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, _callback, opts);
+        okhttp3.Call localVarCall = getByQueryJsonValidateBeforeCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -813,6 +817,7 @@ public class SqlExecutionApi {
         private String queryName;
         private Integer timeout;
         private Boolean jsonProper;
+        private Boolean includeLineage;
 
         private APIgetByQueryJsonRequest(String query) {
             this.query = query;
@@ -859,6 +864,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set includeLineage
+         * @param includeLineage Should lineage be included? If true this will be &#x60;properJson&#x60; and the jsonProper flag ignored (optional, default to false)
+         * @return APIgetByQueryJsonRequest
+         */
+        public APIgetByQueryJsonRequest includeLineage(Boolean includeLineage) {
+            this.includeLineage = includeLineage;
+            return this;
+        }
+
+        /**
          * Build call for getByQueryJson
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -872,7 +887,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, _callback);
+            return getByQueryJsonCall(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, _callback);
         }
 
         /**
@@ -888,7 +903,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper);
+            ApiResponse<String> localVarResp = getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, includeLineage);
             return localVarResp.getData();
         }
 
@@ -905,7 +920,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, opts);
+            ApiResponse<String> localVarResp = getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, opts);
             return localVarResp.getData();
         }
 
@@ -922,7 +937,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper);
+            return getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, includeLineage);
         }
 
         /**
@@ -938,7 +953,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, opts);
+            return getByQueryJsonWithHttpInfo(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, opts);
         }
 
         /**
@@ -955,7 +970,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getByQueryJsonAsync(query, scalarParameters, queryName, timeout, jsonProper, _callback);
+            return getByQueryJsonAsync(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, _callback);
         }
 
         /**
@@ -972,7 +987,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getByQueryJsonAsync(query, scalarParameters, queryName, timeout, jsonProper, _callback, opts);
+            return getByQueryJsonAsync(query, scalarParameters, queryName, timeout, jsonProper, includeLineage, _callback, opts);
         }
     }
 
@@ -2774,11 +2789,11 @@ public class SqlExecutionApi {
     public APIputByQueryExcelRequest putByQueryExcel(String body) {
         return new APIputByQueryExcelRequest(body);
     }
-    private okhttp3.Call putByQueryJsonCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback) throws ApiException {
-        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper,  _callback, new ConfigurationOptions());
+    private okhttp3.Call putByQueryJsonCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage, final ApiCallback _callback) throws ApiException {
+        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call putByQueryJsonCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryJsonCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2819,6 +2834,10 @@ public class SqlExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("jsonProper", jsonProper));
         }
 
+        if (includeLineage != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("includeLineage", includeLineage));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -2842,40 +2861,40 @@ public class SqlExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putByQueryJsonValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryJsonValidateBeforeCall(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling putByQueryJson(Async)");
         }
 
-        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, opts);
+        return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> putByQueryJsonWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, null, new ConfigurationOptions());
+    private ApiResponse<String> putByQueryJsonWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> putByQueryJsonWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, null, opts);
+    private ApiResponse<String> putByQueryJsonWithHttpInfo(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call putByQueryJsonAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call putByQueryJsonAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call putByQueryJsonAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call putByQueryJsonAsync(String body, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Boolean jsonProper, Boolean includeLineage, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, opts);
+        okhttp3.Call localVarCall = putByQueryJsonValidateBeforeCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2887,6 +2906,7 @@ public class SqlExecutionApi {
         private String queryName;
         private Integer timeoutSeconds;
         private Boolean jsonProper;
+        private Boolean includeLineage;
 
         private APIputByQueryJsonRequest(String body) {
             this.body = body;
@@ -2933,6 +2953,16 @@ public class SqlExecutionApi {
         }
 
         /**
+         * Set includeLineage
+         * @param includeLineage Should lineage be included? If true this will be &#x60;properJson&#x60; and the jsonProper flag ignored (optional, default to false)
+         * @return APIputByQueryJsonRequest
+         */
+        public APIputByQueryJsonRequest includeLineage(Boolean includeLineage) {
+            this.includeLineage = includeLineage;
+            return this;
+        }
+
+        /**
          * Build call for putByQueryJson
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -2946,7 +2976,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback);
+            return putByQueryJsonCall(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, _callback);
         }
 
         /**
@@ -2962,7 +2992,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper);
+            ApiResponse<String> localVarResp = putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage);
             return localVarResp.getData();
         }
 
@@ -2979,7 +3009,7 @@ public class SqlExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, opts);
+            ApiResponse<String> localVarResp = putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, opts);
             return localVarResp.getData();
         }
 
@@ -2996,7 +3026,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper);
+            return putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage);
         }
 
         /**
@@ -3012,7 +3042,7 @@ public class SqlExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, opts);
+            return putByQueryJsonWithHttpInfo(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, opts);
         }
 
         /**
@@ -3029,7 +3059,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return putByQueryJsonAsync(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback);
+            return putByQueryJsonAsync(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, _callback);
         }
 
         /**
@@ -3046,7 +3076,7 @@ public class SqlExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return putByQueryJsonAsync(body, scalarParameters, queryName, timeoutSeconds, jsonProper, _callback, opts);
+            return putByQueryJsonAsync(body, scalarParameters, queryName, timeoutSeconds, jsonProper, includeLineage, _callback, opts);
         }
     }
 

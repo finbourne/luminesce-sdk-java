@@ -74,6 +74,10 @@ public class BackgroundMultiQueryResponse {
   @SerializedName(SERIALIZED_NAME_FETCH_JSON_PROPER)
   private List<Link> fetchJsonProper;
 
+  public static final String SERIALIZED_NAME_FETCH_JSON_PROPER_WITH_LINEAGE = "fetchJsonProperWithLineage";
+  @SerializedName(SERIALIZED_NAME_FETCH_JSON_PROPER_WITH_LINEAGE)
+  private List<Link> fetchJsonProperWithLineage;
+
   public static final String SERIALIZED_NAME_FETCH_XML = "fetchXml";
   @SerializedName(SERIALIZED_NAME_FETCH_XML)
   private List<Link> fetchXml;
@@ -110,6 +114,7 @@ public class BackgroundMultiQueryResponse {
      UUID executionId, 
      List<Link> fetchJson, 
      List<Link> fetchJsonProper, 
+     List<Link> fetchJsonProperWithLineage, 
      List<Link> fetchXml, 
      List<Link> fetchParquet, 
      List<Link> fetchCsv, 
@@ -122,6 +127,7 @@ public class BackgroundMultiQueryResponse {
     this.executionId = executionId;
     this.fetchJson = fetchJson;
     this.fetchJsonProper = fetchJsonProper;
+    this.fetchJsonProperWithLineage = fetchJsonProperWithLineage;
     this.fetchXml = fetchXml;
     this.fetchParquet = fetchParquet;
     this.fetchCsv = fetchCsv;
@@ -204,6 +210,18 @@ public class BackgroundMultiQueryResponse {
   @jakarta.annotation.Nullable
   public List<Link> getFetchJsonProper() {
     return fetchJsonProper;
+  }
+
+
+
+
+   /**
+   * Json-proper-with-lineage data request links for all of the child queries
+   * @return fetchJsonProperWithLineage
+  **/
+  @jakarta.annotation.Nullable
+  public List<Link> getFetchJsonProperWithLineage() {
+    return fetchJsonProperWithLineage;
   }
 
 
@@ -308,6 +326,7 @@ public class BackgroundMultiQueryResponse {
         Objects.equals(this.cancel, backgroundMultiQueryResponse.cancel) &&
         Objects.equals(this.fetchJson, backgroundMultiQueryResponse.fetchJson) &&
         Objects.equals(this.fetchJsonProper, backgroundMultiQueryResponse.fetchJsonProper) &&
+        Objects.equals(this.fetchJsonProperWithLineage, backgroundMultiQueryResponse.fetchJsonProperWithLineage) &&
         Objects.equals(this.fetchXml, backgroundMultiQueryResponse.fetchXml) &&
         Objects.equals(this.fetchParquet, backgroundMultiQueryResponse.fetchParquet) &&
         Objects.equals(this.fetchCsv, backgroundMultiQueryResponse.fetchCsv) &&
@@ -323,7 +342,7 @@ public class BackgroundMultiQueryResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
+    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchJsonProperWithLineage, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -342,6 +361,7 @@ public class BackgroundMultiQueryResponse {
     sb.append("    cancel: ").append(toIndentedString(cancel)).append("\n");
     sb.append("    fetchJson: ").append(toIndentedString(fetchJson)).append("\n");
     sb.append("    fetchJsonProper: ").append(toIndentedString(fetchJsonProper)).append("\n");
+    sb.append("    fetchJsonProperWithLineage: ").append(toIndentedString(fetchJsonProperWithLineage)).append("\n");
     sb.append("    fetchXml: ").append(toIndentedString(fetchXml)).append("\n");
     sb.append("    fetchParquet: ").append(toIndentedString(fetchParquet)).append("\n");
     sb.append("    fetchCsv: ").append(toIndentedString(fetchCsv)).append("\n");
@@ -376,6 +396,7 @@ public class BackgroundMultiQueryResponse {
     openapiFields.add("cancel");
     openapiFields.add("fetchJson");
     openapiFields.add("fetchJsonProper");
+    openapiFields.add("fetchJsonProperWithLineage");
     openapiFields.add("fetchXml");
     openapiFields.add("fetchParquet");
     openapiFields.add("fetchCsv");
@@ -437,6 +458,20 @@ public class BackgroundMultiQueryResponse {
           // validate the optional field `fetchJsonProper` (array)
           for (int i = 0; i < jsonArrayfetchJsonProper.size(); i++) {
             Link.validateJsonElement(jsonArrayfetchJsonProper.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("fetchJsonProperWithLineage") != null && !jsonObj.get("fetchJsonProperWithLineage").isJsonNull()) {
+        JsonArray jsonArrayfetchJsonProperWithLineage = jsonObj.getAsJsonArray("fetchJsonProperWithLineage");
+        if (jsonArrayfetchJsonProperWithLineage != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fetchJsonProperWithLineage").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `fetchJsonProperWithLineage` to be an array in the JSON string but got `%s`", jsonObj.get("fetchJsonProperWithLineage").toString()));
+          }
+
+          // validate the optional field `fetchJsonProperWithLineage` (array)
+          for (int i = 0; i < jsonArrayfetchJsonProperWithLineage.size(); i++) {
+            Link.validateJsonElement(jsonArrayfetchJsonProperWithLineage.get(i));
           };
         }
       }

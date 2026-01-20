@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.94
+  version: 1.19.121
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -3990,6 +3990,17 @@ paths:
           type: boolean
         style: form
         x-nullable: true
+      - description: Should lineage be included? If true this will be `properJson`
+          and the jsonProper flag ignored
+        explode: true
+        in: query
+        name: includeLineage
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
       requestBody:
         content:
           text/plain:
@@ -4106,6 +4117,17 @@ paths:
         explode: true
         in: query
         name: jsonProper
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: Should lineage be included? If true this will be `properJson`
+          and the jsonProper flag ignored
+        explode: true
+        in: query
+        name: includeLineage
         required: false
         schema:
           default: false
@@ -6323,6 +6345,18 @@ paths:
           type: integer
         style: form
         x-nullable: true
+      - description: |-
+          Optional request flags for the execution. Currently limited by may grow in time:
+          - ProvideLineage : Should Lineage be requested when running the query? This must be set in order to later retrieve Lineage.
+        example: None
+        explode: true
+        in: query
+        name: executionFlags
+        required: false
+        schema:
+          $ref: '#/components/schemas/SqlExecutionFlags'
+        style: form
+        x-nullable: true
       requestBody:
         content:
           text/plain:
@@ -7338,6 +7372,261 @@ paths:
       security:
       - oauth2: []
       summary: "FetchQueryResultJsonProper: Fetch the result of a query as JSON"
+      tags:
+      - Sql Background Execution
+      x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/SqlBackground/{executionId}/jsonProperWithLineage:
+    get:
+      description: |-
+        Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready)
+        But embeds the data under a `Data` node and Lineage (if requested when starting the execution) under a `Lineage` node.
+        Lineage is just for the 'raw query' it ignores all of these parameters: sortBy, filter, select, groupBy and limit.
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 400 BadRequest : Something failed with the execution of your query
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: FetchQueryResultJsonProperWithLineage
+      parameters:
+      - description: ExecutionId returned when starting the query
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Makes this a file-download request (as opposed to returning the
+          data in the response-body)
+        explode: true
+        in: query
+        name: download
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: |-
+          Order the results by these fields.
+           Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.
+           Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.
+           Default is null, the sort order specified in the query itself.
+        explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          maxLength: 16384
+          minLength: 1
+          pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: An ODATA filter per Finbourne.Filtering syntax.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          maxLength: 16384
+          minLength: 0
+          pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: "Default is null (meaning return all columns in the original\
+          \ query itself).\nThe values are in terms of the result column name from\
+          \ the original data set and are comma delimited.\nThe power of this comes\
+          \ in that you may aggregate the data if you wish\n(that is the main reason\
+          \ for allowing this, in fact).\ne.g.:\n- `MyField`\n- `Max(x) FILTER (WHERE\
+          \ y > 12) as ABC` (max of a field, if another field lets it qualify, with\
+          \ a nice column name)\n- `count(*)` (count the rows for the given group,\
+          \ that would produce a rather ugly column name, but it works)\n- `count(distinct\
+          \ x) as numOfXs`\nIf there was an illegal character in a field you are selecting\
+          \ from, you are responsible for bracketing it with [ ]. \ne.g.\n- `some_field,\
+          \ count(*) as a, max(x) as b, min([column with space in name]) as nice_name`\n\
+          \ where you would likely want to pass `1` as the `groupBy` also."
+        explode: true
+        in: query
+        name: select
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Groups by the specified fields.
+           A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).
+           e.g. `2,3`, `myColumn`.
+           Default is null (meaning no grouping will be performed on the selected columns).
+           This applies only over the result set being requested here, meaning indexes into the "select" parameter fields.
+           Only specify this if you are selecting aggregations in the "select" parameter.
+        explode: true
+        in: query
+        name: groupBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "When paginating, only return this number of records, page should\
+          \ also be specified."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: "0-N based on chunk sized determined by the limit, ignored if\
+          \ limit < 1."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "FetchQueryResultJsonProperWithLineage: Fetch the result of a query\
+        \ as JSON, but including a Lineage Node (if available)"
+      tags:
+      - Sql Background Execution
+      x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/SqlBackground/{executionId}/lineage:
+    get:
+      description: |-
+        Fetch the Lineage of the query in Json format.
+        - this must have been requested when starting the query
+        - if available (which is only after the query has executed) or if not simply being informed it is not yet ready
+
+        This contains some or all of:
+        - What result columns mean, per column, and where their data came from
+        - Some information about the data set as a whole: source tables/providers, joins, filters, etc.
+        - ... Or a reason the information could not be generated (e.g. DirectProviders with unknown shape currently cause this to fail)
+
+        Note Lineage will never take into account sorts/filters/grouping/etc. placed when requesting the data.
+        It will take into account such concepts when part of the query itself.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: FetchQueryResultLineage
+      parameters:
+      - description: ExecutionId returned when starting the query
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "FetchQueryResultLineage: Gets the Lineage determined while the query\
+        \ was executed"
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
@@ -8397,7 +8686,19 @@ components:
             when: 2000-01-23T04:56:07.000+00:00
             messageTemplate: messageTemplate
           columnsAvailable:
-          - allowedValues: allowedValues
+          - lineage:
+              documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            allowedValues: allowedValues
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
@@ -8408,7 +8709,19 @@ components:
             type: null
             mandatoryForActions: mandatoryForActions
             conditionUsage: null
-          - allowedValues: allowedValues
+          - lineage:
+              documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            allowedValues: allowedValues
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
@@ -8450,7 +8763,19 @@ components:
             when: 2000-01-23T04:56:07.000+00:00
             messageTemplate: messageTemplate
           columnsAvailable:
-          - allowedValues: allowedValues
+          - lineage:
+              documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            allowedValues: allowedValues
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
@@ -8461,7 +8786,19 @@ components:
             type: null
             mandatoryForActions: mandatoryForActions
             conditionUsage: null
-          - allowedValues: allowedValues
+          - lineage:
+              documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            allowedValues: allowedValues
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
@@ -8508,6 +8845,42 @@ components:
           description: description
           href: https://openapi-generator.tech
           relation: relation
+        fetchJsonProperWithLineage:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        fetchSqlite:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        fetchExcel:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        fetchCsv:
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        - method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
         histogram:
         - method: method
           description: description
@@ -8518,15 +8891,6 @@ components:
           href: https://openapi-generator.tech
           relation: relation
         executionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        fetchSqlite:
-        - method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
-        - method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
         fetchParquet:
         - method: method
           description: description
@@ -8568,25 +8932,7 @@ components:
           description: description
           href: https://openapi-generator.tech
           relation: relation
-        fetchExcel:
-        - method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
-        - method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
         fetchXml:
-        - method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
-        - method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
-        fetchCsv:
         - method: method
           description: description
           href: https://openapi-generator.tech
@@ -8614,6 +8960,14 @@ components:
           type: array
         fetchJsonProper:
           description: Json-proper data request links for all of the child queries
+          items:
+            $ref: '#/components/schemas/Link'
+          nullable: true
+          readOnly: true
+          type: array
+        fetchJsonProperWithLineage:
+          description: Json-proper-with-lineage data request links for all of the
+            child queries
           items:
             $ref: '#/components/schemas/Link'
           nullable: true
@@ -8714,7 +9068,19 @@ components:
           when: 2000-01-23T04:56:07.000+00:00
           messageTemplate: messageTemplate
         columnsAvailable:
-        - allowedValues: allowedValues
+        - lineage:
+            documentationAsHtml: documentationAsHtml
+            subtype: subtype
+            children:
+            - null
+            - null
+            displayName: displayName
+            documentationAsMarkDown: documentationAsMarkDown
+            alias: alias
+            description: description
+            fullText: fullText
+            type: type
+          allowedValues: allowedValues
           sampleValues: sampleValues
           isMain: true
           isRequiredByProvider: true
@@ -8725,7 +9091,19 @@ components:
           type: null
           mandatoryForActions: mandatoryForActions
           conditionUsage: null
-        - allowedValues: allowedValues
+        - lineage:
+            documentationAsHtml: documentationAsHtml
+            subtype: subtype
+            children:
+            - null
+            - null
+            displayName: displayName
+            documentationAsMarkDown: documentationAsMarkDown
+            alias: alias
+            description: description
+            fullText: fullText
+            type: type
+          allowedValues: allowedValues
           sampleValues: sampleValues
           isMain: true
           isRequiredByProvider: true
@@ -8791,17 +9169,32 @@ components:
           description: description
           href: https://openapi-generator.tech
           relation: relation
+        fetchJsonProperWithLineage:
+          method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        fetchSqlite:
+          method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        fetchExcel:
+          method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
+        fetchCsv:
+          method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
         histogram:
           method: method
           description: description
           href: https://openapi-generator.tech
           relation: relation
         executionId: executionId
-        fetchSqlite:
-          method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
         fetchParquet:
           method: method
           description: description
@@ -8827,17 +9220,7 @@ components:
           description: description
           href: https://openapi-generator.tech
           relation: relation
-        fetchExcel:
-          method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
         fetchXml:
-          method: method
-          description: description
-          href: https://openapi-generator.tech
-          relation: relation
-        fetchCsv:
           method: method
           description: description
           href: https://openapi-generator.tech
@@ -8854,6 +9237,8 @@ components:
         fetchJson:
           $ref: '#/components/schemas/Link'
         fetchJsonProper:
+          $ref: '#/components/schemas/Link'
+        fetchJsonProperWithLineage:
           $ref: '#/components/schemas/Link'
         fetchXml:
           $ref: '#/components/schemas/Link'
@@ -9096,6 +9481,18 @@ components:
     Column:
       additionalProperties: false
       example:
+        lineage:
+          documentationAsHtml: documentationAsHtml
+          subtype: subtype
+          children:
+          - null
+          - null
+          displayName: displayName
+          documentationAsMarkDown: documentationAsMarkDown
+          alias: alias
+          description: description
+          fullText: fullText
+          type: type
         allowedValues: allowedValues
         sampleValues: sampleValues
         isMain: true
@@ -9117,6 +9514,8 @@ components:
         mandatoryForActions:
           nullable: true
           type: string
+        lineage:
+          $ref: '#/components/schemas/Lineage'
         name:
           nullable: true
           type: string
@@ -10125,6 +10524,51 @@ components:
       - leftTableAlias
       - onClauseTerms
       type: object
+    Lineage:
+      additionalProperties: false
+      example:
+        documentationAsHtml: documentationAsHtml
+        subtype: subtype
+        children:
+        - null
+        - null
+        displayName: displayName
+        documentationAsMarkDown: documentationAsMarkDown
+        alias: alias
+        description: description
+        fullText: fullText
+        type: type
+      properties:
+        type:
+          nullable: true
+          type: string
+        subtype:
+          nullable: true
+          type: string
+        alias:
+          nullable: true
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+        documentationAsHtml:
+          nullable: true
+          type: string
+        documentationAsMarkDown:
+          nullable: true
+          type: string
+        fullText:
+          nullable: true
+          type: string
+        children:
+          items:
+            $ref: '#/components/schemas/Lineage'
+          nullable: true
+          type: array
+      type: object
     Link:
       additionalProperties: false
       example:
@@ -11072,6 +11516,11 @@ components:
       - Xml
       - Parquet
       - RawText
+      type: string
+    SqlExecutionFlags:
+      enum:
+      - None
+      - ProvideLineage
       type: string
     TableMeta:
       additionalProperties: false

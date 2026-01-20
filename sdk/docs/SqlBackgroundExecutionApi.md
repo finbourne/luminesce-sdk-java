@@ -10,6 +10,8 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**fetchQueryResultHistogram**](SqlBackgroundExecutionApi.md#fetchQueryResultHistogram) | **GET** /api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Construct a histogram of the result of a query |
 | [**fetchQueryResultJson**](SqlBackgroundExecutionApi.md#fetchQueryResultJson) | **GET** /api/SqlBackground/{executionId}/json | FetchQueryResultJson: Fetch the result of a query as a JSON string |
 | [**fetchQueryResultJsonProper**](SqlBackgroundExecutionApi.md#fetchQueryResultJsonProper) | **GET** /api/SqlBackground/{executionId}/jsonProper | FetchQueryResultJsonProper: Fetch the result of a query as JSON |
+| [**fetchQueryResultJsonProperWithLineage**](SqlBackgroundExecutionApi.md#fetchQueryResultJsonProperWithLineage) | **GET** /api/SqlBackground/{executionId}/jsonProperWithLineage | FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available) |
+| [**fetchQueryResultLineage**](SqlBackgroundExecutionApi.md#fetchQueryResultLineage) | **GET** /api/SqlBackground/{executionId}/lineage | FetchQueryResultLineage: Gets the Lineage determined while the query was executed |
 | [**fetchQueryResultParquet**](SqlBackgroundExecutionApi.md#fetchQueryResultParquet) | **GET** /api/SqlBackground/{executionId}/parquet | FetchQueryResultParquet: Fetch the result of a query as Parquet |
 | [**fetchQueryResultPipe**](SqlBackgroundExecutionApi.md#fetchQueryResultPipe) | **GET** /api/SqlBackground/{executionId}/pipe | FetchQueryResultPipe: Fetch the result of a query as pipe-delimited |
 | [**fetchQueryResultSqlite**](SqlBackgroundExecutionApi.md#fetchQueryResultSqlite) | **GET** /api/SqlBackground/{executionId}/sqlite | FetchQueryResultSqlite: Fetch the result of a query as SqLite |
@@ -640,6 +642,204 @@ public class SqlBackgroundExecutionApiExample {
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
 
+## fetchQueryResultJsonProperWithLineage
+
+> String fetchQueryResultJsonProperWithLineage(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds)
+
+FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)
+
+Fetch the data in proper Json format (if available, or if not simply being informed it is not yet ready) But embeds the data under a &#x60;Data&#x60; node and Lineage (if requested when starting the execution) under a &#x60;Lineage&#x60; node. Lineage is just for the &#39;raw query&#39; it ignores all of these parameters: sortBy, filter, select, groupBy and limit.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlBackgroundExecutionApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlBackgroundExecutionApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
+        SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        Boolean download = false; // Boolean | Makes this a file-download request (as opposed to returning the data in the response-body)
+        String sortBy = "sortBy_example"; // String | Order the results by these fields.  Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.  Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.  Default is null, the sort order specified in the query itself.
+        String filter = "filter_example"; // String | An ODATA filter per Finbourne.Filtering syntax.
+        String select = "select_example"; // String | Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - `MyField` - `Max(x) FILTER (WHERE y > 12) as ABC` (max of a field, if another field lets it qualify, with a nice column name) - `count(*)` (count the rows for the given group, that would produce a rather ugly column name, but it works) - `count(distinct x) as numOfXs` If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - `some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name`  where you would likely want to pass `1` as the `groupBy` also.
+        String groupBy = "groupBy_example"; // String | Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. `2,3`, `myColumn`.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \"select\" parameter fields.  Only specify this if you are selecting aggregations in the \"select\" parameter.
+        Integer limit = 0; // Integer | When paginating, only return this number of records, page should also be specified.
+        Integer page = 0; // Integer | 0-N based on chunk sized determined by the limit, ignored if limit < 1.
+        Integer loadWaitMilliseconds = 0; // Integer | Optional maximum additional wait period for post execution platform processing.
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultJsonProperWithLineage(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds).execute(opts);
+
+            String result = apiInstance.fetchQueryResultJsonProperWithLineage(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlBackgroundExecutionApi#fetchQueryResultJsonProperWithLineage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **executionId** | **String**| ExecutionId returned when starting the query | |
+| **download** | **Boolean**| Makes this a file-download request (as opposed to returning the data in the response-body) | [optional] [default to false] |
+| **sortBy** | **String**| Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. | [optional] |
+| **filter** | **String**| An ODATA filter per Finbourne.Filtering syntax. | [optional] |
+| **select** | **String**| Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. | [optional] |
+| **groupBy** | **String**| Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. | [optional] |
+| **limit** | **Integer**| When paginating, only return this number of records, page should also be specified. | [optional] [default to 0] |
+| **page** | **Integer**| 0-N based on chunk sized determined by the limit, ignored if limit &lt; 1. | [optional] [default to 0] |
+| **loadWaitMilliseconds** | **Integer**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0] |
+
+### Return type
+
+**String**
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## fetchQueryResultLineage
+
+> String fetchQueryResultLineage(executionId)
+
+FetchQueryResultLineage: Gets the Lineage determined while the query was executed
+
+Fetch the Lineage of the query in Json format. - this must have been requested when starting the query - if available (which is only after the query has executed) or if not simply being informed it is not yet ready  This contains some or all of: - What result columns mean, per column, and where their data came from - Some information about the data set as a whole: source tables/providers, joins, filters, etc. - ... Or a reason the information could not be generated (e.g. DirectProviders with unknown shape currently cause this to fail)  Note Lineage will never take into account sorts/filters/grouping/etc. placed when requesting the data. It will take into account such concepts when part of the query itself.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlBackgroundExecutionApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlBackgroundExecutionApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
+        SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.fetchQueryResultLineage(executionId).execute(opts);
+
+            String result = apiInstance.fetchQueryResultLineage(executionId).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlBackgroundExecutionApi#fetchQueryResultLineage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **executionId** | **String**| ExecutionId returned when starting the query | |
+
+### Return type
+
+**String**
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
 ## fetchQueryResultParquet
 
 > File fetchQueryResultParquet(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds)
@@ -1242,7 +1442,7 @@ public class SqlBackgroundExecutionApiExample {
 
 ## startQuery
 
-> BackgroundQueryResponse startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds)
+> BackgroundQueryResponse startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags)
 
 StartQuery: Start to Execute Sql in the background
 
@@ -1293,11 +1493,12 @@ public class SqlBackgroundExecutionApiExample {
         String queryName = "Intentionally slow test query"; // String | A name for this query. This goes into logs and is available in `Sys.Logs.HcQueryStart`.
         Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 7200 (2h)
         Integer keepForSeconds = 0; // Integer | Maximum time the result may be kept for, in seconds: <0 → 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)
+        SqlExecutionFlags executionFlags = SqlExecutionFlags.fromValue("None"); // SqlExecutionFlags | Optional request flags for the execution. Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query? This must be set in order to later retrieve Lineage.
         try {
             // uncomment the below to set overrides at the request level
-            // BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds).execute(opts);
+            // BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags).execute(opts);
 
-            BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds).execute();
+            BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#startQuery");
@@ -1320,6 +1521,7 @@ public class SqlBackgroundExecutionApiExample {
 | **queryName** | **String**| A name for this query. This goes into logs and is available in &#x60;Sys.Logs.HcQueryStart&#x60;. | [optional] |
 | **timeoutSeconds** | **Integer**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 7200 (2h) | [optional] [default to 0] |
 | **keepForSeconds** | **Integer**| Maximum time the result may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d) | [optional] [default to 0] |
+| **executionFlags** | [**SqlExecutionFlags**](.md)| Optional request flags for the execution. Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query? This must be set in order to later retrieve Lineage. | [optional] [enum: None, ProvideLineage] |
 
 ### Return type
 
