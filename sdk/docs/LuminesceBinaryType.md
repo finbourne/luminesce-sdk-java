@@ -20,6 +20,7 @@ LuminesceBinaryType method = LuminesceBinaryType.EMAIL_PROVIDERS;
 LuminesceBinaryType method = LuminesceBinaryType.PYTHON_PROVIDERS;
 LuminesceBinaryType method = LuminesceBinaryType.AWSS3_PROVIDERS;
 LuminesceBinaryType method = LuminesceBinaryType.AZURE_PROVIDERS;
+LuminesceBinaryType method = LuminesceBinaryType.GCS_PROVIDERS;
 LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_DB2LINUX;
 LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_MYSQL;
 LuminesceBinaryType method = LuminesceBinaryType.SQLDB_PROVIDERS_ORACLE;
