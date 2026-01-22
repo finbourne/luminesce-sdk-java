@@ -74,6 +74,22 @@ public class LusidGridData {
   @SerializedName(SERIALIZED_NAME_DATES)
   private DateParameters dates;
 
+  public static final String SERIALIZED_NAME_RECIPE = "recipe";
+  @SerializedName(SERIALIZED_NAME_RECIPE)
+  private String recipe;
+
+  public static final String SERIALIZED_NAME_CURRENCY = "currency";
+  @SerializedName(SERIALIZED_NAME_CURRENCY)
+  private String currency;
+
+  public static final String SERIALIZED_NAME_TENOR = "tenor";
+  @SerializedName(SERIALIZED_NAME_TENOR)
+  private String tenor;
+
+  public static final String SERIALIZED_NAME_ORDER_FLOW = "orderFlow";
+  @SerializedName(SERIALIZED_NAME_ORDER_FLOW)
+  private String orderFlow;
+
   public LusidGridData() {
   }
 
@@ -182,6 +198,90 @@ public class LusidGridData {
   }
 
 
+  public LusidGridData recipe(String recipe) {
+    
+    this.recipe = recipe;
+    return this;
+  }
+
+   /**
+   * The recipe to use for valuations
+   * @return recipe
+  **/
+  @jakarta.annotation.Nullable
+  public String getRecipe() {
+    return recipe;
+  }
+
+
+  public void setRecipe(String recipe) {
+    this.recipe = recipe;
+  }
+
+
+  public LusidGridData currency(String currency) {
+    
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * The currency to use for valuations
+   * @return currency
+  **/
+  @jakarta.annotation.Nullable
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
+  public LusidGridData tenor(String tenor) {
+    
+    this.tenor = tenor;
+    return this;
+  }
+
+   /**
+   * The tenor to use for valuations
+   * @return tenor
+  **/
+  @jakarta.annotation.Nullable
+  public String getTenor() {
+    return tenor;
+  }
+
+
+  public void setTenor(String tenor) {
+    this.tenor = tenor;
+  }
+
+
+  public LusidGridData orderFlow(String orderFlow) {
+    
+    this.orderFlow = orderFlow;
+    return this;
+  }
+
+   /**
+   * Type of order flow to include
+   * @return orderFlow
+  **/
+  @jakarta.annotation.Nullable
+  public String getOrderFlow() {
+    return orderFlow;
+  }
+
+
+  public void setOrderFlow(String orderFlow) {
+    this.orderFlow = orderFlow;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -196,7 +296,11 @@ public class LusidGridData {
         Objects.equals(this.resourceId, lusidGridData.resourceId) &&
         Objects.equals(this.dashboardType, lusidGridData.dashboardType) &&
         Objects.equals(this.useSettleDate, lusidGridData.useSettleDate) &&
-        Objects.equals(this.dates, lusidGridData.dates);
+        Objects.equals(this.dates, lusidGridData.dates) &&
+        Objects.equals(this.recipe, lusidGridData.recipe) &&
+        Objects.equals(this.currency, lusidGridData.currency) &&
+        Objects.equals(this.tenor, lusidGridData.tenor) &&
+        Objects.equals(this.orderFlow, lusidGridData.orderFlow);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -205,7 +309,7 @@ public class LusidGridData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(lusidGridDesign, resourceId, dashboardType, useSettleDate, dates);
+    return Objects.hash(lusidGridDesign, resourceId, dashboardType, useSettleDate, dates, recipe, currency, tenor, orderFlow);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -224,6 +328,10 @@ public class LusidGridData {
     sb.append("    dashboardType: ").append(toIndentedString(dashboardType)).append("\n");
     sb.append("    useSettleDate: ").append(toIndentedString(useSettleDate)).append("\n");
     sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
+    sb.append("    recipe: ").append(toIndentedString(recipe)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    tenor: ").append(toIndentedString(tenor)).append("\n");
+    sb.append("    orderFlow: ").append(toIndentedString(orderFlow)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +359,10 @@ public class LusidGridData {
     openapiFields.add("dashboardType");
     openapiFields.add("useSettleDate");
     openapiFields.add("dates");
+    openapiFields.add("recipe");
+    openapiFields.add("currency");
+    openapiFields.add("tenor");
+    openapiFields.add("orderFlow");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -285,6 +397,18 @@ public class LusidGridData {
       // validate the optional field `dates`
       if (jsonObj.get("dates") != null && !jsonObj.get("dates").isJsonNull()) {
         DateParameters.validateJsonElement(jsonObj.get("dates"));
+      }
+      if ((jsonObj.get("recipe") != null && !jsonObj.get("recipe").isJsonNull()) && !jsonObj.get("recipe").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recipe` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recipe").toString()));
+      }
+      if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
+      }
+      if ((jsonObj.get("tenor") != null && !jsonObj.get("tenor").isJsonNull()) && !jsonObj.get("tenor").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tenor` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tenor").toString()));
+      }
+      if ((jsonObj.get("orderFlow") != null && !jsonObj.get("orderFlow").isJsonNull()) && !jsonObj.get("orderFlow").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `orderFlow` to be a primitive type in the JSON string but got `%s`", jsonObj.get("orderFlow").toString()));
       }
   }
 

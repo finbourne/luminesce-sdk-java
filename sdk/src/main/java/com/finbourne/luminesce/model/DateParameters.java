@@ -63,6 +63,10 @@ public class DateParameters {
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_AT)
   private OffsetDateTime effectiveAt;
 
+  public static final String SERIALIZED_NAME_EFFECTIVE_FROM = "effectiveFrom";
+  @SerializedName(SERIALIZED_NAME_EFFECTIVE_FROM)
+  private OffsetDateTime effectiveFrom;
+
   public static final String SERIALIZED_NAME_AS_AT = "asAt";
   @SerializedName(SERIALIZED_NAME_AS_AT)
   private OffsetDateTime asAt;
@@ -133,6 +137,27 @@ public class DateParameters {
   }
 
 
+  public DateParameters effectiveFrom(OffsetDateTime effectiveFrom) {
+    
+    this.effectiveFrom = effectiveFrom;
+    return this;
+  }
+
+   /**
+   * EffectiveFrom of the dashboard
+   * @return effectiveFrom
+  **/
+  @jakarta.annotation.Nullable
+  public OffsetDateTime getEffectiveFrom() {
+    return effectiveFrom;
+  }
+
+
+  public void setEffectiveFrom(OffsetDateTime effectiveFrom) {
+    this.effectiveFrom = effectiveFrom;
+  }
+
+
   public DateParameters asAt(OffsetDateTime asAt) {
     
     this.asAt = asAt;
@@ -167,6 +192,7 @@ public class DateParameters {
     return Objects.equals(this.dateFrom, dateParameters.dateFrom) &&
         Objects.equals(this.dateTo, dateParameters.dateTo) &&
         Objects.equals(this.effectiveAt, dateParameters.effectiveAt) &&
+        Objects.equals(this.effectiveFrom, dateParameters.effectiveFrom) &&
         Objects.equals(this.asAt, dateParameters.asAt);
   }
 
@@ -176,7 +202,7 @@ public class DateParameters {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateFrom, dateTo, effectiveAt, asAt);
+    return Objects.hash(dateFrom, dateTo, effectiveAt, effectiveFrom, asAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -193,6 +219,7 @@ public class DateParameters {
     sb.append("    dateFrom: ").append(toIndentedString(dateFrom)).append("\n");
     sb.append("    dateTo: ").append(toIndentedString(dateTo)).append("\n");
     sb.append("    effectiveAt: ").append(toIndentedString(effectiveAt)).append("\n");
+    sb.append("    effectiveFrom: ").append(toIndentedString(effectiveFrom)).append("\n");
     sb.append("    asAt: ").append(toIndentedString(asAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -219,6 +246,7 @@ public class DateParameters {
     openapiFields.add("dateFrom");
     openapiFields.add("dateTo");
     openapiFields.add("effectiveAt");
+    openapiFields.add("effectiveFrom");
     openapiFields.add("asAt");
 
     // a set of required properties/fields (JSON key names)

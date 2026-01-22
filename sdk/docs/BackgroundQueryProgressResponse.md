@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **query** | **String** | The LuminesceSql of the original request | [optional] [default to String]
 **queryName** | **String** | The QueryName given in the original request | [optional] [default to String]
 **columnsAvailable** | [**List&lt;Column&gt;**](Column.md) | When HasData is true this is the schema of columns that will be returned if the data is requested | [optional] [default to List<Column>]
+**lineage** | [**TableLineage**](TableLineage.md) |  | [optional] [default to TableLineage]
 
 ```java
 import com.finbourne.luminesce.model.BackgroundQueryProgressResponse;
@@ -27,6 +28,7 @@ TaskStatus BackgroundQueryState @jakarta.annotation.Nullable String Progress = "
 @jakarta.annotation.Nullable String Query = "example Query";
 @jakarta.annotation.Nullable String QueryName = "example QueryName";
 @jakarta.annotation.Nullable List<Column> ColumnsAvailable = new List<Column>();
+TableLineage Lineage = new TableLineage();
 
 
 BackgroundQueryProgressResponse backgroundQueryProgressResponseInstance = new BackgroundQueryProgressResponse()
@@ -38,7 +40,8 @@ BackgroundQueryProgressResponse backgroundQueryProgressResponseInstance = new Ba
     .Feedback(Feedback)
     .Query(Query)
     .QueryName(QueryName)
-    .ColumnsAvailable(ColumnsAvailable);
+    .ColumnsAvailable(ColumnsAvailable)
+    .Lineage(Lineage);
 ```
 
 

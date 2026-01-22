@@ -30,7 +30,6 @@ Class | Method | HTTP request | Description
 *SqlBackgroundExecutionApi* | [**fetchQueryResultJson**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultjson) | **GET** /api/SqlBackground/{executionId}/json | FetchQueryResultJson: Fetch the result of a query as a JSON string
 *SqlBackgroundExecutionApi* | [**fetchQueryResultJsonProper**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultjsonproper) | **GET** /api/SqlBackground/{executionId}/jsonProper | FetchQueryResultJsonProper: Fetch the result of a query as JSON
 *SqlBackgroundExecutionApi* | [**fetchQueryResultJsonProperWithLineage**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultjsonproperwithlineage) | **GET** /api/SqlBackground/{executionId}/jsonProperWithLineage | FetchQueryResultJsonProperWithLineage: Fetch the result of a query as JSON, but including a Lineage Node (if available)
-*SqlBackgroundExecutionApi* | [**fetchQueryResultLineage**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultlineage) | **GET** /api/SqlBackground/{executionId}/lineage | FetchQueryResultLineage: Gets the Lineage determined while the query was executed
 *SqlBackgroundExecutionApi* | [**fetchQueryResultParquet**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultparquet) | **GET** /api/SqlBackground/{executionId}/parquet | FetchQueryResultParquet: Fetch the result of a query as Parquet
 *SqlBackgroundExecutionApi* | [**fetchQueryResultPipe**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultpipe) | **GET** /api/SqlBackground/{executionId}/pipe | FetchQueryResultPipe: Fetch the result of a query as pipe-delimited
 *SqlBackgroundExecutionApi* | [**fetchQueryResultSqlite**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultsqlite) | **GET** /api/SqlBackground/{executionId}/sqlite | FetchQueryResultSqlite: Fetch the result of a query as SqLite
@@ -153,6 +152,7 @@ Class | Method | HTTP request | Description
  - [Source](docs/Source.md)
  - [SourceType](docs/SourceType.md)
  - [SqlExecutionFlags](docs/SqlExecutionFlags.md)
+ - [TableLineage](docs/TableLineage.md)
  - [TableMeta](docs/TableMeta.md)
  - [TableView](docs/TableView.md)
  - [TaskStatus](docs/TaskStatus.md)

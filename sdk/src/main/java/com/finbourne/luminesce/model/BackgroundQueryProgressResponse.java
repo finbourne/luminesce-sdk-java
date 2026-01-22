@@ -14,6 +14,7 @@ import java.util.Objects;
 import com.finbourne.luminesce.model.BackgroundQueryState;
 import com.finbourne.luminesce.model.Column;
 import com.finbourne.luminesce.model.FeedbackEventArgs;
+import com.finbourne.luminesce.model.TableLineage;
 import com.finbourne.luminesce.model.TaskStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -91,6 +92,10 @@ public class BackgroundQueryProgressResponse {
   public static final String SERIALIZED_NAME_COLUMNS_AVAILABLE = "columnsAvailable";
   @SerializedName(SERIALIZED_NAME_COLUMNS_AVAILABLE)
   private List<Column> columnsAvailable;
+
+  public static final String SERIALIZED_NAME_LINEAGE = "lineage";
+  @SerializedName(SERIALIZED_NAME_LINEAGE)
+  private TableLineage lineage;
 
   public BackgroundQueryProgressResponse() {
   }
@@ -300,6 +305,27 @@ public class BackgroundQueryProgressResponse {
   }
 
 
+  public BackgroundQueryProgressResponse lineage(TableLineage lineage) {
+    
+    this.lineage = lineage;
+    return this;
+  }
+
+   /**
+   * Get lineage
+   * @return lineage
+  **/
+  @jakarta.annotation.Nullable
+  public TableLineage getLineage() {
+    return lineage;
+  }
+
+
+  public void setLineage(TableLineage lineage) {
+    this.lineage = lineage;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -318,7 +344,8 @@ public class BackgroundQueryProgressResponse {
         Objects.equals(this.feedback, backgroundQueryProgressResponse.feedback) &&
         Objects.equals(this.query, backgroundQueryProgressResponse.query) &&
         Objects.equals(this.queryName, backgroundQueryProgressResponse.queryName) &&
-        Objects.equals(this.columnsAvailable, backgroundQueryProgressResponse.columnsAvailable);
+        Objects.equals(this.columnsAvailable, backgroundQueryProgressResponse.columnsAvailable) &&
+        Objects.equals(this.lineage, backgroundQueryProgressResponse.lineage);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -327,7 +354,7 @@ public class BackgroundQueryProgressResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hasData, rowCount, status, state, progress, feedback, query, queryName, columnsAvailable);
+    return Objects.hash(hasData, rowCount, status, state, progress, feedback, query, queryName, columnsAvailable, lineage);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -350,6 +377,7 @@ public class BackgroundQueryProgressResponse {
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
     sb.append("    queryName: ").append(toIndentedString(queryName)).append("\n");
     sb.append("    columnsAvailable: ").append(toIndentedString(columnsAvailable)).append("\n");
+    sb.append("    lineage: ").append(toIndentedString(lineage)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -381,6 +409,7 @@ public class BackgroundQueryProgressResponse {
     openapiFields.add("query");
     openapiFields.add("queryName");
     openapiFields.add("columnsAvailable");
+    openapiFields.add("lineage");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -435,6 +464,10 @@ public class BackgroundQueryProgressResponse {
             Column.validateJsonElement(jsonArraycolumnsAvailable.get(i));
           };
         }
+      }
+      // validate the optional field `lineage`
+      if (jsonObj.get("lineage") != null && !jsonObj.get("lineage").isJsonNull()) {
+        TableLineage.validateJsonElement(jsonObj.get("lineage"));
       }
   }
 

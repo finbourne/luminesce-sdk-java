@@ -10,6 +10,10 @@ Name | Type | Description | Notes
 **dashboardType** | [**DashboardType**](DashboardType.md) |  | [optional] [default to DashboardType]
 **useSettleDate** | **Boolean** | Whether to use the Settlement date or the Transaction date | [optional] [default to Boolean]
 **dates** | [**DateParameters**](DateParameters.md) |  | [optional] [default to DateParameters]
+**recipe** | **String** | The recipe to use for valuations | [optional] [default to String]
+**currency** | **String** | The currency to use for valuations | [optional] [default to String]
+**tenor** | **String** | The tenor to use for valuations | [optional] [default to String]
+**orderFlow** | **String** | Type of order flow to include | [optional] [default to String]
 
 ```java
 import com.finbourne.luminesce.model.LusidGridData;
@@ -21,6 +25,10 @@ TableView LusidGridDesign = new TableView();
 ResourceId ResourceId = new ResourceId();
 DashboardType @jakarta.annotation.Nullable Boolean UseSettleDate = true;
 DateParameters Dates = new DateParameters();
+@jakarta.annotation.Nullable String Recipe = "example Recipe";
+@jakarta.annotation.Nullable String Currency = "example Currency";
+@jakarta.annotation.Nullable String Tenor = "example Tenor";
+@jakarta.annotation.Nullable String OrderFlow = "example OrderFlow";
 
 
 LusidGridData lusidGridDataInstance = new LusidGridData()
@@ -28,7 +36,11 @@ LusidGridData lusidGridDataInstance = new LusidGridData()
     .ResourceId(ResourceId)
     .DashboardType(DashboardType)
     .UseSettleDate(UseSettleDate)
-    .Dates(Dates);
+    .Dates(Dates)
+    .Recipe(Recipe)
+    .Currency(Currency)
+    .Tenor(Tenor)
+    .OrderFlow(OrderFlow);
 ```
 
 

@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.127
+  version: 1.19.138
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -7553,84 +7553,6 @@ paths:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
-  /api/SqlBackground/{executionId}/lineage:
-    get:
-      description: |-
-        Fetch the Lineage of the query in Json format.
-        - this must have been requested when starting the query
-        - if available (which is only after the query has executed) or if not simply being informed it is not yet ready
-
-        This contains some or all of:
-        - What result columns mean, per column, and where their data came from
-        - Some information about the data set as a whole: source tables/providers, joins, filters, etc.
-        - ... Or a reason the information could not be generated (e.g. DirectProviders with unknown shape currently cause this to fail)
-
-        Note Lineage will never take into account sorts/filters/grouping/etc. placed when requesting the data.
-        It will take into account such concepts when part of the query itself.
-
-        The following error codes are to be anticipated with standard Problem Detail reports:
-        - 401 Unauthorized
-        - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
-        - 429 Too Many Requests : Please try your request again soon
-         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
-         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
-         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
-      operationId: FetchQueryResultLineage
-      parameters:
-      - description: ExecutionId returned when starting the query
-        explode: false
-        in: path
-        name: executionId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            text/plain:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-            text/json:
-              schema:
-                type: string
-          description: OK
-        "400":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/LusidProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LusidProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/LusidProblemDetails'
-          description: Bad Request
-        "403":
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/LusidProblemDetails'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LusidProblemDetails'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/LusidProblemDetails'
-          description: Forbidden
-      security:
-      - oauth2: []
-      summary: "FetchQueryResultLineage: Gets the Lineage determined while the query\
-        \ was executed"
-      tags:
-      - Sql Background Execution
-      x-fbn-apistatus: Stable
-      x-accepts: application/json
   /api/SqlBackground/{executionId}/parquet:
     get:
       description: |-
@@ -8685,6 +8607,43 @@ components:
             message: message
             when: 2000-01-23T04:56:07.000+00:00
             messageTemplate: messageTemplate
+          lineage:
+            rowLineage:
+              documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            columnLineage:
+            - documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            - documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            failureReason: failureReason
           columnsAvailable:
           - lineage:
               documentationAsHtml: documentationAsHtml
@@ -8762,6 +8721,43 @@ components:
             message: message
             when: 2000-01-23T04:56:07.000+00:00
             messageTemplate: messageTemplate
+          lineage:
+            rowLineage:
+              documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            columnLineage:
+            - documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            - documentationAsHtml: documentationAsHtml
+              subtype: subtype
+              children:
+              - null
+              - null
+              displayName: displayName
+              documentationAsMarkDown: documentationAsMarkDown
+              alias: alias
+              description: description
+              fullText: fullText
+              type: type
+            failureReason: failureReason
           columnsAvailable:
           - lineage:
               documentationAsHtml: documentationAsHtml
@@ -9067,6 +9063,43 @@ components:
           message: message
           when: 2000-01-23T04:56:07.000+00:00
           messageTemplate: messageTemplate
+        lineage:
+          rowLineage:
+            documentationAsHtml: documentationAsHtml
+            subtype: subtype
+            children:
+            - null
+            - null
+            displayName: displayName
+            documentationAsMarkDown: documentationAsMarkDown
+            alias: alias
+            description: description
+            fullText: fullText
+            type: type
+          columnLineage:
+          - documentationAsHtml: documentationAsHtml
+            subtype: subtype
+            children:
+            - null
+            - null
+            displayName: displayName
+            documentationAsMarkDown: documentationAsMarkDown
+            alias: alias
+            description: description
+            fullText: fullText
+            type: type
+          - documentationAsHtml: documentationAsHtml
+            subtype: subtype
+            children:
+            - null
+            - null
+            displayName: displayName
+            documentationAsMarkDown: documentationAsMarkDown
+            alias: alias
+            description: description
+            fullText: fullText
+            type: type
+          failureReason: failureReason
         columnsAvailable:
         - lineage:
             documentationAsHtml: documentationAsHtml
@@ -9159,6 +9192,8 @@ components:
             $ref: '#/components/schemas/Column'
           nullable: true
           type: array
+        lineage:
+          $ref: '#/components/schemas/TableLineage'
       type: object
     BackgroundQueryResponse:
       additionalProperties: false
@@ -9715,6 +9750,7 @@ components:
         effectiveAt: 2000-01-23T04:56:07.000+00:00
         asAt: 2000-01-23T04:56:07.000+00:00
         dateFrom: 2000-01-23T04:56:07.000+00:00
+        effectiveFrom: 2000-01-23T04:56:07.000+00:00
       properties:
         dateFrom:
           description: Parameter to determine the lower bound in a date range
@@ -9728,6 +9764,11 @@ components:
           type: string
         effectiveAt:
           description: EffectiveAt of the dashboard
+          format: date-time
+          nullable: true
+          type: string
+        effectiveFrom:
+          description: EffectiveFrom of the dashboard
           format: date-time
           nullable: true
           type: string
@@ -10625,6 +10666,7 @@ components:
         resourceId:
           code: code
           scope: scope
+        tenor: tenor
         lusidGridDesign:
           meta:
             tableId: tableId
@@ -10650,12 +10692,16 @@ components:
             sortIndex: 0
             sort: sort
             colId: colId
+        recipe: recipe
         dates:
           dateTo: 2000-01-23T04:56:07.000+00:00
           effectiveAt: 2000-01-23T04:56:07.000+00:00
           asAt: 2000-01-23T04:56:07.000+00:00
           dateFrom: 2000-01-23T04:56:07.000+00:00
+          effectiveFrom: 2000-01-23T04:56:07.000+00:00
+        currency: currency
         dashboardType: null
+        orderFlow: orderFlow
         useSettleDate: true
       properties:
         lusidGridDesign:
@@ -10670,6 +10716,22 @@ components:
           type: boolean
         dates:
           $ref: '#/components/schemas/DateParameters'
+        recipe:
+          description: The recipe to use for valuations
+          nullable: true
+          type: string
+        currency:
+          description: The currency to use for valuations
+          nullable: true
+          type: string
+        tenor:
+          description: The tenor to use for valuations
+          nullable: true
+          type: string
+        orderFlow:
+          description: Type of order flow to include
+          nullable: true
+          type: string
       required:
       - lusidGridDesign
       - resourceId
@@ -11523,6 +11585,57 @@ components:
       - None
       - ProvideLineage
       type: string
+    TableLineage:
+      additionalProperties: false
+      example:
+        rowLineage:
+          documentationAsHtml: documentationAsHtml
+          subtype: subtype
+          children:
+          - null
+          - null
+          displayName: displayName
+          documentationAsMarkDown: documentationAsMarkDown
+          alias: alias
+          description: description
+          fullText: fullText
+          type: type
+        columnLineage:
+        - documentationAsHtml: documentationAsHtml
+          subtype: subtype
+          children:
+          - null
+          - null
+          displayName: displayName
+          documentationAsMarkDown: documentationAsMarkDown
+          alias: alias
+          description: description
+          fullText: fullText
+          type: type
+        - documentationAsHtml: documentationAsHtml
+          subtype: subtype
+          children:
+          - null
+          - null
+          displayName: displayName
+          documentationAsMarkDown: documentationAsMarkDown
+          alias: alias
+          description: description
+          fullText: fullText
+          type: type
+        failureReason: failureReason
+      properties:
+        columnLineage:
+          items:
+            $ref: '#/components/schemas/Lineage'
+          nullable: true
+          type: array
+        rowLineage:
+          $ref: '#/components/schemas/Lineage'
+        failureReason:
+          nullable: true
+          type: string
+      type: object
     TableMeta:
       additionalProperties: false
       description: Representation of the table metadata
