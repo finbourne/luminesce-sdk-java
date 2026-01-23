@@ -1168,11 +1168,11 @@ public class SqlBackgroundExecutionApiExample {
 
 ## getHistoricalFeedback
 
-> BackgroundQueryProgressResponse getHistoricalFeedback(executionId)
+> BackgroundQueryProgressResponse getHistoricalFeedback(executionId, nextMessageWaitSeconds)
 
 GetHistoricalFeedback: View historical query progress (for older queries)
 
-View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days. Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days.  This method is slow by its nature of looking at the stream of historical feedback data.  On the other hand under some circumstances this can fail to wait long enough and return 404s where really there is data. To help with this &#x60;nextMessageWaitSeconds&#x60; may be specified to non-default values larger then the 2-7s used internally.  Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
 ### Example
 
@@ -1214,11 +1214,12 @@ public class SqlBackgroundExecutionApiExample {
 
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        Integer nextMessageWaitSeconds = 56; // Integer | An override to the internal default as the the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect.
         try {
             // uncomment the below to set overrides at the request level
-            // BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId).execute(opts);
+            // BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId, nextMessageWaitSeconds).execute(opts);
 
-            BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId).execute();
+            BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId, nextMessageWaitSeconds).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#getHistoricalFeedback");
@@ -1236,6 +1237,7 @@ public class SqlBackgroundExecutionApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **executionId** | **String**| ExecutionId returned when starting the query | |
+| **nextMessageWaitSeconds** | **Integer**| An override to the internal default as the the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. | [optional] |
 
 ### Return type
 

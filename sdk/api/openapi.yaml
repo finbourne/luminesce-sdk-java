@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.138
+  version: 1.19.146
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6993,19 +6993,25 @@ paths:
       x-accepts: application/json
   /api/SqlBackground/{executionId}/historicalFeedback:
     get:
-      description: |-
-        View full progress information, including historical feedback for queries which have passed their `keepForSeconds` time,
-        so long as they were executed in the last 31 days.
-        Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.
-
-        The following error codes are to be anticipated most with standard Problem Detail reports:
-        - 401 Unauthorized
-        - 403 Forbidden
-        - 404 Not Found : The requested query result doesn't exist and is not running.
-        - 429 Too Many Requests : Please try your request again soon
-         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
-         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
-         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      description: "View full progress information, including historical feedback\
+        \ for queries which have passed their `keepForSeconds` time,\nso long as they\
+        \ were executed in the last 31 days.\n\nThis method is slow by its nature\
+        \ of looking at the stream of historical feedback data. \nOn the other hand\
+        \ under some circumstances this can fail to wait long enough and return 404s\
+        \ where really there is data.\nTo help with this `nextMessageWaitSeconds`\
+        \ may be specified to non-default values larger then the 2-7s used internally.\n\
+        \nUnlike most methods here this may be called by a user that did not run the\
+        \ original query, if your entitlements allow this, as this is pure telemetry\
+        \ information.\n\nThe following error codes are to be anticipated most with\
+        \ standard Problem Detail reports:\n- 401 Unauthorized\n- 403 Forbidden\n\
+        - 404 Not Found : The requested query result doesn't exist and is not running.\n\
+        - 429 Too Many Requests : Please try your request again soon\n 1. The query\
+        \ has been executed successfully in the past yet the server-instance receiving\
+        \ this request (e.g. from a load balancer) doesn't yet have this data available.\n\
+        \ 1. By virtue of the request you have just placed this will have started\
+        \ to load from the persisted cache and will soon be available.\n 1. It is\
+        \ also the case that the original server-instance to process the original\
+        \ query is likely to already be able to service this request."
       operationId: GetHistoricalFeedback
       parameters:
       - description: ExecutionId returned when starting the query
@@ -7016,6 +7022,18 @@ paths:
         schema:
           type: string
         style: simple
+      - description: |-
+          An override to the internal default as the the number of seconds to wait for stream-messages.
+          Meant to help understand 404s that would seem on the surface to be incorrect.
+        explode: true
+        in: query
+        name: nextMessageWaitSeconds
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:

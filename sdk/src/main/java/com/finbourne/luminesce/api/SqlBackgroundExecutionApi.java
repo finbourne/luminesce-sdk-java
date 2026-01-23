@@ -3704,11 +3704,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultXmlRequest fetchQueryResultXml(String executionId) {
         return new APIfetchQueryResultXmlRequest(executionId);
     }
-    private okhttp3.Call getHistoricalFeedbackCall(String executionId, final ApiCallback _callback) throws ApiException {
-        return getHistoricalFeedbackCall(executionId,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getHistoricalFeedbackCall(String executionId, Integer nextMessageWaitSeconds, final ApiCallback _callback) throws ApiException {
+        return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getHistoricalFeedbackCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackCall(String executionId, Integer nextMessageWaitSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3734,6 +3734,10 @@ public class SqlBackgroundExecutionApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (nextMessageWaitSeconds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("nextMessageWaitSeconds", nextMessageWaitSeconds));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -3756,40 +3760,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getHistoricalFeedbackValidateBeforeCall(String executionId, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackValidateBeforeCall(String executionId, Integer nextMessageWaitSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling getHistoricalFeedback(Async)");
         }
 
-        return getHistoricalFeedbackCall(executionId, _callback, opts);
+        return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId) throws ApiException {
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, null, new ConfigurationOptions());
+    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, Integer nextMessageWaitSeconds) throws ApiException {
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, null, opts);
+    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, Integer nextMessageWaitSeconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, Integer nextMessageWaitSeconds, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, Integer nextMessageWaitSeconds, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, _callback, opts);
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3797,9 +3801,20 @@ public class SqlBackgroundExecutionApi {
 
     public class APIgetHistoricalFeedbackRequest {
         private final String executionId;
+        private Integer nextMessageWaitSeconds;
 
         private APIgetHistoricalFeedbackRequest(String executionId) {
             this.executionId = executionId;
+        }
+
+        /**
+         * Set nextMessageWaitSeconds
+         * @param nextMessageWaitSeconds An override to the internal default as the the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. (optional)
+         * @return APIgetHistoricalFeedbackRequest
+         */
+        public APIgetHistoricalFeedbackRequest nextMessageWaitSeconds(Integer nextMessageWaitSeconds) {
+            this.nextMessageWaitSeconds = nextMessageWaitSeconds;
+            return this;
         }
 
         /**
@@ -3814,7 +3829,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getHistoricalFeedbackCall(executionId, _callback);
+            return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, _callback);
         }
 
         /**
@@ -3828,7 +3843,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryProgressResponse execute() throws ApiException {
-            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId);
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds);
             return localVarResp.getData();
         }
 
@@ -3843,7 +3858,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, opts);
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, opts);
             return localVarResp.getData();
         }
 
@@ -3858,7 +3873,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo() throws ApiException {
-            return getHistoricalFeedbackWithHttpInfo(executionId);
+            return getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds);
         }
 
         /**
@@ -3872,7 +3887,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getHistoricalFeedbackWithHttpInfo(executionId, opts);
+            return getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, opts);
         }
 
         /**
@@ -3887,7 +3902,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
-            return getHistoricalFeedbackAsync(executionId, _callback);
+            return getHistoricalFeedbackAsync(executionId, nextMessageWaitSeconds, _callback);
         }
 
         /**
@@ -3902,13 +3917,13 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
-            return getHistoricalFeedbackAsync(executionId, _callback, opts);
+            return getHistoricalFeedbackAsync(executionId, nextMessageWaitSeconds, _callback, opts);
         }
     }
 
     /**
      * GetHistoricalFeedback: View historical query progress (for older queries)
-     * View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days. Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * View full progress information, including historical feedback for queries which have passed their &#x60;keepForSeconds&#x60; time, so long as they were executed in the last 31 days.  This method is slow by its nature of looking at the stream of historical feedback data.  On the other hand under some circumstances this can fail to wait long enough and return 404s where really there is data. To help with this &#x60;nextMessageWaitSeconds&#x60; may be specified to non-default values larger then the 2-7s used internally.  Unlike most methods here this may be called by a user that did not run the original query, if your entitlements allow this, as this is pure telemetry information.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t exist and is not running. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
      * @param executionId ExecutionId returned when starting the query (required)
      * @return APIgetHistoricalFeedbackRequest
      * @http.response.details
