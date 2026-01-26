@@ -306,11 +306,11 @@ public class CurrentTableFieldCatalogApi {
     public APIgetCatalogRequest getCatalog() {
         return new APIgetCatalogRequest();
     }
-    private okhttp3.Call getFieldsCall(String tableLike, final ApiCallback _callback) throws ApiException {
-        return getFieldsCall(tableLike,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getFieldsCall(String tableLike, Boolean addLineage, final ApiCallback _callback) throws ApiException {
+        return getFieldsCall(tableLike, addLineage,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getFieldsCall(String tableLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getFieldsCall(String tableLike, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -339,6 +339,10 @@ public class CurrentTableFieldCatalogApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("tableLike", tableLike));
         }
 
+        if (addLineage != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("addLineage", addLineage));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -361,35 +365,35 @@ public class CurrentTableFieldCatalogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFieldsValidateBeforeCall(String tableLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getFieldsCall(tableLike, _callback, opts);
+    private okhttp3.Call getFieldsValidateBeforeCall(String tableLike, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getFieldsCall(tableLike, addLineage, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike) throws ApiException {
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, null, new ConfigurationOptions());
+    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, Boolean addLineage) throws ApiException {
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, null, opts);
+    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, Boolean addLineage, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getFieldsAsync(String tableLike, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getFieldsAsync(String tableLike, Boolean addLineage, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getFieldsAsync(String tableLike, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getFieldsAsync(String tableLike, Boolean addLineage, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, _callback, opts);
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -397,17 +401,28 @@ public class CurrentTableFieldCatalogApi {
 
     public class APIgetFieldsRequest {
         private String tableLike;
+        private Boolean addLineage;
 
         private APIgetFieldsRequest() {
         }
 
         /**
          * Set tableLike
-         * @param tableLike  (optional, default to %)
+         * @param tableLike Allows for SQL-LIKE style filtering of which Providers you want the fields for. (optional, default to %)
          * @return APIgetFieldsRequest
          */
         public APIgetFieldsRequest tableLike(String tableLike) {
             this.tableLike = tableLike;
+            return this;
+        }
+
+        /**
+         * Set addLineage
+         * @param addLineage Adds in any column lineage which is registered in the catalog to the results. (optional, default to false)
+         * @return APIgetFieldsRequest
+         */
+        public APIgetFieldsRequest addLineage(Boolean addLineage) {
+            this.addLineage = addLineage;
             return this;
         }
 
@@ -423,7 +438,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getFieldsCall(tableLike, _callback);
+            return getFieldsCall(tableLike, addLineage, _callback);
         }
 
         /**
@@ -437,7 +452,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike);
+            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, addLineage);
             return localVarResp.getData();
         }
 
@@ -452,7 +467,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, opts);
+            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, addLineage, opts);
             return localVarResp.getData();
         }
 
@@ -467,7 +482,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getFieldsWithHttpInfo(tableLike);
+            return getFieldsWithHttpInfo(tableLike, addLineage);
         }
 
         /**
@@ -481,7 +496,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getFieldsWithHttpInfo(tableLike, opts);
+            return getFieldsWithHttpInfo(tableLike, addLineage, opts);
         }
 
         /**
@@ -496,7 +511,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getFieldsAsync(tableLike, _callback);
+            return getFieldsAsync(tableLike, addLineage, _callback);
         }
 
         /**
@@ -511,7 +526,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getFieldsAsync(tableLike, _callback, opts);
+            return getFieldsAsync(tableLike, addLineage, _callback, opts);
         }
     }
 

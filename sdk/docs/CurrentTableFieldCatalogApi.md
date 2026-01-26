@@ -103,7 +103,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 ## getFields
 
-> String getFields(tableLike)
+> String getFields(tableLike, addLineage)
 
 GetFields: List field and parameters for providers
 
@@ -148,12 +148,13 @@ public class CurrentTableFieldCatalogApiExample {
         // CurrentTableFieldCatalogApi apiInstance = apiFactory.build(CurrentTableFieldCatalogApi.class);
 
         CurrentTableFieldCatalogApi apiInstance = ApiFactoryBuilder.build(fileName).build(CurrentTableFieldCatalogApi.class);
-        String tableLike = "%"; // String | 
+        String tableLike = "%"; // String | Allows for SQL-LIKE style filtering of which Providers you want the fields for.
+        Boolean addLineage = false; // Boolean | Adds in any column lineage which is registered in the catalog to the results.
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getFields(tableLike).execute(opts);
+            // String result = apiInstance.getFields(tableLike, addLineage).execute(opts);
 
-            String result = apiInstance.getFields(tableLike).execute();
+            String result = apiInstance.getFields(tableLike, addLineage).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling CurrentTableFieldCatalogApi#getFields");
@@ -170,7 +171,8 @@ public class CurrentTableFieldCatalogApiExample {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **tableLike** | **String**|  | [optional] [default to %] |
+| **tableLike** | **String**| Allows for SQL-LIKE style filtering of which Providers you want the fields for. | [optional] [default to %] |
+| **addLineage** | **Boolean**| Adds in any column lineage which is registered in the catalog to the results. | [optional] [default to false] |
 
 ### Return type
 

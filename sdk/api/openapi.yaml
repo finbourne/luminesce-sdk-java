@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.146
+  version: 1.19.154
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -201,7 +201,9 @@ paths:
         \ Problem Detail reports:\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: GetFields
       parameters:
-      - explode: true
+      - description: Allows for SQL-LIKE style filtering of which Providers you want
+          the fields for.
+        explode: true
         in: query
         name: tableLike
         required: false
@@ -209,6 +211,17 @@ paths:
           default: '%'
           type: string
         style: form
+      - description: Adds in any column lineage which is registered in the catalog
+          to the results.
+        explode: true
+        in: query
+        name: addLineage
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
