@@ -194,7 +194,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 ## getProviders
 
-> String getProviders(freeTextSearch)
+> String getProviders(freeTextSearch, addLineage)
 
 GetProviders: List available providers
 
@@ -240,11 +240,12 @@ public class CurrentTableFieldCatalogApiExample {
 
         CurrentTableFieldCatalogApi apiInstance = ApiFactoryBuilder.build(fileName).build(CurrentTableFieldCatalogApi.class);
         String freeTextSearch = "freeTextSearch_example"; // String | Limit the catalog to only things in some way dealing with the passed in text string
+        Boolean addLineage = false; // Boolean | Adds in any column lineage which is registered in the catalog to the results.
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getProviders(freeTextSearch).execute(opts);
+            // String result = apiInstance.getProviders(freeTextSearch, addLineage).execute(opts);
 
-            String result = apiInstance.getProviders(freeTextSearch).execute();
+            String result = apiInstance.getProviders(freeTextSearch, addLineage).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling CurrentTableFieldCatalogApi#getProviders");
@@ -262,6 +263,7 @@ public class CurrentTableFieldCatalogApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **freeTextSearch** | **String**| Limit the catalog to only things in some way dealing with the passed in text string | [optional] |
+| **addLineage** | **Boolean**| Adds in any column lineage which is registered in the catalog to the results. | [optional] [default to false] |
 
 ### Return type
 

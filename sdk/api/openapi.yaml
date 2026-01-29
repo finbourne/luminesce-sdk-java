@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.160
+  version: 1.19.165
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -267,6 +267,17 @@ paths:
         schema:
           type: string
         style: form
+      - description: Adds in any column lineage which is registered in the catalog
+          to the results.
+        explode: true
+        in: query
+        name: addLineage
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -8639,7 +8650,7 @@ components:
             when: 2000-01-23T04:56:07.000+00:00
             messageTemplate: messageTemplate
           lineage:
-            rowLineage:
+            wholeTableLineage:
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
@@ -8753,7 +8764,7 @@ components:
             when: 2000-01-23T04:56:07.000+00:00
             messageTemplate: messageTemplate
           lineage:
-            rowLineage:
+            wholeTableLineage:
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
@@ -9095,7 +9106,7 @@ components:
           when: 2000-01-23T04:56:07.000+00:00
           messageTemplate: messageTemplate
         lineage:
-          rowLineage:
+          wholeTableLineage:
             documentationAsHtml: documentationAsHtml
             subtype: subtype
             children:
@@ -11619,7 +11630,7 @@ components:
     TableLineage:
       additionalProperties: false
       example:
-        rowLineage:
+        wholeTableLineage:
           documentationAsHtml: documentationAsHtml
           subtype: subtype
           children:
@@ -11661,7 +11672,7 @@ components:
             $ref: '#/components/schemas/Lineage'
           nullable: true
           type: array
-        rowLineage:
+        wholeTableLineage:
           $ref: '#/components/schemas/Lineage'
         failureReason:
           nullable: true

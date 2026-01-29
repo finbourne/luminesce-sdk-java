@@ -543,11 +543,11 @@ public class CurrentTableFieldCatalogApi {
     public APIgetFieldsRequest getFields() {
         return new APIgetFieldsRequest();
     }
-    private okhttp3.Call getProvidersCall(String freeTextSearch, final ApiCallback _callback) throws ApiException {
-        return getProvidersCall(freeTextSearch,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean addLineage, final ApiCallback _callback) throws ApiException {
+        return getProvidersCall(freeTextSearch, addLineage,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getProvidersCall(String freeTextSearch, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -576,6 +576,10 @@ public class CurrentTableFieldCatalogApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("freeTextSearch", freeTextSearch));
         }
 
+        if (addLineage != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("addLineage", addLineage));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -598,35 +602,35 @@ public class CurrentTableFieldCatalogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getProvidersCall(freeTextSearch, _callback, opts);
+    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getProvidersCall(freeTextSearch, addLineage, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, null, new ConfigurationOptions());
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean addLineage) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, null, opts);
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean addLineage, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getProvidersAsync(String freeTextSearch, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean addLineage, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getProvidersAsync(String freeTextSearch, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean addLineage, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, _callback, opts);
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -634,6 +638,7 @@ public class CurrentTableFieldCatalogApi {
 
     public class APIgetProvidersRequest {
         private String freeTextSearch;
+        private Boolean addLineage;
 
         private APIgetProvidersRequest() {
         }
@@ -649,6 +654,16 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
+         * Set addLineage
+         * @param addLineage Adds in any column lineage which is registered in the catalog to the results. (optional, default to false)
+         * @return APIgetProvidersRequest
+         */
+        public APIgetProvidersRequest addLineage(Boolean addLineage) {
+            this.addLineage = addLineage;
+            return this;
+        }
+
+        /**
          * Build call for getProviders
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -660,7 +675,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getProvidersCall(freeTextSearch, _callback);
+            return getProvidersCall(freeTextSearch, addLineage, _callback);
         }
 
         /**
@@ -674,7 +689,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch);
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, addLineage);
             return localVarResp.getData();
         }
 
@@ -689,7 +704,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, opts);
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, addLineage, opts);
             return localVarResp.getData();
         }
 
@@ -704,7 +719,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getProvidersWithHttpInfo(freeTextSearch);
+            return getProvidersWithHttpInfo(freeTextSearch, addLineage);
         }
 
         /**
@@ -718,7 +733,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getProvidersWithHttpInfo(freeTextSearch, opts);
+            return getProvidersWithHttpInfo(freeTextSearch, addLineage, opts);
         }
 
         /**
@@ -733,7 +748,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getProvidersAsync(freeTextSearch, _callback);
+            return getProvidersAsync(freeTextSearch, addLineage, _callback);
         }
 
         /**
@@ -748,7 +763,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getProvidersAsync(freeTextSearch, _callback, opts);
+            return getProvidersAsync(freeTextSearch, addLineage, _callback, opts);
         }
     }
 

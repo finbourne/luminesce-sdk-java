@@ -57,9 +57,9 @@ public class TableLineage {
   @SerializedName(SERIALIZED_NAME_COLUMN_LINEAGE)
   private List<Lineage> columnLineage;
 
-  public static final String SERIALIZED_NAME_ROW_LINEAGE = "rowLineage";
-  @SerializedName(SERIALIZED_NAME_ROW_LINEAGE)
-  private Lineage rowLineage;
+  public static final String SERIALIZED_NAME_WHOLE_TABLE_LINEAGE = "wholeTableLineage";
+  @SerializedName(SERIALIZED_NAME_WHOLE_TABLE_LINEAGE)
+  private Lineage wholeTableLineage;
 
   public static final String SERIALIZED_NAME_FAILURE_REASON = "failureReason";
   @SerializedName(SERIALIZED_NAME_FAILURE_REASON)
@@ -97,24 +97,24 @@ public class TableLineage {
   }
 
 
-  public TableLineage rowLineage(Lineage rowLineage) {
+  public TableLineage wholeTableLineage(Lineage wholeTableLineage) {
     
-    this.rowLineage = rowLineage;
+    this.wholeTableLineage = wholeTableLineage;
     return this;
   }
 
    /**
-   * Get rowLineage
-   * @return rowLineage
+   * Get wholeTableLineage
+   * @return wholeTableLineage
   **/
   @jakarta.annotation.Nullable
-  public Lineage getRowLineage() {
-    return rowLineage;
+  public Lineage getWholeTableLineage() {
+    return wholeTableLineage;
   }
 
 
-  public void setRowLineage(Lineage rowLineage) {
-    this.rowLineage = rowLineage;
+  public void setWholeTableLineage(Lineage wholeTableLineage) {
+    this.wholeTableLineage = wholeTableLineage;
   }
 
 
@@ -150,7 +150,7 @@ public class TableLineage {
     }
     TableLineage tableLineage = (TableLineage) o;
     return Objects.equals(this.columnLineage, tableLineage.columnLineage) &&
-        Objects.equals(this.rowLineage, tableLineage.rowLineage) &&
+        Objects.equals(this.wholeTableLineage, tableLineage.wholeTableLineage) &&
         Objects.equals(this.failureReason, tableLineage.failureReason);
   }
 
@@ -160,7 +160,7 @@ public class TableLineage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(columnLineage, rowLineage, failureReason);
+    return Objects.hash(columnLineage, wholeTableLineage, failureReason);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -175,7 +175,7 @@ public class TableLineage {
     StringBuilder sb = new StringBuilder();
     sb.append("class TableLineage {\n");
     sb.append("    columnLineage: ").append(toIndentedString(columnLineage)).append("\n");
-    sb.append("    rowLineage: ").append(toIndentedString(rowLineage)).append("\n");
+    sb.append("    wholeTableLineage: ").append(toIndentedString(wholeTableLineage)).append("\n");
     sb.append("    failureReason: ").append(toIndentedString(failureReason)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -200,7 +200,7 @@ public class TableLineage {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
     openapiFields.add("columnLineage");
-    openapiFields.add("rowLineage");
+    openapiFields.add("wholeTableLineage");
     openapiFields.add("failureReason");
 
     // a set of required properties/fields (JSON key names)
@@ -234,9 +234,9 @@ public class TableLineage {
           };
         }
       }
-      // validate the optional field `rowLineage`
-      if (jsonObj.get("rowLineage") != null && !jsonObj.get("rowLineage").isJsonNull()) {
-        Lineage.validateJsonElement(jsonObj.get("rowLineage"));
+      // validate the optional field `wholeTableLineage`
+      if (jsonObj.get("wholeTableLineage") != null && !jsonObj.get("wholeTableLineage").isJsonNull()) {
+        Lineage.validateJsonElement(jsonObj.get("wholeTableLineage"));
       }
       if ((jsonObj.get("failureReason") != null && !jsonObj.get("failureReason").isJsonNull()) && !jsonObj.get("failureReason").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `failureReason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("failureReason").toString()));

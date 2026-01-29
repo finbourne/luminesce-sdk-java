@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **columnLineage** | [**List&lt;Lineage&gt;**](Lineage.md) |  | [optional] [default to List<Lineage>]
-**rowLineage** | [**Lineage**](Lineage.md) |  | [optional] [default to Lineage]
+**wholeTableLineage** | [**Lineage**](Lineage.md) |  | [optional] [default to Lineage]
 **failureReason** | **String** |  | [optional] [default to String]
 
 ```java
@@ -15,13 +15,13 @@ import java.lang.System;
 import java.net.URI;
 
 @jakarta.annotation.Nullable List<Lineage> ColumnLineage = new List<Lineage>();
-Lineage RowLineage = new Lineage();
+Lineage WholeTableLineage = new Lineage();
 @jakarta.annotation.Nullable String FailureReason = "example FailureReason";
 
 
 TableLineage tableLineageInstance = new TableLineage()
     .ColumnLineage(ColumnLineage)
-    .RowLineage(RowLineage)
+    .WholeTableLineage(WholeTableLineage)
     .FailureReason(FailureReason);
 ```
 
