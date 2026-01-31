@@ -7,11 +7,12 @@ Name | Type | Description | Notes
 **type** | **String** |  | [optional] [default to String]
 **subtype** | **String** |  | [optional] [default to String]
 **alias** | **String** |  | [optional] [default to String]
-**displayName** | **String** |  | [optional] [default to String]
-**description** | **String** |  | [optional] [default to String]
+**columnTitleTooltip** | **String** |  | [optional] [default to String]
+**explainTitle** | **String** |  | [optional] [default to String]
+**explainTooltip** | **String** |  | [optional] [default to String]
+**fullFormula** | **String** |  | [optional] [default to String]
 **documentationAsHtml** | **String** |  | [optional] [default to String]
 **documentationAsMarkDown** | **String** |  | [optional] [default to String]
-**fullText** | **String** |  | [optional] [default to String]
 **children** | [**List&lt;Lineage&gt;**](Lineage.md) |  | [optional] [default to List<Lineage>]
 
 ```java
@@ -23,11 +24,12 @@ import java.net.URI;
 @jakarta.annotation.Nullable String Type = "example Type";
 @jakarta.annotation.Nullable String Subtype = "example Subtype";
 @jakarta.annotation.Nullable String Alias = "example Alias";
-@jakarta.annotation.Nullable String DisplayName = "example DisplayName";
-@jakarta.annotation.Nullable String Description = "example Description";
+@jakarta.annotation.Nullable String ColumnTitleTooltip = "example ColumnTitleTooltip";
+@jakarta.annotation.Nullable String ExplainTitle = "example ExplainTitle";
+@jakarta.annotation.Nullable String ExplainTooltip = "example ExplainTooltip";
+@jakarta.annotation.Nullable String FullFormula = "example FullFormula";
 @jakarta.annotation.Nullable String DocumentationAsHtml = "example DocumentationAsHtml";
 @jakarta.annotation.Nullable String DocumentationAsMarkDown = "example DocumentationAsMarkDown";
-@jakarta.annotation.Nullable String FullText = "example FullText";
 @jakarta.annotation.Nullable List<Lineage> Children = new List<Lineage>();
 
 
@@ -35,11 +37,12 @@ Lineage lineageInstance = new Lineage()
     .Type(Type)
     .Subtype(Subtype)
     .Alias(Alias)
-    .DisplayName(DisplayName)
-    .Description(Description)
+    .ColumnTitleTooltip(ColumnTitleTooltip)
+    .ExplainTitle(ExplainTitle)
+    .ExplainTooltip(ExplainTooltip)
+    .FullFormula(FullFormula)
     .DocumentationAsHtml(DocumentationAsHtml)
     .DocumentationAsMarkDown(DocumentationAsMarkDown)
-    .FullText(FullText)
     .Children(Children);
 ```
 

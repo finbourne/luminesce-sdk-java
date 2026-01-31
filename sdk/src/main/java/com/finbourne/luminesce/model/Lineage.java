@@ -64,13 +64,21 @@ public class Lineage {
   @SerializedName(SERIALIZED_NAME_ALIAS)
   private String alias;
 
-  public static final String SERIALIZED_NAME_DISPLAY_NAME = "displayName";
-  @SerializedName(SERIALIZED_NAME_DISPLAY_NAME)
-  private String displayName;
+  public static final String SERIALIZED_NAME_COLUMN_TITLE_TOOLTIP = "columnTitleTooltip";
+  @SerializedName(SERIALIZED_NAME_COLUMN_TITLE_TOOLTIP)
+  private String columnTitleTooltip;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
+  public static final String SERIALIZED_NAME_EXPLAIN_TITLE = "explainTitle";
+  @SerializedName(SERIALIZED_NAME_EXPLAIN_TITLE)
+  private String explainTitle;
+
+  public static final String SERIALIZED_NAME_EXPLAIN_TOOLTIP = "explainTooltip";
+  @SerializedName(SERIALIZED_NAME_EXPLAIN_TOOLTIP)
+  private String explainTooltip;
+
+  public static final String SERIALIZED_NAME_FULL_FORMULA = "fullFormula";
+  @SerializedName(SERIALIZED_NAME_FULL_FORMULA)
+  private String fullFormula;
 
   public static final String SERIALIZED_NAME_DOCUMENTATION_AS_HTML = "documentationAsHtml";
   @SerializedName(SERIALIZED_NAME_DOCUMENTATION_AS_HTML)
@@ -79,10 +87,6 @@ public class Lineage {
   public static final String SERIALIZED_NAME_DOCUMENTATION_AS_MARK_DOWN = "documentationAsMarkDown";
   @SerializedName(SERIALIZED_NAME_DOCUMENTATION_AS_MARK_DOWN)
   private String documentationAsMarkDown;
-
-  public static final String SERIALIZED_NAME_FULL_TEXT = "fullText";
-  @SerializedName(SERIALIZED_NAME_FULL_TEXT)
-  private String fullText;
 
   public static final String SERIALIZED_NAME_CHILDREN = "children";
   @SerializedName(SERIALIZED_NAME_CHILDREN)
@@ -154,45 +158,87 @@ public class Lineage {
   }
 
 
-  public Lineage displayName(String displayName) {
+  public Lineage columnTitleTooltip(String columnTitleTooltip) {
     
-    this.displayName = displayName;
+    this.columnTitleTooltip = columnTitleTooltip;
     return this;
   }
 
    /**
-   * Get displayName
-   * @return displayName
+   * Get columnTitleTooltip
+   * @return columnTitleTooltip
   **/
   @jakarta.annotation.Nullable
-  public String getDisplayName() {
-    return displayName;
+  public String getColumnTitleTooltip() {
+    return columnTitleTooltip;
   }
 
 
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
+  public void setColumnTitleTooltip(String columnTitleTooltip) {
+    this.columnTitleTooltip = columnTitleTooltip;
   }
 
 
-  public Lineage description(String description) {
+  public Lineage explainTitle(String explainTitle) {
     
-    this.description = description;
+    this.explainTitle = explainTitle;
     return this;
   }
 
    /**
-   * Get description
-   * @return description
+   * Get explainTitle
+   * @return explainTitle
   **/
   @jakarta.annotation.Nullable
-  public String getDescription() {
-    return description;
+  public String getExplainTitle() {
+    return explainTitle;
   }
 
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setExplainTitle(String explainTitle) {
+    this.explainTitle = explainTitle;
+  }
+
+
+  public Lineage explainTooltip(String explainTooltip) {
+    
+    this.explainTooltip = explainTooltip;
+    return this;
+  }
+
+   /**
+   * Get explainTooltip
+   * @return explainTooltip
+  **/
+  @jakarta.annotation.Nullable
+  public String getExplainTooltip() {
+    return explainTooltip;
+  }
+
+
+  public void setExplainTooltip(String explainTooltip) {
+    this.explainTooltip = explainTooltip;
+  }
+
+
+  public Lineage fullFormula(String fullFormula) {
+    
+    this.fullFormula = fullFormula;
+    return this;
+  }
+
+   /**
+   * Get fullFormula
+   * @return fullFormula
+  **/
+  @jakarta.annotation.Nullable
+  public String getFullFormula() {
+    return fullFormula;
+  }
+
+
+  public void setFullFormula(String fullFormula) {
+    this.fullFormula = fullFormula;
   }
 
 
@@ -238,27 +284,6 @@ public class Lineage {
   }
 
 
-  public Lineage fullText(String fullText) {
-    
-    this.fullText = fullText;
-    return this;
-  }
-
-   /**
-   * Get fullText
-   * @return fullText
-  **/
-  @jakarta.annotation.Nullable
-  public String getFullText() {
-    return fullText;
-  }
-
-
-  public void setFullText(String fullText) {
-    this.fullText = fullText;
-  }
-
-
   public Lineage children(List<Lineage> children) {
     
     this.children = children;
@@ -301,11 +326,12 @@ public class Lineage {
     return Objects.equals(this.type, lineage.type) &&
         Objects.equals(this.subtype, lineage.subtype) &&
         Objects.equals(this.alias, lineage.alias) &&
-        Objects.equals(this.displayName, lineage.displayName) &&
-        Objects.equals(this.description, lineage.description) &&
+        Objects.equals(this.columnTitleTooltip, lineage.columnTitleTooltip) &&
+        Objects.equals(this.explainTitle, lineage.explainTitle) &&
+        Objects.equals(this.explainTooltip, lineage.explainTooltip) &&
+        Objects.equals(this.fullFormula, lineage.fullFormula) &&
         Objects.equals(this.documentationAsHtml, lineage.documentationAsHtml) &&
         Objects.equals(this.documentationAsMarkDown, lineage.documentationAsMarkDown) &&
-        Objects.equals(this.fullText, lineage.fullText) &&
         Objects.equals(this.children, lineage.children);
   }
 
@@ -315,7 +341,7 @@ public class Lineage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, alias, displayName, description, documentationAsHtml, documentationAsMarkDown, fullText, children);
+    return Objects.hash(type, subtype, alias, columnTitleTooltip, explainTitle, explainTooltip, fullFormula, documentationAsHtml, documentationAsMarkDown, children);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -332,11 +358,12 @@ public class Lineage {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    subtype: ").append(toIndentedString(subtype)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    columnTitleTooltip: ").append(toIndentedString(columnTitleTooltip)).append("\n");
+    sb.append("    explainTitle: ").append(toIndentedString(explainTitle)).append("\n");
+    sb.append("    explainTooltip: ").append(toIndentedString(explainTooltip)).append("\n");
+    sb.append("    fullFormula: ").append(toIndentedString(fullFormula)).append("\n");
     sb.append("    documentationAsHtml: ").append(toIndentedString(documentationAsHtml)).append("\n");
     sb.append("    documentationAsMarkDown: ").append(toIndentedString(documentationAsMarkDown)).append("\n");
-    sb.append("    fullText: ").append(toIndentedString(fullText)).append("\n");
     sb.append("    children: ").append(toIndentedString(children)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -363,11 +390,12 @@ public class Lineage {
     openapiFields.add("type");
     openapiFields.add("subtype");
     openapiFields.add("alias");
-    openapiFields.add("displayName");
-    openapiFields.add("description");
+    openapiFields.add("columnTitleTooltip");
+    openapiFields.add("explainTitle");
+    openapiFields.add("explainTooltip");
+    openapiFields.add("fullFormula");
     openapiFields.add("documentationAsHtml");
     openapiFields.add("documentationAsMarkDown");
-    openapiFields.add("fullText");
     openapiFields.add("children");
 
     // a set of required properties/fields (JSON key names)
@@ -396,20 +424,23 @@ public class Lineage {
       if ((jsonObj.get("alias") != null && !jsonObj.get("alias").isJsonNull()) && !jsonObj.get("alias").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `alias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alias").toString()));
       }
-      if ((jsonObj.get("displayName") != null && !jsonObj.get("displayName").isJsonNull()) && !jsonObj.get("displayName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `displayName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("displayName").toString()));
+      if ((jsonObj.get("columnTitleTooltip") != null && !jsonObj.get("columnTitleTooltip").isJsonNull()) && !jsonObj.get("columnTitleTooltip").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `columnTitleTooltip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("columnTitleTooltip").toString()));
       }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      if ((jsonObj.get("explainTitle") != null && !jsonObj.get("explainTitle").isJsonNull()) && !jsonObj.get("explainTitle").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `explainTitle` to be a primitive type in the JSON string but got `%s`", jsonObj.get("explainTitle").toString()));
+      }
+      if ((jsonObj.get("explainTooltip") != null && !jsonObj.get("explainTooltip").isJsonNull()) && !jsonObj.get("explainTooltip").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `explainTooltip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("explainTooltip").toString()));
+      }
+      if ((jsonObj.get("fullFormula") != null && !jsonObj.get("fullFormula").isJsonNull()) && !jsonObj.get("fullFormula").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `fullFormula` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fullFormula").toString()));
       }
       if ((jsonObj.get("documentationAsHtml") != null && !jsonObj.get("documentationAsHtml").isJsonNull()) && !jsonObj.get("documentationAsHtml").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `documentationAsHtml` to be a primitive type in the JSON string but got `%s`", jsonObj.get("documentationAsHtml").toString()));
       }
       if ((jsonObj.get("documentationAsMarkDown") != null && !jsonObj.get("documentationAsMarkDown").isJsonNull()) && !jsonObj.get("documentationAsMarkDown").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `documentationAsMarkDown` to be a primitive type in the JSON string but got `%s`", jsonObj.get("documentationAsMarkDown").toString()));
-      }
-      if ((jsonObj.get("fullText") != null && !jsonObj.get("fullText").isJsonNull()) && !jsonObj.get("fullText").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `fullText` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fullText").toString()));
       }
       if (jsonObj.get("children") != null && !jsonObj.get("children").isJsonNull()) {
         JsonArray jsonArraychildren = jsonObj.getAsJsonArray("children");

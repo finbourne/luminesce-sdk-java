@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.171
+  version: 1.19.179
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -8651,53 +8651,57 @@ components:
             messageTemplate: messageTemplate
           lineage:
             wholeTableLineage:
+              explainTitle: explainTitle
+              fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             columnLineage:
-            - documentationAsHtml: documentationAsHtml
+            - explainTitle: explainTitle
+              fullFormula: fullFormula
+              documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
-            - documentationAsHtml: documentationAsHtml
+            - explainTitle: explainTitle
+              fullFormula: fullFormula
+              documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             failureReason: failureReason
           columnsAvailable:
           - lineage:
+              explainTitle: explainTitle
+              fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             allowedValues: allowedValues
             sampleValues: sampleValues
@@ -8711,16 +8715,17 @@ components:
             mandatoryForActions: mandatoryForActions
             conditionUsage: null
           - lineage:
+              explainTitle: explainTitle
+              fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             allowedValues: allowedValues
             sampleValues: sampleValues
@@ -8765,53 +8770,57 @@ components:
             messageTemplate: messageTemplate
           lineage:
             wholeTableLineage:
+              explainTitle: explainTitle
+              fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             columnLineage:
-            - documentationAsHtml: documentationAsHtml
+            - explainTitle: explainTitle
+              fullFormula: fullFormula
+              documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
-            - documentationAsHtml: documentationAsHtml
+            - explainTitle: explainTitle
+              fullFormula: fullFormula
+              documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             failureReason: failureReason
           columnsAvailable:
           - lineage:
+              explainTitle: explainTitle
+              fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             allowedValues: allowedValues
             sampleValues: sampleValues
@@ -8825,16 +8834,17 @@ components:
             mandatoryForActions: mandatoryForActions
             conditionUsage: null
           - lineage:
+              explainTitle: explainTitle
+              fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
               children:
               - null
               - null
-              displayName: displayName
+              columnTitleTooltip: columnTitleTooltip
+              explainTooltip: explainTooltip
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
-              description: description
-              fullText: fullText
               type: type
             allowedValues: allowedValues
             sampleValues: sampleValues
@@ -9107,53 +9117,57 @@ components:
           messageTemplate: messageTemplate
         lineage:
           wholeTableLineage:
+            explainTitle: explainTitle
+            fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
             subtype: subtype
             children:
             - null
             - null
-            displayName: displayName
+            columnTitleTooltip: columnTitleTooltip
+            explainTooltip: explainTooltip
             documentationAsMarkDown: documentationAsMarkDown
             alias: alias
-            description: description
-            fullText: fullText
             type: type
           columnLineage:
-          - documentationAsHtml: documentationAsHtml
+          - explainTitle: explainTitle
+            fullFormula: fullFormula
+            documentationAsHtml: documentationAsHtml
             subtype: subtype
             children:
             - null
             - null
-            displayName: displayName
+            columnTitleTooltip: columnTitleTooltip
+            explainTooltip: explainTooltip
             documentationAsMarkDown: documentationAsMarkDown
             alias: alias
-            description: description
-            fullText: fullText
             type: type
-          - documentationAsHtml: documentationAsHtml
+          - explainTitle: explainTitle
+            fullFormula: fullFormula
+            documentationAsHtml: documentationAsHtml
             subtype: subtype
             children:
             - null
             - null
-            displayName: displayName
+            columnTitleTooltip: columnTitleTooltip
+            explainTooltip: explainTooltip
             documentationAsMarkDown: documentationAsMarkDown
             alias: alias
-            description: description
-            fullText: fullText
             type: type
           failureReason: failureReason
         columnsAvailable:
         - lineage:
+            explainTitle: explainTitle
+            fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
             subtype: subtype
             children:
             - null
             - null
-            displayName: displayName
+            columnTitleTooltip: columnTitleTooltip
+            explainTooltip: explainTooltip
             documentationAsMarkDown: documentationAsMarkDown
             alias: alias
-            description: description
-            fullText: fullText
             type: type
           allowedValues: allowedValues
           sampleValues: sampleValues
@@ -9167,16 +9181,17 @@ components:
           mandatoryForActions: mandatoryForActions
           conditionUsage: null
         - lineage:
+            explainTitle: explainTitle
+            fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
             subtype: subtype
             children:
             - null
             - null
-            displayName: displayName
+            columnTitleTooltip: columnTitleTooltip
+            explainTooltip: explainTooltip
             documentationAsMarkDown: documentationAsMarkDown
             alias: alias
-            description: description
-            fullText: fullText
             type: type
           allowedValues: allowedValues
           sampleValues: sampleValues
@@ -9559,16 +9574,17 @@ components:
       additionalProperties: false
       example:
         lineage:
+          explainTitle: explainTitle
+          fullFormula: fullFormula
           documentationAsHtml: documentationAsHtml
           subtype: subtype
           children:
           - null
           - null
-          displayName: displayName
+          columnTitleTooltip: columnTitleTooltip
+          explainTooltip: explainTooltip
           documentationAsMarkDown: documentationAsMarkDown
           alias: alias
-          description: description
-          fullText: fullText
           type: type
         allowedValues: allowedValues
         sampleValues: sampleValues
@@ -10610,16 +10626,17 @@ components:
     Lineage:
       additionalProperties: false
       example:
+        explainTitle: explainTitle
+        fullFormula: fullFormula
         documentationAsHtml: documentationAsHtml
         subtype: subtype
         children:
         - null
         - null
-        displayName: displayName
+        columnTitleTooltip: columnTitleTooltip
+        explainTooltip: explainTooltip
         documentationAsMarkDown: documentationAsMarkDown
         alias: alias
-        description: description
-        fullText: fullText
         type: type
       properties:
         type:
@@ -10631,19 +10648,22 @@ components:
         alias:
           nullable: true
           type: string
-        displayName:
+        columnTitleTooltip:
           nullable: true
           type: string
-        description:
+        explainTitle:
+          nullable: true
+          type: string
+        explainTooltip:
+          nullable: true
+          type: string
+        fullFormula:
           nullable: true
           type: string
         documentationAsHtml:
           nullable: true
           type: string
         documentationAsMarkDown:
-          nullable: true
-          type: string
-        fullText:
           nullable: true
           type: string
         children:
@@ -11631,39 +11651,42 @@ components:
       additionalProperties: false
       example:
         wholeTableLineage:
+          explainTitle: explainTitle
+          fullFormula: fullFormula
           documentationAsHtml: documentationAsHtml
           subtype: subtype
           children:
           - null
           - null
-          displayName: displayName
+          columnTitleTooltip: columnTitleTooltip
+          explainTooltip: explainTooltip
           documentationAsMarkDown: documentationAsMarkDown
           alias: alias
-          description: description
-          fullText: fullText
           type: type
         columnLineage:
-        - documentationAsHtml: documentationAsHtml
+        - explainTitle: explainTitle
+          fullFormula: fullFormula
+          documentationAsHtml: documentationAsHtml
           subtype: subtype
           children:
           - null
           - null
-          displayName: displayName
+          columnTitleTooltip: columnTitleTooltip
+          explainTooltip: explainTooltip
           documentationAsMarkDown: documentationAsMarkDown
           alias: alias
-          description: description
-          fullText: fullText
           type: type
-        - documentationAsHtml: documentationAsHtml
+        - explainTitle: explainTitle
+          fullFormula: fullFormula
+          documentationAsHtml: documentationAsHtml
           subtype: subtype
           children:
           - null
           - null
-          displayName: displayName
+          columnTitleTooltip: columnTitleTooltip
+          explainTooltip: explainTooltip
           documentationAsMarkDown: documentationAsMarkDown
           alias: alias
-          description: description
-          fullText: fullText
           type: type
         failureReason: failureReason
       properties:
