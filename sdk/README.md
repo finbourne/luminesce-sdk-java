@@ -128,6 +128,7 @@ Class | Method | HTTP request | Description
  - [IntellisenseType](docs/IntellisenseType.md)
  - [JoinedTableDesign](docs/JoinedTableDesign.md)
  - [Lineage](docs/Lineage.md)
+ - [LineageColumnIcon](docs/LineageColumnIcon.md)
  - [Link](docs/Link.md)
  - [LuminesceBinaryType](docs/LuminesceBinaryType.md)
  - [LusidGridData](docs/LusidGridData.md)

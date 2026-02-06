@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **subtype** | **String** |  | [optional] [default to String]
 **alias** | **String** |  | [optional] [default to String]
 **columnTitleTooltip** | **String** |  | [optional] [default to String]
+**columnTitleIcon** | [**LineageColumnIcon**](LineageColumnIcon.md) |  | [optional] [default to LineageColumnIcon]
 **explainTitle** | **String** |  | [optional] [default to String]
 **explainTooltip** | **String** |  | [optional] [default to String]
 **fullFormula** | **String** |  | [optional] [default to String]
@@ -25,7 +26,7 @@ import java.net.URI;
 @jakarta.annotation.Nullable String Subtype = "example Subtype";
 @jakarta.annotation.Nullable String Alias = "example Alias";
 @jakarta.annotation.Nullable String ColumnTitleTooltip = "example ColumnTitleTooltip";
-@jakarta.annotation.Nullable String ExplainTitle = "example ExplainTitle";
+LineageColumnIcon @jakarta.annotation.Nullable String ExplainTitle = "example ExplainTitle";
 @jakarta.annotation.Nullable String ExplainTooltip = "example ExplainTooltip";
 @jakarta.annotation.Nullable String FullFormula = "example FullFormula";
 @jakarta.annotation.Nullable String DocumentationAsHtml = "example DocumentationAsHtml";
@@ -38,6 +39,7 @@ Lineage lineageInstance = new Lineage()
     .Subtype(Subtype)
     .Alias(Alias)
     .ColumnTitleTooltip(ColumnTitleTooltip)
+    .ColumnTitleIcon(ColumnTitleIcon)
     .ExplainTitle(ExplainTitle)
     .ExplainTooltip(ExplainTooltip)
     .FullFormula(FullFormula)

@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.187
+  version: 1.19.216
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -8651,6 +8651,7 @@ components:
             messageTemplate: messageTemplate
           lineage:
             wholeTableLineage:
+              columnTitleIcon: null
               explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
@@ -8664,7 +8665,8 @@ components:
               alias: alias
               type: type
             columnLineage:
-            - explainTitle: explainTitle
+            - columnTitleIcon: null
+              explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
@@ -8676,7 +8678,8 @@ components:
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
               type: type
-            - explainTitle: explainTitle
+            - columnTitleIcon: null
+              explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
@@ -8691,6 +8694,7 @@ components:
             failureReason: failureReason
           columnsAvailable:
           - lineage:
+              columnTitleIcon: null
               explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
@@ -8715,6 +8719,7 @@ components:
             mandatoryForActions: mandatoryForActions
             conditionUsage: null
           - lineage:
+              columnTitleIcon: null
               explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
@@ -8770,6 +8775,7 @@ components:
             messageTemplate: messageTemplate
           lineage:
             wholeTableLineage:
+              columnTitleIcon: null
               explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
@@ -8783,7 +8789,8 @@ components:
               alias: alias
               type: type
             columnLineage:
-            - explainTitle: explainTitle
+            - columnTitleIcon: null
+              explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
@@ -8795,7 +8802,8 @@ components:
               documentationAsMarkDown: documentationAsMarkDown
               alias: alias
               type: type
-            - explainTitle: explainTitle
+            - columnTitleIcon: null
+              explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
               subtype: subtype
@@ -8810,6 +8818,7 @@ components:
             failureReason: failureReason
           columnsAvailable:
           - lineage:
+              columnTitleIcon: null
               explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
@@ -8834,6 +8843,7 @@ components:
             mandatoryForActions: mandatoryForActions
             conditionUsage: null
           - lineage:
+              columnTitleIcon: null
               explainTitle: explainTitle
               fullFormula: fullFormula
               documentationAsHtml: documentationAsHtml
@@ -9117,6 +9127,7 @@ components:
           messageTemplate: messageTemplate
         lineage:
           wholeTableLineage:
+            columnTitleIcon: null
             explainTitle: explainTitle
             fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
@@ -9130,7 +9141,8 @@ components:
             alias: alias
             type: type
           columnLineage:
-          - explainTitle: explainTitle
+          - columnTitleIcon: null
+            explainTitle: explainTitle
             fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
             subtype: subtype
@@ -9142,7 +9154,8 @@ components:
             documentationAsMarkDown: documentationAsMarkDown
             alias: alias
             type: type
-          - explainTitle: explainTitle
+          - columnTitleIcon: null
+            explainTitle: explainTitle
             fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
             subtype: subtype
@@ -9157,6 +9170,7 @@ components:
           failureReason: failureReason
         columnsAvailable:
         - lineage:
+            columnTitleIcon: null
             explainTitle: explainTitle
             fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
@@ -9181,6 +9195,7 @@ components:
           mandatoryForActions: mandatoryForActions
           conditionUsage: null
         - lineage:
+            columnTitleIcon: null
             explainTitle: explainTitle
             fullFormula: fullFormula
             documentationAsHtml: documentationAsHtml
@@ -9574,6 +9589,7 @@ components:
       additionalProperties: false
       example:
         lineage:
+          columnTitleIcon: null
           explainTitle: explainTitle
           fullFormula: fullFormula
           documentationAsHtml: documentationAsHtml
@@ -10626,6 +10642,7 @@ components:
     Lineage:
       additionalProperties: false
       example:
+        columnTitleIcon: null
         explainTitle: explainTitle
         fullFormula: fullFormula
         documentationAsHtml: documentationAsHtml
@@ -10651,6 +10668,8 @@ components:
         columnTitleTooltip:
           nullable: true
           type: string
+        columnTitleIcon:
+          $ref: '#/components/schemas/LineageColumnIcon'
         explainTitle:
           nullable: true
           type: string
@@ -10672,6 +10691,13 @@ components:
           nullable: true
           type: array
       type: object
+    LineageColumnIcon:
+      enum:
+      - None
+      - Calculation
+      - Aggregation
+      - DerivedProperty
+      type: string
     Link:
       additionalProperties: false
       example:
@@ -11651,6 +11677,7 @@ components:
       additionalProperties: false
       example:
         wholeTableLineage:
+          columnTitleIcon: null
           explainTitle: explainTitle
           fullFormula: fullFormula
           documentationAsHtml: documentationAsHtml
@@ -11664,7 +11691,8 @@ components:
           alias: alias
           type: type
         columnLineage:
-        - explainTitle: explainTitle
+        - columnTitleIcon: null
+          explainTitle: explainTitle
           fullFormula: fullFormula
           documentationAsHtml: documentationAsHtml
           subtype: subtype
@@ -11676,7 +11704,8 @@ components:
           documentationAsMarkDown: documentationAsMarkDown
           alias: alias
           type: type
-        - explainTitle: explainTitle
+        - columnTitleIcon: null
+          explainTitle: explainTitle
           fullFormula: fullFormula
           documentationAsHtml: documentationAsHtml
           subtype: subtype

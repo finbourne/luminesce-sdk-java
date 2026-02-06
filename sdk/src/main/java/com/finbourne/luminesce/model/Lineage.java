@@ -11,6 +11,7 @@
 package com.finbourne.luminesce.model;
 
 import java.util.Objects;
+import com.finbourne.luminesce.model.LineageColumnIcon;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -67,6 +68,10 @@ public class Lineage {
   public static final String SERIALIZED_NAME_COLUMN_TITLE_TOOLTIP = "columnTitleTooltip";
   @SerializedName(SERIALIZED_NAME_COLUMN_TITLE_TOOLTIP)
   private String columnTitleTooltip;
+
+  public static final String SERIALIZED_NAME_COLUMN_TITLE_ICON = "columnTitleIcon";
+  @SerializedName(SERIALIZED_NAME_COLUMN_TITLE_ICON)
+  private LineageColumnIcon columnTitleIcon;
 
   public static final String SERIALIZED_NAME_EXPLAIN_TITLE = "explainTitle";
   @SerializedName(SERIALIZED_NAME_EXPLAIN_TITLE)
@@ -176,6 +181,27 @@ public class Lineage {
 
   public void setColumnTitleTooltip(String columnTitleTooltip) {
     this.columnTitleTooltip = columnTitleTooltip;
+  }
+
+
+  public Lineage columnTitleIcon(LineageColumnIcon columnTitleIcon) {
+    
+    this.columnTitleIcon = columnTitleIcon;
+    return this;
+  }
+
+   /**
+   * Get columnTitleIcon
+   * @return columnTitleIcon
+  **/
+  @jakarta.annotation.Nullable
+  public LineageColumnIcon getColumnTitleIcon() {
+    return columnTitleIcon;
+  }
+
+
+  public void setColumnTitleIcon(LineageColumnIcon columnTitleIcon) {
+    this.columnTitleIcon = columnTitleIcon;
   }
 
 
@@ -327,6 +353,7 @@ public class Lineage {
         Objects.equals(this.subtype, lineage.subtype) &&
         Objects.equals(this.alias, lineage.alias) &&
         Objects.equals(this.columnTitleTooltip, lineage.columnTitleTooltip) &&
+        Objects.equals(this.columnTitleIcon, lineage.columnTitleIcon) &&
         Objects.equals(this.explainTitle, lineage.explainTitle) &&
         Objects.equals(this.explainTooltip, lineage.explainTooltip) &&
         Objects.equals(this.fullFormula, lineage.fullFormula) &&
@@ -341,7 +368,7 @@ public class Lineage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, alias, columnTitleTooltip, explainTitle, explainTooltip, fullFormula, documentationAsHtml, documentationAsMarkDown, children);
+    return Objects.hash(type, subtype, alias, columnTitleTooltip, columnTitleIcon, explainTitle, explainTooltip, fullFormula, documentationAsHtml, documentationAsMarkDown, children);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -359,6 +386,7 @@ public class Lineage {
     sb.append("    subtype: ").append(toIndentedString(subtype)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("    columnTitleTooltip: ").append(toIndentedString(columnTitleTooltip)).append("\n");
+    sb.append("    columnTitleIcon: ").append(toIndentedString(columnTitleIcon)).append("\n");
     sb.append("    explainTitle: ").append(toIndentedString(explainTitle)).append("\n");
     sb.append("    explainTooltip: ").append(toIndentedString(explainTooltip)).append("\n");
     sb.append("    fullFormula: ").append(toIndentedString(fullFormula)).append("\n");
@@ -391,6 +419,7 @@ public class Lineage {
     openapiFields.add("subtype");
     openapiFields.add("alias");
     openapiFields.add("columnTitleTooltip");
+    openapiFields.add("columnTitleIcon");
     openapiFields.add("explainTitle");
     openapiFields.add("explainTooltip");
     openapiFields.add("fullFormula");
