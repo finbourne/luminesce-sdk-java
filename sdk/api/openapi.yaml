@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.19.218
+  version: 1.19.232
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -7047,7 +7047,7 @@ paths:
           type: string
         style: simple
       - description: |-
-          An override to the internal default as the the number of seconds to wait for stream-messages.
+          An override to the internal default for the number of seconds to wait for stream-messages.
           Meant to help understand 404s that would seem on the surface to be incorrect.
         explode: true
         in: query
@@ -7056,6 +7056,20 @@ paths:
         schema:
           format: int32
           type: integer
+        style: form
+        x-nullable: true
+      - description: |-
+          Performance will be hugely improved if thet time (in UTC) when the query was started is provided.
+          It will also significantly decrease the chances of a 404 where there really is data,
+          as it can help to disambiguate between 'there is no query with this executionId' and
+          'there is such a query but we couldn't wait long enough for it to come back from the Feedback Stream'.
+        explode: true
+        in: query
+        name: startedAt
+        required: false
+        schema:
+          format: date-time
+          type: string
         style: form
         x-nullable: true
       responses:

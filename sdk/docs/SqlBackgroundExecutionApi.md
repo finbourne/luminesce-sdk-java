@@ -1168,7 +1168,7 @@ public class SqlBackgroundExecutionApiExample {
 
 ## getHistoricalFeedback
 
-> BackgroundQueryProgressResponse getHistoricalFeedback(executionId, nextMessageWaitSeconds)
+> BackgroundQueryProgressResponse getHistoricalFeedback(executionId, nextMessageWaitSeconds, startedAt)
 
 GetHistoricalFeedback: View historical query progress (for older queries)
 
@@ -1214,12 +1214,13 @@ public class SqlBackgroundExecutionApiExample {
 
         SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
-        Integer nextMessageWaitSeconds = 56; // Integer | An override to the internal default as the the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect.
+        Integer nextMessageWaitSeconds = 56; // Integer | An override to the internal default for the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect.
+        OffsetDateTime startedAt = OffsetDateTime.now(); // OffsetDateTime | Performance will be hugely improved if thet time (in UTC) when the query was started is provided. It will also significantly decrease the chances of a 404 where there really is data, as it can help to disambiguate between 'there is no query with this executionId' and 'there is such a query but we couldn't wait long enough for it to come back from the Feedback Stream'.
         try {
             // uncomment the below to set overrides at the request level
-            // BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId, nextMessageWaitSeconds).execute(opts);
+            // BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId, nextMessageWaitSeconds, startedAt).execute(opts);
 
-            BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId, nextMessageWaitSeconds).execute();
+            BackgroundQueryProgressResponse result = apiInstance.getHistoricalFeedback(executionId, nextMessageWaitSeconds, startedAt).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#getHistoricalFeedback");
@@ -1237,7 +1238,8 @@ public class SqlBackgroundExecutionApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **executionId** | **String**| ExecutionId returned when starting the query | |
-| **nextMessageWaitSeconds** | **Integer**| An override to the internal default as the the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. | [optional] |
+| **nextMessageWaitSeconds** | **Integer**| An override to the internal default for the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. | [optional] |
+| **startedAt** | **OffsetDateTime**| Performance will be hugely improved if thet time (in UTC) when the query was started is provided. It will also significantly decrease the chances of a 404 where there really is data, as it can help to disambiguate between &#39;there is no query with this executionId&#39; and &#39;there is such a query but we couldn&#39;t wait long enough for it to come back from the Feedback Stream&#39;. | [optional] |
 
 ### Return type
 

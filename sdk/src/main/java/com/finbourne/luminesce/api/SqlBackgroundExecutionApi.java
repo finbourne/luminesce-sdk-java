@@ -3704,11 +3704,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultXmlRequest fetchQueryResultXml(String executionId) {
         return new APIfetchQueryResultXmlRequest(executionId);
     }
-    private okhttp3.Call getHistoricalFeedbackCall(String executionId, Integer nextMessageWaitSeconds, final ApiCallback _callback) throws ApiException {
-        return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getHistoricalFeedbackCall(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt, final ApiCallback _callback) throws ApiException {
+        return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, startedAt,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getHistoricalFeedbackCall(String executionId, Integer nextMessageWaitSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackCall(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3738,6 +3738,10 @@ public class SqlBackgroundExecutionApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("nextMessageWaitSeconds", nextMessageWaitSeconds));
         }
 
+        if (startedAt != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startedAt", startedAt));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -3760,40 +3764,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getHistoricalFeedbackValidateBeforeCall(String executionId, Integer nextMessageWaitSeconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackValidateBeforeCall(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling getHistoricalFeedback(Async)");
         }
 
-        return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, _callback, opts);
+        return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, startedAt, _callback, opts);
 
     }
 
 
-    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, Integer nextMessageWaitSeconds) throws ApiException {
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, null, new ConfigurationOptions());
+    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt) throws ApiException {
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, startedAt, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, Integer nextMessageWaitSeconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, null, opts);
+    private ApiResponse<BackgroundQueryProgressResponse> getHistoricalFeedbackWithHttpInfo(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, startedAt, null, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, Integer nextMessageWaitSeconds, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt, final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, startedAt, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, Integer nextMessageWaitSeconds, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getHistoricalFeedbackAsync(String executionId, Integer nextMessageWaitSeconds, OffsetDateTime startedAt, final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, _callback, opts);
+        okhttp3.Call localVarCall = getHistoricalFeedbackValidateBeforeCall(executionId, nextMessageWaitSeconds, startedAt, _callback, opts);
         Type localVarReturnType = new TypeToken<BackgroundQueryProgressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3802,6 +3806,7 @@ public class SqlBackgroundExecutionApi {
     public class APIgetHistoricalFeedbackRequest {
         private final String executionId;
         private Integer nextMessageWaitSeconds;
+        private OffsetDateTime startedAt;
 
         private APIgetHistoricalFeedbackRequest(String executionId) {
             this.executionId = executionId;
@@ -3809,11 +3814,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set nextMessageWaitSeconds
-         * @param nextMessageWaitSeconds An override to the internal default as the the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. (optional)
+         * @param nextMessageWaitSeconds An override to the internal default for the number of seconds to wait for stream-messages. Meant to help understand 404s that would seem on the surface to be incorrect. (optional)
          * @return APIgetHistoricalFeedbackRequest
          */
         public APIgetHistoricalFeedbackRequest nextMessageWaitSeconds(Integer nextMessageWaitSeconds) {
             this.nextMessageWaitSeconds = nextMessageWaitSeconds;
+            return this;
+        }
+
+        /**
+         * Set startedAt
+         * @param startedAt Performance will be hugely improved if thet time (in UTC) when the query was started is provided. It will also significantly decrease the chances of a 404 where there really is data, as it can help to disambiguate between &#39;there is no query with this executionId&#39; and &#39;there is such a query but we couldn&#39;t wait long enough for it to come back from the Feedback Stream&#39;. (optional)
+         * @return APIgetHistoricalFeedbackRequest
+         */
+        public APIgetHistoricalFeedbackRequest startedAt(OffsetDateTime startedAt) {
+            this.startedAt = startedAt;
             return this;
         }
 
@@ -3829,7 +3844,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, _callback);
+            return getHistoricalFeedbackCall(executionId, nextMessageWaitSeconds, startedAt, _callback);
         }
 
         /**
@@ -3843,7 +3858,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryProgressResponse execute() throws ApiException {
-            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds);
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, startedAt);
             return localVarResp.getData();
         }
 
@@ -3858,7 +3873,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public BackgroundQueryProgressResponse execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, opts);
+            ApiResponse<BackgroundQueryProgressResponse> localVarResp = getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, startedAt, opts);
             return localVarResp.getData();
         }
 
@@ -3873,7 +3888,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo() throws ApiException {
-            return getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds);
+            return getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, startedAt);
         }
 
         /**
@@ -3887,7 +3902,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<BackgroundQueryProgressResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, opts);
+            return getHistoricalFeedbackWithHttpInfo(executionId, nextMessageWaitSeconds, startedAt, opts);
         }
 
         /**
@@ -3902,7 +3917,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback) throws ApiException {
-            return getHistoricalFeedbackAsync(executionId, nextMessageWaitSeconds, _callback);
+            return getHistoricalFeedbackAsync(executionId, nextMessageWaitSeconds, startedAt, _callback);
         }
 
         /**
@@ -3917,7 +3932,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<BackgroundQueryProgressResponse> _callback, ConfigurationOptions opts) throws ApiException {
-            return getHistoricalFeedbackAsync(executionId, nextMessageWaitSeconds, _callback, opts);
+            return getHistoricalFeedbackAsync(executionId, nextMessageWaitSeconds, startedAt, _callback, opts);
         }
     }
 
