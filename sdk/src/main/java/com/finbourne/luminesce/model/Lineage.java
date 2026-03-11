@@ -61,6 +61,10 @@ public class Lineage {
   @SerializedName(SERIALIZED_NAME_SUBTYPE)
   private String subtype;
 
+  public static final String SERIALIZED_NAME_LEGEND_TEXT = "legendText";
+  @SerializedName(SERIALIZED_NAME_LEGEND_TEXT)
+  private String legendText;
+
   public static final String SERIALIZED_NAME_ALIAS = "alias";
   @SerializedName(SERIALIZED_NAME_ALIAS)
   private String alias;
@@ -80,6 +84,10 @@ public class Lineage {
   public static final String SERIALIZED_NAME_EXPLAIN_TOOLTIP = "explainTooltip";
   @SerializedName(SERIALIZED_NAME_EXPLAIN_TOOLTIP)
   private String explainTooltip;
+
+  public static final String SERIALIZED_NAME_ARROW_TO_PARENT_TOOLTIP = "arrowToParentTooltip";
+  @SerializedName(SERIALIZED_NAME_ARROW_TO_PARENT_TOOLTIP)
+  private String arrowToParentTooltip;
 
   public static final String SERIALIZED_NAME_FULL_FORMULA = "fullFormula";
   @SerializedName(SERIALIZED_NAME_FULL_FORMULA)
@@ -139,6 +147,27 @@ public class Lineage {
 
   public void setSubtype(String subtype) {
     this.subtype = subtype;
+  }
+
+
+  public Lineage legendText(String legendText) {
+    
+    this.legendText = legendText;
+    return this;
+  }
+
+   /**
+   * Get legendText
+   * @return legendText
+  **/
+  @jakarta.annotation.Nullable
+  public String getLegendText() {
+    return legendText;
+  }
+
+
+  public void setLegendText(String legendText) {
+    this.legendText = legendText;
   }
 
 
@@ -247,6 +276,27 @@ public class Lineage {
   }
 
 
+  public Lineage arrowToParentTooltip(String arrowToParentTooltip) {
+    
+    this.arrowToParentTooltip = arrowToParentTooltip;
+    return this;
+  }
+
+   /**
+   * Get arrowToParentTooltip
+   * @return arrowToParentTooltip
+  **/
+  @jakarta.annotation.Nullable
+  public String getArrowToParentTooltip() {
+    return arrowToParentTooltip;
+  }
+
+
+  public void setArrowToParentTooltip(String arrowToParentTooltip) {
+    this.arrowToParentTooltip = arrowToParentTooltip;
+  }
+
+
   public Lineage fullFormula(String fullFormula) {
     
     this.fullFormula = fullFormula;
@@ -351,11 +401,13 @@ public class Lineage {
     Lineage lineage = (Lineage) o;
     return Objects.equals(this.type, lineage.type) &&
         Objects.equals(this.subtype, lineage.subtype) &&
+        Objects.equals(this.legendText, lineage.legendText) &&
         Objects.equals(this.alias, lineage.alias) &&
         Objects.equals(this.columnTitleTooltip, lineage.columnTitleTooltip) &&
         Objects.equals(this.columnTitleIcon, lineage.columnTitleIcon) &&
         Objects.equals(this.explainTitle, lineage.explainTitle) &&
         Objects.equals(this.explainTooltip, lineage.explainTooltip) &&
+        Objects.equals(this.arrowToParentTooltip, lineage.arrowToParentTooltip) &&
         Objects.equals(this.fullFormula, lineage.fullFormula) &&
         Objects.equals(this.documentationAsHtml, lineage.documentationAsHtml) &&
         Objects.equals(this.documentationAsMarkDown, lineage.documentationAsMarkDown) &&
@@ -368,7 +420,7 @@ public class Lineage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, alias, columnTitleTooltip, columnTitleIcon, explainTitle, explainTooltip, fullFormula, documentationAsHtml, documentationAsMarkDown, children);
+    return Objects.hash(type, subtype, legendText, alias, columnTitleTooltip, columnTitleIcon, explainTitle, explainTooltip, arrowToParentTooltip, fullFormula, documentationAsHtml, documentationAsMarkDown, children);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -384,11 +436,13 @@ public class Lineage {
     sb.append("class Lineage {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    subtype: ").append(toIndentedString(subtype)).append("\n");
+    sb.append("    legendText: ").append(toIndentedString(legendText)).append("\n");
     sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
     sb.append("    columnTitleTooltip: ").append(toIndentedString(columnTitleTooltip)).append("\n");
     sb.append("    columnTitleIcon: ").append(toIndentedString(columnTitleIcon)).append("\n");
     sb.append("    explainTitle: ").append(toIndentedString(explainTitle)).append("\n");
     sb.append("    explainTooltip: ").append(toIndentedString(explainTooltip)).append("\n");
+    sb.append("    arrowToParentTooltip: ").append(toIndentedString(arrowToParentTooltip)).append("\n");
     sb.append("    fullFormula: ").append(toIndentedString(fullFormula)).append("\n");
     sb.append("    documentationAsHtml: ").append(toIndentedString(documentationAsHtml)).append("\n");
     sb.append("    documentationAsMarkDown: ").append(toIndentedString(documentationAsMarkDown)).append("\n");
@@ -417,11 +471,13 @@ public class Lineage {
     openapiFields = new HashSet<String>();
     openapiFields.add("type");
     openapiFields.add("subtype");
+    openapiFields.add("legendText");
     openapiFields.add("alias");
     openapiFields.add("columnTitleTooltip");
     openapiFields.add("columnTitleIcon");
     openapiFields.add("explainTitle");
     openapiFields.add("explainTooltip");
+    openapiFields.add("arrowToParentTooltip");
     openapiFields.add("fullFormula");
     openapiFields.add("documentationAsHtml");
     openapiFields.add("documentationAsMarkDown");
@@ -450,6 +506,9 @@ public class Lineage {
       if ((jsonObj.get("subtype") != null && !jsonObj.get("subtype").isJsonNull()) && !jsonObj.get("subtype").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `subtype` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subtype").toString()));
       }
+      if ((jsonObj.get("legendText") != null && !jsonObj.get("legendText").isJsonNull()) && !jsonObj.get("legendText").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `legendText` to be a primitive type in the JSON string but got `%s`", jsonObj.get("legendText").toString()));
+      }
       if ((jsonObj.get("alias") != null && !jsonObj.get("alias").isJsonNull()) && !jsonObj.get("alias").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `alias` to be a primitive type in the JSON string but got `%s`", jsonObj.get("alias").toString()));
       }
@@ -461,6 +520,9 @@ public class Lineage {
       }
       if ((jsonObj.get("explainTooltip") != null && !jsonObj.get("explainTooltip").isJsonNull()) && !jsonObj.get("explainTooltip").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `explainTooltip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("explainTooltip").toString()));
+      }
+      if ((jsonObj.get("arrowToParentTooltip") != null && !jsonObj.get("arrowToParentTooltip").isJsonNull()) && !jsonObj.get("arrowToParentTooltip").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `arrowToParentTooltip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arrowToParentTooltip").toString()));
       }
       if ((jsonObj.get("fullFormula") != null && !jsonObj.get("fullFormula").isJsonNull()) && !jsonObj.get("fullFormula").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `fullFormula` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fullFormula").toString()));

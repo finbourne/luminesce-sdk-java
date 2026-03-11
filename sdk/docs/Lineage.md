@@ -6,11 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **String** |  | [optional] [default to String]
 **subtype** | **String** |  | [optional] [default to String]
+**legendText** | **String** |  | [optional] [default to String]
 **alias** | **String** |  | [optional] [default to String]
 **columnTitleTooltip** | **String** |  | [optional] [default to String]
 **columnTitleIcon** | [**LineageColumnIcon**](LineageColumnIcon.md) |  | [optional] [default to LineageColumnIcon]
 **explainTitle** | **String** |  | [optional] [default to String]
 **explainTooltip** | **String** |  | [optional] [default to String]
+**arrowToParentTooltip** | **String** |  | [optional] [default to String]
 **fullFormula** | **String** |  | [optional] [default to String]
 **documentationAsHtml** | **String** |  | [optional] [default to String]
 **documentationAsMarkDown** | **String** |  | [optional] [default to String]
@@ -24,10 +26,12 @@ import java.net.URI;
 
 @jakarta.annotation.Nullable String Type = "example Type";
 @jakarta.annotation.Nullable String Subtype = "example Subtype";
+@jakarta.annotation.Nullable String LegendText = "example LegendText";
 @jakarta.annotation.Nullable String Alias = "example Alias";
 @jakarta.annotation.Nullable String ColumnTitleTooltip = "example ColumnTitleTooltip";
 LineageColumnIcon @jakarta.annotation.Nullable String ExplainTitle = "example ExplainTitle";
 @jakarta.annotation.Nullable String ExplainTooltip = "example ExplainTooltip";
+@jakarta.annotation.Nullable String ArrowToParentTooltip = "example ArrowToParentTooltip";
 @jakarta.annotation.Nullable String FullFormula = "example FullFormula";
 @jakarta.annotation.Nullable String DocumentationAsHtml = "example DocumentationAsHtml";
 @jakarta.annotation.Nullable String DocumentationAsMarkDown = "example DocumentationAsMarkDown";
@@ -37,11 +41,13 @@ LineageColumnIcon @jakarta.annotation.Nullable String ExplainTitle = "example Ex
 Lineage lineageInstance = new Lineage()
     .Type(Type)
     .Subtype(Subtype)
+    .LegendText(LegendText)
     .Alias(Alias)
     .ColumnTitleTooltip(ColumnTitleTooltip)
     .ColumnTitleIcon(ColumnTitleIcon)
     .ExplainTitle(ExplainTitle)
     .ExplainTooltip(ExplainTooltip)
+    .ArrowToParentTooltip(ArrowToParentTooltip)
     .FullFormula(FullFormula)
     .DocumentationAsHtml(DocumentationAsHtml)
     .DocumentationAsMarkDown(DocumentationAsMarkDown)
