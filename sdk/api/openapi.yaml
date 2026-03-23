@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.20.60
+  version: 1.20.77
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -135,6 +135,8 @@ tags:
 - description: "This executes LuminesceSql synchronously, allows for returning the\
     \ resulting data in various formats."
   name: Sql Execution
+- description: List and update Luminesce Views
+  name: View Management
 paths:
   /api/Catalog:
     get:
@@ -8250,6 +8252,160 @@ paths:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
+  /api/View/list:
+    get:
+      description: |2
+
+        Lists all the views which you have access, some limited filtering is available.
+        These come from directly from persisted files in the file system.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+      operationId: ListViews
+      parameters:
+      - description: Show additional views if permissions allow
+        explode: true
+        in: query
+        name: showAll
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: Regular Expression filter to apply to the view content
+        explode: true
+        in: query
+        name: regExFilter
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ViewItem'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ViewItem'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ViewItem'
+                type: array
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] ListViews: List views which are visible to the current\
+        \ users"
+      tags:
+      - View Management
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
+  /api/View/sql:
+    put:
+      description: |2
+
+        Gets the original source Sql for a view (if available, 404 if not found in the logs)
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+      operationId: GetViewCreationSql
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+        description: |-
+          View to fetch the create SQL for.
+          Only the LastUpdatedAt and LastUpdatedExecutionId properties are required.
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] GetViewCreationSql: Gets the original source Sql for\
+        \ a view (if available)"
+      tags:
+      - View Management
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
   /fakeNodeReclaim:
     get:
       description: |2-
@@ -11885,6 +12041,57 @@ components:
       - inRange
       - AnyOf
       type: string
+    ViewItem:
+      additionalProperties: false
+      example:
+        lastUpdatedBy: lastUpdatedBy
+        createdByUserId: createdByUserId
+        lastUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        lastUpdatedExecutionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        domain: domain
+        filePath: filePath
+        name: name
+        fileContent: fileContent
+      properties:
+        name:
+          description: The name of the view
+          nullable: true
+          type: string
+        domain:
+          description: The domain the view applies to
+          nullable: true
+          type: string
+        filePath:
+          description: The full file path in the HcFs
+          nullable: true
+          type: string
+        fileContent:
+          description: |-
+            The full file content in the HcFs.
+            This will be needed for Upserting the view to a different domain / for use in fbn-config.
+          nullable: true
+          type: string
+        lastUpdatedExecutionId:
+          description: "The last ExecutionId, needed to get the creating Sql out of\
+            \ the logs"
+          format: uuid
+          nullable: true
+          type: string
+        lastUpdatedAt:
+          description: "The last updated at time, needed to get the creating Sql out\
+            \ of the logs"
+          format: date-time
+          nullable: true
+          type: string
+        lastUpdatedBy:
+          description: The last updated by this user
+          nullable: true
+          type: string
+        createdByUserId:
+          description: Originally created by this user
+          nullable: true
+          type: string
+      type: object
     ViewParameter:
       additionalProperties: false
       description: Parameters of view
@@ -12056,5 +12263,6 @@ x-tagGroups:
   - Sql Background Execution
   - Sql Design
   - Sql Execution
+  - View Management
 x-group-parameters: true
 
