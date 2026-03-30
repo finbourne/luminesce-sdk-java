@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.20.99
+  version: 1.20.103
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -661,11 +661,10 @@ paths:
         \nThe installed binaries can then be found in\n- Windows - `%USERPROFILE%\\\
         .dotnet\\tools\\.store\\`\n- Linux/macOS - `$HOME/.dotnet/tools/.store/`\n\
         \nNote that the binaries all require the dotnet runtime to be installed.\n\
-        - `dotnet8` is required for all versions `1.18.X+`\n- `dotnet6` is required\
-        \ for all versions `1.17.X-` *Please upgrade if still running these*\n\nThe\
-        \ following error codes are to be anticipated with standard Problem Detail\
-        \ reports:\n- 400 BadRequest - binary file is not available for some reason\
-        \ (e.g. permissions or invalid version)\n- 401 Unauthorized\n- 403 Forbidden\n"
+        - `dotnet8` is required for all currently supported versions\n\nThe following\
+        \ error codes are to be anticipated with standard Problem Detail reports:\n\
+        - 400 BadRequest - binary file is not available for some reason (e.g. permissions\
+        \ or invalid version)\n- 401 Unauthorized\n- 403 Forbidden\n"
       operationId: DownloadBinary
       parameters:
       - description: Type of binary to download (each requires separate licenses and
