@@ -5,7 +5,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getViewCreationSql**](ViewManagementApi.md#getViewCreationSql) | **PUT** /api/View/sql | [EXPERIMENTAL] GetViewCreationSql: Gets the original source Sql for a view (if available) |
-| [**listViews**](ViewManagementApi.md#listViews) | **GET** /api/View/list | [EXPERIMENTAL] ListViews: List views which are visible to the current users |
+| [**listViews**](ViewManagementApi.md#listViews) | **GET** /api/View/list | [EXPERIMENTAL] ListViews: List views which are visible to the current user |
 
 
 
@@ -102,11 +102,11 @@ public class ViewManagementApiExample {
 
 ## listViews
 
-> List&lt;ViewItem&gt; listViews(showAll, regExFilter)
+> List&lt;ViewItem&gt; listViews(showAll, regExFilter, nameLikeFilter)
 
-[EXPERIMENTAL] ListViews: List views which are visible to the current users
+[EXPERIMENTAL] ListViews: List views which are visible to the current user
 
- Lists all the views which you have access, some limited filtering is available. These come from directly from persisted files in the file system.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+ Lists all the views which you have access to see. These come from directly from persisted files in the file system. Some limited filtering is available.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
 
 ### Example
 
@@ -148,12 +148,13 @@ public class ViewManagementApiExample {
 
         ViewManagementApi apiInstance = ApiFactoryBuilder.build(fileName).build(ViewManagementApi.class);
         Boolean showAll = false; // Boolean | Show additional views if permissions allow
-        String regExFilter = "regExFilter_example"; // String | Regular Expression filter to apply to the view content
+        String regExFilter = "regExFilter_example"; // String | Regular Expression filter to reduce the number of views returned, it is applied to the view *content* (this filter is applied withing the Filesystem itself.)
+        String nameLikeFilter = "nameLikeFilter_example"; // String | SQL Like-style filter on the view name, to reduce the number of views returned (this filter is applied to the Filesystem-returned view list.)
         try {
             // uncomment the below to set overrides at the request level
-            // List<ViewItem> result = apiInstance.listViews(showAll, regExFilter).execute(opts);
+            // List<ViewItem> result = apiInstance.listViews(showAll, regExFilter, nameLikeFilter).execute(opts);
 
-            List<ViewItem> result = apiInstance.listViews(showAll, regExFilter).execute();
+            List<ViewItem> result = apiInstance.listViews(showAll, regExFilter, nameLikeFilter).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling ViewManagementApi#listViews");
@@ -171,7 +172,8 @@ public class ViewManagementApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **showAll** | **Boolean**| Show additional views if permissions allow | [optional] [default to false] |
-| **regExFilter** | **String**| Regular Expression filter to apply to the view content | [optional] |
+| **regExFilter** | **String**| Regular Expression filter to reduce the number of views returned, it is applied to the view *content* (this filter is applied withing the Filesystem itself.) | [optional] |
+| **nameLikeFilter** | **String**| SQL Like-style filter on the view name, to reduce the number of views returned (this filter is applied to the Filesystem-returned view list.) | [optional] |
 
 ### Return type
 

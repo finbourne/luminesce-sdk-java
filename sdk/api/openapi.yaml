@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.20.133
+  version: 1.20.137
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -8255,8 +8255,9 @@ paths:
     get:
       description: |2
 
-        Lists all the views which you have access, some limited filtering is available.
+        Lists all the views which you have access to see.
         These come from directly from persisted files in the file system.
+        Some limited filtering is available.
 
         The following error codes are to be anticipated with standard Problem Detail reports:
         - 401 Unauthorized
@@ -8273,10 +8274,22 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Regular Expression filter to apply to the view content
+      - description: "Regular Expression filter to reduce the number of views returned,\
+          \ it is applied to the view *content* (this filter is applied withing the\
+          \ Filesystem itself.)"
         explode: true
         in: query
         name: regExFilter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "SQL Like-style filter on the view name, to reduce the number\
+          \ of views returned (this filter is applied to the Filesystem-returned view\
+          \ list.)"
+        explode: true
+        in: query
+        name: nameLikeFilter
         required: false
         schema:
           type: string
@@ -8327,7 +8340,7 @@ paths:
       security:
       - oauth2: []
       summary: "[EXPERIMENTAL] ListViews: List views which are visible to the current\
-        \ users"
+        \ user"
       tags:
       - View Management
       x-fbn-apistatus: Experimental

@@ -309,11 +309,11 @@ public class ViewManagementApi {
     public APIgetViewCreationSqlRequest getViewCreationSql() {
         return new APIgetViewCreationSqlRequest();
     }
-    private okhttp3.Call listViewsCall(Boolean showAll, String regExFilter, final ApiCallback _callback) throws ApiException {
-        return listViewsCall(showAll, regExFilter,  _callback, new ConfigurationOptions());
+    private okhttp3.Call listViewsCall(Boolean showAll, String regExFilter, String nameLikeFilter, final ApiCallback _callback) throws ApiException {
+        return listViewsCall(showAll, regExFilter, nameLikeFilter,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call listViewsCall(Boolean showAll, String regExFilter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call listViewsCall(Boolean showAll, String regExFilter, String nameLikeFilter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -346,6 +346,10 @@ public class ViewManagementApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("regExFilter", regExFilter));
         }
 
+        if (nameLikeFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("nameLikeFilter", nameLikeFilter));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -368,35 +372,35 @@ public class ViewManagementApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listViewsValidateBeforeCall(Boolean showAll, String regExFilter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return listViewsCall(showAll, regExFilter, _callback, opts);
+    private okhttp3.Call listViewsValidateBeforeCall(Boolean showAll, String regExFilter, String nameLikeFilter, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listViewsCall(showAll, regExFilter, nameLikeFilter, _callback, opts);
 
     }
 
 
-    private ApiResponse<List<ViewItem>> listViewsWithHttpInfo(Boolean showAll, String regExFilter) throws ApiException {
-        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, null, new ConfigurationOptions());
+    private ApiResponse<List<ViewItem>> listViewsWithHttpInfo(Boolean showAll, String regExFilter, String nameLikeFilter) throws ApiException {
+        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, nameLikeFilter, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<List<ViewItem>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<List<ViewItem>> listViewsWithHttpInfo(Boolean showAll, String regExFilter, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, null, opts);
+    private ApiResponse<List<ViewItem>> listViewsWithHttpInfo(Boolean showAll, String regExFilter, String nameLikeFilter, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, nameLikeFilter, null, opts);
         Type localVarReturnType = new TypeToken<List<ViewItem>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call listViewsAsync(Boolean showAll, String regExFilter, final ApiCallback<List<ViewItem>> _callback) throws ApiException {
+    private okhttp3.Call listViewsAsync(Boolean showAll, String regExFilter, String nameLikeFilter, final ApiCallback<List<ViewItem>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, nameLikeFilter, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<List<ViewItem>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call listViewsAsync(Boolean showAll, String regExFilter, final ApiCallback<List<ViewItem>> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call listViewsAsync(Boolean showAll, String regExFilter, String nameLikeFilter, final ApiCallback<List<ViewItem>> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, _callback, opts);
+        okhttp3.Call localVarCall = listViewsValidateBeforeCall(showAll, regExFilter, nameLikeFilter, _callback, opts);
         Type localVarReturnType = new TypeToken<List<ViewItem>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -405,6 +409,7 @@ public class ViewManagementApi {
     public class APIlistViewsRequest {
         private Boolean showAll;
         private String regExFilter;
+        private String nameLikeFilter;
 
         private APIlistViewsRequest() {
         }
@@ -421,11 +426,21 @@ public class ViewManagementApi {
 
         /**
          * Set regExFilter
-         * @param regExFilter Regular Expression filter to apply to the view content (optional)
+         * @param regExFilter Regular Expression filter to reduce the number of views returned, it is applied to the view *content* (this filter is applied withing the Filesystem itself.) (optional)
          * @return APIlistViewsRequest
          */
         public APIlistViewsRequest regExFilter(String regExFilter) {
             this.regExFilter = regExFilter;
+            return this;
+        }
+
+        /**
+         * Set nameLikeFilter
+         * @param nameLikeFilter SQL Like-style filter on the view name, to reduce the number of views returned (this filter is applied to the Filesystem-returned view list.) (optional)
+         * @return APIlistViewsRequest
+         */
+        public APIlistViewsRequest nameLikeFilter(String nameLikeFilter) {
+            this.nameLikeFilter = nameLikeFilter;
             return this;
         }
 
@@ -443,7 +458,7 @@ public class ViewManagementApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return listViewsCall(showAll, regExFilter, _callback);
+            return listViewsCall(showAll, regExFilter, nameLikeFilter, _callback);
         }
 
         /**
@@ -459,7 +474,7 @@ public class ViewManagementApi {
          </table>
          */
         public List<ViewItem> execute() throws ApiException {
-            ApiResponse<List<ViewItem>> localVarResp = listViewsWithHttpInfo(showAll, regExFilter);
+            ApiResponse<List<ViewItem>> localVarResp = listViewsWithHttpInfo(showAll, regExFilter, nameLikeFilter);
             return localVarResp.getData();
         }
 
@@ -476,7 +491,7 @@ public class ViewManagementApi {
          </table>
          */
         public List<ViewItem> execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<List<ViewItem>> localVarResp = listViewsWithHttpInfo(showAll, regExFilter, opts);
+            ApiResponse<List<ViewItem>> localVarResp = listViewsWithHttpInfo(showAll, regExFilter, nameLikeFilter, opts);
             return localVarResp.getData();
         }
 
@@ -493,7 +508,7 @@ public class ViewManagementApi {
          </table>
          */
         public ApiResponse<List<ViewItem>> executeWithHttpInfo() throws ApiException {
-            return listViewsWithHttpInfo(showAll, regExFilter);
+            return listViewsWithHttpInfo(showAll, regExFilter, nameLikeFilter);
         }
 
         /**
@@ -509,7 +524,7 @@ public class ViewManagementApi {
          </table>
          */
         public ApiResponse<List<ViewItem>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return listViewsWithHttpInfo(showAll, regExFilter, opts);
+            return listViewsWithHttpInfo(showAll, regExFilter, nameLikeFilter, opts);
         }
 
         /**
@@ -526,7 +541,7 @@ public class ViewManagementApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<ViewItem>> _callback) throws ApiException {
-            return listViewsAsync(showAll, regExFilter, _callback);
+            return listViewsAsync(showAll, regExFilter, nameLikeFilter, _callback);
         }
 
         /**
@@ -543,13 +558,13 @@ public class ViewManagementApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<ViewItem>> _callback, ConfigurationOptions opts) throws ApiException {
-            return listViewsAsync(showAll, regExFilter, _callback, opts);
+            return listViewsAsync(showAll, regExFilter, nameLikeFilter, _callback, opts);
         }
     }
 
     /**
-     * [EXPERIMENTAL] ListViews: List views which are visible to the current users
-     *  Lists all the views which you have access, some limited filtering is available. These come from directly from persisted files in the file system.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+     * [EXPERIMENTAL] ListViews: List views which are visible to the current user
+     *  Lists all the views which you have access to see. These come from directly from persisted files in the file system. Some limited filtering is available.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
      * @return APIlistViewsRequest
      * @http.response.details
      <table summary="Response Details" border="1">
