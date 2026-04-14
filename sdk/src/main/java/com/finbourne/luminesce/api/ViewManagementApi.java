@@ -71,6 +71,244 @@ public class ViewManagementApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    private okhttp3.Call deleteViewCall(String viewName, final ApiCallback _callback) throws ApiException {
+        return deleteViewCall(viewName,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call deleteViewCall(String viewName, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/View/update";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (viewName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("viewName", viewName));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteViewValidateBeforeCall(String viewName, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return deleteViewCall(viewName, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> deleteViewWithHttpInfo(String viewName) throws ApiException {
+        okhttp3.Call localVarCall = deleteViewValidateBeforeCall(viewName, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> deleteViewWithHttpInfo(String viewName, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = deleteViewValidateBeforeCall(viewName, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call deleteViewAsync(String viewName, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteViewValidateBeforeCall(viewName, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call deleteViewAsync(String viewName, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteViewValidateBeforeCall(viewName, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIdeleteViewRequest {
+        private String viewName;
+
+        private APIdeleteViewRequest() {
+        }
+
+        /**
+         * Set viewName
+         * @param viewName View to delete (optional)
+         * @return APIdeleteViewRequest
+         */
+        public APIdeleteViewRequest viewName(String viewName) {
+            this.viewName = viewName;
+            return this;
+        }
+
+        /**
+         * Build call for deleteView
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return deleteViewCall(viewName, _callback);
+        }
+
+        /**
+         * Execute deleteView request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = deleteViewWithHttpInfo(viewName);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute deleteView request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = deleteViewWithHttpInfo(viewName, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute deleteView request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return deleteViewWithHttpInfo(viewName);
+        }
+
+        /**
+         * Execute deleteView request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return deleteViewWithHttpInfo(viewName, opts);
+        }
+
+        /**
+         * Execute deleteView request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return deleteViewAsync(viewName, _callback);
+        }
+
+        /**
+         * Execute deleteView request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return deleteViewAsync(viewName, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] DeleteView: Deletes a view by name
+     *  Deletes a view.  This is primarily intended for use by an automated tool to synchronise views between domains.  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+     * @return APIdeleteViewRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIdeleteViewRequest deleteView() {
+        return new APIdeleteViewRequest();
+    }
     private okhttp3.Call getViewCreationSqlCall(ViewItem viewItem, final ApiCallback _callback) throws ApiException {
         return getViewCreationSqlCall(viewItem,  _callback, new ConfigurationOptions());
     }
@@ -576,5 +814,273 @@ public class ViewManagementApi {
      */
     public APIlistViewsRequest listViews() {
         return new APIlistViewsRequest();
+    }
+    private okhttp3.Call upsertViewCall(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem, final ApiCallback _callback) throws ApiException {
+        return upsertViewCall(allowWarnings, mayUpdateExisting, viewItem,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call upsertViewCall(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = viewItem;
+
+        // create path and map variables
+        String localVarPath = "/api/View/update";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (allowWarnings != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("allowWarnings", allowWarnings));
+        }
+
+        if (mayUpdateExisting != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("mayUpdateExisting", mayUpdateExisting));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json-patch+json",
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call upsertViewValidateBeforeCall(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return upsertViewCall(allowWarnings, mayUpdateExisting, viewItem, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> upsertViewWithHttpInfo(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem) throws ApiException {
+        okhttp3.Call localVarCall = upsertViewValidateBeforeCall(allowWarnings, mayUpdateExisting, viewItem, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> upsertViewWithHttpInfo(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = upsertViewValidateBeforeCall(allowWarnings, mayUpdateExisting, viewItem, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call upsertViewAsync(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = upsertViewValidateBeforeCall(allowWarnings, mayUpdateExisting, viewItem, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call upsertViewAsync(Boolean allowWarnings, Boolean mayUpdateExisting, ViewItem viewItem, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = upsertViewValidateBeforeCall(allowWarnings, mayUpdateExisting, viewItem, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIupsertViewRequest {
+        private Boolean allowWarnings;
+        private Boolean mayUpdateExisting;
+        private ViewItem viewItem;
+
+        private APIupsertViewRequest() {
+        }
+
+        /**
+         * Set allowWarnings
+         * @param allowWarnings May views with *warnings* be upserted? Regardless of this views with *errors* may not be. Warnings includes things like: - not using macros properly so that filters or aggregations cannot be passed down - using things like &#x60;select *&#x60; that can lead to results changing over time Errors includes things like: - uses a provider or view that simply doesn&#39;t exists (so perhaps a view this depends on needs creating first?) - The SQL or Metadata of the view was manually edited, not setup correctly by &#x60;Sys.Admin.SetupView&#x60; (optional, default to false)
+         * @return APIupsertViewRequest
+         */
+        public APIupsertViewRequest allowWarnings(Boolean allowWarnings) {
+            this.allowWarnings = allowWarnings;
+            return this;
+        }
+
+        /**
+         * Set mayUpdateExisting
+         * @param mayUpdateExisting May an existing view be overwritten? Defaults to false to prevent accidental overwrites. Set to true when intentionally deploying an updated view definition to a domain. (optional, default to false)
+         * @return APIupsertViewRequest
+         */
+        public APIupsertViewRequest mayUpdateExisting(Boolean mayUpdateExisting) {
+            this.mayUpdateExisting = mayUpdateExisting;
+            return this;
+        }
+
+        /**
+         * Set viewItem
+         * @param viewItem View to create / change the definition of. (optional)
+         * @return APIupsertViewRequest
+         */
+        public APIupsertViewRequest viewItem(ViewItem viewItem) {
+            this.viewItem = viewItem;
+            return this;
+        }
+
+        /**
+         * Build call for upsertView
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return upsertViewCall(allowWarnings, mayUpdateExisting, viewItem, _callback);
+        }
+
+        /**
+         * Execute upsertView request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = upsertViewWithHttpInfo(allowWarnings, mayUpdateExisting, viewItem);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute upsertView request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = upsertViewWithHttpInfo(allowWarnings, mayUpdateExisting, viewItem, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute upsertView request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return upsertViewWithHttpInfo(allowWarnings, mayUpdateExisting, viewItem);
+        }
+
+        /**
+         * Execute upsertView request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return upsertViewWithHttpInfo(allowWarnings, mayUpdateExisting, viewItem, opts);
+        }
+
+        /**
+         * Execute upsertView request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return upsertViewAsync(allowWarnings, mayUpdateExisting, viewItem, _callback);
+        }
+
+        /**
+         * Execute upsertView request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return upsertViewAsync(allowWarnings, mayUpdateExisting, viewItem, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] UpsertView: Creates or updates a view from a full ViewDefinition.
+     *  Creates or updates a view from a full ViewDefinition.  Adds or creates a view from a view definition - without running the SQL of the view.  This is primarily intended for use by an automated tool to copy views between domains.  What this is *absolutely not* intended to do is to update views to tampered with definitions that were not originally created by &#x60;Sys.Admin.SetupView&#x60;, not even the smallest of changes are permitted as they may not work and will lead to additional support loads.  The flow for using fbn-config and these endpoints should generally be: - version control the &#x60;Sys.Admin.SetupView&#x60; query or the fbn-config resource that runs that query. - that can be automatically deployed to a development environment / domain. - an automated process then uses the &#x60;list&#x60; endpoint to get the full view definition (see above) from the dev-domain - then that definition can be given to a sit/uat/prod domain via this endpoint  - fbn-config could be responsible for this via a new resource type or simply a new, or any other script with PATs for both domains could be responsible for that)  The following error codes are to be anticipated with standard Problem Detail reports: - 401 Unauthorized - 403 Forbidden 
+     * @return APIupsertViewRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIupsertViewRequest upsertView() {
+        return new APIupsertViewRequest();
     }
 }

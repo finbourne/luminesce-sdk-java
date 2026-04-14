@@ -69,8 +69,10 @@ Class | Method | HTTP request | Description
 *SqlExecutionApi* | [**putByQueryPipe**](docs/SqlExecutionApi.md#putbyquerypipe) | **PUT** /api/Sql/pipe | PutByQueryPipe: Execute Sql from the body making pipe-delimited
 *SqlExecutionApi* | [**putByQuerySqlite**](docs/SqlExecutionApi.md#putbyquerysqlite) | **PUT** /api/Sql/sqlite | PutByQuerySqlite: Execute Sql from the body returning SqLite DB
 *SqlExecutionApi* | [**putByQueryXml**](docs/SqlExecutionApi.md#putbyqueryxml) | **PUT** /api/Sql/xml | PutByQueryXml: Execute Sql from the body returning XML
+*ViewManagementApi* | [**deleteView**](docs/ViewManagementApi.md#deleteview) | **DELETE** /api/View/update | [EXPERIMENTAL] DeleteView: Deletes a view by name
 *ViewManagementApi* | [**getViewCreationSql**](docs/ViewManagementApi.md#getviewcreationsql) | **PUT** /api/View/sql | [EXPERIMENTAL] GetViewCreationSql: Gets the original source Sql for a view (if available)
 *ViewManagementApi* | [**listViews**](docs/ViewManagementApi.md#listviews) | **GET** /api/View/list | [EXPERIMENTAL] ListViews: List views which are visible to the current user
+*ViewManagementApi* | [**upsertView**](docs/ViewManagementApi.md#upsertview) | **PUT** /api/View/update | [EXPERIMENTAL] UpsertView: Creates or updates a view from a full ViewDefinition.
 
 
 <a id="documentation-for-models"></a>

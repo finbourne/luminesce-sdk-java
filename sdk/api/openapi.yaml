@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.20.137
+  version: 1.20.142
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -8418,6 +8418,185 @@ paths:
       x-fbn-apistatus: Experimental
       x-content-type: application/json-patch+json
       x-accepts: application/json
+  /api/View/update:
+    delete:
+      description: |2
+
+        Deletes a view.
+
+        This is primarily intended for use by an automated tool to synchronise views between domains.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+      operationId: DeleteView
+      parameters:
+      - description: View to delete
+        explode: true
+        in: query
+        name: viewName
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] DeleteView: Deletes a view by name"
+      tags:
+      - View Management
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
+    put:
+      description: |2
+
+        Creates or updates a view from a full ViewDefinition.
+
+        Adds or creates a view from a view definition - without running the SQL of the view.
+
+        This is primarily intended for use by an automated tool to copy views between domains.
+
+        What this is *absolutely not* intended to do is to update views to tampered with definitions that were not originally created
+        by `Sys.Admin.SetupView`, not even the smallest of changes are permitted as they may not work and will lead
+        to additional support loads.
+
+        The flow for using fbn-config and these endpoints should generally be:
+        - version control the `Sys.Admin.SetupView` query or the fbn-config resource that runs that query.
+        - that can be automatically deployed to a development environment / domain.
+        - an automated process then uses the `list` endpoint to get the full view definition (see above) from the dev-domain
+        - then that definition can be given to a sit/uat/prod domain via this endpoint
+         - fbn-config could be responsible for this via a new resource type or simply a new, or any other script with PATs for both domains could be responsible for that)
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 401 Unauthorized
+        - 403 Forbidden
+      operationId: UpsertView
+      parameters:
+      - description: |-
+          May views with *warnings* be upserted? Regardless of this views with *errors* may not be.
+          Warnings includes things like:
+          - not using macros properly so that filters or aggregations cannot be passed down
+          - using things like `select *` that can lead to results changing over time
+          Errors includes things like:
+          - uses a provider or view that simply doesn't exists (so perhaps a view this depends on needs creating first?)
+          - The SQL or Metadata of the view was manually edited, not setup correctly by `Sys.Admin.SetupView`
+        explode: true
+        in: query
+        name: allowWarnings
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: |-
+          May an existing view be overwritten? Defaults to false to prevent accidental overwrites.
+          Set to true when intentionally deploying an updated view definition to a domain.
+        explode: true
+        in: query
+        name: mayUpdateExisting
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ViewItem'
+        description: View to create / change the definition of.
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] UpsertView: Creates or updates a view from a full ViewDefinition."
+      tags:
+      - View Management
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
   /fakeNodeReclaim:
     get:
       description: |2-
@@ -12058,6 +12237,7 @@ components:
       example:
         lastUpdatedBy: lastUpdatedBy
         createdByUserId: createdByUserId
+        notes: notes
         lastUpdatedAt: 2000-01-23T04:56:07.000+00:00
         lastUpdatedExecutionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         domain: domain
@@ -12101,6 +12281,10 @@ components:
           type: string
         createdByUserId:
           description: Originally created by this user
+          nullable: true
+          type: string
+        notes:
+          description: Any notes around saving or whatnot
           nullable: true
           type: string
       type: object

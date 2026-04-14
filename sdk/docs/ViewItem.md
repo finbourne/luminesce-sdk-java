@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **lastUpdatedAt** | [**OffsetDateTime**](OffsetDateTime.md) | The last updated at time, needed to get the creating Sql out of the logs | [optional] [default to OffsetDateTime]
 **lastUpdatedBy** | **String** | The last updated by this user | [optional] [default to String]
 **createdByUserId** | **String** | Originally created by this user | [optional] [default to String]
+**notes** | **String** | Any notes around saving or whatnot | [optional] [default to String]
 
 ```java
 import com.finbourne.luminesce.model.ViewItem;
@@ -27,6 +28,7 @@ import java.net.URI;
 @jakarta.annotation.Nullable OffsetDateTime LastUpdatedAt = OffsetDateTime.now();
 @jakarta.annotation.Nullable String LastUpdatedBy = "example LastUpdatedBy";
 @jakarta.annotation.Nullable String CreatedByUserId = "example CreatedByUserId";
+@jakarta.annotation.Nullable String Notes = "example Notes";
 
 
 ViewItem viewItemInstance = new ViewItem()
@@ -37,7 +39,8 @@ ViewItem viewItemInstance = new ViewItem()
     .LastUpdatedExecutionId(LastUpdatedExecutionId)
     .LastUpdatedAt(LastUpdatedAt)
     .LastUpdatedBy(LastUpdatedBy)
-    .CreatedByUserId(CreatedByUserId);
+    .CreatedByUserId(CreatedByUserId)
+    .Notes(Notes);
 ```
 
 

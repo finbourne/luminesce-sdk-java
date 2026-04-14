@@ -84,6 +84,10 @@ public class ViewItem {
   @SerializedName(SERIALIZED_NAME_CREATED_BY_USER_ID)
   private String createdByUserId;
 
+  public static final String SERIALIZED_NAME_NOTES = "notes";
+  @SerializedName(SERIALIZED_NAME_NOTES)
+  private String notes;
+
   public ViewItem() {
   }
 
@@ -255,6 +259,27 @@ public class ViewItem {
   }
 
 
+  public ViewItem notes(String notes) {
+    
+    this.notes = notes;
+    return this;
+  }
+
+   /**
+   * Any notes around saving or whatnot
+   * @return notes
+  **/
+  @jakarta.annotation.Nullable
+  public String getNotes() {
+    return notes;
+  }
+
+
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -272,7 +297,8 @@ public class ViewItem {
         Objects.equals(this.lastUpdatedExecutionId, viewItem.lastUpdatedExecutionId) &&
         Objects.equals(this.lastUpdatedAt, viewItem.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, viewItem.lastUpdatedBy) &&
-        Objects.equals(this.createdByUserId, viewItem.createdByUserId);
+        Objects.equals(this.createdByUserId, viewItem.createdByUserId) &&
+        Objects.equals(this.notes, viewItem.notes);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -281,7 +307,7 @@ public class ViewItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, domain, filePath, fileContent, lastUpdatedExecutionId, lastUpdatedAt, lastUpdatedBy, createdByUserId);
+    return Objects.hash(name, domain, filePath, fileContent, lastUpdatedExecutionId, lastUpdatedAt, lastUpdatedBy, createdByUserId, notes);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -303,6 +329,7 @@ public class ViewItem {
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
     sb.append("    createdByUserId: ").append(toIndentedString(createdByUserId)).append("\n");
+    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -333,6 +360,7 @@ public class ViewItem {
     openapiFields.add("lastUpdatedAt");
     openapiFields.add("lastUpdatedBy");
     openapiFields.add("createdByUserId");
+    openapiFields.add("notes");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -371,6 +399,9 @@ public class ViewItem {
       }
       if ((jsonObj.get("createdByUserId") != null && !jsonObj.get("createdByUserId").isJsonNull()) && !jsonObj.get("createdByUserId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `createdByUserId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdByUserId").toString()));
+      }
+      if ((jsonObj.get("notes") != null && !jsonObj.get("notes").isJsonNull()) && !jsonObj.get("notes").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `notes` to be a primitive type in the JSON string but got `%s`", jsonObj.get("notes").toString()));
       }
   }
 
