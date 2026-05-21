@@ -103,7 +103,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 ## getFields
 
-> String getFields(tableLike, addLineage)
+> String getFields(tableLike, addLineage, addLineageMarker)
 
 GetFields: List field and parameters for providers
 
@@ -150,11 +150,12 @@ public class CurrentTableFieldCatalogApiExample {
         CurrentTableFieldCatalogApi apiInstance = ApiFactoryBuilder.build(fileName).build(CurrentTableFieldCatalogApi.class);
         String tableLike = "%"; // String | Allows for SQL-LIKE style filtering of which Providers you want the fields for.
         Boolean addLineage = false; // Boolean | Adds in any column lineage which is registered in the catalog to the results.
+        Boolean addLineageMarker = false; // Boolean | Adds in a marker for column lineage which is registered in the catalog to the results: hasLineage true/false
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getFields(tableLike, addLineage).execute(opts);
+            // String result = apiInstance.getFields(tableLike, addLineage, addLineageMarker).execute(opts);
 
-            String result = apiInstance.getFields(tableLike, addLineage).execute();
+            String result = apiInstance.getFields(tableLike, addLineage, addLineageMarker).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling CurrentTableFieldCatalogApi#getFields");
@@ -173,6 +174,7 @@ public class CurrentTableFieldCatalogApiExample {
 |------------- | ------------- | ------------- | -------------|
 | **tableLike** | **String**| Allows for SQL-LIKE style filtering of which Providers you want the fields for. | [optional] [default to %] |
 | **addLineage** | **Boolean**| Adds in any column lineage which is registered in the catalog to the results. | [optional] [default to false] |
+| **addLineageMarker** | **Boolean**| Adds in a marker for column lineage which is registered in the catalog to the results: hasLineage true/false | [optional] [default to false] |
 
 ### Return type
 
@@ -194,7 +196,7 @@ public class CurrentTableFieldCatalogApiExample {
 
 ## getProviders
 
-> String getProviders(freeTextSearch, addLineage)
+> String getProviders(freeTextSearch, tableLike, addLineage, addLineageMarker)
 
 GetProviders: List available providers
 
@@ -240,12 +242,14 @@ public class CurrentTableFieldCatalogApiExample {
 
         CurrentTableFieldCatalogApi apiInstance = ApiFactoryBuilder.build(fileName).build(CurrentTableFieldCatalogApi.class);
         String freeTextSearch = "freeTextSearch_example"; // String | Limit the catalog to only things in some way dealing with the passed in text string
-        Boolean addLineage = false; // Boolean | Adds in any column lineage which is registered in the catalog to the results.
+        String tableLike = "tableLike_example"; // String | Allows for SQL-LIKE style filtering of which Providers you want the data for.
+        Boolean addLineage = false; // Boolean | Adds in any provider lineage which is registered in the catalog to the results (can produce very large responses).
+        Boolean addLineageMarker = false; // Boolean | Adds in a marker for provider lineage which is registered in the catalog to the results: hasLineage true/false
         try {
             // uncomment the below to set overrides at the request level
-            // String result = apiInstance.getProviders(freeTextSearch, addLineage).execute(opts);
+            // String result = apiInstance.getProviders(freeTextSearch, tableLike, addLineage, addLineageMarker).execute(opts);
 
-            String result = apiInstance.getProviders(freeTextSearch, addLineage).execute();
+            String result = apiInstance.getProviders(freeTextSearch, tableLike, addLineage, addLineageMarker).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling CurrentTableFieldCatalogApi#getProviders");
@@ -263,7 +267,9 @@ public class CurrentTableFieldCatalogApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **freeTextSearch** | **String**| Limit the catalog to only things in some way dealing with the passed in text string | [optional] |
-| **addLineage** | **Boolean**| Adds in any column lineage which is registered in the catalog to the results. | [optional] [default to false] |
+| **tableLike** | **String**| Allows for SQL-LIKE style filtering of which Providers you want the data for. | [optional] |
+| **addLineage** | **Boolean**| Adds in any provider lineage which is registered in the catalog to the results (can produce very large responses). | [optional] [default to false] |
+| **addLineageMarker** | **Boolean**| Adds in a marker for provider lineage which is registered in the catalog to the results: hasLineage true/false | [optional] [default to false] |
 
 ### Return type
 

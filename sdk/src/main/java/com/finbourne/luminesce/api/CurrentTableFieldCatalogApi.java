@@ -306,11 +306,11 @@ public class CurrentTableFieldCatalogApi {
     public APIgetCatalogRequest getCatalog() {
         return new APIgetCatalogRequest();
     }
-    private okhttp3.Call getFieldsCall(String tableLike, Boolean addLineage, final ApiCallback _callback) throws ApiException {
-        return getFieldsCall(tableLike, addLineage,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getFieldsCall(String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback _callback) throws ApiException {
+        return getFieldsCall(tableLike, addLineage, addLineageMarker,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getFieldsCall(String tableLike, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getFieldsCall(String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -343,6 +343,10 @@ public class CurrentTableFieldCatalogApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("addLineage", addLineage));
         }
 
+        if (addLineageMarker != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("addLineageMarker", addLineageMarker));
+        }
+
         final String[] localVarAccepts = {
             "text/plain",
             "application/json",
@@ -365,35 +369,35 @@ public class CurrentTableFieldCatalogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getFieldsValidateBeforeCall(String tableLike, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getFieldsCall(tableLike, addLineage, _callback, opts);
+    private okhttp3.Call getFieldsValidateBeforeCall(String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getFieldsCall(tableLike, addLineage, addLineageMarker, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, Boolean addLineage) throws ApiException {
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, null, new ConfigurationOptions());
+    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, Boolean addLineage, Boolean addLineageMarker) throws ApiException {
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, addLineageMarker, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, Boolean addLineage, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, null, opts);
+    private ApiResponse<String> getFieldsWithHttpInfo(String tableLike, Boolean addLineage, Boolean addLineageMarker, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, addLineageMarker, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getFieldsAsync(String tableLike, Boolean addLineage, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getFieldsAsync(String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, addLineageMarker, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getFieldsAsync(String tableLike, Boolean addLineage, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getFieldsAsync(String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, _callback, opts);
+        okhttp3.Call localVarCall = getFieldsValidateBeforeCall(tableLike, addLineage, addLineageMarker, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -402,6 +406,7 @@ public class CurrentTableFieldCatalogApi {
     public class APIgetFieldsRequest {
         private String tableLike;
         private Boolean addLineage;
+        private Boolean addLineageMarker;
 
         private APIgetFieldsRequest() {
         }
@@ -427,6 +432,16 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
+         * Set addLineageMarker
+         * @param addLineageMarker Adds in a marker for column lineage which is registered in the catalog to the results: hasLineage true/false (optional, default to false)
+         * @return APIgetFieldsRequest
+         */
+        public APIgetFieldsRequest addLineageMarker(Boolean addLineageMarker) {
+            this.addLineageMarker = addLineageMarker;
+            return this;
+        }
+
+        /**
          * Build call for getFields
          * @param _callback ApiCallback API callback
          * @return Call to execute
@@ -438,7 +453,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getFieldsCall(tableLike, addLineage, _callback);
+            return getFieldsCall(tableLike, addLineage, addLineageMarker, _callback);
         }
 
         /**
@@ -452,7 +467,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, addLineage);
+            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, addLineage, addLineageMarker);
             return localVarResp.getData();
         }
 
@@ -467,7 +482,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, addLineage, opts);
+            ApiResponse<String> localVarResp = getFieldsWithHttpInfo(tableLike, addLineage, addLineageMarker, opts);
             return localVarResp.getData();
         }
 
@@ -482,7 +497,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getFieldsWithHttpInfo(tableLike, addLineage);
+            return getFieldsWithHttpInfo(tableLike, addLineage, addLineageMarker);
         }
 
         /**
@@ -496,7 +511,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getFieldsWithHttpInfo(tableLike, addLineage, opts);
+            return getFieldsWithHttpInfo(tableLike, addLineage, addLineageMarker, opts);
         }
 
         /**
@@ -511,7 +526,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getFieldsAsync(tableLike, addLineage, _callback);
+            return getFieldsAsync(tableLike, addLineage, addLineageMarker, _callback);
         }
 
         /**
@@ -526,7 +541,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getFieldsAsync(tableLike, addLineage, _callback, opts);
+            return getFieldsAsync(tableLike, addLineage, addLineageMarker, _callback, opts);
         }
     }
 
@@ -543,11 +558,11 @@ public class CurrentTableFieldCatalogApi {
     public APIgetFieldsRequest getFields() {
         return new APIgetFieldsRequest();
     }
-    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean addLineage, final ApiCallback _callback) throws ApiException {
-        return getProvidersCall(freeTextSearch, addLineage,  _callback, new ConfigurationOptions());
+    private okhttp3.Call getProvidersCall(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback _callback) throws ApiException {
+        return getProvidersCall(freeTextSearch, tableLike, addLineage, addLineageMarker,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call getProvidersCall(String freeTextSearch, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProvidersCall(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -576,8 +591,16 @@ public class CurrentTableFieldCatalogApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("freeTextSearch", freeTextSearch));
         }
 
+        if (tableLike != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tableLike", tableLike));
+        }
+
         if (addLineage != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("addLineage", addLineage));
+        }
+
+        if (addLineageMarker != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("addLineageMarker", addLineageMarker));
         }
 
         final String[] localVarAccepts = {
@@ -602,35 +625,35 @@ public class CurrentTableFieldCatalogApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, Boolean addLineage, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
-        return getProvidersCall(freeTextSearch, addLineage, _callback, opts);
+    private okhttp3.Call getProvidersValidateBeforeCall(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return getProvidersCall(freeTextSearch, tableLike, addLineage, addLineageMarker, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean addLineage) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, null, new ConfigurationOptions());
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, tableLike, addLineage, addLineageMarker, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, Boolean addLineage, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, null, opts);
+    private ApiResponse<String> getProvidersWithHttpInfo(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, tableLike, addLineage, addLineageMarker, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean addLineage, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, tableLike, addLineage, addLineageMarker, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call getProvidersAsync(String freeTextSearch, Boolean addLineage, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call getProvidersAsync(String freeTextSearch, String tableLike, Boolean addLineage, Boolean addLineageMarker, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, addLineage, _callback, opts);
+        okhttp3.Call localVarCall = getProvidersValidateBeforeCall(freeTextSearch, tableLike, addLineage, addLineageMarker, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -638,7 +661,9 @@ public class CurrentTableFieldCatalogApi {
 
     public class APIgetProvidersRequest {
         private String freeTextSearch;
+        private String tableLike;
         private Boolean addLineage;
+        private Boolean addLineageMarker;
 
         private APIgetProvidersRequest() {
         }
@@ -654,12 +679,32 @@ public class CurrentTableFieldCatalogApi {
         }
 
         /**
+         * Set tableLike
+         * @param tableLike Allows for SQL-LIKE style filtering of which Providers you want the data for. (optional)
+         * @return APIgetProvidersRequest
+         */
+        public APIgetProvidersRequest tableLike(String tableLike) {
+            this.tableLike = tableLike;
+            return this;
+        }
+
+        /**
          * Set addLineage
-         * @param addLineage Adds in any column lineage which is registered in the catalog to the results. (optional, default to false)
+         * @param addLineage Adds in any provider lineage which is registered in the catalog to the results (can produce very large responses). (optional, default to false)
          * @return APIgetProvidersRequest
          */
         public APIgetProvidersRequest addLineage(Boolean addLineage) {
             this.addLineage = addLineage;
+            return this;
+        }
+
+        /**
+         * Set addLineageMarker
+         * @param addLineageMarker Adds in a marker for provider lineage which is registered in the catalog to the results: hasLineage true/false (optional, default to false)
+         * @return APIgetProvidersRequest
+         */
+        public APIgetProvidersRequest addLineageMarker(Boolean addLineageMarker) {
+            this.addLineageMarker = addLineageMarker;
             return this;
         }
 
@@ -675,7 +720,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return getProvidersCall(freeTextSearch, addLineage, _callback);
+            return getProvidersCall(freeTextSearch, tableLike, addLineage, addLineageMarker, _callback);
         }
 
         /**
@@ -689,7 +734,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, addLineage);
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, tableLike, addLineage, addLineageMarker);
             return localVarResp.getData();
         }
 
@@ -704,7 +749,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, addLineage, opts);
+            ApiResponse<String> localVarResp = getProvidersWithHttpInfo(freeTextSearch, tableLike, addLineage, addLineageMarker, opts);
             return localVarResp.getData();
         }
 
@@ -719,7 +764,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return getProvidersWithHttpInfo(freeTextSearch, addLineage);
+            return getProvidersWithHttpInfo(freeTextSearch, tableLike, addLineage, addLineageMarker);
         }
 
         /**
@@ -733,7 +778,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return getProvidersWithHttpInfo(freeTextSearch, addLineage, opts);
+            return getProvidersWithHttpInfo(freeTextSearch, tableLike, addLineage, addLineageMarker, opts);
         }
 
         /**
@@ -748,7 +793,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return getProvidersAsync(freeTextSearch, addLineage, _callback);
+            return getProvidersAsync(freeTextSearch, tableLike, addLineage, addLineageMarker, _callback);
         }
 
         /**
@@ -763,7 +808,7 @@ public class CurrentTableFieldCatalogApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return getProvidersAsync(freeTextSearch, addLineage, _callback, opts);
+            return getProvidersAsync(freeTextSearch, tableLike, addLineage, addLineageMarker, _callback, opts);
         }
     }
 

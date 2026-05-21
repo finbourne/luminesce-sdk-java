@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.9
+  version: 1.21.23
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -224,6 +224,17 @@ paths:
           type: boolean
         style: form
         x-nullable: true
+      - description: "Adds in a marker for column lineage which is registered in the\
+          \ catalog to the results: hasLineage true/false"
+        explode: true
+        in: query
+        name: addLineageMarker
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
       responses:
         "200":
           content:
@@ -269,11 +280,31 @@ paths:
         schema:
           type: string
         style: form
-      - description: Adds in any column lineage which is registered in the catalog
-          to the results.
+      - description: Allows for SQL-LIKE style filtering of which Providers you want
+          the data for.
+        explode: true
+        in: query
+        name: tableLike
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Adds in any provider lineage which is registered in the catalog
+          to the results (can produce very large responses).
         explode: true
         in: query
         name: addLineage
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: "Adds in a marker for provider lineage which is registered in\
+          \ the catalog to the results: hasLineage true/false"
+        explode: true
+        in: query
+        name: addLineageMarker
         required: false
         schema:
           default: false
