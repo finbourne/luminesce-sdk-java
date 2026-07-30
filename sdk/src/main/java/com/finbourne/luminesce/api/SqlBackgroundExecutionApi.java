@@ -292,11 +292,11 @@ public class SqlBackgroundExecutionApi {
     public APIcancelQueryRequest cancelQuery(String executionId) {
         return new APIcancelQueryRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -332,6 +332,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -388,40 +392,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultCsvValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultCsvValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultCsv(Async)");
         }
 
-        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultCsvCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> fetchQueryResultCsvWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<String> fetchQueryResultCsvWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> fetchQueryResultCsvWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, null, opts);
+    private ApiResponse<String> fetchQueryResultCsvWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultCsvAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultCsvAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultCsvAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultCsvAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultCsvValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -432,6 +436,7 @@ public class SqlBackgroundExecutionApi {
         private Boolean download;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer limit;
@@ -467,11 +472,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultCsvRequest
          */
         public APIfetchQueryResultCsvRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultCsvRequest
+         */
+        public APIfetchQueryResultCsvRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -569,7 +584,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultCsvCall(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback);
+            return fetchQueryResultCsvCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -585,7 +600,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds);
+            ApiResponse<String> localVarResp = fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -602,7 +617,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, opts);
+            ApiResponse<String> localVarResp = fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -619,7 +634,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds);
+            return fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds);
         }
 
         /**
@@ -635,7 +650,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, opts);
+            return fetchQueryResultCsvWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -652,7 +667,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return fetchQueryResultCsvAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback);
+            return fetchQueryResultCsvAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -669,7 +684,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultCsvAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultCsvAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -689,11 +704,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultCsvRequest fetchQueryResultCsv(String executionId) {
         return new APIfetchQueryResultCsvRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultExcelCall(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultExcelCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultExcelCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultExcelCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultExcelCall(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultExcelCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -725,6 +740,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -765,40 +784,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultExcelValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultExcelValidateBeforeCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultExcel(Async)");
         }
 
-        return fetchQueryResultExcelCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultExcelCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<File> fetchQueryResultExcelWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<File> fetchQueryResultExcelWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<File> fetchQueryResultExcelWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, null, opts);
+    private ApiResponse<File> fetchQueryResultExcelWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultExcelAsync(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultExcelAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultExcelAsync(String executionId, String sortBy, String filter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultExcelAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultExcelValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -808,6 +827,7 @@ public class SqlBackgroundExecutionApi {
         private final String executionId;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private String dateTimeFormat;
@@ -829,11 +849,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultExcelRequest
          */
         public APIfetchQueryResultExcelRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultExcelRequest
+         */
+        public APIfetchQueryResultExcelRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -891,7 +921,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultExcelCall(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback);
+            return fetchQueryResultExcelCall(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -907,7 +937,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public File execute() throws ApiException {
-            ApiResponse<File> localVarResp = fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds);
+            ApiResponse<File> localVarResp = fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -924,7 +954,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public File execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<File> localVarResp = fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, opts);
+            ApiResponse<File> localVarResp = fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -941,7 +971,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds);
+            return fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds);
         }
 
         /**
@@ -957,7 +987,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, opts);
+            return fetchQueryResultExcelWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -974,7 +1004,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
-            return fetchQueryResultExcelAsync(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback);
+            return fetchQueryResultExcelAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -991,7 +1021,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultExcelAsync(executionId, sortBy, filter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultExcelAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -1177,7 +1207,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - Or raw SqLite SQL, this must then begin with &#x60;WHERE &#x60; and is more flexible, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; (optional)
          * @return APIfetchQueryResultHistogramRequest
          */
         public APIfetchQueryResultHistogramRequest filter(String filter) {
@@ -1330,11 +1360,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultHistogramRequest fetchQueryResultHistogram(String executionId, String timestampFieldName) {
         return new APIfetchQueryResultHistogramRequest(executionId, timestampFieldName);
     }
-    private okhttp3.Call fetchQueryResultJsonCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultJsonCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultJsonCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultJsonCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1366,6 +1396,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -1410,40 +1444,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultJsonValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonValidateBeforeCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultJson(Async)");
         }
 
-        return fetchQueryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultJsonCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> fetchQueryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<String> fetchQueryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> fetchQueryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
+    private ApiResponse<String> fetchQueryResultJsonWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultJsonAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultJsonAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultJsonValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1453,6 +1487,7 @@ public class SqlBackgroundExecutionApi {
         private final String executionId;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer limit;
@@ -1475,11 +1510,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultJsonRequest
          */
         public APIfetchQueryResultJsonRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultJsonRequest
+         */
+        public APIfetchQueryResultJsonRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -1547,7 +1592,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultJsonCall(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultJsonCall(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -1563,7 +1608,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            ApiResponse<String> localVarResp = fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -1580,7 +1625,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            ApiResponse<String> localVarResp = fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -1597,7 +1642,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            return fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
         }
 
         /**
@@ -1613,7 +1658,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            return fetchQueryResultJsonWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -1630,7 +1675,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return fetchQueryResultJsonAsync(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultJsonAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -1647,7 +1692,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultJsonAsync(executionId, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultJsonAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -1667,11 +1712,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultJsonRequest fetchQueryResultJson(String executionId) {
         return new APIfetchQueryResultJsonRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultJsonProperCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultJsonProperCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultJsonProperCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1707,6 +1752,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -1751,40 +1800,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultJsonProperValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultJsonProper(Async)");
         }
 
-        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> fetchQueryResultJsonProperWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<String> fetchQueryResultJsonProperWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> fetchQueryResultJsonProperWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
+    private ApiResponse<String> fetchQueryResultJsonProperWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultJsonProperAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultJsonProperAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -1795,6 +1844,7 @@ public class SqlBackgroundExecutionApi {
         private Boolean download;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer limit;
@@ -1827,11 +1877,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultJsonProperRequest
          */
         public APIfetchQueryResultJsonProperRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultJsonProperRequest
+         */
+        public APIfetchQueryResultJsonProperRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -1899,7 +1959,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultJsonProperCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -1915,7 +1975,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -1932,7 +1992,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -1949,7 +2009,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            return fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
         }
 
         /**
@@ -1965,7 +2025,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            return fetchQueryResultJsonProperWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -1982,7 +2042,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return fetchQueryResultJsonProperAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultJsonProperAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -1999,7 +2059,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultJsonProperAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultJsonProperAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -2019,11 +2079,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultJsonProperRequest fetchQueryResultJsonProper(String executionId) {
         return new APIfetchQueryResultJsonProperRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultJsonProperWithLineageCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultJsonProperWithLineageCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2059,6 +2119,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -2103,40 +2167,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultJsonProperWithLineageValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultJsonProperWithLineage(Async)");
         }
 
-        return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> fetchQueryResultJsonProperWithLineageWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<String> fetchQueryResultJsonProperWithLineageWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> fetchQueryResultJsonProperWithLineageWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
+    private ApiResponse<String> fetchQueryResultJsonProperWithLineageWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultJsonProperWithLineageAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultJsonProperWithLineageAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultJsonProperWithLineageAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultJsonProperWithLineageValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2147,6 +2211,7 @@ public class SqlBackgroundExecutionApi {
         private Boolean download;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer limit;
@@ -2179,11 +2244,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultJsonProperWithLineageRequest
          */
         public APIfetchQueryResultJsonProperWithLineageRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultJsonProperWithLineageRequest
+         */
+        public APIfetchQueryResultJsonProperWithLineageRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -2251,7 +2326,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultJsonProperWithLineageCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -2267,7 +2342,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -2284,7 +2359,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            ApiResponse<String> localVarResp = fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -2301,7 +2376,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            return fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
         }
 
         /**
@@ -2317,7 +2392,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            return fetchQueryResultJsonProperWithLineageWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -2334,7 +2409,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return fetchQueryResultJsonProperWithLineageAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultJsonProperWithLineageAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -2351,7 +2426,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultJsonProperWithLineageAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultJsonProperWithLineageAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -2371,11 +2446,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultJsonProperWithLineageRequest fetchQueryResultJsonProperWithLineage(String executionId) {
         return new APIfetchQueryResultJsonProperWithLineageRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultParquetCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultParquetCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2407,6 +2482,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -2443,40 +2522,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultParquetValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultParquetValidateBeforeCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultParquet(Async)");
         }
 
-        return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultParquetCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<File> fetchQueryResultParquetWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<File> fetchQueryResultParquetWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<File> fetchQueryResultParquetWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, null, opts);
+    private ApiResponse<File> fetchQueryResultParquetWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultParquetAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultParquetAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultParquetAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultParquetAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultParquetValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2486,6 +2565,7 @@ public class SqlBackgroundExecutionApi {
         private final String executionId;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer loadWaitMilliseconds;
@@ -2506,11 +2586,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultParquetRequest
          */
         public APIfetchQueryResultParquetRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultParquetRequest
+         */
+        public APIfetchQueryResultParquetRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -2558,7 +2648,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultParquetCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback);
+            return fetchQueryResultParquetCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -2574,7 +2664,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public File execute() throws ApiException {
-            ApiResponse<File> localVarResp = fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds);
+            ApiResponse<File> localVarResp = fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -2591,7 +2681,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public File execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<File> localVarResp = fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, opts);
+            ApiResponse<File> localVarResp = fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -2608,7 +2698,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds);
+            return fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds);
         }
 
         /**
@@ -2624,7 +2714,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, opts);
+            return fetchQueryResultParquetWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -2641,7 +2731,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
-            return fetchQueryResultParquetAsync(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback);
+            return fetchQueryResultParquetAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -2658,7 +2748,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultParquetAsync(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultParquetAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -2678,11 +2768,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultParquetRequest fetchQueryResultParquet(String executionId) {
         return new APIfetchQueryResultParquetRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultPipeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultPipeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultPipeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultPipeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2718,6 +2808,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -2766,40 +2860,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultPipeValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultPipeValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultPipe(Async)");
         }
 
-        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultPipeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> fetchQueryResultPipeWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<String> fetchQueryResultPipeWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> fetchQueryResultPipeWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, null, opts);
+    private ApiResponse<String> fetchQueryResultPipeWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultPipeAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultPipeAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultPipeAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultPipeAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultPipeValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -2810,6 +2904,7 @@ public class SqlBackgroundExecutionApi {
         private Boolean download;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer limit;
@@ -2843,11 +2938,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultPipeRequest
          */
         public APIfetchQueryResultPipeRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultPipeRequest
+         */
+        public APIfetchQueryResultPipeRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -2925,7 +3030,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultPipeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback);
+            return fetchQueryResultPipeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -2941,7 +3046,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds);
+            ApiResponse<String> localVarResp = fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -2958,7 +3063,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, opts);
+            ApiResponse<String> localVarResp = fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -2975,7 +3080,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds);
+            return fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds);
         }
 
         /**
@@ -2991,7 +3096,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, opts);
+            return fetchQueryResultPipeWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -3008,7 +3113,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return fetchQueryResultPipeAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback);
+            return fetchQueryResultPipeAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -3025,7 +3130,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultPipeAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultPipeAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -3045,11 +3150,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultPipeRequest fetchQueryResultPipe(String executionId) {
         return new APIfetchQueryResultPipeRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultSqliteCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultSqliteCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultSqliteCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultSqliteCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultSqliteCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultSqliteCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3081,6 +3186,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -3117,40 +3226,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultSqliteValidateBeforeCall(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultSqliteValidateBeforeCall(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultSqlite(Async)");
         }
 
-        return fetchQueryResultSqliteCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultSqliteCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<File> fetchQueryResultSqliteWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<File> fetchQueryResultSqliteWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<File> fetchQueryResultSqliteWithHttpInfo(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, null, opts);
+    private ApiResponse<File> fetchQueryResultSqliteWithHttpInfo(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultSqliteAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultSqliteAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultSqliteAsync(String executionId, String sortBy, String filter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultSqliteAsync(String executionId, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultSqliteValidateBeforeCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3160,6 +3269,7 @@ public class SqlBackgroundExecutionApi {
         private final String executionId;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer loadWaitMilliseconds;
@@ -3180,11 +3290,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultSqliteRequest
          */
         public APIfetchQueryResultSqliteRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultSqliteRequest
+         */
+        public APIfetchQueryResultSqliteRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -3232,7 +3352,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultSqliteCall(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback);
+            return fetchQueryResultSqliteCall(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -3248,7 +3368,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public File execute() throws ApiException {
-            ApiResponse<File> localVarResp = fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds);
+            ApiResponse<File> localVarResp = fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -3265,7 +3385,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public File execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<File> localVarResp = fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, opts);
+            ApiResponse<File> localVarResp = fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -3282,7 +3402,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds);
+            return fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds);
         }
 
         /**
@@ -3298,7 +3418,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, opts);
+            return fetchQueryResultSqliteWithHttpInfo(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -3315,7 +3435,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
-            return fetchQueryResultSqliteAsync(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback);
+            return fetchQueryResultSqliteAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -3332,7 +3452,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultSqliteAsync(executionId, sortBy, filter, select, groupBy, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultSqliteAsync(executionId, sortBy, filter, sqlFilter, select, groupBy, loadWaitMilliseconds, _callback, opts);
         }
     }
 
@@ -3352,11 +3472,11 @@ public class SqlBackgroundExecutionApi {
     public APIfetchQueryResultSqliteRequest fetchQueryResultSqlite(String executionId) {
         return new APIfetchQueryResultSqliteRequest(executionId);
     }
-    private okhttp3.Call fetchQueryResultXmlCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
-        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    private okhttp3.Call fetchQueryResultXmlCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
     }
 
-    private okhttp3.Call fetchQueryResultXmlCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultXmlCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3392,6 +3512,10 @@ public class SqlBackgroundExecutionApi {
 
         if (filter != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
         }
 
         if (select != null) {
@@ -3436,40 +3560,40 @@ public class SqlBackgroundExecutionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fetchQueryResultXmlValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultXmlValidateBeforeCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
         // verify the required parameter 'executionId' is set
         if (executionId == null) {
             throw new ApiException("Missing the required parameter 'executionId' when calling fetchQueryResultXml(Async)");
         }
 
-        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        return fetchQueryResultXmlCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
 
     }
 
 
-    private ApiResponse<String> fetchQueryResultXmlWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
+    private ApiResponse<String> fetchQueryResultXmlWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private ApiResponse<String> fetchQueryResultXmlWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
-        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
+    private ApiResponse<String> fetchQueryResultXmlWithHttpInfo(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, null, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call fetchQueryResultXmlAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call fetchQueryResultXmlAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, new ConfigurationOptions());
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    private okhttp3.Call fetchQueryResultXmlAsync(String executionId, Boolean download, String sortBy, String filter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+    private okhttp3.Call fetchQueryResultXmlAsync(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
 
-        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+        okhttp3.Call localVarCall = fetchQueryResultXmlValidateBeforeCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3480,6 +3604,7 @@ public class SqlBackgroundExecutionApi {
         private Boolean download;
         private String sortBy;
         private String filter;
+        private String sqlFilter;
         private String select;
         private String groupBy;
         private Integer limit;
@@ -3512,11 +3637,21 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter An ODATA filter per Finbourne.Filtering syntax. (optional)
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
          * @return APIfetchQueryResultXmlRequest
          */
         public APIfetchQueryResultXmlRequest filter(String filter) {
             this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIfetchQueryResultXmlRequest
+         */
+        public APIfetchQueryResultXmlRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
             return this;
         }
 
@@ -3584,7 +3719,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return fetchQueryResultXmlCall(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultXmlCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -3600,7 +3735,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute() throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            ApiResponse<String> localVarResp = fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
             return localVarResp.getData();
         }
 
@@ -3617,7 +3752,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public String execute(ConfigurationOptions opts) throws ApiException {
-            ApiResponse<String> localVarResp = fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            ApiResponse<String> localVarResp = fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
             return localVarResp.getData();
         }
 
@@ -3634,7 +3769,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo() throws ApiException {
-            return fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds);
+            return fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds);
         }
 
         /**
@@ -3650,7 +3785,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
+            return fetchQueryResultXmlWithHttpInfo(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, opts);
         }
 
         /**
@@ -3667,7 +3802,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
-            return fetchQueryResultXmlAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
+            return fetchQueryResultXmlAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback);
         }
 
         /**
@@ -3684,7 +3819,7 @@ public class SqlBackgroundExecutionApi {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
-            return fetchQueryResultXmlAsync(executionId, download, sortBy, filter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
+            return fetchQueryResultXmlAsync(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, loadWaitMilliseconds, _callback, opts);
         }
     }
 

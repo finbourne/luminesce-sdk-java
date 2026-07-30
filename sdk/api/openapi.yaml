@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.312
+  version: 1.21.333
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6621,7 +6621,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -6630,6 +6633,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -6809,7 +6823,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -6818,6 +6835,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -6981,7 +7009,10 @@ paths:
           format: date-span
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
         explode: true
         in: query
         name: filter
@@ -7166,7 +7197,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -7175,6 +7209,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -7340,7 +7385,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -7349,6 +7397,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -7516,7 +7575,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -7525,6 +7587,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -7680,7 +7753,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -7689,6 +7765,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -7833,7 +7920,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -7842,6 +7932,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -8005,7 +8106,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -8014,6 +8118,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -8158,7 +8273,10 @@ paths:
           pattern: "^[\\s\\S]*$"
           type: string
         style: form
-      - description: An ODATA filter per Finbourne.Filtering syntax.
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+          - may be combined with `sqlFilter`.
         explode: true
         in: query
         name: filter
@@ -8167,6 +8285,17 @@ paths:
           maxLength: 16384
           minLength: 0
           pattern: "^[\\s\\S]*$"
+          type: string
+        style: form
+      - description: |-
+          Further limits the fetched results beyond that of the original query.
+          - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          - may be combined with `filter` while supporting additional syntax that cannot.
+        explode: true
+        in: query
+        name: sqlFilter
+        required: false
+        schema:
           type: string
         style: form
       - description: "Default is null (meaning return all columns in the original\
@@ -12041,10 +12170,12 @@ components:
       additionalProperties: false
       description: Describes a scalar parameter as defined in the SQL
       example:
+        parameterValueOptionsQuery: parameterValueOptionsQuery
         valueMustBeFromOptions: true
         name: name
         type: null
         value: ""
+        parameterValueOptionsQueryError: parameterValueOptionsQueryError
         valueOptions:
         - ""
         - ""
@@ -12068,6 +12199,15 @@ components:
         valueMustBeFromOptions:
           description: Must Value be one of ValueOptions (if any)?
           type: boolean
+        parameterValueOptionsQuery:
+          description: SQL that might have been used for generating the options list
+          nullable: true
+          type: string
+        parameterValueOptionsQueryError:
+          description: "Error generated but executing ParameterValueOptionsQuery,\
+            \ if any"
+          nullable: true
+          type: string
       required:
       - name
       - type
