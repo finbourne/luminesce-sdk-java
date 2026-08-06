@@ -93,6 +93,10 @@ public class Lineage {
   @SerializedName(SERIALIZED_NAME_FULL_FORMULA)
   private String fullFormula;
 
+  public static final String SERIALIZED_NAME_ACTION_TEMPLATE = "actionTemplate";
+  @SerializedName(SERIALIZED_NAME_ACTION_TEMPLATE)
+  private String actionTemplate;
+
   public static final String SERIALIZED_NAME_DOCUMENTATION_AS_HTML = "documentationAsHtml";
   @SerializedName(SERIALIZED_NAME_DOCUMENTATION_AS_HTML)
   private String documentationAsHtml;
@@ -318,6 +322,27 @@ public class Lineage {
   }
 
 
+  public Lineage actionTemplate(String actionTemplate) {
+    
+    this.actionTemplate = actionTemplate;
+    return this;
+  }
+
+   /**
+   * Get actionTemplate
+   * @return actionTemplate
+  **/
+  @jakarta.annotation.Nullable
+  public String getActionTemplate() {
+    return actionTemplate;
+  }
+
+
+  public void setActionTemplate(String actionTemplate) {
+    this.actionTemplate = actionTemplate;
+  }
+
+
   public Lineage documentationAsHtml(String documentationAsHtml) {
     
     this.documentationAsHtml = documentationAsHtml;
@@ -409,6 +434,7 @@ public class Lineage {
         Objects.equals(this.explainTooltip, lineage.explainTooltip) &&
         Objects.equals(this.arrowToParentTooltip, lineage.arrowToParentTooltip) &&
         Objects.equals(this.fullFormula, lineage.fullFormula) &&
+        Objects.equals(this.actionTemplate, lineage.actionTemplate) &&
         Objects.equals(this.documentationAsHtml, lineage.documentationAsHtml) &&
         Objects.equals(this.documentationAsMarkDown, lineage.documentationAsMarkDown) &&
         Objects.equals(this.children, lineage.children);
@@ -420,7 +446,7 @@ public class Lineage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, legendText, alias, columnTitleTooltip, columnTitleIcon, explainTitle, explainTooltip, arrowToParentTooltip, fullFormula, documentationAsHtml, documentationAsMarkDown, children);
+    return Objects.hash(type, subtype, legendText, alias, columnTitleTooltip, columnTitleIcon, explainTitle, explainTooltip, arrowToParentTooltip, fullFormula, actionTemplate, documentationAsHtml, documentationAsMarkDown, children);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -444,6 +470,7 @@ public class Lineage {
     sb.append("    explainTooltip: ").append(toIndentedString(explainTooltip)).append("\n");
     sb.append("    arrowToParentTooltip: ").append(toIndentedString(arrowToParentTooltip)).append("\n");
     sb.append("    fullFormula: ").append(toIndentedString(fullFormula)).append("\n");
+    sb.append("    actionTemplate: ").append(toIndentedString(actionTemplate)).append("\n");
     sb.append("    documentationAsHtml: ").append(toIndentedString(documentationAsHtml)).append("\n");
     sb.append("    documentationAsMarkDown: ").append(toIndentedString(documentationAsMarkDown)).append("\n");
     sb.append("    children: ").append(toIndentedString(children)).append("\n");
@@ -479,6 +506,7 @@ public class Lineage {
     openapiFields.add("explainTooltip");
     openapiFields.add("arrowToParentTooltip");
     openapiFields.add("fullFormula");
+    openapiFields.add("actionTemplate");
     openapiFields.add("documentationAsHtml");
     openapiFields.add("documentationAsMarkDown");
     openapiFields.add("children");
@@ -526,6 +554,9 @@ public class Lineage {
       }
       if ((jsonObj.get("fullFormula") != null && !jsonObj.get("fullFormula").isJsonNull()) && !jsonObj.get("fullFormula").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `fullFormula` to be a primitive type in the JSON string but got `%s`", jsonObj.get("fullFormula").toString()));
+      }
+      if ((jsonObj.get("actionTemplate") != null && !jsonObj.get("actionTemplate").isJsonNull()) && !jsonObj.get("actionTemplate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `actionTemplate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("actionTemplate").toString()));
       }
       if ((jsonObj.get("documentationAsHtml") != null && !jsonObj.get("documentationAsHtml").isJsonNull()) && !jsonObj.get("documentationAsHtml").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `documentationAsHtml` to be a primitive type in the JSON string but got `%s`", jsonObj.get("documentationAsHtml").toString()));

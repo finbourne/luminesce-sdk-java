@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.355
+  version: 1.21.366
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -9174,6 +9174,7 @@ components:
             wholeTableLineage:
               documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9190,6 +9191,7 @@ components:
             columnLineage:
             - documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9205,6 +9207,7 @@ components:
               legendText: legendText
             - documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9223,6 +9226,7 @@ components:
           - lineage:
               documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9240,16 +9244,18 @@ components:
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
+            actionTemplate: actionTemplate
             displayName: displayName
-            name: name
             description: description
             isPrimaryKey: true
             type: null
-            mandatoryForActions: mandatoryForActions
             conditionUsage: null
+            name: name
+            mandatoryForActions: mandatoryForActions
           - lineage:
               documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9267,13 +9273,14 @@ components:
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
+            actionTemplate: actionTemplate
             displayName: displayName
-            name: name
             description: description
             isPrimaryKey: true
             type: null
-            mandatoryForActions: mandatoryForActions
             conditionUsage: null
+            name: name
+            mandatoryForActions: mandatoryForActions
           hasData: true
           query: query
           progress: progress
@@ -9308,6 +9315,7 @@ components:
             wholeTableLineage:
               documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9324,6 +9332,7 @@ components:
             columnLineage:
             - documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9339,6 +9348,7 @@ components:
               legendText: legendText
             - documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9357,6 +9367,7 @@ components:
           - lineage:
               documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9374,16 +9385,18 @@ components:
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
+            actionTemplate: actionTemplate
             displayName: displayName
-            name: name
             description: description
             isPrimaryKey: true
             type: null
-            mandatoryForActions: mandatoryForActions
             conditionUsage: null
+            name: name
+            mandatoryForActions: mandatoryForActions
           - lineage:
               documentationAsHtml: documentationAsHtml
               explainTooltip: explainTooltip
+              actionTemplate: actionTemplate
               documentationAsMarkDown: documentationAsMarkDown
               type: type
               columnTitleIcon: null
@@ -9401,13 +9414,14 @@ components:
             sampleValues: sampleValues
             isMain: true
             isRequiredByProvider: true
+            actionTemplate: actionTemplate
             displayName: displayName
-            name: name
             description: description
             isPrimaryKey: true
             type: null
-            mandatoryForActions: mandatoryForActions
             conditionUsage: null
+            name: name
+            mandatoryForActions: mandatoryForActions
           hasData: true
           query: query
           progress: progress
@@ -9670,6 +9684,7 @@ components:
           wholeTableLineage:
             documentationAsHtml: documentationAsHtml
             explainTooltip: explainTooltip
+            actionTemplate: actionTemplate
             documentationAsMarkDown: documentationAsMarkDown
             type: type
             columnTitleIcon: null
@@ -9686,6 +9701,7 @@ components:
           columnLineage:
           - documentationAsHtml: documentationAsHtml
             explainTooltip: explainTooltip
+            actionTemplate: actionTemplate
             documentationAsMarkDown: documentationAsMarkDown
             type: type
             columnTitleIcon: null
@@ -9701,6 +9717,7 @@ components:
             legendText: legendText
           - documentationAsHtml: documentationAsHtml
             explainTooltip: explainTooltip
+            actionTemplate: actionTemplate
             documentationAsMarkDown: documentationAsMarkDown
             type: type
             columnTitleIcon: null
@@ -9719,6 +9736,7 @@ components:
         - lineage:
             documentationAsHtml: documentationAsHtml
             explainTooltip: explainTooltip
+            actionTemplate: actionTemplate
             documentationAsMarkDown: documentationAsMarkDown
             type: type
             columnTitleIcon: null
@@ -9736,16 +9754,18 @@ components:
           sampleValues: sampleValues
           isMain: true
           isRequiredByProvider: true
+          actionTemplate: actionTemplate
           displayName: displayName
-          name: name
           description: description
           isPrimaryKey: true
           type: null
-          mandatoryForActions: mandatoryForActions
           conditionUsage: null
+          name: name
+          mandatoryForActions: mandatoryForActions
         - lineage:
             documentationAsHtml: documentationAsHtml
             explainTooltip: explainTooltip
+            actionTemplate: actionTemplate
             documentationAsMarkDown: documentationAsMarkDown
             type: type
             columnTitleIcon: null
@@ -9763,13 +9783,14 @@ components:
           sampleValues: sampleValues
           isMain: true
           isRequiredByProvider: true
+          actionTemplate: actionTemplate
           displayName: displayName
-          name: name
           description: description
           isPrimaryKey: true
           type: null
-          mandatoryForActions: mandatoryForActions
           conditionUsage: null
+          name: name
+          mandatoryForActions: mandatoryForActions
         hasData: true
         query: query
         progress: progress
@@ -10142,6 +10163,7 @@ components:
         lineage:
           documentationAsHtml: documentationAsHtml
           explainTooltip: explainTooltip
+          actionTemplate: actionTemplate
           documentationAsMarkDown: documentationAsMarkDown
           type: type
           columnTitleIcon: null
@@ -10159,13 +10181,14 @@ components:
         sampleValues: sampleValues
         isMain: true
         isRequiredByProvider: true
+        actionTemplate: actionTemplate
         displayName: displayName
-        name: name
         description: description
         isPrimaryKey: true
         type: null
-        mandatoryForActions: mandatoryForActions
         conditionUsage: null
+        name: name
+        mandatoryForActions: mandatoryForActions
       properties:
         isPrimaryKey:
           type: boolean
@@ -10174,6 +10197,9 @@ components:
         isRequiredByProvider:
           type: boolean
         mandatoryForActions:
+          nullable: true
+          type: string
+        actionTemplate:
           nullable: true
           type: string
         lineage:
@@ -11197,6 +11223,7 @@ components:
       example:
         documentationAsHtml: documentationAsHtml
         explainTooltip: explainTooltip
+        actionTemplate: actionTemplate
         documentationAsMarkDown: documentationAsMarkDown
         type: type
         columnTitleIcon: null
@@ -11238,6 +11265,9 @@ components:
           nullable: true
           type: string
         fullFormula:
+          nullable: true
+          type: string
+        actionTemplate:
           nullable: true
           type: string
         documentationAsHtml:
@@ -12251,6 +12281,7 @@ components:
         wholeTableLineage:
           documentationAsHtml: documentationAsHtml
           explainTooltip: explainTooltip
+          actionTemplate: actionTemplate
           documentationAsMarkDown: documentationAsMarkDown
           type: type
           columnTitleIcon: null
@@ -12267,6 +12298,7 @@ components:
         columnLineage:
         - documentationAsHtml: documentationAsHtml
           explainTooltip: explainTooltip
+          actionTemplate: actionTemplate
           documentationAsMarkDown: documentationAsMarkDown
           type: type
           columnTitleIcon: null
@@ -12282,6 +12314,7 @@ components:
           legendText: legendText
         - documentationAsHtml: documentationAsHtml
           explainTooltip: explainTooltip
+          actionTemplate: actionTemplate
           documentationAsMarkDown: documentationAsMarkDown
           type: type
           columnTitleIcon: null

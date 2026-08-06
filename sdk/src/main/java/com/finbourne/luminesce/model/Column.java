@@ -69,6 +69,10 @@ public class Column {
   @SerializedName(SERIALIZED_NAME_MANDATORY_FOR_ACTIONS)
   private String mandatoryForActions;
 
+  public static final String SERIALIZED_NAME_ACTION_TEMPLATE = "actionTemplate";
+  @SerializedName(SERIALIZED_NAME_ACTION_TEMPLATE)
+  private String actionTemplate;
+
   public static final String SERIALIZED_NAME_LINEAGE = "lineage";
   @SerializedName(SERIALIZED_NAME_LINEAGE)
   private Lineage lineage;
@@ -185,6 +189,27 @@ public class Column {
 
   public void setMandatoryForActions(String mandatoryForActions) {
     this.mandatoryForActions = mandatoryForActions;
+  }
+
+
+  public Column actionTemplate(String actionTemplate) {
+    
+    this.actionTemplate = actionTemplate;
+    return this;
+  }
+
+   /**
+   * Get actionTemplate
+   * @return actionTemplate
+  **/
+  @jakarta.annotation.Nullable
+  public String getActionTemplate() {
+    return actionTemplate;
+  }
+
+
+  public void setActionTemplate(String actionTemplate) {
+    this.actionTemplate = actionTemplate;
   }
 
 
@@ -370,6 +395,7 @@ public class Column {
         Objects.equals(this.isMain, column.isMain) &&
         Objects.equals(this.isRequiredByProvider, column.isRequiredByProvider) &&
         Objects.equals(this.mandatoryForActions, column.mandatoryForActions) &&
+        Objects.equals(this.actionTemplate, column.actionTemplate) &&
         Objects.equals(this.lineage, column.lineage) &&
         Objects.equals(this.name, column.name) &&
         Objects.equals(this.type, column.type) &&
@@ -386,7 +412,7 @@ public class Column {
 
   @Override
   public int hashCode() {
-    return Objects.hash(isPrimaryKey, isMain, isRequiredByProvider, mandatoryForActions, lineage, name, type, description, displayName, conditionUsage, sampleValues, allowedValues);
+    return Objects.hash(isPrimaryKey, isMain, isRequiredByProvider, mandatoryForActions, actionTemplate, lineage, name, type, description, displayName, conditionUsage, sampleValues, allowedValues);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -404,6 +430,7 @@ public class Column {
     sb.append("    isMain: ").append(toIndentedString(isMain)).append("\n");
     sb.append("    isRequiredByProvider: ").append(toIndentedString(isRequiredByProvider)).append("\n");
     sb.append("    mandatoryForActions: ").append(toIndentedString(mandatoryForActions)).append("\n");
+    sb.append("    actionTemplate: ").append(toIndentedString(actionTemplate)).append("\n");
     sb.append("    lineage: ").append(toIndentedString(lineage)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
@@ -438,6 +465,7 @@ public class Column {
     openapiFields.add("isMain");
     openapiFields.add("isRequiredByProvider");
     openapiFields.add("mandatoryForActions");
+    openapiFields.add("actionTemplate");
     openapiFields.add("lineage");
     openapiFields.add("name");
     openapiFields.add("type");
@@ -466,6 +494,9 @@ public class Column {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("mandatoryForActions") != null && !jsonObj.get("mandatoryForActions").isJsonNull()) && !jsonObj.get("mandatoryForActions").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `mandatoryForActions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mandatoryForActions").toString()));
+      }
+      if ((jsonObj.get("actionTemplate") != null && !jsonObj.get("actionTemplate").isJsonNull()) && !jsonObj.get("actionTemplate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `actionTemplate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("actionTemplate").toString()));
       }
       // validate the optional field `lineage`
       if (jsonObj.get("lineage") != null && !jsonObj.get("lineage").isJsonNull()) {

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **explainTooltip** | **String** |  | [optional] [default to String]
 **arrowToParentTooltip** | **String** |  | [optional] [default to String]
 **fullFormula** | **String** |  | [optional] [default to String]
+**actionTemplate** | **String** |  | [optional] [default to String]
 **documentationAsHtml** | **String** |  | [optional] [default to String]
 **documentationAsMarkDown** | **String** |  | [optional] [default to String]
 **children** | [**List&lt;Lineage&gt;**](Lineage.md) |  | [optional] [default to List<Lineage>]
@@ -33,6 +34,7 @@ LineageColumnIcon @jakarta.annotation.Nullable String ExplainTitle = "example Ex
 @jakarta.annotation.Nullable String ExplainTooltip = "example ExplainTooltip";
 @jakarta.annotation.Nullable String ArrowToParentTooltip = "example ArrowToParentTooltip";
 @jakarta.annotation.Nullable String FullFormula = "example FullFormula";
+@jakarta.annotation.Nullable String ActionTemplate = "example ActionTemplate";
 @jakarta.annotation.Nullable String DocumentationAsHtml = "example DocumentationAsHtml";
 @jakarta.annotation.Nullable String DocumentationAsMarkDown = "example DocumentationAsMarkDown";
 @jakarta.annotation.Nullable List<Lineage> Children = new List<Lineage>();
@@ -49,6 +51,7 @@ Lineage lineageInstance = new Lineage()
     .ExplainTooltip(ExplainTooltip)
     .ArrowToParentTooltip(ArrowToParentTooltip)
     .FullFormula(FullFormula)
+    .ActionTemplate(ActionTemplate)
     .DocumentationAsHtml(DocumentationAsHtml)
     .DocumentationAsMarkDown(DocumentationAsMarkDown)
     .Children(Children);
