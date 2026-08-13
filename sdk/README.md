@@ -36,6 +36,7 @@ Class | Method | HTTP request | Description
 *SqlBackgroundExecutionApi* | [**fetchQueryResultXml**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultxml) | **GET** /api/SqlBackground/{executionId}/xml | FetchQueryResultXml: Fetch the result of a query as XML
 *SqlBackgroundExecutionApi* | [**getHistoricalFeedback**](docs/SqlBackgroundExecutionApi.md#gethistoricalfeedback) | **GET** /api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries)
 *SqlBackgroundExecutionApi* | [**getProgressOf**](docs/SqlBackgroundExecutionApi.md#getprogressof) | **GET** /api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point.
+*SqlBackgroundExecutionApi* | [**saveQueryResultToDrive**](docs/SqlBackgroundExecutionApi.md#savequeryresulttodrive) | **GET** /api/SqlBackground/{executionId}/drive | [EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive
 *SqlBackgroundExecutionApi* | [**startQuery**](docs/SqlBackgroundExecutionApi.md#startquery) | **PUT** /api/SqlBackground | StartQuery: Start to Execute Sql in the background
 *SqlDesignApi* | [**getProviderTemplateForExport**](docs/SqlDesignApi.md#getprovidertemplateforexport) | **GET** /api/Sql/providertemplateforexport | GetProviderTemplateForExport: Makes a fields template for file importing via a writer
 *SqlDesignApi* | [**putCaseStatementDesignSqlToDesign**](docs/SqlDesignApi.md#putcasestatementdesignsqltodesign) | **PUT** /api/Sql/tocasestatementdesign | PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object
@@ -113,6 +114,7 @@ Class | Method | HTTP request | Description
  - [ErrorHighlightItem](docs/ErrorHighlightItem.md)
  - [ErrorHighlightRequest](docs/ErrorHighlightRequest.md)
  - [ErrorHighlightResponse](docs/ErrorHighlightResponse.md)
+ - [ExportType](docs/ExportType.md)
  - [ExpressionWithAlias](docs/ExpressionWithAlias.md)
  - [FeedbackEventArgs](docs/FeedbackEventArgs.md)
  - [FeedbackLevel](docs/FeedbackLevel.md)

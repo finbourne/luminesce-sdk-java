@@ -28,6 +28,7 @@ import java.io.IOException;
 import com.finbourne.luminesce.model.BackgroundQueryCancelResponse;
 import com.finbourne.luminesce.model.BackgroundQueryProgressResponse;
 import com.finbourne.luminesce.model.BackgroundQueryResponse;
+import com.finbourne.luminesce.model.ExportType;
 import java.io.File;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import java.time.OffsetDateTime;
@@ -4330,6 +4331,415 @@ public class SqlBackgroundExecutionApi {
      */
     public APIgetProgressOfRequest getProgressOf(String executionId) {
         return new APIgetProgressOfRequest(executionId);
+    }
+    private okhttp3.Call saveQueryResultToDriveCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return saveQueryResultToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call saveQueryResultToDriveCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground/{executionId}/drive"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (driveLocationAndFileName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("driveLocationAndFileName", driveLocationAndFileName));
+        }
+
+        if (mayOverwrite != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("mayOverwrite", mayOverwrite));
+        }
+
+        if (format != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("format", format));
+        }
+
+        if (driveTemplateLocation != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("driveTemplateLocation", driveTemplateLocation));
+        }
+
+        if (tableNameReference != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tableNameReference", tableNameReference));
+        }
+
+        if (sortBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sortBy", sortBy));
+        }
+
+        if (filter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filter", filter));
+        }
+
+        if (sqlFilter != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlFilter", sqlFilter));
+        }
+
+        if (select != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("select", select));
+        }
+
+        if (groupBy != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("groupBy", groupBy));
+        }
+
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
+        if (loadWaitMilliseconds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loadWaitMilliseconds", loadWaitMilliseconds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call saveQueryResultToDriveValidateBeforeCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling saveQueryResultToDrive(Async)");
+        }
+
+        // verify the required parameter 'driveLocationAndFileName' is set
+        if (driveLocationAndFileName == null) {
+            throw new ApiException("Missing the required parameter 'driveLocationAndFileName' when calling saveQueryResultToDrive(Async)");
+        }
+
+        return saveQueryResultToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> saveQueryResultToDriveWithHttpInfo(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = saveQueryResultToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> saveQueryResultToDriveWithHttpInfo(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = saveQueryResultToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call saveQueryResultToDriveAsync(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = saveQueryResultToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call saveQueryResultToDriveAsync(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = saveQueryResultToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIsaveQueryResultToDriveRequest {
+        private final String executionId;
+        private final String driveLocationAndFileName;
+        private Boolean mayOverwrite;
+        private ExportType format;
+        private String driveTemplateLocation;
+        private String tableNameReference;
+        private String sortBy;
+        private String filter;
+        private String sqlFilter;
+        private String select;
+        private String groupBy;
+        private String dateTimeFormat;
+        private Integer loadWaitMilliseconds;
+
+        private APIsaveQueryResultToDriveRequest(String executionId, String driveLocationAndFileName) {
+            this.executionId = executionId;
+            this.driveLocationAndFileName = driveLocationAndFileName;
+        }
+
+        /**
+         * Set mayOverwrite
+         * @param mayOverwrite If there is an existing file at the requested location with the same name should this be overridden, or an error returned? (optional, default to false)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest mayOverwrite(Boolean mayOverwrite) {
+            this.mayOverwrite = mayOverwrite;
+            return this;
+        }
+
+        /**
+         * Set format
+         * @param format Format to save in. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest format(ExportType format) {
+            this.format = format;
+            return this;
+        }
+
+        /**
+         * Set driveTemplateLocation
+         * @param driveTemplateLocation Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest driveTemplateLocation(String driveTemplateLocation) {
+            this.driveTemplateLocation = driveTemplateLocation;
+            return this;
+        }
+
+        /**
+         * Set tableNameReference
+         * @param tableNameReference What should the &#39;exported table name&#39; be. Defaults to &#39;Results&#39;. This has different meaning for different export types. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest tableNameReference(String tableNameReference) {
+            this.tableNameReference = tableNameReference;
+            return this;
+        }
+
+        /**
+         * Set sortBy
+         * @param sortBy Order the results by these fields.  Use the &#x60;-&#x60; sign to denote descending order, e.g. &#x60;-MyFieldName&#x60;. Numeric indexes may be used also, e.g. &#x60;2,-3&#x60;.  Multiple fields can be denoted by a comma e.g. &#x60;-MyFieldName,AnotherFieldName,-AFurtherFieldName&#x60;.  Default is null, the sort order specified in the query itself. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest sortBy(String sortBy) {
+            this.sortBy = sortBy;
+            return this;
+        }
+
+        /**
+         * Set filter
+         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - may be combined with &#x60;sqlFilter&#x60;. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest filter(String filter) {
+            this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Set sqlFilter
+         * @param sqlFilter Further limits the fetched results beyond that of the original query. - Raw SQL for filtering, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; - may be combined with &#x60;filter&#x60; while supporting additional syntax that cannot. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest sqlFilter(String sqlFilter) {
+            this.sqlFilter = sqlFilter;
+            return this;
+        }
+
+        /**
+         * Set select
+         * @param select Default is null (meaning return all columns in the original query itself). The values are in terms of the result column name from the original data set and are comma delimited. The power of this comes in that you may aggregate the data if you wish (that is the main reason for allowing this, in fact). e.g.: - &#x60;MyField&#x60; - &#x60;Max(x) FILTER (WHERE y &gt; 12) as ABC&#x60; (max of a field, if another field lets it qualify, with a nice column name) - &#x60;count(*)&#x60; (count the rows for the given group, that would produce a rather ugly column name, but it works) - &#x60;count(distinct x) as numOfXs&#x60; If there was an illegal character in a field you are selecting from, you are responsible for bracketing it with [ ].  e.g. - &#x60;some_field, count(*) as a, max(x) as b, min([column with space in name]) as nice_name&#x60;  where you would likely want to pass &#x60;1&#x60; as the &#x60;groupBy&#x60; also. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest select(String select) {
+            this.select = select;
+            return this;
+        }
+
+        /**
+         * Set groupBy
+         * @param groupBy Groups by the specified fields.  A comma delimited list of: 1 based numeric indexes (cleaner), or repeats of the select expressions (a bit verbose and must match exactly).  e.g. &#x60;2,3&#x60;, &#x60;myColumn&#x60;.  Default is null (meaning no grouping will be performed on the selected columns).  This applies only over the result set being requested here, meaning indexes into the \&quot;select\&quot; parameter fields.  Only specify this if you are selecting aggregations in the \&quot;select\&quot; parameter. (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest groupBy(String groupBy) {
+            this.groupBy = groupBy;
+            return this;
+        }
+
+        /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
+         * Set loadWaitMilliseconds
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
+         * @return APIsaveQueryResultToDriveRequest
+         */
+        public APIsaveQueryResultToDriveRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
+            this.loadWaitMilliseconds = loadWaitMilliseconds;
+            return this;
+        }
+
+        /**
+         * Build call for saveQueryResultToDrive
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return saveQueryResultToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute saveQueryResultToDrive request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = saveQueryResultToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute saveQueryResultToDrive request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = saveQueryResultToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute saveQueryResultToDrive request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return saveQueryResultToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds);
+        }
+
+        /**
+         * Execute saveQueryResultToDrive request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return saveQueryResultToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, opts);
+        }
+
+        /**
+         * Execute saveQueryResultToDrive request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return saveQueryResultToDriveAsync(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute saveQueryResultToDrive request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return saveQueryResultToDriveAsync(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly to Drive
+     * Saves the results directly to Drive. This can be useful for sharing results with others, keeping persistent reports, etc.   Of course always consider data visibility and security as who can see these depends on users&#39; permissions to the chosen location within Drive.  Template support is provided, for the export types that allow this, but unlike using the &#x60;Drive.SaveAs&#x60; provider within the SQL itself, only one data set can be be saved  (the full query result set, optionally manipulated with the various parameters to this method).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query (required)
+     * @param driveLocationAndFileName Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (required)
+     * @return APIsaveQueryResultToDriveRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIsaveQueryResultToDriveRequest saveQueryResultToDrive(String executionId, String driveLocationAndFileName) {
+        return new APIsaveQueryResultToDriveRequest(executionId, driveLocationAndFileName);
     }
     private okhttp3.Call startQueryCall(String body, String executionId, Map<String, String> scalarParameters, String queryName, Integer timeoutSeconds, Integer keepForSeconds, SqlExecutionFlags executionFlags, final ApiCallback _callback) throws ApiException {
         return startQueryCall(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags,  _callback, new ConfigurationOptions());

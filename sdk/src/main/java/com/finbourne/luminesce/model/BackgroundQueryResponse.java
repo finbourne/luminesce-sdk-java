@@ -103,6 +103,10 @@ public class BackgroundQueryResponse {
   @SerializedName(SERIALIZED_NAME_HISTOGRAM)
   private Link histogram;
 
+  public static final String SERIALIZED_NAME_SAVE_TO_DRIVE = "saveToDrive";
+  @SerializedName(SERIALIZED_NAME_SAVE_TO_DRIVE)
+  private Link saveToDrive;
+
   public BackgroundQueryResponse() {
   }
 
@@ -379,6 +383,27 @@ public class BackgroundQueryResponse {
   }
 
 
+  public BackgroundQueryResponse saveToDrive(Link saveToDrive) {
+    
+    this.saveToDrive = saveToDrive;
+    return this;
+  }
+
+   /**
+   * Get saveToDrive
+   * @return saveToDrive
+  **/
+  @jakarta.annotation.Nullable
+  public Link getSaveToDrive() {
+    return saveToDrive;
+  }
+
+
+  public void setSaveToDrive(Link saveToDrive) {
+    this.saveToDrive = saveToDrive;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -401,7 +426,8 @@ public class BackgroundQueryResponse {
         Objects.equals(this.fetchPipe, backgroundQueryResponse.fetchPipe) &&
         Objects.equals(this.fetchExcel, backgroundQueryResponse.fetchExcel) &&
         Objects.equals(this.fetchSqlite, backgroundQueryResponse.fetchSqlite) &&
-        Objects.equals(this.histogram, backgroundQueryResponse.histogram);
+        Objects.equals(this.histogram, backgroundQueryResponse.histogram) &&
+        Objects.equals(this.saveToDrive, backgroundQueryResponse.saveToDrive);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -410,7 +436,7 @@ public class BackgroundQueryResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchJsonProperWithLineage, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
+    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchJsonProperWithLineage, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram, saveToDrive);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -437,6 +463,7 @@ public class BackgroundQueryResponse {
     sb.append("    fetchExcel: ").append(toIndentedString(fetchExcel)).append("\n");
     sb.append("    fetchSqlite: ").append(toIndentedString(fetchSqlite)).append("\n");
     sb.append("    histogram: ").append(toIndentedString(histogram)).append("\n");
+    sb.append("    saveToDrive: ").append(toIndentedString(saveToDrive)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -472,6 +499,7 @@ public class BackgroundQueryResponse {
     openapiFields.add("fetchExcel");
     openapiFields.add("fetchSqlite");
     openapiFields.add("histogram");
+    openapiFields.add("saveToDrive");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -540,6 +568,10 @@ public class BackgroundQueryResponse {
       // validate the optional field `histogram`
       if (jsonObj.get("histogram") != null && !jsonObj.get("histogram").isJsonNull()) {
         Link.validateJsonElement(jsonObj.get("histogram"));
+      }
+      // validate the optional field `saveToDrive`
+      if (jsonObj.get("saveToDrive") != null && !jsonObj.get("saveToDrive").isJsonNull()) {
+        Link.validateJsonElement(jsonObj.get("saveToDrive"));
       }
   }
 
