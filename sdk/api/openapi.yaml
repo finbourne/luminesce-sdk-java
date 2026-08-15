@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.393
+  version: 1.21.394
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6413,6 +6413,21 @@ paths:
           $ref: '#/components/schemas/SqlExecutionFlags'
         style: form
         x-nullable: true
+      - description: |-
+          Optional request to load the query from an external SQL-store.
+          The payload is then a key that means something to the chosen source
+          Currently limited by may grow in time:
+          - SavedQuery : Load from Saved Queries (within the Workspaces API),
+           Query/Body examples: `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
+        example: None
+        explode: true
+        in: query
+        name: externalQuerySource
+        required: false
+        schema:
+          $ref: '#/components/schemas/ExternalQuerySource'
+        style: form
+        x-nullable: true
       requestBody:
         content:
           text/plain:
@@ -10805,6 +10820,11 @@ components:
       required:
       - expression
       type: object
+    ExternalQuerySource:
+      enum:
+      - None
+      - SavedQuery
+      type: string
     FeedbackEventArgs:
       additionalProperties: false
       example:

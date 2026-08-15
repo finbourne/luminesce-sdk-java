@@ -1488,7 +1488,7 @@ public class SqlBackgroundExecutionApiExample {
 
 ## startQuery
 
-> BackgroundQueryResponse startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags)
+> BackgroundQueryResponse startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, externalQuerySource)
 
 StartQuery: Start to Execute Sql in the background
 
@@ -1540,11 +1540,12 @@ public class SqlBackgroundExecutionApiExample {
         Integer timeoutSeconds = 0; // Integer | Maximum time the query may run for, in seconds: <0 → ∞, 0 → 7200 (2h)
         Integer keepForSeconds = 0; // Integer | Maximum time the result may be kept for, in seconds: <0 → 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)
         SqlExecutionFlags executionFlags = SqlExecutionFlags.fromValue("None"); // SqlExecutionFlags | Optional request flags for the execution. Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query? This must be set in order to later retrieve Lineage.
+        ExternalQuerySource externalQuerySource = ExternalQuerySource.fromValue("None"); // ExternalQuerySource | Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),  Query/Body examples: `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
         try {
             // uncomment the below to set overrides at the request level
-            // BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags).execute(opts);
+            // BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, externalQuerySource).execute(opts);
 
-            BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags).execute();
+            BackgroundQueryResponse result = apiInstance.startQuery(body, executionId, scalarParameters, queryName, timeoutSeconds, keepForSeconds, executionFlags, externalQuerySource).execute();
             System.out.println(result.toJson());
         } catch (ApiException e) {
             System.err.println("Exception when calling SqlBackgroundExecutionApi#startQuery");
@@ -1568,6 +1569,7 @@ public class SqlBackgroundExecutionApiExample {
 | **timeoutSeconds** | **Integer**| Maximum time the query may run for, in seconds: &lt;0 → ∞, 0 → 7200 (2h) | [optional] [default to 0] |
 | **keepForSeconds** | **Integer**| Maximum time the result may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d) | [optional] [default to 0] |
 | **executionFlags** | [**SqlExecutionFlags**](.md)| Optional request flags for the execution. Currently limited by may grow in time: - ProvideLineage : Should Lineage be requested when running the query? This must be set in order to later retrieve Lineage. | [optional] [enum: None, ProvideLineage] |
+| **externalQuerySource** | [**ExternalQuerySource**](.md)| Optional request to load the query from an external SQL-store. The payload is then a key that means something to the chosen source Currently limited by may grow in time: - SavedQuery : Load from Saved Queries (within the Workspaces API),  Query/Body examples: &#x60;personal/YourUserId/items/queries/SomeQuery&#x60; or &#x60;shared/SomeWorkspace/items/queries/SomeQuery&#x60;. | [optional] [enum: None, SavedQuery] |
 
 ### Return type
 

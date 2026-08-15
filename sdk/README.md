@@ -116,6 +116,7 @@ Class | Method | HTTP request | Description
  - [ErrorHighlightResponse](docs/ErrorHighlightResponse.md)
  - [ExportType](docs/ExportType.md)
  - [ExpressionWithAlias](docs/ExpressionWithAlias.md)
+ - [ExternalQuerySource](docs/ExternalQuerySource.md)
  - [FeedbackEventArgs](docs/FeedbackEventArgs.md)
  - [FeedbackLevel](docs/FeedbackLevel.md)
  - [FieldDesign](docs/FieldDesign.md)
