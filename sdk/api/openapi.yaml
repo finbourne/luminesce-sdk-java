@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.448
+  version: 1.21.456
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -11579,6 +11579,7 @@ components:
       description: Binaries that can be downloaded
       enum:
       - CommandLineTool
+      - LumiCode
       - LocalFileSystem_Providers
       - Email_Providers
       - Python_Providers

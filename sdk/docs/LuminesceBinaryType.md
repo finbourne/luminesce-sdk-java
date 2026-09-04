@@ -15,6 +15,7 @@ import java.net.URI;
 
 // Example usage of LuminesceBinaryType:
 LuminesceBinaryType method = LuminesceBinaryType.COMMANDLINETOOL;
+LuminesceBinaryType method = LuminesceBinaryType.LUMICODE;
 LuminesceBinaryType method = LuminesceBinaryType.LOCALFILESYSTEM_PROVIDERS;
 LuminesceBinaryType method = LuminesceBinaryType.EMAIL_PROVIDERS;
 LuminesceBinaryType method = LuminesceBinaryType.PYTHON_PROVIDERS;

@@ -27,6 +27,8 @@ public enum LuminesceBinaryType {
   
   COMMANDLINETOOL("CommandLineTool"),
   
+  LUMICODE("LumiCode"),
+  
   LOCALFILESYSTEM_PROVIDERS("LocalFileSystem_Providers"),
   
   EMAIL_PROVIDERS("Email_Providers"),
