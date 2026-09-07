@@ -7,10 +7,10 @@ info:
   description: "\n```\n> __ _ \n / / __ ______ ___ (_)___ ___ _____________ \n / /\
     \ / / / / __ `__ \\/ / __ \\/ _ \\/ ___/ ___/ _ \\\n / /___/ /_/ / / / / / / /\
     \ / / / __(__ ) /__/ __/\n/_____/\\__,_/_/ /_/ /_/_/_/ /_/\\___/____/\\___/\\\
-    ___/ \n```\n\n### Introduction to Luminesce\n\n\n[Luminesce](https://support.lusid.com/knowledgebase/article/KA-01677/)\
+    ___/ \n```\n\n### Introduction to Luminesce\n\n\n[Luminesce](https://support.lusid.com/docs/luminesce-and-lumipy)\
     \ is a data virtualization engine for LUSID and other applications. \nIt is proprietary\
     \ technology designed and developed by FINBOURNE Technology Limited. \n[Understanding\
-    \ the Luminesce platform architecture.](https://support.lusid.com/knowledgebase/article/KA-01707/)\n\
+    \ the Luminesce platform architecture.](https://support.lusid.com/docs/understanding-the-luminesce-platform-architecture)\n\
     \nLuminesce enables you to query multiple sources of business intelligence simultaneously\
     \ in real-time—including investment management data stored in LUSID itself—and\
     \ build a consolidated picture for analysis, optionally writing data back into\
@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.456
+  version: 1.21.467
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -66,10 +66,10 @@ info:
       title: Query failed during execution within the Query Engine's SQL processing
     "859":
       title: A variable has been defined more than once
-  x-fbn-description: "[Luminesce](https://support.lusid.com/knowledgebase/article/KA-01677/)\
+  x-fbn-description: "[Luminesce](https://support.lusid.com/docs/luminesce-and-lumipy)\
     \ is a data virtualization engine for LUSID and other applications. \nIt is proprietary\
     \ technology designed and developed by FINBOURNE Technology Limited. \n[Understanding\
-    \ the Luminesce platform architecture.](https://support.lusid.com/knowledgebase/article/KA-01707/)\n\
+    \ the Luminesce platform architecture.](https://support.lusid.com/docs/understanding-the-luminesce-platform-architecture)\n\
     \nLuminesce enables you to query multiple sources of business intelligence simultaneously\
     \ in real-time—including investment management data stored in LUSID itself—and\
     \ build a consolidated picture for analysis, optionally writing data back into\
