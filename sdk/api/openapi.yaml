@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.540
+  version: 1.21.547
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -7244,9 +7244,8 @@ paths:
           type: string
         style: form
       - description: |-
-          Further limits the fetched results beyond that of the original query.
-          - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
-          - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+          Further limits the rows counted beyond that of the original query.
+          An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` or `SomeField in 'a', 'b'`
         explode: true
         in: query
         name: filter

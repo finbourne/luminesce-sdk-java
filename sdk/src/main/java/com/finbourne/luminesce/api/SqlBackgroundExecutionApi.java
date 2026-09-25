@@ -1209,7 +1209,7 @@ public class SqlBackgroundExecutionApi {
 
         /**
          * Set filter
-         * @param filter Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - Or raw SqLite SQL, this must then begin with &#x60;WHERE &#x60; and is more flexible, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; (optional)
+         * @param filter Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; or &#x60;SomeField in &#39;a&#39;, &#39;b&#39;&#x60; (optional)
          * @return APIfetchQueryResultHistogramRequest
          */
         public APIfetchQueryResultHistogramRequest filter(String filter) {

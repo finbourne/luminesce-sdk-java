@@ -383,7 +383,7 @@ public class SqlBackgroundExecutionApiExample {
         OffsetDateTime startAt = OffsetDateTime.now(); // OffsetDateTime | Start point (of the timestampFieldName field) for the histogram
         OffsetDateTime endAt = OffsetDateTime.now(); // OffsetDateTime | End point (of the timestampFieldName field) for the histogram
         String bucketSize = "bucketSize_example"; // String | Optional histogram bucket width. If not provided a set number of buckets between start/end range will be generated.
-        String filter = "filter_example"; // String | Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` - Or raw SqLite SQL, this must then begin with `WHERE ` and is more flexible, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+        String filter = "filter_example"; // String | Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'` or `SomeField in 'a', 'b'`
         Boolean jsonProper = false; // Boolean | Should this be text/json (not json-encoded-as-a-string)
         try {
             // uncomment the below to set overrides at the request level
@@ -411,7 +411,7 @@ public class SqlBackgroundExecutionApiExample {
 | **startAt** | **OffsetDateTime**| Start point (of the timestampFieldName field) for the histogram | [optional] |
 | **endAt** | **OffsetDateTime**| End point (of the timestampFieldName field) for the histogram | [optional] |
 | **bucketSize** | **String**| Optional histogram bucket width. If not provided a set number of buckets between start/end range will be generated. | [optional] |
-| **filter** | **String**| Further limits the fetched results beyond that of the original query. - An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; - Or raw SqLite SQL, this must then begin with &#x60;WHERE &#x60; and is more flexible, e.g. &#x60;strftime(&#39;%Y-%m&#39;, SomeDateField) &#x3D; &#39;2026-06&#39;&#x60; | [optional] |
+| **filter** | **String**| Further limits the rows counted beyond that of the original query. An ODATA filter per Finbourne.Filtering syntax, e.g. &#x60;SomeField eq &#39;Hello&#39;&#x60; or &#x60;SomeField in &#39;a&#39;, &#39;b&#39;&#x60; | [optional] |
 | **jsonProper** | **Boolean**| Should this be text/json (not json-encoded-as-a-string) | [optional] [default to false] |
 
 ### Return type
