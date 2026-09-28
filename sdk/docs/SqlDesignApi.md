@@ -945,7 +945,7 @@ public class SqlDesignApiExample {
 
 PutQueryToFormat: Format SQL into a more readable form
 
- This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. e.g. &#x60;&#x60;&#x60;sql select x,y,z from a inner join b on a.x&#x3D;b.x where x&gt;y or y!&#x3D;z &#x60;&#x60;&#x60; becomes &#x60;&#x60;&#x60;sql select x, y, z from a inner join b  on a.x &#x3D; b.x where x &gt; y  or y !&#x3D; z &#x60;&#x60;&#x60; 
+ This formats SQL, a.k.a. Pretty-Print the SQL. It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly) and returns the reformatted version. Of the options only &#x60;maxLineWidth&#x60; has any effect, the rest are retained for compatibility. e.g. &#x60;&#x60;&#x60;sql select x,y,z from a inner join b on a.x&#x3D;b.x where x&gt;y or y!&#x3D;z &#x60;&#x60;&#x60; becomes &#x60;&#x60;&#x60;sql select x, y, z from a inner join b on a.x &#x3D; b.x where x &gt; y  or y !&#x3D; z &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -987,19 +987,19 @@ public class SqlDesignApiExample {
 
         SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
         String body = select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from sys.field; // String | LuminesceSql to Pretty-Print. Even if it doesn't parse an attempt will be made to format it
-        Boolean trailingCommas = true; // Boolean | Should commas be after an expression (as opposed to before)
-        Boolean uppercaseKeywords = false; // Boolean | Should key words be capitalized
-        Boolean breakJoinOnSections = true; // Boolean | Should clauses on joins be given line breaks?
-        Boolean spaceAfterExpandedComma = true; // Boolean | Should comma-lists have spaces after the commas?
-        Boolean keywordStandardization = true; // Boolean | Should the \"nicest\" key words be used? (e.g. JOIN -> INNER JOIN)
-        Boolean expandCommaLists = false; // Boolean | Should comma-lists (e.g. select a,b,c) have line breaks added?
-        Boolean expandInLists = false; // Boolean | Should IN-lists have line breaks added?
-        Boolean expandBooleanExpressions = true; // Boolean | Should boolean expressions have line breaks added?
-        Boolean expandBetweenConditions = true; // Boolean | Should between conditions have line breaks added?
-        Boolean expandCaseStatements = true; // Boolean | Should case-statements have line breaks added?
+        Boolean trailingCommas = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean uppercaseKeywords = false; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean breakJoinOnSections = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean spaceAfterExpandedComma = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean keywordStandardization = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean expandCommaLists = false; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean expandInLists = false; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean expandBooleanExpressions = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean expandBetweenConditions = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean expandCaseStatements = true; // Boolean | No longer has any effect, retained only for compatibility
         Integer maxLineWidth = 120; // Integer | Maximum number of characters to allow on one line (if possible)
-        Boolean spaceBeforeTrailingSingleLineComments = true; // Boolean | Should the be a space before trailing single line comments?
-        Boolean multilineCommentExtraLineBreak = false; // Boolean | Should an additional line break be added after multi-line comments?
+        Boolean spaceBeforeTrailingSingleLineComments = true; // Boolean | No longer has any effect, retained only for compatibility
+        Boolean multilineCommentExtraLineBreak = false; // Boolean | No longer has any effect, retained only for compatibility
         try {
             // uncomment the below to set overrides at the request level
             // String result = apiInstance.putQueryToFormat(body, trailingCommas, uppercaseKeywords, breakJoinOnSections, spaceAfterExpandedComma, keywordStandardization, expandCommaLists, expandInLists, expandBooleanExpressions, expandBetweenConditions, expandCaseStatements, maxLineWidth, spaceBeforeTrailingSingleLineComments, multilineCommentExtraLineBreak).execute(opts);
@@ -1022,19 +1022,19 @@ public class SqlDesignApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **body** | **String**| LuminesceSql to Pretty-Print. Even if it doesn&#39;t parse an attempt will be made to format it | |
-| **trailingCommas** | **Boolean**| Should commas be after an expression (as opposed to before) | [optional] [default to true] |
-| **uppercaseKeywords** | **Boolean**| Should key words be capitalized | [optional] [default to false] |
-| **breakJoinOnSections** | **Boolean**| Should clauses on joins be given line breaks? | [optional] [default to true] |
-| **spaceAfterExpandedComma** | **Boolean**| Should comma-lists have spaces after the commas? | [optional] [default to true] |
-| **keywordStandardization** | **Boolean**| Should the \&quot;nicest\&quot; key words be used? (e.g. JOIN -&gt; INNER JOIN) | [optional] [default to true] |
-| **expandCommaLists** | **Boolean**| Should comma-lists (e.g. select a,b,c) have line breaks added? | [optional] [default to false] |
-| **expandInLists** | **Boolean**| Should IN-lists have line breaks added? | [optional] [default to false] |
-| **expandBooleanExpressions** | **Boolean**| Should boolean expressions have line breaks added? | [optional] [default to true] |
-| **expandBetweenConditions** | **Boolean**| Should between conditions have line breaks added? | [optional] [default to true] |
-| **expandCaseStatements** | **Boolean**| Should case-statements have line breaks added? | [optional] [default to true] |
+| **trailingCommas** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **uppercaseKeywords** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to false] |
+| **breakJoinOnSections** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **spaceAfterExpandedComma** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **keywordStandardization** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **expandCommaLists** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to false] |
+| **expandInLists** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to false] |
+| **expandBooleanExpressions** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **expandBetweenConditions** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **expandCaseStatements** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
 | **maxLineWidth** | **Integer**| Maximum number of characters to allow on one line (if possible) | [optional] [default to 120] |
-| **spaceBeforeTrailingSingleLineComments** | **Boolean**| Should the be a space before trailing single line comments? | [optional] [default to true] |
-| **multilineCommentExtraLineBreak** | **Boolean**| Should an additional line break be added after multi-line comments? | [optional] [default to false] |
+| **spaceBeforeTrailingSingleLineComments** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to true] |
+| **multilineCommentExtraLineBreak** | **Boolean**| No longer has any effect, retained only for compatibility | [optional] [default to false] |
 
 ### Return type
 

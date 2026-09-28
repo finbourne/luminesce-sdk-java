@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.21.548
+  version: 1.22.8
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -692,10 +692,11 @@ paths:
         \nThe installed binaries can then be found in\n- Windows - `%USERPROFILE%\\\
         .dotnet\\tools\\.store\\`\n- Linux/macOS - `$HOME/.dotnet/tools/.store/`\n\
         \nNote that the binaries all require the dotnet runtime to be installed.\n\
-        - `dotnet8` is required for all currently supported versions\n\nThe following\
-        \ error codes are to be anticipated with standard Problem Detail reports:\n\
-        - 400 BadRequest - binary file is not available for some reason (e.g. permissions\
-        \ or invalid version)\n- 401 Unauthorized\n- 403 Forbidden\n"
+        - `dotnet10` is required for all versions `1.22.X+`\n- `dotnet8` is required\
+        \ for all versions `1.21.X`\n\nThe following error codes are to be anticipated\
+        \ with standard Problem Detail reports:\n- 400 BadRequest - binary file is\
+        \ not available for some reason (e.g. permissions or invalid version)\n- 401\
+        \ Unauthorized\n- 403 Forbidden\n"
       operationId: DownloadBinary
       parameters:
       - description: Type of binary to download (each requires separate licenses and
@@ -4712,9 +4713,9 @@ paths:
     put:
       description: |2
 
-        This formats SQL (given a set of options as to how to do so), a.k.a. Pretty-Print the SQL.
+        This formats SQL, a.k.a. Pretty-Print the SQL.
         It takes some SQL (or a fragment thereof, it need not fully parse as yet and certainly need not execute correctly)
-        and returns the reformatted version.
+        and returns the reformatted version. Of the options only `maxLineWidth` has any effect, the rest are retained for compatibility.
         e.g.
         ```sql
         select x,y,z from a inner join b on a.x=b.x where x>y or y!=z
@@ -4723,14 +4724,13 @@ paths:
         ```sql
         select x, y, z
         from a
-        inner join b
-         on a.x = b.x
+        inner join b on a.x = b.x
         where x > y
          or y != z
         ```
       operationId: PutQueryToFormat
       parameters:
-      - description: Should commas be after an expression (as opposed to before)
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: trailingCommas
@@ -4740,7 +4740,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should key words be capitalized
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: uppercaseKeywords
@@ -4750,7 +4750,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should clauses on joins be given line breaks?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: breakJoinOnSections
@@ -4760,7 +4760,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should comma-lists have spaces after the commas?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: spaceAfterExpandedComma
@@ -4770,7 +4770,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should the "nicest" key words be used? (e.g. JOIN -> INNER JOIN)
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: keywordStandardization
@@ -4780,7 +4780,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "Should comma-lists (e.g. select a,b,c) have line breaks added?"
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: expandCommaLists
@@ -4790,7 +4790,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should IN-lists have line breaks added?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: expandInLists
@@ -4800,7 +4800,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should boolean expressions have line breaks added?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: expandBooleanExpressions
@@ -4810,7 +4810,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should between conditions have line breaks added?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: expandBetweenConditions
@@ -4820,7 +4820,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should case-statements have line breaks added?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: expandCaseStatements
@@ -4841,7 +4841,7 @@ paths:
           type: integer
         style: form
         x-nullable: true
-      - description: Should the be a space before trailing single line comments?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: spaceBeforeTrailingSingleLineComments
@@ -4851,7 +4851,7 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: Should an additional line break be added after multi-line comments?
+      - description: "No longer has any effect, retained only for compatibility"
         explode: true
         in: query
         name: multilineCommentExtraLineBreak
