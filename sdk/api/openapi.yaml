@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.22.20
+  version: 1.22.50
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -6320,6 +6320,51 @@ paths:
       x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/SqlBackground:
+    get:
+      description: |-
+        Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first.
+        Multi-queries themselves are not included, though the individual queries they started are.
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 401 Unauthorized
+      operationId: ListQueries
+      parameters:
+      - description: An optional SQL-LIKE style filter on the LuminesceSql of the
+          queries (manually include wildcards if desired).
+        explode: true
+        in: query
+        name: sqlLike
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BackgroundQueryListItem'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BackgroundQueryListItem'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BackgroundQueryListItem'
+                type: array
+          description: OK
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] ListQueries: List the background queries available\
+        \ to the calling user"
+      tags:
+      - Sql Background Execution
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
     put:
       description: "\nAllow for starting a potentially long running query and getting\
         \ back an immediate response with how to \n- fetch the data in various formats\
@@ -9885,6 +9930,42 @@ components:
           $ref: '#/components/schemas/BackgroundQueryState'
         progress:
           nullable: true
+          type: string
+      type: object
+    BackgroundQueryListItem:
+      additionalProperties: false
+      description: A background query the calling user currently has available to
+        them
+      example:
+        executionId: executionId
+        query: query
+        queryName: queryName
+        state: null
+        when: 2000-01-23T04:56:07.000+00:00
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        executionId:
+          description: ExecutionId of the query
+          nullable: true
+          type: string
+        query:
+          description: The LuminesceSql of the original request
+          nullable: true
+          type: string
+        queryName:
+          description: The QueryName given in the original request
+          nullable: true
+          type: string
+        state:
+          $ref: '#/components/schemas/BackgroundQueryState'
+        when:
+          description: When the state of this query (and so its data) was last updated
+            (UTC)
+          format: date-time
+          type: string
+        expiresAt:
+          description: When the query (and its data) may be removed (UTC)
+          format: date-time
           type: string
       type: object
     BackgroundQueryProgressResponse:

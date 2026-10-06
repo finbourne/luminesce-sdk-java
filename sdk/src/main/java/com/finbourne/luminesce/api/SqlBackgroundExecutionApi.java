@@ -26,6 +26,7 @@ import java.io.IOException;
 
 
 import com.finbourne.luminesce.model.BackgroundQueryCancelResponse;
+import com.finbourne.luminesce.model.BackgroundQueryListItem;
 import com.finbourne.luminesce.model.BackgroundQueryProgressResponse;
 import com.finbourne.luminesce.model.BackgroundQueryResponse;
 import com.finbourne.luminesce.model.ExportType;
@@ -4332,6 +4333,228 @@ public class SqlBackgroundExecutionApi {
      */
     public APIgetProgressOfRequest getProgressOf(String executionId) {
         return new APIgetProgressOfRequest(executionId);
+    }
+    private okhttp3.Call listQueriesCall(String sqlLike, final ApiCallback _callback) throws ApiException {
+        return listQueriesCall(sqlLike,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listQueriesCall(String sqlLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (sqlLike != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlLike", sqlLike));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listQueriesValidateBeforeCall(String sqlLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listQueriesCall(sqlLike, _callback, opts);
+
+    }
+
+
+    private ApiResponse<List<BackgroundQueryListItem>> listQueriesWithHttpInfo(String sqlLike) throws ApiException {
+        okhttp3.Call localVarCall = listQueriesValidateBeforeCall(sqlLike, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<BackgroundQueryListItem>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<List<BackgroundQueryListItem>> listQueriesWithHttpInfo(String sqlLike, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listQueriesValidateBeforeCall(sqlLike, null, opts);
+        Type localVarReturnType = new TypeToken<List<BackgroundQueryListItem>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call listQueriesAsync(String sqlLike, final ApiCallback<List<BackgroundQueryListItem>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listQueriesValidateBeforeCall(sqlLike, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<BackgroundQueryListItem>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listQueriesAsync(String sqlLike, final ApiCallback<List<BackgroundQueryListItem>> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listQueriesValidateBeforeCall(sqlLike, _callback, opts);
+        Type localVarReturnType = new TypeToken<List<BackgroundQueryListItem>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIlistQueriesRequest {
+        private String sqlLike;
+
+        private APIlistQueriesRequest() {
+        }
+
+        /**
+         * Set sqlLike
+         * @param sqlLike An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired). (optional)
+         * @return APIlistQueriesRequest
+         */
+        public APIlistQueriesRequest sqlLike(String sqlLike) {
+            this.sqlLike = sqlLike;
+            return this;
+        }
+
+        /**
+         * Build call for listQueries
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listQueriesCall(sqlLike, _callback);
+        }
+
+        /**
+         * Execute listQueries request
+         * @return List&lt;BackgroundQueryListItem&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<BackgroundQueryListItem> execute() throws ApiException {
+            ApiResponse<List<BackgroundQueryListItem>> localVarResp = listQueriesWithHttpInfo(sqlLike);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute listQueries request. Use any specified configuration options to override any other configuration for this request only.
+         * @return List&lt;BackgroundQueryListItem&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<BackgroundQueryListItem> execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<List<BackgroundQueryListItem>> localVarResp = listQueriesWithHttpInfo(sqlLike, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute listQueries request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;BackgroundQueryListItem&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<BackgroundQueryListItem>> executeWithHttpInfo() throws ApiException {
+            return listQueriesWithHttpInfo(sqlLike);
+        }
+
+        /**
+         * Execute listQueries request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;List&lt;BackgroundQueryListItem&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<BackgroundQueryListItem>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listQueriesWithHttpInfo(sqlLike, opts);
+        }
+
+        /**
+         * Execute listQueries request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<BackgroundQueryListItem>> _callback) throws ApiException {
+            return listQueriesAsync(sqlLike, _callback);
+        }
+
+        /**
+         * Execute listQueries request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<BackgroundQueryListItem>> _callback, ConfigurationOptions opts) throws ApiException {
+            return listQueriesAsync(sqlLike, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] ListQueries: List the background queries available to the calling user
+     * Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their &#x60;keepForSeconds&#x60; time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
+     * @return APIlistQueriesRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIlistQueriesRequest listQueries() {
+        return new APIlistQueriesRequest();
     }
     private okhttp3.Call saveQueryResultToDriveCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
         return saveQueryResultToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
