@@ -51,7 +51,9 @@ public enum MultiQueryDefinitionType {
   
   CANDELATRACELOGS("CandelaTraceLogs"),
   
-  CANDELATRACEEVENTLOGS("CandelaTraceEventLogs");
+  CANDELATRACEEVENTLOGS("CandelaTraceEventLogs"),
+  
+  CUSTOM("Custom");
 
   private String value;
 

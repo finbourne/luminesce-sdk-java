@@ -28,6 +28,10 @@ import java.io.IOException;
 import com.finbourne.luminesce.model.BackgroundMultiQueryProgressResponse;
 import com.finbourne.luminesce.model.BackgroundMultiQueryResponse;
 import com.finbourne.luminesce.model.BackgroundQueryCancelResponse;
+import com.finbourne.luminesce.model.CustomMultiQueryListItem;
+import com.finbourne.luminesce.model.CustomMultiQueryRequest;
+import com.finbourne.luminesce.model.ExportType;
+import java.io.File;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import com.finbourne.luminesce.model.MultiQueryDefinitionType;
 import java.time.OffsetDateTime;
@@ -291,6 +295,298 @@ public class MultiQueryExecutionApi {
     public APIcancelMultiQueryRequest cancelMultiQuery(String executionId) {
         return new APIcancelMultiQueryRequest(executionId);
     }
+    private okhttp3.Call downloadMultiQueryResultsCall(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return downloadMultiQueryResultsCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call downloadMultiQueryResultsCall(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/MultiQueryBackground/{executionId}/download"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (format != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("format", format));
+        }
+
+        if (fileName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("fileName", fileName));
+        }
+
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
+        if (loadWaitMilliseconds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loadWaitMilliseconds", loadWaitMilliseconds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadMultiQueryResultsValidateBeforeCall(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling downloadMultiQueryResults(Async)");
+        }
+
+        return downloadMultiQueryResultsCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+
+    }
+
+
+    private ApiResponse<File> downloadMultiQueryResultsWithHttpInfo(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = downloadMultiQueryResultsValidateBeforeCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<File> downloadMultiQueryResultsWithHttpInfo(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = downloadMultiQueryResultsValidateBeforeCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, null, opts);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call downloadMultiQueryResultsAsync(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<File> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadMultiQueryResultsValidateBeforeCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call downloadMultiQueryResultsAsync(String executionId, ExportType format, String fileName, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadMultiQueryResultsValidateBeforeCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIdownloadMultiQueryResultsRequest {
+        private final String executionId;
+        private ExportType format;
+        private String fileName;
+        private String dateTimeFormat;
+        private Integer loadWaitMilliseconds;
+
+        private APIdownloadMultiQueryResultsRequest(String executionId) {
+            this.executionId = executionId;
+        }
+
+        /**
+         * Set format
+         * @param format Format to download in. Several results are one worksheet each for Excel, one table each for Sqlite, and otherwise one file each within a zip. (optional)
+         * @return APIdownloadMultiQueryResultsRequest
+         */
+        public APIdownloadMultiQueryResultsRequest format(ExportType format) {
+            this.format = format;
+            return this;
+        }
+
+        /**
+         * Set fileName
+         * @param fileName Name of the file (without extension). Defaults to &#x60;{executionId}&#x60;. May contain the placeholders &#x60;{executionId}&#x60;, &#x60;{date:format}&#x60; (when the queries started, UTC, e.g. &#x60;{date:yyyyMMdd}&#x60;) and &#x60;{param:name}&#x60; (the value of a scalar parameter). (optional)
+         * @return APIdownloadMultiQueryResultsRequest
+         */
+        public APIdownloadMultiQueryResultsRequest fileName(String fileName) {
+            this.fileName = fileName;
+            return this;
+        }
+
+        /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIdownloadMultiQueryResultsRequest
+         */
+        public APIdownloadMultiQueryResultsRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
+         * Set loadWaitMilliseconds
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
+         * @return APIdownloadMultiQueryResultsRequest
+         */
+        public APIdownloadMultiQueryResultsRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
+            this.loadWaitMilliseconds = loadWaitMilliseconds;
+            return this;
+        }
+
+        /**
+         * Build call for downloadMultiQueryResults
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return downloadMultiQueryResultsCall(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute downloadMultiQueryResults request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = downloadMultiQueryResultsWithHttpInfo(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute downloadMultiQueryResults request. Use any specified configuration options to override any other configuration for this request only.
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<File> localVarResp = downloadMultiQueryResultsWithHttpInfo(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute downloadMultiQueryResults request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return downloadMultiQueryResultsWithHttpInfo(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds);
+        }
+
+        /**
+         * Execute downloadMultiQueryResults request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return downloadMultiQueryResultsWithHttpInfo(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, opts);
+        }
+
+        /**
+         * Execute downloadMultiQueryResults request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return downloadMultiQueryResultsAsync(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute downloadMultiQueryResults request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback, ConfigurationOptions opts) throws ApiException {
+            return downloadMultiQueryResultsAsync(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
+     * Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file. Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query-set doesn&#39;t exist, isn&#39;t a custom one, or the calling user did not run it. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query-set (required)
+     * @return APIdownloadMultiQueryResultsRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIdownloadMultiQueryResultsRequest downloadMultiQueryResults(String executionId) {
+        return new APIdownloadMultiQueryResultsRequest(executionId);
+    }
     private okhttp3.Call getProgressOfMultiQueryCall(String executionId, final ApiCallback _callback) throws ApiException {
         return getProgressOfMultiQueryCall(executionId,  _callback, new ConfigurationOptions());
     }
@@ -506,6 +802,779 @@ public class MultiQueryExecutionApi {
      */
     public APIgetProgressOfMultiQueryRequest getProgressOfMultiQuery(String executionId) {
         return new APIgetProgressOfMultiQueryRequest(executionId);
+    }
+    private okhttp3.Call listCustomQueriesCall(String sqlLike, final ApiCallback _callback) throws ApiException {
+        return listCustomQueriesCall(sqlLike,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call listCustomQueriesCall(String sqlLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/MultiQueryBackground";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (sqlLike != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("sqlLike", sqlLike));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listCustomQueriesValidateBeforeCall(String sqlLike, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        return listCustomQueriesCall(sqlLike, _callback, opts);
+
+    }
+
+
+    private ApiResponse<List<CustomMultiQueryListItem>> listCustomQueriesWithHttpInfo(String sqlLike) throws ApiException {
+        okhttp3.Call localVarCall = listCustomQueriesValidateBeforeCall(sqlLike, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryListItem>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<List<CustomMultiQueryListItem>> listCustomQueriesWithHttpInfo(String sqlLike, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = listCustomQueriesValidateBeforeCall(sqlLike, null, opts);
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryListItem>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call listCustomQueriesAsync(String sqlLike, final ApiCallback<List<CustomMultiQueryListItem>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listCustomQueriesValidateBeforeCall(sqlLike, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryListItem>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call listCustomQueriesAsync(String sqlLike, final ApiCallback<List<CustomMultiQueryListItem>> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = listCustomQueriesValidateBeforeCall(sqlLike, _callback, opts);
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryListItem>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIlistCustomQueriesRequest {
+        private String sqlLike;
+
+        private APIlistCustomQueriesRequest() {
+        }
+
+        /**
+         * Set sqlLike
+         * @param sqlLike An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired), a query-set matching should any of its queries. (optional)
+         * @return APIlistCustomQueriesRequest
+         */
+        public APIlistCustomQueriesRequest sqlLike(String sqlLike) {
+            this.sqlLike = sqlLike;
+            return this;
+        }
+
+        /**
+         * Build call for listCustomQueries
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listCustomQueriesCall(sqlLike, _callback);
+        }
+
+        /**
+         * Execute listCustomQueries request
+         * @return List&lt;CustomMultiQueryListItem&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<CustomMultiQueryListItem> execute() throws ApiException {
+            ApiResponse<List<CustomMultiQueryListItem>> localVarResp = listCustomQueriesWithHttpInfo(sqlLike);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute listCustomQueries request. Use any specified configuration options to override any other configuration for this request only.
+         * @return List&lt;CustomMultiQueryListItem&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<CustomMultiQueryListItem> execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<List<CustomMultiQueryListItem>> localVarResp = listCustomQueriesWithHttpInfo(sqlLike, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute listCustomQueries request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;CustomMultiQueryListItem&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<CustomMultiQueryListItem>> executeWithHttpInfo() throws ApiException {
+            return listCustomQueriesWithHttpInfo(sqlLike);
+        }
+
+        /**
+         * Execute listCustomQueries request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;List&lt;CustomMultiQueryListItem&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<CustomMultiQueryListItem>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return listCustomQueriesWithHttpInfo(sqlLike, opts);
+        }
+
+        /**
+         * Execute listCustomQueries request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<CustomMultiQueryListItem>> _callback) throws ApiException {
+            return listCustomQueriesAsync(sqlLike, _callback);
+        }
+
+        /**
+         * Execute listCustomQueries request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<CustomMultiQueryListItem>> _callback, ConfigurationOptions opts) throws ApiException {
+            return listCustomQueriesAsync(sqlLike, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] ListCustomQueries: List the custom query-sets available to the calling user
+     * Lists the custom query-sets (started by the calling user via &#x60;custom&#x60;) that have finished with at least one result which may be fetched,  and which have not yet passed their &#x60;keepForSeconds&#x60; time, most recent first. Each lists its queries that are external results, and which of those have results. Those that errored are included, as some of their queries may still have succeeded.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
+     * @return APIlistCustomQueriesRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIlistCustomQueriesRequest listCustomQueries() {
+        return new APIlistCustomQueriesRequest();
+    }
+    private okhttp3.Call saveMultiQueryResultsToDriveCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
+        return saveMultiQueryResultsToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call saveMultiQueryResultsToDriveCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/MultiQueryBackground/{executionId}/drive"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (driveLocationAndFileName != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("driveLocationAndFileName", driveLocationAndFileName));
+        }
+
+        if (mayOverwrite != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("mayOverwrite", mayOverwrite));
+        }
+
+        if (format != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("format", format));
+        }
+
+        if (driveTemplateLocation != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("driveTemplateLocation", driveTemplateLocation));
+        }
+
+        if (dateTimeFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("dateTimeFormat", dateTimeFormat));
+        }
+
+        if (loadWaitMilliseconds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("loadWaitMilliseconds", loadWaitMilliseconds));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call saveMultiQueryResultsToDriveValidateBeforeCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling saveMultiQueryResultsToDrive(Async)");
+        }
+
+        // verify the required parameter 'driveLocationAndFileName' is set
+        if (driveLocationAndFileName == null) {
+            throw new ApiException("Missing the required parameter 'driveLocationAndFileName' when calling saveMultiQueryResultsToDrive(Async)");
+        }
+
+        return saveMultiQueryResultsToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> saveMultiQueryResultsToDriveWithHttpInfo(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds) throws ApiException {
+        okhttp3.Call localVarCall = saveMultiQueryResultsToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> saveMultiQueryResultsToDriveWithHttpInfo(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = saveMultiQueryResultsToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call saveMultiQueryResultsToDriveAsync(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = saveMultiQueryResultsToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call saveMultiQueryResultsToDriveAsync(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = saveMultiQueryResultsToDriveValidateBeforeCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIsaveMultiQueryResultsToDriveRequest {
+        private final String executionId;
+        private final String driveLocationAndFileName;
+        private Boolean mayOverwrite;
+        private ExportType format;
+        private String driveTemplateLocation;
+        private String dateTimeFormat;
+        private Integer loadWaitMilliseconds;
+
+        private APIsaveMultiQueryResultsToDriveRequest(String executionId, String driveLocationAndFileName) {
+            this.executionId = executionId;
+            this.driveLocationAndFileName = driveLocationAndFileName;
+        }
+
+        /**
+         * Set mayOverwrite
+         * @param mayOverwrite If there is an existing file at the requested location with the same name should this be overridden, or an error returned? (optional, default to false)
+         * @return APIsaveMultiQueryResultsToDriveRequest
+         */
+        public APIsaveMultiQueryResultsToDriveRequest mayOverwrite(Boolean mayOverwrite) {
+            this.mayOverwrite = mayOverwrite;
+            return this;
+        }
+
+        /**
+         * Set format
+         * @param format Format to save in. Several results are one worksheet each for Excel, one table each for Sqlite, and otherwise one file each within a zip. (optional)
+         * @return APIsaveMultiQueryResultsToDriveRequest
+         */
+        public APIsaveMultiQueryResultsToDriveRequest format(ExportType format) {
+            this.format = format;
+            return this;
+        }
+
+        /**
+         * Set driveTemplateLocation
+         * @param driveTemplateLocation Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given. (optional)
+         * @return APIsaveMultiQueryResultsToDriveRequest
+         */
+        public APIsaveMultiQueryResultsToDriveRequest driveTemplateLocation(String driveTemplateLocation) {
+            this.driveTemplateLocation = driveTemplateLocation;
+            return this;
+        }
+
+        /**
+         * Set dateTimeFormat
+         * @param dateTimeFormat Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; (optional)
+         * @return APIsaveMultiQueryResultsToDriveRequest
+         */
+        public APIsaveMultiQueryResultsToDriveRequest dateTimeFormat(String dateTimeFormat) {
+            this.dateTimeFormat = dateTimeFormat;
+            return this;
+        }
+
+        /**
+         * Set loadWaitMilliseconds
+         * @param loadWaitMilliseconds Optional maximum additional wait period for post execution platform processing. (optional, default to 0)
+         * @return APIsaveMultiQueryResultsToDriveRequest
+         */
+        public APIsaveMultiQueryResultsToDriveRequest loadWaitMilliseconds(Integer loadWaitMilliseconds) {
+            this.loadWaitMilliseconds = loadWaitMilliseconds;
+            return this;
+        }
+
+        /**
+         * Build call for saveMultiQueryResultsToDrive
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return saveMultiQueryResultsToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute saveMultiQueryResultsToDrive request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = saveMultiQueryResultsToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute saveMultiQueryResultsToDrive request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = saveMultiQueryResultsToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute saveMultiQueryResultsToDrive request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return saveMultiQueryResultsToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds);
+        }
+
+        /**
+         * Execute saveMultiQueryResultsToDrive request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return saveMultiQueryResultsToDriveWithHttpInfo(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, opts);
+        }
+
+        /**
+         * Execute saveMultiQueryResultsToDrive request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return saveMultiQueryResultsToDriveAsync(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, _callback);
+        }
+
+        /**
+         * Execute saveMultiQueryResultsToDrive request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return saveMultiQueryResultsToDriveAsync(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
+     * Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file. Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query-set doesn&#39;t exist, isn&#39;t a custom one, or the calling user did not run it. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query-set (required)
+     * @param driveLocationAndFileName Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (zip where several results are zipped). May contain the placeholders &#x60;{executionId}&#x60;, &#x60;{date:format}&#x60; (when the queries started, UTC, e.g. &#x60;{date:yyyyMMdd}&#x60;) and &#x60;{param:name}&#x60; (the value of a scalar parameter). (required)
+     * @return APIsaveMultiQueryResultsToDriveRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIsaveMultiQueryResultsToDriveRequest saveMultiQueryResultsToDrive(String executionId, String driveLocationAndFileName) {
+        return new APIsaveMultiQueryResultsToDriveRequest(executionId, driveLocationAndFileName);
+    }
+    private okhttp3.Call startCustomQueriesCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback) throws ApiException {
+        return startCustomQueriesCall(customMultiQueryRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call startCustomQueriesCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = customMultiQueryRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/MultiQueryBackground/custom";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call startCustomQueriesValidateBeforeCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'customMultiQueryRequest' is set
+        if (customMultiQueryRequest == null) {
+            throw new ApiException("Missing the required parameter 'customMultiQueryRequest' when calling startCustomQueries(Async)");
+        }
+
+        return startCustomQueriesCall(customMultiQueryRequest, _callback, opts);
+
+    }
+
+
+    private ApiResponse<BackgroundMultiQueryResponse> startCustomQueriesWithHttpInfo(CustomMultiQueryRequest customMultiQueryRequest) throws ApiException {
+        okhttp3.Call localVarCall = startCustomQueriesValidateBeforeCall(customMultiQueryRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<BackgroundMultiQueryResponse> startCustomQueriesWithHttpInfo(CustomMultiQueryRequest customMultiQueryRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = startCustomQueriesValidateBeforeCall(customMultiQueryRequest, null, opts);
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call startCustomQueriesAsync(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback<BackgroundMultiQueryResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = startCustomQueriesValidateBeforeCall(customMultiQueryRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call startCustomQueriesAsync(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback<BackgroundMultiQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = startCustomQueriesValidateBeforeCall(customMultiQueryRequest, _callback, opts);
+        Type localVarReturnType = new TypeToken<BackgroundMultiQueryResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIstartCustomQueriesRequest {
+        private final CustomMultiQueryRequest customMultiQueryRequest;
+
+        private APIstartCustomQueriesRequest(CustomMultiQueryRequest customMultiQueryRequest) {
+            this.customMultiQueryRequest = customMultiQueryRequest;
+        }
+
+        /**
+         * Build call for startCustomQueries
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return startCustomQueriesCall(customMultiQueryRequest, _callback);
+        }
+
+        /**
+         * Execute startCustomQueries request
+         * @return BackgroundMultiQueryResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundMultiQueryResponse execute() throws ApiException {
+            ApiResponse<BackgroundMultiQueryResponse> localVarResp = startCustomQueriesWithHttpInfo(customMultiQueryRequest);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute startCustomQueries request. Use any specified configuration options to override any other configuration for this request only.
+         * @return BackgroundMultiQueryResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public BackgroundMultiQueryResponse execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<BackgroundMultiQueryResponse> localVarResp = startCustomQueriesWithHttpInfo(customMultiQueryRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute startCustomQueries request with HTTP info returned
+         * @return ApiResponse&lt;BackgroundMultiQueryResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundMultiQueryResponse> executeWithHttpInfo() throws ApiException {
+            return startCustomQueriesWithHttpInfo(customMultiQueryRequest);
+        }
+
+        /**
+         * Execute startCustomQueries request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;BackgroundMultiQueryResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<BackgroundMultiQueryResponse> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return startCustomQueriesWithHttpInfo(customMultiQueryRequest, opts);
+        }
+
+        /**
+         * Execute startCustomQueries request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundMultiQueryResponse> _callback) throws ApiException {
+            return startCustomQueriesAsync(customMultiQueryRequest, _callback);
+        }
+
+        /**
+         * Execute startCustomQueries request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<BackgroundMultiQueryResponse> _callback, ConfigurationOptions opts) throws ApiException {
+            return startCustomQueriesAsync(customMultiQueryRequest, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql queries in the background
+     *  Starts a caller-supplied set of named queries in the background, getting back an immediate response with how to - fetch the data of each (external) query in various formats, view progress information and cancel / clear them, as for any multi-query - download, or save to Drive, the results of all the (external) queries that succeeded as one file  The queries are started in the order given, at most &#x60;maxInParallel&#x60; at a time (1 by default, null for as many as possible). A query may use the results of an earlier one as a table variable of its name, e.g. &#x60;select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Holdings&#x60;, and is then only started once that has succeeded (and is skipped if it does not). The scalar parameters are given to every query.  The multi-query as a whole is reported as failed if any of its queries fails or is skipped.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden 
+     * @param customMultiQueryRequest The queries to run (as LuminesceSql or Saved Query references), the scalar parameters for them all, etc. (required)
+     * @return APIstartCustomQueriesRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 202 </td><td> Accepted </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIstartCustomQueriesRequest startCustomQueries(CustomMultiQueryRequest customMultiQueryRequest) {
+        return new APIstartCustomQueriesRequest(customMultiQueryRequest);
     }
     private okhttp3.Call startQueriesCall(MultiQueryDefinitionType type, String body, OffsetDateTime asAt, OffsetDateTime effectiveAt, Integer limit1, Integer limit2, String input1, String input2, String input3, Integer timeoutSeconds, Integer keepForSeconds, final ApiCallback _callback) throws ApiException {
         return startQueriesCall(type, body, asAt, effectiveAt, limit1, limit2, input1, input2, input3, timeoutSeconds, keepForSeconds,  _callback, new ConfigurationOptions());

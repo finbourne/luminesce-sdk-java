@@ -21,7 +21,11 @@ Class | Method | HTTP request | Description
 *HistoricallyExecutedQueriesApi* | [**getHistory**](docs/HistoricallyExecutedQueriesApi.md#gethistory) | **GET** /api/History | GetHistory: Start a background history search
 *HistoricallyExecutedQueriesApi* | [**getProgressOfHistory**](docs/HistoricallyExecutedQueriesApi.md#getprogressofhistory) | **GET** /api/History/{executionId} | GetProgressOfHistory: View progress of a history search
 *MultiQueryExecutionApi* | [**cancelMultiQuery**](docs/MultiQueryExecutionApi.md#cancelmultiquery) | **DELETE** /api/MultiQueryBackground/{executionId} | CancelMultiQuery: Cancel / Clear a previously started query-set
+*MultiQueryExecutionApi* | [**downloadMultiQueryResults**](docs/MultiQueryExecutionApi.md#downloadmultiqueryresults) | **GET** /api/MultiQueryBackground/{executionId}/download | [EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
 *MultiQueryExecutionApi* | [**getProgressOfMultiQuery**](docs/MultiQueryExecutionApi.md#getprogressofmultiquery) | **GET** /api/MultiQueryBackground/{executionId} | GetProgressOfMultiQuery: View progress of the entire query-set load
+*MultiQueryExecutionApi* | [**listCustomQueries**](docs/MultiQueryExecutionApi.md#listcustomqueries) | **GET** /api/MultiQueryBackground | [EXPERIMENTAL] ListCustomQueries: List the custom query-sets available to the calling user
+*MultiQueryExecutionApi* | [**saveMultiQueryResultsToDrive**](docs/MultiQueryExecutionApi.md#savemultiqueryresultstodrive) | **GET** /api/MultiQueryBackground/{executionId}/drive | [EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
+*MultiQueryExecutionApi* | [**startCustomQueries**](docs/MultiQueryExecutionApi.md#startcustomqueries) | **PUT** /api/MultiQueryBackground/custom | [EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql queries in the background
 *MultiQueryExecutionApi* | [**startQueries**](docs/MultiQueryExecutionApi.md#startqueries) | **PUT** /api/MultiQueryBackground | StartQueries: Run a given set of Sql queries in the background
 *SqlBackgroundExecutionApi* | [**cancelQuery**](docs/SqlBackgroundExecutionApi.md#cancelquery) | **DELETE** /api/SqlBackground/{executionId} | CancelQuery: Cancel / Clear data from a previously run query
 *SqlBackgroundExecutionApi* | [**fetchQueryResultCsv**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultcsv) | **GET** /api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetch the result of a query as CSV
@@ -109,6 +113,10 @@ Class | Method | HTTP request | Description
  - [ConditionAttributes](docs/ConditionAttributes.md)
  - [ConvertToViewData](docs/ConvertToViewData.md)
  - [CursorPosition](docs/CursorPosition.md)
+ - [CustomMultiQueryItem](docs/CustomMultiQueryItem.md)
+ - [CustomMultiQueryListItem](docs/CustomMultiQueryListItem.md)
+ - [CustomMultiQueryListItemQuery](docs/CustomMultiQueryListItemQuery.md)
+ - [CustomMultiQueryRequest](docs/CustomMultiQueryRequest.md)
  - [DashboardType](docs/DashboardType.md)
  - [DataType](docs/DataType.md)
  - [DateParameters](docs/DateParameters.md)

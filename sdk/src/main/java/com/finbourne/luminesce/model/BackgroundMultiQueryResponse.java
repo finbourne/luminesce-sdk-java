@@ -66,6 +66,14 @@ public class BackgroundMultiQueryResponse {
   @SerializedName(SERIALIZED_NAME_CANCEL)
   private Link cancel;
 
+  public static final String SERIALIZED_NAME_DOWNLOAD = "download";
+  @SerializedName(SERIALIZED_NAME_DOWNLOAD)
+  private Link download;
+
+  public static final String SERIALIZED_NAME_SAVE_TO_DRIVE = "saveToDrive";
+  @SerializedName(SERIALIZED_NAME_SAVE_TO_DRIVE)
+  private Link saveToDrive;
+
   public static final String SERIALIZED_NAME_FETCH_JSON = "fetchJson";
   @SerializedName(SERIALIZED_NAME_FETCH_JSON)
   private List<Link> fetchJson;
@@ -188,6 +196,48 @@ public class BackgroundMultiQueryResponse {
 
   public void setCancel(Link cancel) {
     this.cancel = cancel;
+  }
+
+
+  public BackgroundMultiQueryResponse download(Link download) {
+    
+    this.download = download;
+    return this;
+  }
+
+   /**
+   * Get download
+   * @return download
+  **/
+  @jakarta.annotation.Nullable
+  public Link getDownload() {
+    return download;
+  }
+
+
+  public void setDownload(Link download) {
+    this.download = download;
+  }
+
+
+  public BackgroundMultiQueryResponse saveToDrive(Link saveToDrive) {
+    
+    this.saveToDrive = saveToDrive;
+    return this;
+  }
+
+   /**
+   * Get saveToDrive
+   * @return saveToDrive
+  **/
+  @jakarta.annotation.Nullable
+  public Link getSaveToDrive() {
+    return saveToDrive;
+  }
+
+
+  public void setSaveToDrive(Link saveToDrive) {
+    this.saveToDrive = saveToDrive;
   }
 
 
@@ -324,6 +374,8 @@ public class BackgroundMultiQueryResponse {
     return Objects.equals(this.executionId, backgroundMultiQueryResponse.executionId) &&
         Objects.equals(this.progress, backgroundMultiQueryResponse.progress) &&
         Objects.equals(this.cancel, backgroundMultiQueryResponse.cancel) &&
+        Objects.equals(this.download, backgroundMultiQueryResponse.download) &&
+        Objects.equals(this.saveToDrive, backgroundMultiQueryResponse.saveToDrive) &&
         Objects.equals(this.fetchJson, backgroundMultiQueryResponse.fetchJson) &&
         Objects.equals(this.fetchJsonProper, backgroundMultiQueryResponse.fetchJsonProper) &&
         Objects.equals(this.fetchJsonProperWithLineage, backgroundMultiQueryResponse.fetchJsonProperWithLineage) &&
@@ -342,7 +394,7 @@ public class BackgroundMultiQueryResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionId, progress, cancel, fetchJson, fetchJsonProper, fetchJsonProperWithLineage, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
+    return Objects.hash(executionId, progress, cancel, download, saveToDrive, fetchJson, fetchJsonProper, fetchJsonProperWithLineage, fetchXml, fetchParquet, fetchCsv, fetchPipe, fetchExcel, fetchSqlite, histogram);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -359,6 +411,8 @@ public class BackgroundMultiQueryResponse {
     sb.append("    executionId: ").append(toIndentedString(executionId)).append("\n");
     sb.append("    progress: ").append(toIndentedString(progress)).append("\n");
     sb.append("    cancel: ").append(toIndentedString(cancel)).append("\n");
+    sb.append("    download: ").append(toIndentedString(download)).append("\n");
+    sb.append("    saveToDrive: ").append(toIndentedString(saveToDrive)).append("\n");
     sb.append("    fetchJson: ").append(toIndentedString(fetchJson)).append("\n");
     sb.append("    fetchJsonProper: ").append(toIndentedString(fetchJsonProper)).append("\n");
     sb.append("    fetchJsonProperWithLineage: ").append(toIndentedString(fetchJsonProperWithLineage)).append("\n");
@@ -394,6 +448,8 @@ public class BackgroundMultiQueryResponse {
     openapiFields.add("executionId");
     openapiFields.add("progress");
     openapiFields.add("cancel");
+    openapiFields.add("download");
+    openapiFields.add("saveToDrive");
     openapiFields.add("fetchJson");
     openapiFields.add("fetchJsonProper");
     openapiFields.add("fetchJsonProperWithLineage");
@@ -432,6 +488,14 @@ public class BackgroundMultiQueryResponse {
       // validate the optional field `cancel`
       if (jsonObj.get("cancel") != null && !jsonObj.get("cancel").isJsonNull()) {
         Link.validateJsonElement(jsonObj.get("cancel"));
+      }
+      // validate the optional field `download`
+      if (jsonObj.get("download") != null && !jsonObj.get("download").isJsonNull()) {
+        Link.validateJsonElement(jsonObj.get("download"));
+      }
+      // validate the optional field `saveToDrive`
+      if (jsonObj.get("saveToDrive") != null && !jsonObj.get("saveToDrive").isJsonNull()) {
+        Link.validateJsonElement(jsonObj.get("saveToDrive"));
       }
       if (jsonObj.get("fetchJson") != null && !jsonObj.get("fetchJson").isJsonNull()) {
         JsonArray jsonArrayfetchJson = jsonObj.getAsJsonArray("fetchJson");

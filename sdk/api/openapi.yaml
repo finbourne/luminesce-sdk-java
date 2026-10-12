@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.22.79
+  version: 1.22.98
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1265,6 +1265,53 @@ paths:
       x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/MultiQueryBackground:
+    get:
+      description: "Lists the custom query-sets (started by the calling user via `custom`)\
+        \ that have finished with at least one result which may be fetched, \nand\
+        \ which have not yet passed their `keepForSeconds` time, most recent first.\
+        \ Each lists its queries that are external results, and which of those have\
+        \ results.\nThose that errored are included, as some of their queries may\
+        \ still have succeeded.\n\nThe following error codes are to be anticipated\
+        \ most with standard Problem Detail reports:\n- 401 Unauthorized"
+      operationId: ListCustomQueries
+      parameters:
+      - description: |-
+          An optional SQL-LIKE style filter on the LuminesceSql of the queries (manually include wildcards if desired),
+          a query-set matching should any of its queries.
+        explode: true
+        in: query
+        name: sqlLike
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomMultiQueryListItem'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomMultiQueryListItem'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomMultiQueryListItem'
+                type: array
+          description: OK
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] ListCustomQueries: List the custom query-sets available\
+        \ to the calling user"
+      tags:
+      - Multi-Query Execution
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
     put:
       description: "\nAllow for starting a potentially long running query and getting\
         \ back an immediate response with how to \n- fetch the data in various formats\
@@ -1437,6 +1484,79 @@ paths:
       x-fbn-apistatus: Stable
       x-content-type: text/plain
       x-accepts: application/json
+  /api/MultiQueryBackground/custom:
+    put:
+      description: |2
+
+        Starts a caller-supplied set of named queries in the background, getting back an immediate response with how to
+        - fetch the data of each (external) query in various formats, view progress information and cancel / clear them, as for any multi-query
+        - download, or save to Drive, the results of all the (external) queries that succeeded as one file
+
+        The queries are started in the order given, at most `maxInParallel` at a time (1 by default, null for as many as possible).
+        A query may use the results of an earlier one as a table variable of its name, e.g. `select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Holdings`, and is then only started once that has succeeded
+        (and is skipped if it does not). The scalar parameters are given to every query.
+
+        The multi-query as a whole is reported as failed if any of its queries fails or is skipped.
+
+        The following error codes are to be anticipated with standard Problem Detail reports:
+        - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query
+        - 401 Unauthorized
+        - 403 Forbidden
+      operationId: StartCustomQueries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomMultiQueryRequest'
+        description: "The queries to run (as LuminesceSql or Saved Query references),\
+          \ the scalar parameters for them all, etc."
+        required: true
+      responses:
+        "202":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BackgroundMultiQueryResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackgroundMultiQueryResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BackgroundMultiQueryResponse'
+          description: Accepted
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql\
+        \ queries in the background"
+      tags:
+      - Multi-Query Execution
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json
+      x-accepts: application/json
   /api/MultiQueryBackground/{executionId}:
     delete:
       description: |
@@ -1515,6 +1635,257 @@ paths:
       tags:
       - Multi-Query Execution
       x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/MultiQueryBackground/{executionId}/download:
+    get:
+      description: |-
+        Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file.
+        Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query-set doesn't exist, isn't a custom one, or the calling user did not run it.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: DownloadMultiQueryResults
+      parameters:
+      - description: ExecutionId returned when starting the query-set
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Format to download in. Several results are one worksheet each\
+          \ for Excel, one table each for Sqlite, and otherwise one file each within\
+          \ a zip."
+        explode: true
+        in: query
+        name: format
+        required: false
+        schema:
+          $ref: '#/components/schemas/ExportType'
+        style: form
+        x-nullable: true
+      - description: |-
+          Name of the file (without extension). Defaults to `{executionId}`.
+          May contain the placeholders `{executionId}`, `{date:format}` (when the queries started, UTC, e.g. `{date:yyyyMMdd}`)
+          and `{param:name}` (the value of a scalar parameter).
+        explode: true
+        in: query
+        name: fileName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                format: binary
+                type: string
+            application/json:
+              schema:
+                format: binary
+                type: string
+            text/json:
+              schema:
+                format: binary
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of\
+        \ a custom query-set as one file"
+      tags:
+      - Multi-Query Execution
+      x-fbn-apistatus: Experimental
+      x-accepts: application/json
+  /api/MultiQueryBackground/{executionId}/drive:
+    get:
+      description: |-
+        Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file.
+        Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query-set doesn't exist, isn't a custom one, or the calling user did not run it.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: SaveMultiQueryResultsToDrive
+      parameters:
+      - description: ExecutionId returned when starting the query-set
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Location and file name within drive where this should be saved to.
+          Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (zip where several results are zipped).
+          May contain the placeholders `{executionId}`, `{date:format}` (when the queries started, UTC, e.g. `{date:yyyyMMdd}`)
+          and `{param:name}` (the value of a scalar parameter).
+        explode: true
+        in: query
+        name: driveLocationAndFileName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "If there is an existing file at the requested location with\
+          \ the same name should this be overridden, or an error returned?"
+        explode: true
+        in: query
+        name: mayOverwrite
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+        x-nullable: true
+      - description: "Format to save in. Several results are one worksheet each for\
+          \ Excel, one table each for Sqlite, and otherwise one file each within a\
+          \ zip."
+        explode: true
+        in: query
+        name: format
+        required: false
+        schema:
+          $ref: '#/components/schemas/ExportType'
+        style: form
+        x-nullable: true
+      - description: |-
+          Drive path and full file name including extension to be used for the export.
+          Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
+        explode: true
+        in: query
+        name: driveTemplateLocation
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Format to apply for DateTime data, leaving blank gives the Luminesce\
+          \ Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+        explode: true
+        in: query
+        name: dateTimeFormat
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Optional maximum additional wait period for post execution platform
+          processing.
+        explode: true
+        in: query
+        name: loadWaitMilliseconds
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+        x-nullable: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of\
+        \ a custom query-set directly to Drive, as one file"
+      tags:
+      - Multi-Query Execution
+      x-fbn-apistatus: Experimental
       x-accepts: application/json
   /api/Sql/csv:
     put:
@@ -6323,7 +6694,7 @@ paths:
     get:
       description: |-
         Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their `keepForSeconds` time, most recent first.
-        Multi-queries themselves are not included, though the individual queries they started are.
+        Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).
 
         The following error codes are to be anticipated most with standard Problem Detail reports:
         - 401 Unauthorized
@@ -9754,6 +10125,11 @@ components:
           description: description
           href: https://openapi-generator.tech
           relation: relation
+        saveToDrive:
+          method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
         fetchExcel:
         - method: method
           description: description
@@ -9782,6 +10158,11 @@ components:
           href: https://openapi-generator.tech
           relation: relation
         executionId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        download:
+          method: method
+          description: description
+          href: https://openapi-generator.tech
+          relation: relation
         fetchParquet:
         - method: method
           description: description
@@ -9840,6 +10221,10 @@ components:
         progress:
           $ref: '#/components/schemas/Link'
         cancel:
+          $ref: '#/components/schemas/Link'
+        download:
+          $ref: '#/components/schemas/Link'
+        saveToDrive:
           $ref: '#/components/schemas/Link'
         fetchJson:
           description: Json (as a string) data request links for all of the child
@@ -10697,6 +11082,186 @@ components:
       required:
       - column
       - row
+      type: object
+    CustomMultiQueryItem:
+      additionalProperties: false
+      description: "One query within a Finbourne.Honeycomb.WebApi.BackgroundQueries.MultiQuery.CustomMultiQueryRequest,\
+        \ given as either raw LuminesceSql or a saved query reference."
+      example:
+        isExternalResult: true
+        name: name
+        savedQuery: savedQuery
+        sql: sql
+      properties:
+        name:
+          description: |-
+            Unique name of the query, of at most 31 characters.
+            Later queries refer to this one's results as `@Name`, and it names the result in any export.
+          maxLength: 31
+          minLength: 0
+          pattern: "^[A-Za-z_][A-Za-z0-9_]*\\z"
+          type: string
+        sql:
+          description: The LuminesceSql to run. Exactly one of this and `SavedQuery`
+            must be given.
+          nullable: true
+          type: string
+        savedQuery:
+          description: |-
+            A key within the Saved Queries (of the Workspaces API) to load the SQL from. Exactly one of this and `Sql` must be given.
+            e.g. `personal/YourUserId/items/queries/SomeQuery` or `shared/SomeWorkspace/items/queries/SomeQuery`.
+          maxLength: 1024
+          minLength: 0
+          nullable: true
+          type: string
+        isExternalResult:
+          description: Should the results of this query be fetchable / exported? If
+            false it is only an intermediate step for later queries.
+          type: boolean
+      required:
+      - name
+      type: object
+    CustomMultiQueryListItem:
+      additionalProperties: false
+      description: A custom multi-query the calling user currently has results of
+        available to them
+      example:
+        executionId: executionId
+        queryName: queryName
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        state: null
+        when: 2000-01-23T04:56:07.000+00:00
+        queries:
+        - name: name
+          hasResult: true
+          state: null
+        - name: name
+          hasResult: true
+          state: null
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        executionId:
+          description: "ExecutionId of the multi-query, its queries having ExecutionIds\
+            \ of `{ExecutionId}_{Name}`"
+          nullable: true
+          type: string
+        queryName:
+          description: The QueryName given in the original request
+          nullable: true
+          type: string
+        state:
+          $ref: '#/components/schemas/BackgroundQueryState'
+        startedAt:
+          description: When it was started (UTC)
+          format: date-time
+          nullable: true
+          type: string
+        when:
+          description: When the state of it was last updated (UTC)
+          format: date-time
+          type: string
+        expiresAt:
+          description: When it (and the data of its queries) may be removed (UTC)
+          format: date-time
+          type: string
+        queries:
+          description: "Its queries whose results may be fetched (those that are external\
+            \ results), in request order"
+          items:
+            $ref: '#/components/schemas/CustomMultiQueryListItemQuery'
+          nullable: true
+          type: array
+      type: object
+    CustomMultiQueryListItemQuery:
+      additionalProperties: false
+      description: One of the queries of a Finbourne.Honeycomb.WebApi.BackgroundQueries.MultiQuery.CustomMultiQueryListItem
+      example:
+        name: name
+        hasResult: true
+        state: null
+      properties:
+        name:
+          description: The Name given to the query in the original request
+          nullable: true
+          type: string
+        state:
+          $ref: '#/components/schemas/BackgroundQueryState'
+        hasResult:
+          description: Whether its results may be fetched
+          type: boolean
+      type: object
+    CustomMultiQueryRequest:
+      additionalProperties: false
+      description: "A caller-supplied set of queries to run in the background, as\
+        \ one multi-query."
+      example:
+        executionId: executionId
+        maxInParallel: 0
+        scalarParameters:
+          key: scalarParameters
+        timeoutSeconds: 6
+        queryName: queryName
+        queries:
+        - isExternalResult: true
+          name: name
+          savedQuery: savedQuery
+          sql: sql
+        - isExternalResult: true
+          name: name
+          savedQuery: savedQuery
+          sql: sql
+        keepForSeconds: 1
+      properties:
+        executionId:
+          description: An explicit ExecutionId to use. This must be blank OR assigned
+            to a valid GUID-as-a-string.
+          maxLength: 36
+          minLength: 0
+          nullable: true
+          type: string
+        scalarParameters:
+          additionalProperties:
+            nullable: true
+            type: string
+          description: |-
+            Scalar parameter values, handed to every query that runs (e.g. filling in `:someParameter:defaultValue` style references).
+            At most 100, each named as an identifier of at most 256 characters, with a value of at most 4096.
+          nullable: true
+          type: object
+        queries:
+          description: |-
+            The queries to run. Those ready are started in the order given here (one still waiting on those it refers to does not
+            hold up a later one), and each may only refer to queries earlier in the list.
+          items:
+            $ref: '#/components/schemas/CustomMultiQueryItem'
+          type: array
+        maxInParallel:
+          description: |-
+            Maximum number of the queries that may run concurrently. Defaults to 1, meaning they run one after another.
+            Explicitly null means as many as their dependencies allow.
+          format: int32
+          nullable: true
+          type: integer
+        timeoutSeconds:
+          description: |-
+            Maximum time each query may run for, in seconds, timed from when it starts: <0 → ∞, 0 → 1200s (20m).
+            There is no limit on the set as a whole.
+          format: int32
+          type: integer
+        keepForSeconds:
+          description: "Maximum time the results may be kept for, in seconds: <0 →\
+            \ 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)"
+          format: int32
+          type: integer
+        queryName:
+          description: A name for this set of queries. This goes into logs and is
+            returned when listing the sets of queries.
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+      required:
+      - queries
       type: object
     DashboardType:
       description: Dashboard type (input or output)
@@ -11868,6 +12433,7 @@ components:
       - InsightsVendorLogs
       - CandelaTraceLogs
       - CandelaTraceEventLogs
+      - Custom
       type: string
     OnClauseTermDesign:
       additionalProperties: false

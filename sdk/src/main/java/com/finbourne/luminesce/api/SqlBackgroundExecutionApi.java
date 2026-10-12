@@ -4545,7 +4545,7 @@ public class SqlBackgroundExecutionApi {
 
     /**
      * [EXPERIMENTAL] ListQueries: List the background queries available to the calling user
-     * Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their &#x60;keepForSeconds&#x60; time, most recent first. Multi-queries themselves are not included, though the individual queries they started are.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
+     * Lists the background queries (started by the calling user) whose results may be fetched, and which have not yet passed their &#x60;keepForSeconds&#x60; time, most recent first. Multi-queries themselves are not included, though the individual queries they started are (other than those marked as not being external results).  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
      * @return APIlistQueriesRequest
      * @http.response.details
      <table summary="Response Details" border="1">

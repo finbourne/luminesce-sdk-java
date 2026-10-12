@@ -27,6 +27,7 @@ MultiQueryDefinitionType method = MultiQueryDefinitionType.INSIGHTSAPPLICATIONRE
 MultiQueryDefinitionType method = MultiQueryDefinitionType.INSIGHTSVENDORLOGS;
 MultiQueryDefinitionType method = MultiQueryDefinitionType.CANDELATRACELOGS;
 MultiQueryDefinitionType method = MultiQueryDefinitionType.CANDELATRACEEVENTLOGS;
+MultiQueryDefinitionType method = MultiQueryDefinitionType.CUSTOM;
 ```
 
 
