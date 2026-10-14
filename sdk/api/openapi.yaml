@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.22.108
+  version: 1.22.111
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -2649,6 +2649,166 @@ paths:
       - Sql Design
       x-fbn-apistatus: Stable
       x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/extractscalarparameters/custom:
+    put:
+      description: "\nExtracts information about all the scalar parameters defined\
+        \ across the queries of a custom multi-query,\nloading the SQL of any given\
+        \ as Saved Queries.\nEach name is given only once (the first found of it,\
+        \ in query order), as the same value of it is given to every query that is\
+        \ run.\nThe request's own `scalarParameters` are ignored.\n\nThe following\
+        \ error codes are to be anticipated with standard Problem Detail reports:\n\
+        - 400 BadRequest - the request was invalid, a Saved Query could not be loaded,\
+        \ or there was something wrong with the syntax of a query\n- 401 Unauthorized\n\
+        - 403 Forbidden\n\n\n> This method is generally only intended for IDE generation\
+        \ purposes. \n> It is largely internal to the Finbourne web user interfaces\
+        \ and subject to change without notice.\n"
+      operationId: PutCustomQueriesToExtractScalarParameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomMultiQueryRequest'
+        description: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom`
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              example:
+              - name: p1
+                type: Text
+                value: this
+                valueMustBeFromOptions: false
+              - name: abcP
+                type: Decimal
+                value: "123"
+                valueMustBeFromOptions: false
+              - name: p2
+                type: Text
+                valueMustBeFromOptions: false
+              - name: p3
+                type: Text
+                value: A
+                valueOptions:
+                - A
+                - B
+                - C
+                - D
+                valueMustBeFromOptions: true
+              - name: p4
+                type: Int
+                value: 12
+                valueOptions:
+                - 23
+                - 42
+                - 677
+                valueMustBeFromOptions: false
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScalarParameter'
+                type: array
+            application/json:
+              example:
+              - name: p1
+                type: Text
+                value: this
+                valueMustBeFromOptions: false
+              - name: abcP
+                type: Decimal
+                value: "123"
+                valueMustBeFromOptions: false
+              - name: p2
+                type: Text
+                valueMustBeFromOptions: false
+              - name: p3
+                type: Text
+                value: A
+                valueOptions:
+                - A
+                - B
+                - C
+                - D
+                valueMustBeFromOptions: true
+              - name: p4
+                type: Int
+                value: 12
+                valueOptions:
+                - 23
+                - 42
+                - 677
+                valueMustBeFromOptions: false
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScalarParameter'
+                type: array
+            text/json:
+              example:
+              - name: p1
+                type: Text
+                value: this
+                valueMustBeFromOptions: false
+              - name: abcP
+                type: Decimal
+                value: "123"
+                valueMustBeFromOptions: false
+              - name: p2
+                type: Text
+                valueMustBeFromOptions: false
+              - name: p3
+                type: Text
+                value: A
+                valueOptions:
+                - A
+                - B
+                - C
+                - D
+                valueMustBeFromOptions: true
+              - name: p4
+                type: Int
+                value: 12
+                valueOptions:
+                - 23
+                - 42
+                - 677
+                valueMustBeFromOptions: false
+              schema:
+                items:
+                  $ref: '#/components/schemas/ScalarParameter'
+                type: array
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "PutCustomQueriesToExtractScalarParameters: Extract scalar parameter\
+        \ information from all the queries of a custom multi-query"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Stable
+      x-content-type: application/json
       x-accepts: application/json
   /api/Sql/fromcasestatementdesign:
     put:

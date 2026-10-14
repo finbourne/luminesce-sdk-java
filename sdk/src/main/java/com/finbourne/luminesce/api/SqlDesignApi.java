@@ -27,6 +27,7 @@ import java.io.IOException;
 
 import com.finbourne.luminesce.model.CaseStatementDesign;
 import com.finbourne.luminesce.model.ConvertToViewData;
+import com.finbourne.luminesce.model.CustomMultiQueryRequest;
 import com.finbourne.luminesce.model.ErrorHighlightRequest;
 import com.finbourne.luminesce.model.ErrorHighlightResponse;
 import java.io.File;
@@ -801,6 +802,238 @@ public class SqlDesignApi {
      */
     public APIputCaseStatementDesignToSqlRequest putCaseStatementDesignToSql(CaseStatementDesign caseStatementDesign) {
         return new APIputCaseStatementDesignToSqlRequest(caseStatementDesign);
+    }
+    private okhttp3.Call putCustomQueriesToExtractScalarParametersCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback) throws ApiException {
+        return putCustomQueriesToExtractScalarParametersCall(customMultiQueryRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putCustomQueriesToExtractScalarParametersCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = customMultiQueryRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/extractscalarparameters/custom";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putCustomQueriesToExtractScalarParametersValidateBeforeCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'customMultiQueryRequest' is set
+        if (customMultiQueryRequest == null) {
+            throw new ApiException("Missing the required parameter 'customMultiQueryRequest' when calling putCustomQueriesToExtractScalarParameters(Async)");
+        }
+
+        return putCustomQueriesToExtractScalarParametersCall(customMultiQueryRequest, _callback, opts);
+
+    }
+
+
+    private ApiResponse<List<ScalarParameter>> putCustomQueriesToExtractScalarParametersWithHttpInfo(CustomMultiQueryRequest customMultiQueryRequest) throws ApiException {
+        okhttp3.Call localVarCall = putCustomQueriesToExtractScalarParametersValidateBeforeCall(customMultiQueryRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<ScalarParameter>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<List<ScalarParameter>> putCustomQueriesToExtractScalarParametersWithHttpInfo(CustomMultiQueryRequest customMultiQueryRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putCustomQueriesToExtractScalarParametersValidateBeforeCall(customMultiQueryRequest, null, opts);
+        Type localVarReturnType = new TypeToken<List<ScalarParameter>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putCustomQueriesToExtractScalarParametersAsync(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback<List<ScalarParameter>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putCustomQueriesToExtractScalarParametersValidateBeforeCall(customMultiQueryRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<ScalarParameter>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putCustomQueriesToExtractScalarParametersAsync(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback<List<ScalarParameter>> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putCustomQueriesToExtractScalarParametersValidateBeforeCall(customMultiQueryRequest, _callback, opts);
+        Type localVarReturnType = new TypeToken<List<ScalarParameter>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputCustomQueriesToExtractScalarParametersRequest {
+        private final CustomMultiQueryRequest customMultiQueryRequest;
+
+        private APIputCustomQueriesToExtractScalarParametersRequest(CustomMultiQueryRequest customMultiQueryRequest) {
+            this.customMultiQueryRequest = customMultiQueryRequest;
+        }
+
+        /**
+         * Build call for putCustomQueriesToExtractScalarParameters
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putCustomQueriesToExtractScalarParametersCall(customMultiQueryRequest, _callback);
+        }
+
+        /**
+         * Execute putCustomQueriesToExtractScalarParameters request
+         * @return List&lt;ScalarParameter&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<ScalarParameter> execute() throws ApiException {
+            ApiResponse<List<ScalarParameter>> localVarResp = putCustomQueriesToExtractScalarParametersWithHttpInfo(customMultiQueryRequest);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCustomQueriesToExtractScalarParameters request. Use any specified configuration options to override any other configuration for this request only.
+         * @return List&lt;ScalarParameter&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<ScalarParameter> execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<List<ScalarParameter>> localVarResp = putCustomQueriesToExtractScalarParametersWithHttpInfo(customMultiQueryRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCustomQueriesToExtractScalarParameters request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;ScalarParameter&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<ScalarParameter>> executeWithHttpInfo() throws ApiException {
+            return putCustomQueriesToExtractScalarParametersWithHttpInfo(customMultiQueryRequest);
+        }
+
+        /**
+         * Execute putCustomQueriesToExtractScalarParameters request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;List&lt;ScalarParameter&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<ScalarParameter>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putCustomQueriesToExtractScalarParametersWithHttpInfo(customMultiQueryRequest, opts);
+        }
+
+        /**
+         * Execute putCustomQueriesToExtractScalarParameters request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<ScalarParameter>> _callback) throws ApiException {
+            return putCustomQueriesToExtractScalarParametersAsync(customMultiQueryRequest, _callback);
+        }
+
+        /**
+         * Execute putCustomQueriesToExtractScalarParameters request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<ScalarParameter>> _callback, ConfigurationOptions opts) throws ApiException {
+            return putCustomQueriesToExtractScalarParametersAsync(customMultiQueryRequest, _callback, opts);
+        }
+    }
+
+    /**
+     * PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
+     *  Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request&#39;s own &#x60;scalarParameters&#x60; are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param customMultiQueryRequest The same set of queries as would be given to start them via &#x60;api/MultiQueryBackground/custom&#x60; (required)
+     * @return APIputCustomQueriesToExtractScalarParametersRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputCustomQueriesToExtractScalarParametersRequest putCustomQueriesToExtractScalarParameters(CustomMultiQueryRequest customMultiQueryRequest) {
+        return new APIputCustomQueriesToExtractScalarParametersRequest(customMultiQueryRequest);
     }
     private okhttp3.Call putFileReadDesignToSqlCall(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery, final ApiCallback _callback) throws ApiException {
         return putFileReadDesignToSqlCall(fileReaderBuilderDef, executeQuery,  _callback, new ConfigurationOptions());
