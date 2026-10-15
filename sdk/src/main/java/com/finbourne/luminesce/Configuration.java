@@ -12,7 +12,7 @@ package com.finbourne.luminesce;
 
 @jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Configuration {
-    public static final String VERSION = "2.2.183";
+    public static final String VERSION = "2.2.184";
 
     private static ApiClient defaultApiClient = new ApiClient();
 
