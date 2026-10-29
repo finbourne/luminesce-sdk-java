@@ -27,6 +27,7 @@ import java.io.IOException;
 
 import com.finbourne.luminesce.model.CaseStatementDesign;
 import com.finbourne.luminesce.model.ConvertToViewData;
+import com.finbourne.luminesce.model.CustomMultiQueryItem;
 import com.finbourne.luminesce.model.CustomMultiQueryRequest;
 import com.finbourne.luminesce.model.ErrorHighlightRequest;
 import com.finbourne.luminesce.model.ErrorHighlightResponse;
@@ -1021,7 +1022,7 @@ public class SqlDesignApi {
 
     /**
      * PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
-     *  Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request&#39;s own &#x60;scalarParameters&#x60; are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     *  Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request&#39;s own &#x60;scalarParameters&#x60; are ignored.  Given &#x60;queriesFromWorkspace&#x60; rather than &#x60;queries&#x60;, the queries are those of the custom multi-query saved there, and the &#x60;value&#x60; of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given. A Saved Query there is the one query, named &#x60;Result&#x60;.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
      * @param customMultiQueryRequest The same set of queries as would be given to start them via &#x60;api/MultiQueryBackground/custom&#x60; (required)
      * @return APIputCustomQueriesToExtractScalarParametersRequest
      * @http.response.details
@@ -1034,6 +1035,230 @@ public class SqlDesignApi {
      */
     public APIputCustomQueriesToExtractScalarParametersRequest putCustomQueriesToExtractScalarParameters(CustomMultiQueryRequest customMultiQueryRequest) {
         return new APIputCustomQueriesToExtractScalarParametersRequest(customMultiQueryRequest);
+    }
+    private okhttp3.Call putCustomQueriesToTextCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback) throws ApiException {
+        return putCustomQueriesToTextCall(customMultiQueryRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putCustomQueriesToTextCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = customMultiQueryRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/customqueries/totext";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putCustomQueriesToTextValidateBeforeCall(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'customMultiQueryRequest' is set
+        if (customMultiQueryRequest == null) {
+            throw new ApiException("Missing the required parameter 'customMultiQueryRequest' when calling putCustomQueriesToText(Async)");
+        }
+
+        return putCustomQueriesToTextCall(customMultiQueryRequest, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> putCustomQueriesToTextWithHttpInfo(CustomMultiQueryRequest customMultiQueryRequest) throws ApiException {
+        okhttp3.Call localVarCall = putCustomQueriesToTextValidateBeforeCall(customMultiQueryRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> putCustomQueriesToTextWithHttpInfo(CustomMultiQueryRequest customMultiQueryRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putCustomQueriesToTextValidateBeforeCall(customMultiQueryRequest, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putCustomQueriesToTextAsync(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putCustomQueriesToTextValidateBeforeCall(customMultiQueryRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putCustomQueriesToTextAsync(CustomMultiQueryRequest customMultiQueryRequest, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putCustomQueriesToTextValidateBeforeCall(customMultiQueryRequest, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputCustomQueriesToTextRequest {
+        private final CustomMultiQueryRequest customMultiQueryRequest;
+
+        private APIputCustomQueriesToTextRequest(CustomMultiQueryRequest customMultiQueryRequest) {
+            this.customMultiQueryRequest = customMultiQueryRequest;
+        }
+
+        /**
+         * Build call for putCustomQueriesToText
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putCustomQueriesToTextCall(customMultiQueryRequest, _callback);
+        }
+
+        /**
+         * Execute putCustomQueriesToText request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = putCustomQueriesToTextWithHttpInfo(customMultiQueryRequest);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCustomQueriesToText request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = putCustomQueriesToTextWithHttpInfo(customMultiQueryRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putCustomQueriesToText request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return putCustomQueriesToTextWithHttpInfo(customMultiQueryRequest);
+        }
+
+        /**
+         * Execute putCustomQueriesToText request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putCustomQueriesToTextWithHttpInfo(customMultiQueryRequest, opts);
+        }
+
+        /**
+         * Execute putCustomQueriesToText request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return putCustomQueriesToTextAsync(customMultiQueryRequest, _callback);
+        }
+
+        /**
+         * Execute putCustomQueriesToText request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return putCustomQueriesToTextAsync(customMultiQueryRequest, _callback, opts);
+        }
+    }
+
+    /**
+     * PutCustomQueriesToText: Convert the queries of a custom multi-query into its text
+     *  Converts the queries of a custom multi-query into its text, which &#x60;api/Sql/customqueries/fromtext&#x60; reads back as the same queries. Only the request&#39;s &#x60;queries&#x60; are used (or those of the custom multi-query saved at its &#x60;queriesFromWorkspace&#x60;, or a Saved Query there as the one query, named &#x60;Result&#x60;): its other properties (e.g. &#x60;scalarParameters&#x60;) are ignored.  The text of a custom multi-query starts each query with a &#x60;--- @Name&#x60; line, which may be followed by &#x60;(internal)&#x60; (its result only feeds the queries below it) and/or &#x60;&#x3D; {visibility}/{workspace}/items/{group}/{name}&#x60; (a Saved Query, with nothing under it). A query reads the result of one above it as &#x60;@Name&#x60;. e.g. &#x60;&#x60;&#x60;sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Ten where [Int] % 2 &#x3D; 0 &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text  (its SQL holds a line that would itself start a query, &#x60;--- @...&#x60;, or a &#x60;\\&#x60; line) - 401 Unauthorized   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param customMultiQueryRequest The same set of queries as would be given to start them via &#x60;api/MultiQueryBackground/custom&#x60; (required)
+     * @return APIputCustomQueriesToTextRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputCustomQueriesToTextRequest putCustomQueriesToText(CustomMultiQueryRequest customMultiQueryRequest) {
+        return new APIputCustomQueriesToTextRequest(customMultiQueryRequest);
     }
     private okhttp3.Call putFileReadDesignToSqlCall(FileReaderBuilderDef fileReaderBuilderDef, Boolean executeQuery, final ApiCallback _callback) throws ApiException {
         return putFileReadDesignToSqlCall(fileReaderBuilderDef, executeQuery,  _callback, new ConfigurationOptions());
@@ -4344,6 +4569,230 @@ public class SqlDesignApi {
      */
     public APIputSqlToWriterDesignRequest putSqlToWriterDesign(String body) {
         return new APIputSqlToWriterDesignRequest(body);
+    }
+    private okhttp3.Call putTextToCustomQueriesCall(String body, final ApiCallback _callback) throws ApiException {
+        return putTextToCustomQueriesCall(body,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call putTextToCustomQueriesCall(String body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/api/Sql/customqueries/fromtext";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "text/plain"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call putTextToCustomQueriesValidateBeforeCall(String body, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling putTextToCustomQueries(Async)");
+        }
+
+        return putTextToCustomQueriesCall(body, _callback, opts);
+
+    }
+
+
+    private ApiResponse<List<CustomMultiQueryItem>> putTextToCustomQueriesWithHttpInfo(String body) throws ApiException {
+        okhttp3.Call localVarCall = putTextToCustomQueriesValidateBeforeCall(body, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryItem>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<List<CustomMultiQueryItem>> putTextToCustomQueriesWithHttpInfo(String body, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = putTextToCustomQueriesValidateBeforeCall(body, null, opts);
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryItem>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call putTextToCustomQueriesAsync(String body, final ApiCallback<List<CustomMultiQueryItem>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = putTextToCustomQueriesValidateBeforeCall(body, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryItem>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call putTextToCustomQueriesAsync(String body, final ApiCallback<List<CustomMultiQueryItem>> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = putTextToCustomQueriesValidateBeforeCall(body, _callback, opts);
+        Type localVarReturnType = new TypeToken<List<CustomMultiQueryItem>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIputTextToCustomQueriesRequest {
+        private final String body;
+
+        private APIputTextToCustomQueriesRequest(String body) {
+            this.body = body;
+        }
+
+        /**
+         * Build call for putTextToCustomQueries
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putTextToCustomQueriesCall(body, _callback);
+        }
+
+        /**
+         * Execute putTextToCustomQueries request
+         * @return List&lt;CustomMultiQueryItem&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<CustomMultiQueryItem> execute() throws ApiException {
+            ApiResponse<List<CustomMultiQueryItem>> localVarResp = putTextToCustomQueriesWithHttpInfo(body);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putTextToCustomQueries request. Use any specified configuration options to override any other configuration for this request only.
+         * @return List&lt;CustomMultiQueryItem&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<CustomMultiQueryItem> execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<List<CustomMultiQueryItem>> localVarResp = putTextToCustomQueriesWithHttpInfo(body, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute putTextToCustomQueries request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;CustomMultiQueryItem&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<CustomMultiQueryItem>> executeWithHttpInfo() throws ApiException {
+            return putTextToCustomQueriesWithHttpInfo(body);
+        }
+
+        /**
+         * Execute putTextToCustomQueries request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;List&lt;CustomMultiQueryItem&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<CustomMultiQueryItem>> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return putTextToCustomQueriesWithHttpInfo(body, opts);
+        }
+
+        /**
+         * Execute putTextToCustomQueries request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<CustomMultiQueryItem>> _callback) throws ApiException {
+            return putTextToCustomQueriesAsync(body, _callback);
+        }
+
+        /**
+         * Execute putTextToCustomQueries request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<CustomMultiQueryItem>> _callback, ConfigurationOptions opts) throws ApiException {
+            return putTextToCustomQueriesAsync(body, _callback, opts);
+        }
+    }
+
+    /**
+     * PutTextToCustomQueries: Convert the text of a custom multi-query into its queries
+     *  Converts the text of a custom multi-query into the queries to give to &#x60;api/MultiQueryBackground/custom&#x60; (or &#x60;api/Sql/extractscalarparameters/custom&#x60;). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query&#39;s result is not.  The text of a custom multi-query starts each query with a &#x60;--- @Name&#x60; line, which may be followed by &#x60;(internal)&#x60; (its result only feeds the queries below it) and/or &#x60;&#x3D; {visibility}/{workspace}/items/{group}/{name}&#x60; (a Saved Query, with nothing under it). A query reads the result of one above it as &#x60;@Name&#x60;. e.g. &#x60;&#x60;&#x60;sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Ten where [Int] % 2 &#x3D; 0 &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: &#x60;errorDetails&#x60; then has one entry per problem, giving its (1-based) &#x60;line&#x60; and &#x60;message&#x60; - 401 Unauthorized   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+     * @param body The text of the queries, each started by a &#x60;--- @Name&#x60; line (required)
+     * @return APIputTextToCustomQueriesRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputTextToCustomQueriesRequest putTextToCustomQueries(String body) {
+        return new APIputTextToCustomQueriesRequest(body);
     }
     private okhttp3.Call putViewDesignToSqlCall(ConvertToViewData convertToViewData, final ApiCallback _callback) throws ApiException {
         return putViewDesignToSqlCall(convertToViewData,  _callback, new ConfigurationOptions());

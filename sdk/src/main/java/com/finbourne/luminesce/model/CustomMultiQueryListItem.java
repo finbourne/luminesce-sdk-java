@@ -79,6 +79,10 @@ public class CustomMultiQueryListItem {
   @SerializedName(SERIALIZED_NAME_EXPIRES_AT)
   private OffsetDateTime expiresAt;
 
+  public static final String SERIALIZED_NAME_EXPORTED_TO = "exportedTo";
+  @SerializedName(SERIALIZED_NAME_EXPORTED_TO)
+  private String exportedTo;
+
   public static final String SERIALIZED_NAME_QUERIES = "queries";
   @SerializedName(SERIALIZED_NAME_QUERIES)
   private List<CustomMultiQueryListItemQuery> queries;
@@ -212,6 +216,27 @@ public class CustomMultiQueryListItem {
   }
 
 
+  public CustomMultiQueryListItem exportedTo(String exportedTo) {
+    
+    this.exportedTo = exportedTo;
+    return this;
+  }
+
+   /**
+   * The Drive path its results were saved to once done, if it was started with an &#x60;export&#x60; and they were
+   * @return exportedTo
+  **/
+  @jakarta.annotation.Nullable
+  public String getExportedTo() {
+    return exportedTo;
+  }
+
+
+  public void setExportedTo(String exportedTo) {
+    this.exportedTo = exportedTo;
+  }
+
+
   public CustomMultiQueryListItem queries(List<CustomMultiQueryListItemQuery> queries) {
     
     this.queries = queries;
@@ -257,6 +282,7 @@ public class CustomMultiQueryListItem {
         Objects.equals(this.startedAt, customMultiQueryListItem.startedAt) &&
         Objects.equals(this.when, customMultiQueryListItem.when) &&
         Objects.equals(this.expiresAt, customMultiQueryListItem.expiresAt) &&
+        Objects.equals(this.exportedTo, customMultiQueryListItem.exportedTo) &&
         Objects.equals(this.queries, customMultiQueryListItem.queries);
   }
 
@@ -266,7 +292,7 @@ public class CustomMultiQueryListItem {
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionId, queryName, state, startedAt, when, expiresAt, queries);
+    return Objects.hash(executionId, queryName, state, startedAt, when, expiresAt, exportedTo, queries);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -286,6 +312,7 @@ public class CustomMultiQueryListItem {
     sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
     sb.append("    when: ").append(toIndentedString(when)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    exportedTo: ").append(toIndentedString(exportedTo)).append("\n");
     sb.append("    queries: ").append(toIndentedString(queries)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -315,6 +342,7 @@ public class CustomMultiQueryListItem {
     openapiFields.add("startedAt");
     openapiFields.add("when");
     openapiFields.add("expiresAt");
+    openapiFields.add("exportedTo");
     openapiFields.add("queries");
 
     // a set of required properties/fields (JSON key names)
@@ -339,6 +367,9 @@ public class CustomMultiQueryListItem {
       }
       if ((jsonObj.get("queryName") != null && !jsonObj.get("queryName").isJsonNull()) && !jsonObj.get("queryName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `queryName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("queryName").toString()));
+      }
+      if ((jsonObj.get("exportedTo") != null && !jsonObj.get("exportedTo").isJsonNull()) && !jsonObj.get("exportedTo").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `exportedTo` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exportedTo").toString()));
       }
       if (jsonObj.get("queries") != null && !jsonObj.get("queries").isJsonNull()) {
         JsonArray jsonArrayqueries = jsonObj.getAsJsonArray("queries");

@@ -5,11 +5,11 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**cancelMultiQuery**](MultiQueryExecutionApi.md#cancelMultiQuery) | **DELETE** /api/MultiQueryBackground/{executionId} | CancelMultiQuery: Cancel / Clear a previously started query-set |
-| [**downloadMultiQueryResults**](MultiQueryExecutionApi.md#downloadMultiQueryResults) | **GET** /api/MultiQueryBackground/{executionId}/download | [EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of a custom query-set as one file |
+| [**downloadMultiQueryResults**](MultiQueryExecutionApi.md#downloadMultiQueryResults) | **GET** /api/MultiQueryBackground/{executionId}/download | DownloadMultiQueryResults: Downloads the results of a custom query-set as one file |
 | [**getProgressOfMultiQuery**](MultiQueryExecutionApi.md#getProgressOfMultiQuery) | **GET** /api/MultiQueryBackground/{executionId} | GetProgressOfMultiQuery: View progress of the entire query-set load |
-| [**listCustomQueries**](MultiQueryExecutionApi.md#listCustomQueries) | **GET** /api/MultiQueryBackground | [EXPERIMENTAL] ListCustomQueries: List the custom query-sets available to the calling user |
-| [**saveMultiQueryResultsToDrive**](MultiQueryExecutionApi.md#saveMultiQueryResultsToDrive) | **GET** /api/MultiQueryBackground/{executionId}/drive | [EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file |
-| [**startCustomQueries**](MultiQueryExecutionApi.md#startCustomQueries) | **PUT** /api/MultiQueryBackground/custom | [EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql queries in the background |
+| [**listCustomQueries**](MultiQueryExecutionApi.md#listCustomQueries) | **GET** /api/MultiQueryBackground | ListCustomQueries: List the custom query-sets available to the calling user |
+| [**saveMultiQueryResultsToDrive**](MultiQueryExecutionApi.md#saveMultiQueryResultsToDrive) | **GET** /api/MultiQueryBackground/{executionId}/drive | SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file |
+| [**startCustomQueries**](MultiQueryExecutionApi.md#startCustomQueries) | **PUT** /api/MultiQueryBackground/custom | StartCustomQueries: Run a caller-supplied set of Sql queries in the background |
 | [**startQueries**](MultiQueryExecutionApi.md#startQueries) | **PUT** /api/MultiQueryBackground | StartQueries: Run a given set of Sql queries in the background |
 
 
@@ -107,7 +107,7 @@ public class MultiQueryExecutionApiExample {
 
 > File downloadMultiQueryResults(executionId, format, fileName, dateTimeFormat, loadWaitMilliseconds)
 
-[EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
+DownloadMultiQueryResults: Downloads the results of a custom query-set as one file
 
 Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file. Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query-set doesn&#39;t exist, isn&#39;t a custom one, or the calling user did not run it. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -151,7 +151,7 @@ public class MultiQueryExecutionApiExample {
 
         MultiQueryExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(MultiQueryExecutionApi.class);
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query-set
-        ExportType format = ExportType.fromValue("csv"); // ExportType | Format to download in. Several results are one worksheet each for Excel, one table each for Sqlite, and otherwise one file each within a zip.
+        ExportType format = ExportType.fromValue("csv"); // ExportType | Format to download in. Several results are one worksheet each for Excel, one table each for Sqlite, one key each for JsonProperByTable, and otherwise one file each within a zip.
         String fileName = "fileName_example"; // String | Name of the file (without extension). Defaults to `{executionId}`. May contain the placeholders `{executionId}`, `{date:format}` (when the queries started, UTC, e.g. `{date:yyyyMMdd}`) and `{param:name}` (the value of a scalar parameter).
         String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer loadWaitMilliseconds = 0; // Integer | Optional maximum additional wait period for post execution platform processing.
@@ -177,7 +177,7 @@ public class MultiQueryExecutionApiExample {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **executionId** | **String**| ExecutionId returned when starting the query-set | |
-| **format** | [**ExportType**](.md)| Format to download in. Several results are one worksheet each for Excel, one table each for Sqlite, and otherwise one file each within a zip. | [optional] [enum: csv, pipe, excel, json, jsonProper, xml, parquet, sqlite, TableInternal, jsonProperWithLineage, pdf] |
+| **format** | [**ExportType**](.md)| Format to download in. Several results are one worksheet each for Excel, one table each for Sqlite, one key each for JsonProperByTable, and otherwise one file each within a zip. | [optional] [enum: csv, pipe, excel, json, jsonProper, xml, parquet, sqlite, TableInternal, jsonProperWithLineage, pdf, jsonProperByTable] |
 | **fileName** | **String**| Name of the file (without extension). Defaults to &#x60;{executionId}&#x60;. May contain the placeholders &#x60;{executionId}&#x60;, &#x60;{date:format}&#x60; (when the queries started, UTC, e.g. &#x60;{date:yyyyMMdd}&#x60;) and &#x60;{param:name}&#x60; (the value of a scalar parameter). | [optional] |
 | **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **loadWaitMilliseconds** | **Integer**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0] |
@@ -295,7 +295,7 @@ public class MultiQueryExecutionApiExample {
 
 > List&lt;CustomMultiQueryListItem&gt; listCustomQueries(sqlLike)
 
-[EXPERIMENTAL] ListCustomQueries: List the custom query-sets available to the calling user
+ListCustomQueries: List the custom query-sets available to the calling user
 
 Lists the custom query-sets (started by the calling user via &#x60;custom&#x60;) that have finished with at least one result which may be fetched,  and which have not yet passed their &#x60;keepForSeconds&#x60; time, most recent first. Each lists its queries that are external results, and which of those have results. Those that errored are included, as some of their queries may still have succeeded.  The following error codes are to be anticipated most with standard Problem Detail reports: - 401 Unauthorized
 
@@ -384,7 +384,7 @@ public class MultiQueryExecutionApiExample {
 
 > String saveMultiQueryResultsToDrive(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, dateTimeFormat, loadWaitMilliseconds)
 
-[EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
+SaveMultiQueryResultsToDrive: Saves the results of a custom query-set directly to Drive, as one file
 
 Exports the results of all the queries of a custom query-set (other than those which are not external results) as one file. Queries that failed, or were skipped as a query they depend on failed, are left out - though if none succeeded there is nothing to export.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : no query succeeded, or a placeholder or Drive parameter was incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query-set doesn&#39;t exist, isn&#39;t a custom one, or the calling user did not run it. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
 
@@ -430,7 +430,7 @@ public class MultiQueryExecutionApiExample {
         String executionId = "executionId_example"; // String | ExecutionId returned when starting the query-set
         String driveLocationAndFileName = "driveLocationAndFileName_example"; // String | Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (zip where several results are zipped). May contain the placeholders `{executionId}`, `{date:format}` (when the queries started, UTC, e.g. `{date:yyyyMMdd}`) and `{param:name}` (the value of a scalar parameter).
         Boolean mayOverwrite = false; // Boolean | If there is an existing file at the requested location with the same name should this be overridden, or an error returned?
-        ExportType format = ExportType.fromValue("csv"); // ExportType | Format to save in. Several results are one worksheet each for Excel, one table each for Sqlite, and otherwise one file each within a zip.
+        ExportType format = ExportType.fromValue("csv"); // ExportType | Format to save in. Several results are one worksheet each for Excel, one table each for Sqlite, one key each for JsonProperByTable, and otherwise one file each within a zip.
         String driveTemplateLocation = "driveTemplateLocation_example"; // String | Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
         String dateTimeFormat = "dateTimeFormat_example"; // String | Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`
         Integer loadWaitMilliseconds = 0; // Integer | Optional maximum additional wait period for post execution platform processing.
@@ -458,7 +458,7 @@ public class MultiQueryExecutionApiExample {
 | **executionId** | **String**| ExecutionId returned when starting the query-set | |
 | **driveLocationAndFileName** | **String**| Location and file name within drive where this should be saved to. Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format (zip where several results are zipped). May contain the placeholders &#x60;{executionId}&#x60;, &#x60;{date:format}&#x60; (when the queries started, UTC, e.g. &#x60;{date:yyyyMMdd}&#x60;) and &#x60;{param:name}&#x60; (the value of a scalar parameter). | |
 | **mayOverwrite** | **Boolean**| If there is an existing file at the requested location with the same name should this be overridden, or an error returned? | [optional] [default to false] |
-| **format** | [**ExportType**](.md)| Format to save in. Several results are one worksheet each for Excel, one table each for Sqlite, and otherwise one file each within a zip. | [optional] [enum: csv, pipe, excel, json, jsonProper, xml, parquet, sqlite, TableInternal, jsonProperWithLineage, pdf] |
+| **format** | [**ExportType**](.md)| Format to save in. Several results are one worksheet each for Excel, one table each for Sqlite, one key each for JsonProperByTable, and otherwise one file each within a zip. | [optional] [enum: csv, pipe, excel, json, jsonProper, xml, parquet, sqlite, TableInternal, jsonProperWithLineage, pdf, jsonProperByTable] |
 | **driveTemplateLocation** | **String**| Drive path and full file name including extension to be used for the export. Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given. | [optional] |
 | **dateTimeFormat** | **String**| Format to apply for DateTime data, leaving blank gives the Luminesce Exporter default, currently &#x60;yyyy-MM-dd HH:mm:ss.fff&#x60; | [optional] |
 | **loadWaitMilliseconds** | **Integer**| Optional maximum additional wait period for post execution platform processing. | [optional] [default to 0] |
@@ -487,9 +487,9 @@ public class MultiQueryExecutionApiExample {
 
 > BackgroundMultiQueryResponse startCustomQueries(customMultiQueryRequest)
 
-[EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql queries in the background
+StartCustomQueries: Run a caller-supplied set of Sql queries in the background
 
- Starts a caller-supplied set of named queries in the background, getting back an immediate response with how to - fetch the data of each (external) query in various formats, view progress information and cancel / clear them, as for any multi-query - download, or save to Drive, the results of all the (external) queries that succeeded as one file  The queries are started in the order given, at most &#x60;maxInParallel&#x60; at a time (1 by default, null for as many as possible). A query may use the results of an earlier one as a table variable of its name, e.g. &#x60;select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Holdings&#x60;, and is then only started once that has succeeded (and is skipped if it does not). The scalar parameters are given to every query.  The multi-query as a whole is reported as failed if any of its queries fails or is skipped.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden 
+ Starts a caller-supplied set of named queries in the background, getting back an immediate response with how to - fetch the data of each (external) query in various formats, view progress information and cancel / clear them, as for any multi-query - download, or save to Drive, the results of all the (external) queries that succeeded as one file  The queries are started in the order given, at most &#x60;maxInParallel&#x60; at a time (1 by default, null for as many as possible). A query may use the results of an earlier one as a table variable of its name, e.g. &#x60;select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Holdings&#x60;, and is then only started once that has succeeded (and is skipped if it does not). The scalar parameters are given to every query.  The multi-query as a whole is reported as failed if any of its queries fails or is skipped.  Rather than giving the &#x60;queries&#x60;, &#x60;queriesFromWorkspace&#x60; may name a custom multi-query saved in the Workspaces API to take them from, e.g. &#x60;shared/SomeWorkspace/items/sets/SomeSet&#x60;. It is read when the request is made, so it runs as it is saved at that time. It may instead name a Saved Query, e.g. &#x60;shared/SomeWorkspace/items/queries/SomeQuery&#x60;, which is then run as the one query, named &#x60;Result&#x60;. Whichever of &#x60;maxInParallel&#x60;, &#x60;timeoutSeconds&#x60;, &#x60;keepForSeconds&#x60; and &#x60;queryName&#x60; the request does not give are taken from it, as are the scalar parameter values saved with it for any the request does not give.  Given an &#x60;export&#x60;, the results of the (external) queries are saved to Drive as one file once they are done, as by &#x60;{executionId}/drive&#x60;, before the multi-query is reported as done: the progress&#39;s &#x60;export.savedTo&#x60; is then the Drive path of the file (or &#x60;export.error&#x60; why it was not saved). By default nothing is saved if any query did not succeed, unless &#x60;export.whenSomeFail&#x60; is set (the multi-query is reported as failed either way), and the multi-query is reported as failed if the file could not be saved. Its results may still be saved via &#x60;{executionId}/drive&#x60; too, as often as wanted. With &#x60;queriesFromWorkspace&#x60;, whatever the &#x60;export&#x60; leaves unspecified is taken from the export settings saved with it. Specify &#x60;executionFlags&#x60; of &#x60;ProvideLineage&#x60; to have the lineage calculated for each result.  An explicit &#x60;executionId&#x60; already in use (by a multi-query of the caller&#39;s that is running, or whose results are still kept) is a conflict, rather than it being started again: so a caller may rejoin one it started by its &#x60;executionId&#x60;, e.g. after it was itself restarted.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden - 409 Conflict - the &#x60;executionId&#x60; given is already in use (not a Problem Detail report) 
 
 ### Example
 
@@ -570,6 +570,7 @@ public class MultiQueryExecutionApiExample {
 | **202** | Accepted |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
+| **409** | Conflict |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 

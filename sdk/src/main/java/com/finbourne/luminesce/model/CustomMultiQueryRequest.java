@@ -11,7 +11,9 @@
 package com.finbourne.luminesce.model;
 
 import java.util.Objects;
+import com.finbourne.luminesce.model.CustomMultiQueryExport;
 import com.finbourne.luminesce.model.CustomMultiQueryItem;
+import com.finbourne.luminesce.model.SqlExecutionFlags;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -67,6 +69,10 @@ public class CustomMultiQueryRequest {
   @SerializedName(SERIALIZED_NAME_QUERIES)
   private List<CustomMultiQueryItem> queries = new ArrayList<>();
 
+  public static final String SERIALIZED_NAME_QUERIES_FROM_WORKSPACE = "queriesFromWorkspace";
+  @SerializedName(SERIALIZED_NAME_QUERIES_FROM_WORKSPACE)
+  private String queriesFromWorkspace;
+
   public static final String SERIALIZED_NAME_MAX_IN_PARALLEL = "maxInParallel";
   @SerializedName(SERIALIZED_NAME_MAX_IN_PARALLEL)
   private Integer maxInParallel;
@@ -79,9 +85,17 @@ public class CustomMultiQueryRequest {
   @SerializedName(SERIALIZED_NAME_KEEP_FOR_SECONDS)
   private Integer keepForSeconds;
 
+  public static final String SERIALIZED_NAME_EXECUTION_FLAGS = "executionFlags";
+  @SerializedName(SERIALIZED_NAME_EXECUTION_FLAGS)
+  private SqlExecutionFlags executionFlags;
+
   public static final String SERIALIZED_NAME_QUERY_NAME = "queryName";
   @SerializedName(SERIALIZED_NAME_QUERY_NAME)
   private String queryName;
+
+  public static final String SERIALIZED_NAME_EXPORT = "export";
+  @SerializedName(SERIALIZED_NAME_EXPORT)
+  private CustomMultiQueryExport export;
 
   public CustomMultiQueryRequest() {
   }
@@ -165,6 +179,27 @@ public class CustomMultiQueryRequest {
   }
 
 
+  public CustomMultiQueryRequest queriesFromWorkspace(String queriesFromWorkspace) {
+    
+    this.queriesFromWorkspace = queriesFromWorkspace;
+    return this;
+  }
+
+   /**
+   * A custom multi-query saved in the Workspaces API to take the queries from, rather than giving them in &#x60;Queries&#x60; (exactly one of which must be given), e.g. &#x60;shared/SomeWorkspace/items/sets/SomeSet&#x60;. What this request leaves unspecified of &#x60;maxInParallel&#x60;, &#x60;timeoutSeconds&#x60;, &#x60;keepForSeconds&#x60; and &#x60;queryName&#x60; is taken from it too, and its saved scalar parameter values are used for any this request does not give. It may instead be a Saved Query, e.g. &#x60;shared/SomeWorkspace/items/queries/SomeQuery&#x60;, run as the one query, named &#x60;Result&#x60;.
+   * @return queriesFromWorkspace
+  **/
+  @jakarta.annotation.Nullable
+  public String getQueriesFromWorkspace() {
+    return queriesFromWorkspace;
+  }
+
+
+  public void setQueriesFromWorkspace(String queriesFromWorkspace) {
+    this.queriesFromWorkspace = queriesFromWorkspace;
+  }
+
+
   public CustomMultiQueryRequest maxInParallel(Integer maxInParallel) {
     
     this.maxInParallel = maxInParallel;
@@ -193,7 +228,7 @@ public class CustomMultiQueryRequest {
   }
 
    /**
-   * Maximum time each query may run for, in seconds, timed from when it starts: &lt;0 → ∞, 0 → 1200s (20m). There is no limit on the set as a whole.
+   * Maximum time each query may run for, in seconds, timed from when it starts: &lt;0 → ∞, 0 or null → 1200s (20m). There is no limit on the set as a whole. Null (or absent) with &#x60;queriesFromWorkspace&#x60; is that saved with it.
    * @return timeoutSeconds
   **/
   @jakarta.annotation.Nullable
@@ -214,7 +249,7 @@ public class CustomMultiQueryRequest {
   }
 
    /**
-   * Maximum time the results may be kept for, in seconds: &lt;0 → 1200 (20m), 0 → 28800 (8h), max &#x3D; 2,678,400 (31d)
+   * Maximum time the results may be kept for, in seconds: &lt;0 → 1200 (20m), 0 or null → 28800 (8h), max &#x3D; 2,678,400 (31d). Null (or absent) with &#x60;queriesFromWorkspace&#x60; is that saved with it.
    * @return keepForSeconds
   **/
   @jakarta.annotation.Nullable
@@ -225,6 +260,27 @@ public class CustomMultiQueryRequest {
 
   public void setKeepForSeconds(Integer keepForSeconds) {
     this.keepForSeconds = keepForSeconds;
+  }
+
+
+  public CustomMultiQueryRequest executionFlags(SqlExecutionFlags executionFlags) {
+    
+    this.executionFlags = executionFlags;
+    return this;
+  }
+
+   /**
+   * Get executionFlags
+   * @return executionFlags
+  **/
+  @jakarta.annotation.Nullable
+  public SqlExecutionFlags getExecutionFlags() {
+    return executionFlags;
+  }
+
+
+  public void setExecutionFlags(SqlExecutionFlags executionFlags) {
+    this.executionFlags = executionFlags;
   }
 
 
@@ -249,6 +305,27 @@ public class CustomMultiQueryRequest {
   }
 
 
+  public CustomMultiQueryRequest export(CustomMultiQueryExport export) {
+    
+    this.export = export;
+    return this;
+  }
+
+   /**
+   * Get export
+   * @return export
+  **/
+  @jakarta.annotation.Nullable
+  public CustomMultiQueryExport getExport() {
+    return export;
+  }
+
+
+  public void setExport(CustomMultiQueryExport export) {
+    this.export = export;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -262,10 +339,13 @@ public class CustomMultiQueryRequest {
     return Objects.equals(this.executionId, customMultiQueryRequest.executionId) &&
         Objects.equals(this.scalarParameters, customMultiQueryRequest.scalarParameters) &&
         Objects.equals(this.queries, customMultiQueryRequest.queries) &&
+        Objects.equals(this.queriesFromWorkspace, customMultiQueryRequest.queriesFromWorkspace) &&
         Objects.equals(this.maxInParallel, customMultiQueryRequest.maxInParallel) &&
         Objects.equals(this.timeoutSeconds, customMultiQueryRequest.timeoutSeconds) &&
         Objects.equals(this.keepForSeconds, customMultiQueryRequest.keepForSeconds) &&
-        Objects.equals(this.queryName, customMultiQueryRequest.queryName);
+        Objects.equals(this.executionFlags, customMultiQueryRequest.executionFlags) &&
+        Objects.equals(this.queryName, customMultiQueryRequest.queryName) &&
+        Objects.equals(this.export, customMultiQueryRequest.export);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -274,7 +354,7 @@ public class CustomMultiQueryRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionId, scalarParameters, queries, maxInParallel, timeoutSeconds, keepForSeconds, queryName);
+    return Objects.hash(executionId, scalarParameters, queries, queriesFromWorkspace, maxInParallel, timeoutSeconds, keepForSeconds, executionFlags, queryName, export);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -291,10 +371,13 @@ public class CustomMultiQueryRequest {
     sb.append("    executionId: ").append(toIndentedString(executionId)).append("\n");
     sb.append("    scalarParameters: ").append(toIndentedString(scalarParameters)).append("\n");
     sb.append("    queries: ").append(toIndentedString(queries)).append("\n");
+    sb.append("    queriesFromWorkspace: ").append(toIndentedString(queriesFromWorkspace)).append("\n");
     sb.append("    maxInParallel: ").append(toIndentedString(maxInParallel)).append("\n");
     sb.append("    timeoutSeconds: ").append(toIndentedString(timeoutSeconds)).append("\n");
     sb.append("    keepForSeconds: ").append(toIndentedString(keepForSeconds)).append("\n");
+    sb.append("    executionFlags: ").append(toIndentedString(executionFlags)).append("\n");
     sb.append("    queryName: ").append(toIndentedString(queryName)).append("\n");
+    sb.append("    export: ").append(toIndentedString(export)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -320,10 +403,13 @@ public class CustomMultiQueryRequest {
     openapiFields.add("executionId");
     openapiFields.add("scalarParameters");
     openapiFields.add("queries");
+    openapiFields.add("queriesFromWorkspace");
     openapiFields.add("maxInParallel");
     openapiFields.add("timeoutSeconds");
     openapiFields.add("keepForSeconds");
+    openapiFields.add("executionFlags");
     openapiFields.add("queryName");
+    openapiFields.add("export");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -363,8 +449,15 @@ public class CustomMultiQueryRequest {
       for (int i = 0; i < jsonArrayqueries.size(); i++) {
         CustomMultiQueryItem.validateJsonElement(jsonArrayqueries.get(i));
       };
+      if ((jsonObj.get("queriesFromWorkspace") != null && !jsonObj.get("queriesFromWorkspace").isJsonNull()) && !jsonObj.get("queriesFromWorkspace").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `queriesFromWorkspace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("queriesFromWorkspace").toString()));
+      }
       if ((jsonObj.get("queryName") != null && !jsonObj.get("queryName").isJsonNull()) && !jsonObj.get("queryName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `queryName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("queryName").toString()));
+      }
+      // validate the optional field `export`
+      if (jsonObj.get("export") != null && !jsonObj.get("export").isJsonNull()) {
+        CustomMultiQueryExport.validateJsonElement(jsonObj.get("export"));
       }
   }
 

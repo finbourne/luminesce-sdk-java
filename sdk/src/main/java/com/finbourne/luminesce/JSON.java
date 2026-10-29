@@ -112,6 +112,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ColumnStateType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.ConvertToViewData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.CursorPosition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.CustomMultiQueryExport.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.CustomMultiQueryItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.CustomMultiQueryListItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.CustomMultiQueryListItemQuery.CustomTypeAdapterFactory());
@@ -139,6 +140,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.LusidGridData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.LusidProblemDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.MappableField.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.MultiQueryExportState.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.OnClauseTermDesign.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.OptionsCsv.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.finbourne.luminesce.model.OptionsExcel.CustomTypeAdapterFactory());

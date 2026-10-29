@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.22.152
+  version: 1.22.183
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -1388,11 +1388,11 @@ paths:
           description: OK
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListCustomQueries: List the custom query-sets available\
-        \ to the calling user"
+      summary: "ListCustomQueries: List the custom query-sets available to the calling\
+        \ user"
       tags:
       - Multi-Query Execution
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     put:
       description: "\nAllow for starting a potentially long running query and getting\
@@ -1580,10 +1580,27 @@ paths:
 
         The multi-query as a whole is reported as failed if any of its queries fails or is skipped.
 
+        Rather than giving the `queries`, `queriesFromWorkspace` may name a custom multi-query saved in the Workspaces API to take them from,
+        e.g. `shared/SomeWorkspace/items/sets/SomeSet`. It is read when the request is made, so it runs as it is saved at that time.
+        It may instead name a Saved Query, e.g. `shared/SomeWorkspace/items/queries/SomeQuery`, which is then run as the one query, named `Result`.
+        Whichever of `maxInParallel`, `timeoutSeconds`, `keepForSeconds` and `queryName` the request does not give are taken from it,
+        as are the scalar parameter values saved with it for any the request does not give.
+
+        Given an `export`, the results of the (external) queries are saved to Drive as one file once they are done, as by `{executionId}/drive`,
+        before the multi-query is reported as done: the progress's `export.savedTo` is then the Drive path of the file (or `export.error` why it was not saved).
+        By default nothing is saved if any query did not succeed, unless `export.whenSomeFail` is set (the multi-query is reported as failed either way),
+        and the multi-query is reported as failed if the file could not be saved. Its results may still be saved via `{executionId}/drive` too, as often as wanted.
+        With `queriesFromWorkspace`, whatever the `export` leaves unspecified is taken from the export settings saved with it.
+        Specify `executionFlags` of `ProvideLineage` to have the lineage calculated for each result.
+
+        An explicit `executionId` already in use (by a multi-query of the caller's that is running, or whose results are still kept) is a conflict,
+        rather than it being started again: so a caller may rejoin one it started by its `executionId`, e.g. after it was itself restarted.
+
         The following error codes are to be anticipated with standard Problem Detail reports:
-        - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query
+        - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query
         - 401 Unauthorized
         - 403 Forbidden
+        - 409 Conflict - the `executionId` given is already in use (not a Problem Detail report)
       operationId: StartCustomQueries
       requestBody:
         content:
@@ -1630,13 +1647,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/LusidProblemDetails'
           description: Forbidden
+        "409":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: Conflict
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] StartCustomQueries: Run a caller-supplied set of Sql\
-        \ queries in the background"
+      summary: "StartCustomQueries: Run a caller-supplied set of Sql queries in the\
+        \ background"
       tags:
       - Multi-Query Execution
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-content-type: application/json
       x-accepts: application/json
   /api/MultiQueryBackground/{executionId}:
@@ -1743,9 +1772,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "Format to download in. Several results are one worksheet each\
-          \ for Excel, one table each for Sqlite, and otherwise one file each within\
-          \ a zip."
+      - description: |-
+          Format to download in. Several results are one worksheet each for Excel, one table each for Sqlite, one key each for JsonProperByTable,
+          and otherwise one file each within a zip.
         explode: true
         in: query
         name: format
@@ -1828,11 +1857,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] DownloadMultiQueryResults: Downloads the results of\
-        \ a custom query-set as one file"
+      summary: "DownloadMultiQueryResults: Downloads the results of a custom query-set\
+        \ as one file"
       tags:
       - Multi-Query Execution
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/MultiQueryBackground/{executionId}/drive:
     get:
@@ -1882,9 +1911,9 @@ paths:
           type: boolean
         style: form
         x-nullable: true
-      - description: "Format to save in. Several results are one worksheet each for\
-          \ Excel, one table each for Sqlite, and otherwise one file each within a\
-          \ zip."
+      - description: |-
+          Format to save in. Several results are one worksheet each for Excel, one table each for Sqlite, one key each for JsonProperByTable,
+          and otherwise one file each within a zip.
         explode: true
         in: query
         name: format
@@ -1963,11 +1992,11 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] SaveMultiQueryResultsToDrive: Saves the results of\
-        \ a custom query-set directly to Drive, as one file"
+      summary: "SaveMultiQueryResultsToDrive: Saves the results of a custom query-set\
+        \ directly to Drive, as one file"
       tags:
       - Multi-Query Execution
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/Sql/csv:
     put:
@@ -2254,6 +2283,136 @@ paths:
       tags:
       - Sql Execution
       x-fbn-apistatus: Stable
+      x-accepts: application/json
+  /api/Sql/customqueries/fromtext:
+    put:
+      description: "\nConverts the text of a custom multi-query into the queries to\
+        \ give to `api/MultiQueryBackground/custom` (or `api/Sql/extractscalarparameters/custom`).\n\
+        Nothing is run and no Saved Query is loaded: only the text itself is checked,\
+        \ so a query that reads a Saved Query's result is not.\n\nThe text of a custom\
+        \ multi-query starts each query with a `--- @Name` line, which may be followed\
+        \ by `(internal)`\n(its result only feeds the queries below it) and/or `=\
+        \ {visibility}/{workspace}/items/{group}/{name}` (a Saved Query, with nothing\
+        \ under it).\nA query reads the result of one above it as `@Name`. e.g.\n\
+        ```sql\n--- @Ten (internal)\nselect [Int], Str from Testing10\n\n--- @Evens\n\
+        select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile\
+        \ LICENSE.md publish README.md resources test_sdk from @Ten where [Int] %\
+        \ 2 = 0\n```\n\nThe following error codes are to be anticipated with standard\
+        \ Problem Detail reports:\n- 400 BadRequest - the text is not a valid set\
+        \ of queries: `errorDetails` then has one entry per problem, giving its (1-based)\
+        \ `line` and `message`\n- 401 Unauthorized\n\n\n> This method is generally\
+        \ only intended for IDE generation purposes. \n> It is largely internal to\
+        \ the Finbourne web user interfaces and subject to change without notice.\n"
+      operationId: PutTextToCustomQueries
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        description: "The text of the queries, each started by a `--- @Name` line"
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomMultiQueryItem'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomMultiQueryItem'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomMultiQueryItem'
+                type: array
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "PutTextToCustomQueries: Convert the text of a custom multi-query into\
+        \ its queries"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Stable
+      x-content-type: text/plain
+      x-accepts: application/json
+  /api/Sql/customqueries/totext:
+    put:
+      description: "\nConverts the queries of a custom multi-query into its text,\
+        \ which `api/Sql/customqueries/fromtext` reads back as the same queries.\n\
+        Only the request's `queries` are used (or those of the custom multi-query\
+        \ saved at its `queriesFromWorkspace`, or a Saved Query\nthere as the one\
+        \ query, named `Result`):\nits other properties (e.g. `scalarParameters`)\
+        \ are ignored.\n\nThe text of a custom multi-query starts each query with\
+        \ a `--- @Name` line, which may be followed by `(internal)`\n(its result only\
+        \ feeds the queries below it) and/or `= {visibility}/{workspace}/items/{group}/{name}`\
+        \ (a Saved Query, with nothing under it).\nA query reads the result of one\
+        \ above it as `@Name`. e.g.\n```sql\n--- @Ten (internal)\nselect [Int], Str\
+        \ from Testing10\n\n--- @Evens\nselect docker-compose.yml Dockerfile Dockerfile.cicd\
+        \ docs generate justfile LICENSE.md publish README.md resources test_sdk from\
+        \ @Ten where [Int] % 2 = 0\n```\n\nThe following error codes are to be anticipated\
+        \ with standard Problem Detail reports:\n- 400 BadRequest - the request was\
+        \ invalid, its queries could not be loaded from Workspaces, or a query cannot\
+        \ be written as text\n (its SQL holds a line that would itself start a query,\
+        \ `--- @...`, or a `\\` line)\n- 401 Unauthorized\n\n\n> This method is generally\
+        \ only intended for IDE generation purposes. \n> It is largely internal to\
+        \ the Finbourne web user interfaces and subject to change without notice.\n"
+      operationId: PutCustomQueriesToText
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomMultiQueryRequest'
+        description: The same set of queries as would be given to start them via `api/MultiQueryBackground/custom`
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+      security:
+      - oauth2: []
+      summary: "PutCustomQueriesToText: Convert the queries of a custom multi-query\
+        \ into its text"
+      tags:
+      - Sql Design
+      x-fbn-apistatus: Stable
+      x-content-type: application/json
       x-accepts: application/json
   /api/Sql/excel:
     put:
@@ -2656,13 +2815,18 @@ paths:
         \ across the queries of a custom multi-query,\nloading the SQL of any given\
         \ as Saved Queries.\nEach name is given only once (the first found of it,\
         \ in query order), as the same value of it is given to every query that is\
-        \ run.\nThe request's own `scalarParameters` are ignored.\n\nThe following\
-        \ error codes are to be anticipated with standard Problem Detail reports:\n\
-        - 400 BadRequest - the request was invalid, a Saved Query could not be loaded,\
-        \ or there was something wrong with the syntax of a query\n- 401 Unauthorized\n\
-        - 403 Forbidden\n\n\n> This method is generally only intended for IDE generation\
-        \ purposes. \n> It is largely internal to the Finbourne web user interfaces\
-        \ and subject to change without notice.\n"
+        \ run.\nThe request's own `scalarParameters` are ignored.\n\nGiven `queriesFromWorkspace`\
+        \ rather than `queries`, the queries are those of the custom multi-query saved\
+        \ there, and the `value`\nof each scalar parameter is that saved with it (where\
+        \ there is one, and it is allowed) rather than the default in the SQL:\nthe\
+        \ value a run of it without one of its own is given. A Saved Query there is\
+        \ the one query, named `Result`.\n\nThe following error codes are to be anticipated\
+        \ with standard Problem Detail reports:\n- 400 BadRequest - the request was\
+        \ invalid, its queries could not be loaded from Workspaces, a Saved Query\
+        \ could not be loaded, or there was something wrong with the syntax of a query\n\
+        - 401 Unauthorized\n- 403 Forbidden\n\n\n> This method is generally only intended\
+        \ for IDE generation purposes. \n> It is largely internal to the Finbourne\
+        \ web user interfaces and subject to change without notice.\n"
       operationId: PutCustomQueriesToExtractScalarParameters
       requestBody:
         content:
@@ -6972,11 +7136,11 @@ paths:
           description: OK
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] ListQueries: List the background queries available\
-        \ to the calling user"
+      summary: "ListQueries: List the background queries available to the calling\
+        \ user"
       tags:
       - Sql Background Execution
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
     put:
       description: "\nAllow for starting a potentially long running query and getting\
@@ -7670,11 +7834,10 @@ paths:
           description: Forbidden
       security:
       - oauth2: []
-      summary: "[EXPERIMENTAL] SaveQueryResultToDrive: Saves the query results directly\
-        \ to Drive"
+      summary: "SaveQueryResultToDrive: Saves the query results directly to Drive"
       tags:
       - Sql Background Execution
-      x-fbn-apistatus: Experimental
+      x-fbn-apistatus: Stable
       x-accepts: application/json
   /api/SqlBackground/{executionId}/excel:
     get:
@@ -10352,6 +10515,10 @@ components:
           rowCount: 0
           state: null
           status: null
+        export:
+          savedTo: savedTo
+          driveLocationAndFileName: driveLocationAndFileName
+          error: error
         status: null
       properties:
         progress:
@@ -10372,6 +10539,8 @@ components:
             $ref: '#/components/schemas/BackgroundQueryProgressResponse'
           nullable: true
           type: array
+        export:
+          $ref: '#/components/schemas/MultiQueryExportState'
       type: object
     BackgroundMultiQueryResponse:
       additionalProperties: false
@@ -11357,6 +11526,58 @@ components:
       - column
       - row
       type: object
+    CustomMultiQueryExport:
+      additionalProperties: false
+      description: |-
+        Where (and how) to save the results of a custom multi-query to Drive, as one file, once its queries are done:
+        the same as calling `api/MultiQueryBackground/{executionId}/drive` then, which may still be called as often as wanted.
+      example:
+        dateTimeFormat: dateTimeFormat
+        format: null
+        driveLocationAndFileName: driveLocationAndFileName
+        driveTemplateLocation: driveTemplateLocation
+        mayOverwrite: true
+        whenSomeFail: true
+      properties:
+        driveLocationAndFileName:
+          description: |-
+            Location and file name within Drive to save to.
+            Missing paths will be created, and extension (if given) will be ignored and inferred from the format (zip where several results are zipped).
+            May contain the placeholders `{executionId}`, `{date:format}` (when the queries started, UTC, e.g. `{date:yyyyMMdd}`)
+            and `{param:name}` (the value of a scalar parameter).
+          maxLength: 1024
+          minLength: 0
+          nullable: true
+          type: string
+        format:
+          $ref: '#/components/schemas/ExportType'
+        mayOverwrite:
+          description: If there is an existing file at the location with the same
+            name should it be overwritten (rather than the export failing)? False
+            by default.
+          nullable: true
+          type: boolean
+        driveTemplateLocation:
+          description: Drive path and full file name including extension of a template
+            to export with. Only Excel and Pdf exports support templates.
+          maxLength: 1024
+          minLength: 0
+          nullable: true
+          type: string
+        dateTimeFormat:
+          description: "Format to apply for DateTime data, leaving blank gives the\
+            \ Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+          maxLength: 64
+          minLength: 0
+          nullable: true
+          type: string
+        whenSomeFail:
+          description: |-
+            Should the results of the queries that succeeded still be saved when others did not? False by default, meaning nothing is saved then.
+            Either way the multi-query as a whole is reported as failed.
+          nullable: true
+          type: boolean
+      type: object
     CustomMultiQueryItem:
       additionalProperties: false
       description: "One query within a Finbourne.Honeycomb.WebApi.BackgroundQueries.MultiQuery.CustomMultiQueryRequest,\
@@ -11401,6 +11622,7 @@ components:
         available to them
       example:
         executionId: executionId
+        exportedTo: exportedTo
         queryName: queryName
         startedAt: 2000-01-23T04:56:07.000+00:00
         state: null
@@ -11438,6 +11660,11 @@ components:
           description: When it (and the data of its queries) may be removed (UTC)
           format: date-time
           type: string
+        exportedTo:
+          description: "The Drive path its results were saved to once done, if it\
+            \ was started with an `export` and they were"
+          nullable: true
+          type: string
         queries:
           description: "Its queries whose results may be fetched (those that are external\
             \ results), in request order"
@@ -11471,8 +11698,10 @@ components:
       example:
         executionId: executionId
         maxInParallel: 0
+        queriesFromWorkspace: queriesFromWorkspace
         scalarParameters:
           key: scalarParameters
+        executionFlags: null
         timeoutSeconds: 6
         queryName: queryName
         queries:
@@ -11485,6 +11714,13 @@ components:
           savedQuery: savedQuery
           sql: sql
         keepForSeconds: 1
+        export:
+          dateTimeFormat: dateTimeFormat
+          format: null
+          driveLocationAndFileName: driveLocationAndFileName
+          driveTemplateLocation: driveTemplateLocation
+          mayOverwrite: true
+          whenSomeFail: true
       properties:
         executionId:
           description: An explicit ExecutionId to use. This must be blank OR assigned
@@ -11509,6 +11745,17 @@ components:
           items:
             $ref: '#/components/schemas/CustomMultiQueryItem'
           type: array
+        queriesFromWorkspace:
+          description: |-
+            A custom multi-query saved in the Workspaces API to take the queries from, rather than giving them in `Queries`
+            (exactly one of which must be given), e.g. `shared/SomeWorkspace/items/sets/SomeSet`.
+            What this request leaves unspecified of `maxInParallel`, `timeoutSeconds`, `keepForSeconds` and `queryName` is taken
+            from it too, and its saved scalar parameter values are used for any this request does not give.
+            It may instead be a Saved Query, e.g. `shared/SomeWorkspace/items/queries/SomeQuery`, run as the one query, named `Result`.
+          maxLength: 1024
+          minLength: 0
+          nullable: true
+          type: string
         maxInParallel:
           description: |-
             Maximum number of the queries that may run concurrently. Defaults to 1, meaning they run one after another.
@@ -11518,15 +11765,20 @@ components:
           type: integer
         timeoutSeconds:
           description: |-
-            Maximum time each query may run for, in seconds, timed from when it starts: <0 → ∞, 0 → 1200s (20m).
-            There is no limit on the set as a whole.
+            Maximum time each query may run for, in seconds, timed from when it starts: <0 → ∞, 0 or null → 1200s (20m).
+            There is no limit on the set as a whole. Null (or absent) with `queriesFromWorkspace` is that saved with it.
           format: int32
+          nullable: true
           type: integer
         keepForSeconds:
-          description: "Maximum time the results may be kept for, in seconds: <0 →\
-            \ 1200 (20m), 0 → 28800 (8h), max = 2,678,400 (31d)"
+          description: |-
+            Maximum time the results may be kept for, in seconds: <0 → 1200 (20m), 0 or null → 28800 (8h), max = 2,678,400 (31d).
+            Null (or absent) with `queriesFromWorkspace` is that saved with it.
           format: int32
+          nullable: true
           type: integer
+        executionFlags:
+          $ref: '#/components/schemas/SqlExecutionFlags'
         queryName:
           description: A name for this set of queries. This goes into logs and is
             returned when listing the sets of queries.
@@ -11534,6 +11786,8 @@ components:
           minLength: 0
           nullable: true
           type: string
+        export:
+          $ref: '#/components/schemas/CustomMultiQueryExport'
       required:
       - queries
       type: object
@@ -11716,6 +11970,7 @@ components:
       - TableInternal
       - jsonProperWithLineage
       - pdf
+      - jsonProperByTable
       type: string
     ExpressionWithAlias:
       additionalProperties: false
@@ -12709,6 +12964,29 @@ components:
       - CandelaTraceEventLogs
       - Custom
       type: string
+    MultiQueryExportState:
+      additionalProperties: false
+      description: "What became of the export of a custom multi-query once its queries\
+        \ were done (persisted in its shared state, so known to every pod)."
+      example:
+        savedTo: savedTo
+        driveLocationAndFileName: driveLocationAndFileName
+        error: error
+      properties:
+        driveLocationAndFileName:
+          description: "Where it was to be saved, its placeholders filled in"
+          nullable: true
+          type: string
+        savedTo:
+          description: "The Drive path (and file name, with its extension) it was\
+            \ saved to, once it has been"
+          nullable: true
+          type: string
+        error:
+          description: "Why it was not saved, if it was not"
+          nullable: true
+          type: string
+      type: object
     OnClauseTermDesign:
       additionalProperties: false
       description: A single on clause term (a pair of columns to join or a column

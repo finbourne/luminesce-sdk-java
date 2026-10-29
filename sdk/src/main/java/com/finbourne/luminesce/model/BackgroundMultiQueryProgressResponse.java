@@ -13,6 +13,7 @@ package com.finbourne.luminesce.model;
 import java.util.Objects;
 import com.finbourne.luminesce.model.BackgroundQueryProgressResponse;
 import com.finbourne.luminesce.model.FeedbackEventArgs;
+import com.finbourne.luminesce.model.MultiQueryExportState;
 import com.finbourne.luminesce.model.TaskStatus;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -70,6 +71,10 @@ public class BackgroundMultiQueryProgressResponse {
   public static final String SERIALIZED_NAME_QUERIES = "queries";
   @SerializedName(SERIALIZED_NAME_QUERIES)
   private List<BackgroundQueryProgressResponse> queries;
+
+  public static final String SERIALIZED_NAME_EXPORT = "export";
+  @SerializedName(SERIALIZED_NAME_EXPORT)
+  private MultiQueryExportState export;
 
   public BackgroundMultiQueryProgressResponse() {
   }
@@ -174,6 +179,27 @@ public class BackgroundMultiQueryProgressResponse {
   }
 
 
+  public BackgroundMultiQueryProgressResponse export(MultiQueryExportState export) {
+    
+    this.export = export;
+    return this;
+  }
+
+   /**
+   * Get export
+   * @return export
+  **/
+  @jakarta.annotation.Nullable
+  public MultiQueryExportState getExport() {
+    return export;
+  }
+
+
+  public void setExport(MultiQueryExportState export) {
+    this.export = export;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -187,7 +213,8 @@ public class BackgroundMultiQueryProgressResponse {
     return Objects.equals(this.progress, backgroundMultiQueryProgressResponse.progress) &&
         Objects.equals(this.feedback, backgroundMultiQueryProgressResponse.feedback) &&
         Objects.equals(this.status, backgroundMultiQueryProgressResponse.status) &&
-        Objects.equals(this.queries, backgroundMultiQueryProgressResponse.queries);
+        Objects.equals(this.queries, backgroundMultiQueryProgressResponse.queries) &&
+        Objects.equals(this.export, backgroundMultiQueryProgressResponse.export);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -196,7 +223,7 @@ public class BackgroundMultiQueryProgressResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(progress, feedback, status, queries);
+    return Objects.hash(progress, feedback, status, queries, export);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -214,6 +241,7 @@ public class BackgroundMultiQueryProgressResponse {
     sb.append("    feedback: ").append(toIndentedString(feedback)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    queries: ").append(toIndentedString(queries)).append("\n");
+    sb.append("    export: ").append(toIndentedString(export)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -240,6 +268,7 @@ public class BackgroundMultiQueryProgressResponse {
     openapiFields.add("feedback");
     openapiFields.add("status");
     openapiFields.add("queries");
+    openapiFields.add("export");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -288,6 +317,10 @@ public class BackgroundMultiQueryProgressResponse {
             BackgroundQueryProgressResponse.validateJsonElement(jsonArrayqueries.get(i));
           };
         }
+      }
+      // validate the optional field `export`
+      if (jsonObj.get("export") != null && !jsonObj.get("export").isJsonNull()) {
+        MultiQueryExportState.validateJsonElement(jsonObj.get("export"));
       }
   }
 

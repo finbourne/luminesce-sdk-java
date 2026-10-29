@@ -8,6 +8,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**putCaseStatementDesignSqlToDesign**](SqlDesignApi.md#putCaseStatementDesignSqlToDesign) | **PUT** /api/Sql/tocasestatementdesign | PutCaseStatementDesignSqlToDesign: Convert SQL to a case statement design object |
 | [**putCaseStatementDesignToSql**](SqlDesignApi.md#putCaseStatementDesignToSql) | **PUT** /api/Sql/fromcasestatementdesign | PutCaseStatementDesignToSql: Convert a case statement design object to SQL |
 | [**putCustomQueriesToExtractScalarParameters**](SqlDesignApi.md#putCustomQueriesToExtractScalarParameters) | **PUT** /api/Sql/extractscalarparameters/custom | PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query |
+| [**putCustomQueriesToText**](SqlDesignApi.md#putCustomQueriesToText) | **PUT** /api/Sql/customqueries/totext | PutCustomQueriesToText: Convert the queries of a custom multi-query into its text |
 | [**putFileReadDesignToSql**](SqlDesignApi.md#putFileReadDesignToSql) | **PUT** /api/Sql/fromfilereaddesign | PutFileReadDesignToSql: Make file read SQL from a design object |
 | [**putInlinedPropertiesDesignSqlToDesign**](SqlDesignApi.md#putInlinedPropertiesDesignSqlToDesign) | **PUT** /api/Sql/toinlinedpropertiesdesign | PutInlinedPropertiesDesignSqlToDesign: Make an inlined properties design from SQL |
 | [**putInlinedPropertiesDesignToSql**](SqlDesignApi.md#putInlinedPropertiesDesignToSql) | **PUT** /api/Sql/frominlinedpropertiesdesign | PutInlinedPropertiesDesignToSql: Make inlined properties SQL from a design object |
@@ -21,6 +22,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**putSqlToQueryDesign**](SqlDesignApi.md#putSqlToQueryDesign) | **PUT** /api/Sql/todesign | PutSqlToQueryDesign: Make a SQL-design object from SQL if possible |
 | [**putSqlToViewDesign**](SqlDesignApi.md#putSqlToViewDesign) | **PUT** /api/Sql/toviewdesign | PutSqlToViewDesign: Make a view-design from view creation SQL |
 | [**putSqlToWriterDesign**](SqlDesignApi.md#putSqlToWriterDesign) | **PUT** /api/Sql/towriterdesign | PutSqlToWriterDesign: Make a SQL-writer-design object from SQL |
+| [**putTextToCustomQueries**](SqlDesignApi.md#putTextToCustomQueries) | **PUT** /api/Sql/customqueries/fromtext | PutTextToCustomQueries: Convert the text of a custom multi-query into its queries |
 | [**putViewDesignToSql**](SqlDesignApi.md#putViewDesignToSql) | **PUT** /api/Sql/fromviewdesign | PutViewDesignToSql: Make view creation sql from a view-design |
 | [**putWriterDesignToSql**](SqlDesignApi.md#putWriterDesignToSql) | **PUT** /api/Sql/fromwriterdesign | PutWriterDesignToSql: Make writer SQL from a writer-design object |
 
@@ -307,7 +309,7 @@ public class SqlDesignApiExample {
 
 PutCustomQueriesToExtractScalarParameters: Extract scalar parameter information from all the queries of a custom multi-query
 
- Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request&#39;s own &#x60;scalarParameters&#x60; are ignored.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+ Extracts information about all the scalar parameters defined across the queries of a custom multi-query, loading the SQL of any given as Saved Queries. Each name is given only once (the first found of it, in query order), as the same value of it is given to every query that is run. The request&#39;s own &#x60;scalarParameters&#x60; are ignored.  Given &#x60;queriesFromWorkspace&#x60; rather than &#x60;queries&#x60;, the queries are those of the custom multi-query saved there, and the &#x60;value&#x60; of each scalar parameter is that saved with it (where there is one, and it is allowed) rather than the default in the SQL: the value a run of it without one of its own is given. A Saved Query there is the one query, named &#x60;Result&#x60;.  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, a Saved Query could not be loaded, or there was something wrong with the syntax of a query - 401 Unauthorized - 403 Forbidden   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
 
 ### Example
 
@@ -388,6 +390,96 @@ public class SqlDesignApiExample {
 | **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## putCustomQueriesToText
+
+> String putCustomQueriesToText(customMultiQueryRequest)
+
+PutCustomQueriesToText: Convert the queries of a custom multi-query into its text
+
+ Converts the queries of a custom multi-query into its text, which &#x60;api/Sql/customqueries/fromtext&#x60; reads back as the same queries. Only the request&#39;s &#x60;queries&#x60; are used (or those of the custom multi-query saved at its &#x60;queriesFromWorkspace&#x60;, or a Saved Query there as the one query, named &#x60;Result&#x60;): its other properties (e.g. &#x60;scalarParameters&#x60;) are ignored.  The text of a custom multi-query starts each query with a &#x60;--- @Name&#x60; line, which may be followed by &#x60;(internal)&#x60; (its result only feeds the queries below it) and/or &#x60;&#x3D; {visibility}/{workspace}/items/{group}/{name}&#x60; (a Saved Query, with nothing under it). A query reads the result of one above it as &#x60;@Name&#x60;. e.g. &#x60;&#x60;&#x60;sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Ten where [Int] % 2 &#x3D; 0 &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the request was invalid, its queries could not be loaded from Workspaces, or a query cannot be written as text  (its SQL holds a line that would itself start a query, &#x60;--- @...&#x60;, or a &#x60;\\&#x60; line) - 401 Unauthorized   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlDesignApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
+        SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
+        CustomMultiQueryRequest customMultiQueryRequest = new CustomMultiQueryRequest(); // CustomMultiQueryRequest | The same set of queries as would be given to start them via `api/MultiQueryBackground/custom`
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.putCustomQueriesToText(customMultiQueryRequest).execute(opts);
+
+            String result = apiInstance.putCustomQueriesToText(customMultiQueryRequest).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlDesignApi#putCustomQueriesToText");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **customMultiQueryRequest** | [**CustomMultiQueryRequest**](CustomMultiQueryRequest.md)| The same set of queries as would be given to start them via &#x60;api/MultiQueryBackground/custom&#x60; | |
+
+### Return type
+
+**String**
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
@@ -1607,6 +1699,96 @@ public class SqlDesignApiExample {
 | **200** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **403** | Forbidden |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## putTextToCustomQueries
+
+> List&lt;CustomMultiQueryItem&gt; putTextToCustomQueries(body)
+
+PutTextToCustomQueries: Convert the text of a custom multi-query into its queries
+
+ Converts the text of a custom multi-query into the queries to give to &#x60;api/MultiQueryBackground/custom&#x60; (or &#x60;api/Sql/extractscalarparameters/custom&#x60;). Nothing is run and no Saved Query is loaded: only the text itself is checked, so a query that reads a Saved Query&#39;s result is not.  The text of a custom multi-query starts each query with a &#x60;--- @Name&#x60; line, which may be followed by &#x60;(internal)&#x60; (its result only feeds the queries below it) and/or &#x60;&#x3D; {visibility}/{workspace}/items/{group}/{name}&#x60; (a Saved Query, with nothing under it). A query reads the result of one above it as &#x60;@Name&#x60;. e.g. &#x60;&#x60;&#x60;sql --- @Ten (internal) select [Int], Str from Testing10  --- @Evens select docker-compose.yml Dockerfile Dockerfile.cicd docs generate justfile LICENSE.md publish README.md resources test_sdk from @Ten where [Int] % 2 &#x3D; 0 &#x60;&#x60;&#x60;  The following error codes are to be anticipated with standard Problem Detail reports: - 400 BadRequest - the text is not a valid set of queries: &#x60;errorDetails&#x60; then has one entry per problem, giving its (1-based) &#x60;line&#x60; and &#x60;message&#x60; - 401 Unauthorized   &gt; This method is generally only intended for IDE generation purposes.  &gt; It is largely internal to the Finbourne web user interfaces and subject to change without notice. 
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlDesignApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlDesignApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlDesignApi apiInstance = apiFactory.build(SqlDesignApi.class);
+
+        SqlDesignApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlDesignApi.class);
+        String body = "body_example"; // String | The text of the queries, each started by a `--- @Name` line
+        try {
+            // uncomment the below to set overrides at the request level
+            // List<CustomMultiQueryItem> result = apiInstance.putTextToCustomQueries(body).execute(opts);
+
+            List<CustomMultiQueryItem> result = apiInstance.putTextToCustomQueries(body).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlDesignApi#putTextToCustomQueries");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | **String**| The text of the queries, each started by a &#x60;--- @Name&#x60; line | |
+
+### Return type
+
+[**List&lt;CustomMultiQueryItem&gt;**](CustomMultiQueryItem.md)
+
+### HTTP request headers
+
+- **Content-Type**: text/plain
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
