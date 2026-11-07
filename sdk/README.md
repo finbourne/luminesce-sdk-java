@@ -29,6 +29,7 @@ Class | Method | HTTP request | Description
 *MultiQueryExecutionApi* | [**startCustomQueries**](docs/MultiQueryExecutionApi.md#startcustomqueries) | **PUT** /api/MultiQueryBackground/custom | StartCustomQueries: Run a caller-supplied set of Sql queries in the background
 *MultiQueryExecutionApi* | [**startQueries**](docs/MultiQueryExecutionApi.md#startqueries) | **PUT** /api/MultiQueryBackground | StartQueries: Run a given set of Sql queries in the background
 *SqlBackgroundExecutionApi* | [**cancelQuery**](docs/SqlBackgroundExecutionApi.md#cancelquery) | **DELETE** /api/SqlBackground/{executionId} | CancelQuery: Cancel / Clear data from a previously run query
+*SqlBackgroundExecutionApi* | [**downloadQueryResult**](docs/SqlBackgroundExecutionApi.md#downloadqueryresult) | **PUT** /api/SqlBackground/{executionId}/download | [EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them
 *SqlBackgroundExecutionApi* | [**fetchQueryResultCsv**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultcsv) | **GET** /api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetch the result of a query as CSV
 *SqlBackgroundExecutionApi* | [**fetchQueryResultExcel**](docs/SqlBackgroundExecutionApi.md#fetchqueryresultexcel) | **GET** /api/SqlBackground/{executionId}/excel | FetchQueryResultExcel: Fetch the result of a query as an Excel file
 *SqlBackgroundExecutionApi* | [**fetchQueryResultHistogram**](docs/SqlBackgroundExecutionApi.md#fetchqueryresulthistogram) | **GET** /api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Construct a histogram of the result of a query
@@ -42,6 +43,7 @@ Class | Method | HTTP request | Description
 *SqlBackgroundExecutionApi* | [**getHistoricalFeedback**](docs/SqlBackgroundExecutionApi.md#gethistoricalfeedback) | **GET** /api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries)
 *SqlBackgroundExecutionApi* | [**getProgressOf**](docs/SqlBackgroundExecutionApi.md#getprogressof) | **GET** /api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point.
 *SqlBackgroundExecutionApi* | [**listQueries**](docs/SqlBackgroundExecutionApi.md#listqueries) | **GET** /api/SqlBackground | ListQueries: List the background queries available to the calling user
+*SqlBackgroundExecutionApi* | [**saveFormattedQueryResultToDrive**](docs/SqlBackgroundExecutionApi.md#saveformattedqueryresulttodrive) | **PUT** /api/SqlBackground/{executionId}/drive | [EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body
 *SqlBackgroundExecutionApi* | [**saveQueryResultToDrive**](docs/SqlBackgroundExecutionApi.md#savequeryresulttodrive) | **GET** /api/SqlBackground/{executionId}/drive | SaveQueryResultToDrive: Saves the query results directly to Drive
 *SqlBackgroundExecutionApi* | [**startQuery**](docs/SqlBackgroundExecutionApi.md#startquery) | **PUT** /api/SqlBackground | StartQuery: Start to Execute Sql in the background
 *SqlDesignApi* | [**getProviderTemplateForExport**](docs/SqlDesignApi.md#getprovidertemplateforexport) | **GET** /api/Sql/providertemplateforexport | GetProviderTemplateForExport: Makes a fields template for file importing via a writer
@@ -127,9 +129,25 @@ Class | Method | HTTP request | Description
  - [DataType](docs/DataType.md)
  - [DateParameters](docs/DateParameters.md)
  - [DesignJoinType](docs/DesignJoinType.md)
+ - [DownloadQueryResultRequest](docs/DownloadQueryResultRequest.md)
  - [ErrorHighlightItem](docs/ErrorHighlightItem.md)
  - [ErrorHighlightRequest](docs/ErrorHighlightRequest.md)
  - [ErrorHighlightResponse](docs/ErrorHighlightResponse.md)
+ - [ExportAggregation](docs/ExportAggregation.md)
+ - [ExportAggregationFunction](docs/ExportAggregationFunction.md)
+ - [ExportAggregationPlacement](docs/ExportAggregationPlacement.md)
+ - [ExportColumn](docs/ExportColumn.md)
+ - [ExportColumnColor](docs/ExportColumnColor.md)
+ - [ExportColumnDataType](docs/ExportColumnDataType.md)
+ - [ExportConditionalRule](docs/ExportConditionalRule.md)
+ - [ExportDateFormat](docs/ExportDateFormat.md)
+ - [ExportFormatting](docs/ExportFormatting.md)
+ - [ExportGrouping](docs/ExportGrouping.md)
+ - [ExportNegativeNumberFormat](docs/ExportNegativeNumberFormat.md)
+ - [ExportNumberFormat](docs/ExportNumberFormat.md)
+ - [ExportRuleColor](docs/ExportRuleColor.md)
+ - [ExportRuleEffect](docs/ExportRuleEffect.md)
+ - [ExportRuleOperator](docs/ExportRuleOperator.md)
  - [ExportType](docs/ExportType.md)
  - [ExpressionWithAlias](docs/ExpressionWithAlias.md)
  - [ExternalQuerySource](docs/ExternalQuerySource.md)
@@ -173,11 +191,13 @@ Class | Method | HTTP request | Description
  - [QueryDesignerVersion](docs/QueryDesignerVersion.md)
  - [ResourceId](docs/ResourceId.md)
  - [ResourceListOfAccessControlledResource](docs/ResourceListOfAccessControlledResource.md)
+ - [SaveQueryResultToDriveRequest](docs/SaveQueryResultToDriveRequest.md)
  - [ScalarParameter](docs/ScalarParameter.md)
  - [ServiceApiEndpoints](docs/ServiceApiEndpoints.md)
  - [Source](docs/Source.md)
  - [SourceType](docs/SourceType.md)
  - [SqlExecutionFlags](docs/SqlExecutionFlags.md)
+ - [TableExport](docs/TableExport.md)
  - [TableLineage](docs/TableLineage.md)
  - [TableMeta](docs/TableMeta.md)
  - [TableView](docs/TableView.md)

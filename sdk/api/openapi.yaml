@@ -36,7 +36,7 @@ info:
     \ more than once |\n"
   termsOfService: https://www.finbourne.com/legal/terms-conditions
   title: FINBOURNE Luminesce Web API
-  version: 1.22.206
+  version: 1.22.216
   x-logo:
     url: https://www.lusid.com/app/assets/logo_white.png
     backgroundColor: '#415464'
@@ -7621,6 +7621,396 @@ paths:
       - Sql Background Execution
       x-fbn-apistatus: Stable
       x-accepts: application/json
+  /api/SqlBackground/{executionId}/download:
+    put:
+      description: |-
+        Downloads the results as a file in the requested format, as the endpoint of that format (e.g. `{executionId}/csv`) does,
+        but specified by a JSON body rather than query parameters. Given `?download=false`, the data is returned in the response-body instead.
+
+        Given `formatting`, the results are exported as the grid shows them: only the columns given, in their order and with their headers,
+        their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied.
+        So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored),
+        nor is it grouped (so `grouping` is ignored), as csv is for passing data on rather than reporting.
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 400 BadRequest : Something failed with the execution of your query, or the request was invalid
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: DownloadQueryResult
+      parameters:
+      - description: ExecutionId returned when starting the query
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          Makes this a file-download request (the default), or else returns the data in the response-body (as `{executionId}/csv` does
+          unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded.
+        explode: true
+        in: query
+        name: download
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+        x-nullable: true
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/DownloadQueryResultRequest'
+          application/json:
+            example:
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/DownloadQueryResultRequest'
+          text/json:
+            example:
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/DownloadQueryResultRequest'
+          application/*+json:
+            example:
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/DownloadQueryResultRequest'
+        description: "The format to download in, which of the results, and how they\
+          \ are to be formatted"
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in\
+        \ the format specified in the body, optionally formatted as the grid shows\
+        \ them"
+      tags:
+      - Sql Background Execution
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
+      x-accepts: application/json
   /api/SqlBackground/{executionId}/drive:
     get:
       description: "Saves the results directly to Drive. This can be useful for sharing\
@@ -7838,6 +8228,386 @@ paths:
       tags:
       - Sql Background Execution
       x-fbn-apistatus: Stable
+      x-accepts: application/json
+    put:
+      description: |-
+        Saves the results directly to Drive, as `GET {executionId}/drive` does, but specified by a JSON body rather than query parameters.
+
+        Given `formatting`, the results are saved as the grid shows them, as `PUT {executionId}/download` downloads them (so far for csv only).
+
+        The following error codes are to be anticipated most with standard Problem Detail reports:
+        - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found : The requested query result doesn't (yet) exist or the calling user did not run the query.
+        - 429 Too Many Requests : Please try your request again soon
+         1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn't yet have this data available.
+         1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.
+         1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+      operationId: SaveFormattedQueryResultToDrive
+      parameters:
+      - description: ExecutionId returned when starting the query
+        explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json-patch+json:
+            example:
+              driveLocationAndFileName: exports/trades
+              mayOverwrite: true
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/SaveQueryResultToDriveRequest'
+          application/json:
+            example:
+              driveLocationAndFileName: exports/trades
+              mayOverwrite: true
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/SaveQueryResultToDriveRequest'
+          text/json:
+            example:
+              driveLocationAndFileName: exports/trades
+              mayOverwrite: true
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/SaveQueryResultToDriveRequest'
+          application/*+json:
+            example:
+              driveLocationAndFileName: exports/trades
+              mayOverwrite: true
+              format: csv
+              sortBy: Tradedate
+              filter: AssetClass neq 'Cash'
+              sqlFilter: amount > 0
+              loadWaitMilliseconds: 0
+              formatting:
+                timezone: Europe/London
+                locale: en-GB
+                tables:
+                - columns:
+                  - colId: Tradedate
+                    header: Trade Date
+                    dataType: date
+                    hidden: false
+                    wrapText: false
+                    date:
+                      excelFormat: dd mmm yyyy
+                  - colId: Instrument
+                    hidden: false
+                    wrapText: false
+                    conditionalRules:
+                    - operator: equals
+                      value: FX
+                      sourceColumn: AssetClass
+                      effect: format
+                      format: "\"Pair: \"@"
+                      includeAggregates: false
+                  - colId: AssetClass
+                    header: Asset Class
+                    hidden: false
+                    wrapText: false
+                  - colId: cost
+                    header: Cost
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 2
+                      maxDecimals: 2
+                      thousandSeparator: true
+                      displayAsPercentage: false
+                      negativeNumberFormat: Braced
+                    conditionalRules:
+                    - operator: inRange
+                      value: "0"
+                      valueTo: "1"
+                      effect: prefix
+                      text: "~"
+                      includeAggregates: false
+                    - operator: greaterThan
+                      valueColumn: amount
+                      effect: suffix
+                      text: ' (> amount)'
+                      includeAggregates: false
+                  - colId: amount
+                    header: Amount
+                    dataType: number
+                    hidden: false
+                    wrapText: false
+                    number:
+                      minDecimals: 0
+                      maxDecimals: 1
+                      thousandSeparator: false
+                      displayAsPercentage: false
+                    conditionalRules:
+                    - operator: lessThan
+                      value: "1"
+                      effect: format
+                      format: 0.0%
+                      includeAggregates: false
+            schema:
+              $ref: '#/components/schemas/SaveQueryResultToDriveRequest'
+        description: "Where (and how) to save the results, as the query parameters\
+          \ of `GET {executionId}/drive`"
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LusidProblemDetails'
+          description: Forbidden
+      security:
+      - oauth2: []
+      summary: "[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results\
+        \ directly to Drive, as specified in the body"
+      tags:
+      - Sql Background Execution
+      x-fbn-apistatus: Experimental
+      x-content-type: application/json-patch+json
       x-accepts: application/json
   /api/SqlBackground/{executionId}/excel:
     get:
@@ -11853,6 +12623,291 @@ components:
       - Inner
       - FullOuter
       type: string
+    DownloadQueryResultRequest:
+      additionalProperties: false
+      description: |-
+        How to download the results of a background query: in what format, which of them, and (so far for csv only) formatted as the grid
+        shows them.
+      example:
+        filter: filter
+        select: select
+        dateTimeFormat: dateTimeFormat
+        sqlFilter: sqlFilter
+        format: null
+        sortBy: sortBy
+        groupBy: groupBy
+        loadWaitMilliseconds: 0
+        formatting:
+          tables:
+          - columns:
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            grouping:
+              groupKeys:
+              - groupKeys
+              - groupKeys
+              dateParts:
+                key: dateParts
+              aggregations:
+              - aggFunc: null
+                placement: null
+                colId: colId
+              - aggFunc: null
+                placement: null
+                colId: colId
+            tableName: tableName
+          - columns:
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            grouping:
+              groupKeys:
+              - groupKeys
+              - groupKeys
+              dateParts:
+                key: dateParts
+              aggregations:
+              - aggFunc: null
+                placement: null
+                colId: colId
+              - aggFunc: null
+                placement: null
+                colId: colId
+            tableName: tableName
+          timezone: timezone
+          locale: locale
+      properties:
+        format:
+          $ref: '#/components/schemas/ExportType'
+        sortBy:
+          description: |-
+            Order the results by these fields.
+            Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.
+            Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.
+            Default is null, the sort order specified in the query itself.
+          maxLength: 16384
+          minLength: 1
+          nullable: true
+          pattern: "^[\\s\\S]*$"
+          type: string
+        filter:
+          description: |-
+            Further limits the fetched results beyond that of the original query.
+            - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+            - may be combined with `sqlFilter`.
+          maxLength: 16384
+          minLength: 0
+          nullable: true
+          pattern: "^[\\s\\S]*$"
+          type: string
+        sqlFilter:
+          description: |-
+            Further limits the fetched results beyond that of the original query.
+            - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+            - may be combined with `filter` while supporting additional syntax that cannot.
+          nullable: true
+          type: string
+        select:
+          description: |-
+            Default is null (meaning return all columns in the original query itself).
+            The values are in terms of the result column name from the original data set and are comma delimited,
+            and may aggregate the data, e.g. `some_field, count(*) as a, max(x) as b` (where `groupBy` would likely be `1`).
+            The columns of `formatting` are in terms of the columns selected.
+          nullable: true
+          type: string
+        groupBy:
+          description: |-
+            Groups by the specified fields: a comma delimited list of 1 based numeric indexes into `select`, or repeats of its expressions.
+            Default is null (meaning no grouping will be performed on the selected columns).
+          nullable: true
+          type: string
+        dateTimeFormat:
+          description: |-
+            Format to apply for DateTime data not otherwise formatted, leaving blank gives the Luminesce Exporter default,
+            currently `yyyy-MM-dd HH:mm:ss.fff`
+          maxLength: 64
+          minLength: 0
+          nullable: true
+          type: string
+        loadWaitMilliseconds:
+          description: Optional maximum additional wait period for post execution
+            platform processing.
+          format: int32
+          type: integer
+        formatting:
+          $ref: '#/components/schemas/ExportFormatting'
+      type: object
     ErrorHighlightItem:
       additionalProperties: false
       description: Representation of a sql error
@@ -11954,6 +13009,568 @@ components:
       - errors
       - sqlWithMarker
       type: object
+    ExportAggregation:
+      additionalProperties: false
+      example:
+        aggFunc: null
+        placement: null
+        colId: colId
+      properties:
+        colId:
+          maxLength: 256
+          minLength: 0
+          type: string
+        aggFunc:
+          $ref: '#/components/schemas/ExportAggregationFunction'
+        placement:
+          $ref: '#/components/schemas/ExportAggregationPlacement'
+      required:
+      - colId
+      type: object
+    ExportAggregationFunction:
+      enum:
+      - sum
+      - min
+      - max
+      - avg
+      - count
+      - median
+      - sameValue
+      - uniqueString
+      - uniqueBoolean
+      - none
+      type: string
+    ExportAggregationPlacement:
+      enum:
+      - group
+      - footer
+      - both
+      type: string
+    ExportColumn:
+      additionalProperties: false
+      example:
+        date:
+          excelFormat: excelFormat
+          pattern: pattern
+          preset: preset
+        number:
+          negativeNumberFormat: null
+          maxDecimals: 1
+          thousandSeparator: true
+          minDecimals: 6
+          excelFormat: excelFormat
+          displayAsPercentage: true
+        conditionalRules:
+        - valueTo: valueTo
+          color: null
+          effect: null
+          valueColumn: valueColumn
+          valueToColumn: valueToColumn
+          format: format
+          hex: hex
+          includeAggregates: true
+          text: text
+          value: value
+          operator: null
+          sourceColumn: sourceColumn
+        - valueTo: valueTo
+          color: null
+          effect: null
+          valueColumn: valueColumn
+          valueToColumn: valueToColumn
+          format: format
+          hex: hex
+          includeAggregates: true
+          text: text
+          value: value
+          operator: null
+          sourceColumn: sourceColumn
+        hidden: true
+        dataType: null
+        header: header
+        colId: colId
+        wrapText: true
+        columnColor:
+          hex: hex
+          preset: preset
+      properties:
+        colId:
+          maxLength: 256
+          minLength: 0
+          type: string
+        header:
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        dataType:
+          $ref: '#/components/schemas/ExportColumnDataType'
+        hidden:
+          type: boolean
+        wrapText:
+          type: boolean
+        columnColor:
+          $ref: '#/components/schemas/ExportColumnColor'
+        number:
+          $ref: '#/components/schemas/ExportNumberFormat'
+        date:
+          $ref: '#/components/schemas/ExportDateFormat'
+        conditionalRules:
+          items:
+            $ref: '#/components/schemas/ExportConditionalRule'
+          nullable: true
+          type: array
+      required:
+      - colId
+      type: object
+    ExportColumnColor:
+      additionalProperties: false
+      example:
+        hex: hex
+        preset: preset
+      properties:
+        preset:
+          maxLength: 32
+          minLength: 0
+          nullable: true
+          type: string
+        hex:
+          nullable: true
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+      type: object
+    ExportColumnDataType:
+      enum:
+      - number
+      - date
+      - dateTime
+      - text
+      - boolean
+      type: string
+    ExportConditionalRule:
+      additionalProperties: false
+      example:
+        valueTo: valueTo
+        color: null
+        effect: null
+        valueColumn: valueColumn
+        valueToColumn: valueToColumn
+        format: format
+        hex: hex
+        includeAggregates: true
+        text: text
+        value: value
+        operator: null
+        sourceColumn: sourceColumn
+      properties:
+        operator:
+          $ref: '#/components/schemas/ExportRuleOperator'
+        value:
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        valueTo:
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        valueColumn:
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        valueToColumn:
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        sourceColumn:
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        effect:
+          $ref: '#/components/schemas/ExportRuleEffect'
+        color:
+          $ref: '#/components/schemas/ExportRuleColor'
+        hex:
+          nullable: true
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        text:
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        format:
+          maxLength: 100
+          minLength: 0
+          nullable: true
+          type: string
+        includeAggregates:
+          type: boolean
+      required:
+      - effect
+      - operator
+      type: object
+    ExportDateFormat:
+      additionalProperties: false
+      example:
+        excelFormat: excelFormat
+        pattern: pattern
+        preset: preset
+      properties:
+        preset:
+          maxLength: 64
+          minLength: 0
+          nullable: true
+          type: string
+        pattern:
+          maxLength: 100
+          minLength: 0
+          nullable: true
+          type: string
+        excelFormat:
+          maxLength: 100
+          minLength: 0
+          type: string
+      required:
+      - excelFormat
+      type: object
+    ExportFormatting:
+      additionalProperties: false
+      example:
+        tables:
+        - columns:
+          - date:
+              excelFormat: excelFormat
+              pattern: pattern
+              preset: preset
+            number:
+              negativeNumberFormat: null
+              maxDecimals: 1
+              thousandSeparator: true
+              minDecimals: 6
+              excelFormat: excelFormat
+              displayAsPercentage: true
+            conditionalRules:
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            hidden: true
+            dataType: null
+            header: header
+            colId: colId
+            wrapText: true
+            columnColor:
+              hex: hex
+              preset: preset
+          - date:
+              excelFormat: excelFormat
+              pattern: pattern
+              preset: preset
+            number:
+              negativeNumberFormat: null
+              maxDecimals: 1
+              thousandSeparator: true
+              minDecimals: 6
+              excelFormat: excelFormat
+              displayAsPercentage: true
+            conditionalRules:
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            hidden: true
+            dataType: null
+            header: header
+            colId: colId
+            wrapText: true
+            columnColor:
+              hex: hex
+              preset: preset
+          grouping:
+            groupKeys:
+            - groupKeys
+            - groupKeys
+            dateParts:
+              key: dateParts
+            aggregations:
+            - aggFunc: null
+              placement: null
+              colId: colId
+            - aggFunc: null
+              placement: null
+              colId: colId
+          tableName: tableName
+        - columns:
+          - date:
+              excelFormat: excelFormat
+              pattern: pattern
+              preset: preset
+            number:
+              negativeNumberFormat: null
+              maxDecimals: 1
+              thousandSeparator: true
+              minDecimals: 6
+              excelFormat: excelFormat
+              displayAsPercentage: true
+            conditionalRules:
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            hidden: true
+            dataType: null
+            header: header
+            colId: colId
+            wrapText: true
+            columnColor:
+              hex: hex
+              preset: preset
+          - date:
+              excelFormat: excelFormat
+              pattern: pattern
+              preset: preset
+            number:
+              negativeNumberFormat: null
+              maxDecimals: 1
+              thousandSeparator: true
+              minDecimals: 6
+              excelFormat: excelFormat
+              displayAsPercentage: true
+            conditionalRules:
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            - valueTo: valueTo
+              color: null
+              effect: null
+              valueColumn: valueColumn
+              valueToColumn: valueToColumn
+              format: format
+              hex: hex
+              includeAggregates: true
+              text: text
+              value: value
+              operator: null
+              sourceColumn: sourceColumn
+            hidden: true
+            dataType: null
+            header: header
+            colId: colId
+            wrapText: true
+            columnColor:
+              hex: hex
+              preset: preset
+          grouping:
+            groupKeys:
+            - groupKeys
+            - groupKeys
+            dateParts:
+              key: dateParts
+            aggregations:
+            - aggFunc: null
+              placement: null
+              colId: colId
+            - aggFunc: null
+              placement: null
+              colId: colId
+          tableName: tableName
+        timezone: timezone
+        locale: locale
+      properties:
+        timezone:
+          maxLength: 64
+          minLength: 0
+          nullable: true
+          type: string
+        locale:
+          maxLength: 35
+          minLength: 0
+          nullable: true
+          type: string
+        tables:
+          items:
+            $ref: '#/components/schemas/TableExport'
+          nullable: true
+          type: array
+      type: object
+    ExportGrouping:
+      additionalProperties: false
+      example:
+        groupKeys:
+        - groupKeys
+        - groupKeys
+        dateParts:
+          key: dateParts
+        aggregations:
+        - aggFunc: null
+          placement: null
+          colId: colId
+        - aggFunc: null
+          placement: null
+          colId: colId
+      properties:
+        groupKeys:
+          items:
+            type: string
+          nullable: true
+          type: array
+        dateParts:
+          additionalProperties:
+            nullable: true
+            type: string
+          nullable: true
+          type: object
+        aggregations:
+          items:
+            $ref: '#/components/schemas/ExportAggregation'
+          nullable: true
+          type: array
+      type: object
+    ExportNegativeNumberFormat:
+      enum:
+      - Minus
+      - Red
+      - Braced
+      - RedBraced
+      type: string
+    ExportNumberFormat:
+      additionalProperties: false
+      example:
+        negativeNumberFormat: null
+        maxDecimals: 1
+        thousandSeparator: true
+        minDecimals: 6
+        excelFormat: excelFormat
+        displayAsPercentage: true
+      properties:
+        minDecimals:
+          format: int32
+          nullable: true
+          type: integer
+        maxDecimals:
+          format: int32
+          nullable: true
+          type: integer
+        thousandSeparator:
+          type: boolean
+        displayAsPercentage:
+          type: boolean
+        negativeNumberFormat:
+          $ref: '#/components/schemas/ExportNegativeNumberFormat'
+        excelFormat:
+          maxLength: 100
+          minLength: 0
+          nullable: true
+          type: string
+      type: object
+    ExportRuleColor:
+      enum:
+      - positive
+      - warning
+      - negative
+      - custom
+      type: string
+    ExportRuleEffect:
+      enum:
+      - text
+      - fill
+      - prefix
+      - suffix
+      - format
+      - rowText
+      - rowFill
+      type: string
+    ExportRuleOperator:
+      enum:
+      - always
+      - equals
+      - notEqual
+      - contains
+      - notContains
+      - startsWith
+      - endsWith
+      - greaterThan
+      - greaterThanOrEqual
+      - lessThan
+      - lessThanOrEqual
+      - inRange
+      - isBlank
+      - isNotBlank
+      type: string
     ExportType:
       description: |-
         The types of Exporting capable of being delivered by the WebAPI.
@@ -13658,6 +15275,322 @@ components:
       required:
       - values
       type: object
+    SaveQueryResultToDriveRequest:
+      additionalProperties: false
+      description: |-
+        Where (and how) to save the results of a background query to Drive: the body equivalent of the query parameters of
+        `GET api/SqlBackground/{executionId}/drive`.
+      example:
+        select: select
+        format: null
+        driveLocationAndFileName: driveLocationAndFileName
+        driveTemplateLocation: driveTemplateLocation
+        groupBy: groupBy
+        mayOverwrite: true
+        tableNameReference: tableNameReference
+        filter: filter
+        dateTimeFormat: dateTimeFormat
+        sqlFilter: sqlFilter
+        sortBy: sortBy
+        loadWaitMilliseconds: 0
+        formatting:
+          tables:
+          - columns:
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            grouping:
+              groupKeys:
+              - groupKeys
+              - groupKeys
+              dateParts:
+                key: dateParts
+              aggregations:
+              - aggFunc: null
+                placement: null
+                colId: colId
+              - aggFunc: null
+                placement: null
+                colId: colId
+            tableName: tableName
+          - columns:
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            - date:
+                excelFormat: excelFormat
+                pattern: pattern
+                preset: preset
+              number:
+                negativeNumberFormat: null
+                maxDecimals: 1
+                thousandSeparator: true
+                minDecimals: 6
+                excelFormat: excelFormat
+                displayAsPercentage: true
+              conditionalRules:
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              - valueTo: valueTo
+                color: null
+                effect: null
+                valueColumn: valueColumn
+                valueToColumn: valueToColumn
+                format: format
+                hex: hex
+                includeAggregates: true
+                text: text
+                value: value
+                operator: null
+                sourceColumn: sourceColumn
+              hidden: true
+              dataType: null
+              header: header
+              colId: colId
+              wrapText: true
+              columnColor:
+                hex: hex
+                preset: preset
+            grouping:
+              groupKeys:
+              - groupKeys
+              - groupKeys
+              dateParts:
+                key: dateParts
+              aggregations:
+              - aggFunc: null
+                placement: null
+                colId: colId
+              - aggFunc: null
+                placement: null
+                colId: colId
+            tableName: tableName
+          timezone: timezone
+          locale: locale
+      properties:
+        driveLocationAndFileName:
+          description: |-
+            Location and file name within Drive where this should be saved to.
+            Missing paths will be created, and extension (if given) will be ignored and inferred from the chosen format.
+          maxLength: 1024
+          minLength: 0
+          type: string
+        mayOverwrite:
+          description: |-
+            If there is an existing file at the requested location with the same name should this be overridden, or an error returned?
+            False by default.
+          type: boolean
+        format:
+          $ref: '#/components/schemas/ExportType'
+        driveTemplateLocation:
+          description: |-
+            Drive path and full file name including extension to be used for the export.
+            Only some export types support templates, such as Excel and Pdf, and this will need to match the format type, if given.
+          maxLength: 1024
+          minLength: 0
+          nullable: true
+          type: string
+        tableNameReference:
+          description: What should the 'exported table name' be. Defaults to 'Results'.
+            This has different meaning for different export types.
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        sortBy:
+          description: |-
+            Order the results by these fields.
+            Use the `-` sign to denote descending order, e.g. `-MyFieldName`. Numeric indexes may be used also, e.g. `2,-3`.
+            Multiple fields can be denoted by a comma e.g. `-MyFieldName,AnotherFieldName,-AFurtherFieldName`.
+            Default is null, the sort order specified in the query itself.
+          maxLength: 16384
+          minLength: 1
+          nullable: true
+          pattern: "^[\\s\\S]*$"
+          type: string
+        filter:
+          description: |-
+            Further limits the fetched results beyond that of the original query.
+            - An ODATA filter per Finbourne.Filtering syntax, e.g. `SomeField eq 'Hello'`
+            - may be combined with `sqlFilter`.
+          maxLength: 16384
+          minLength: 0
+          nullable: true
+          pattern: "^[\\s\\S]*$"
+          type: string
+        sqlFilter:
+          description: |-
+            Further limits the fetched results beyond that of the original query.
+            - Raw SQL for filtering, e.g. `strftime('%Y-%m', SomeDateField) = '2026-06'`
+            - may be combined with `filter` while supporting additional syntax that cannot.
+          nullable: true
+          type: string
+        select:
+          description: |-
+            Default is null (meaning return all columns in the original query itself).
+            The values are in terms of the result column name from the original data set and are comma delimited,
+            and may aggregate the data, e.g. `some_field, count(*) as a, max(x) as b` (where `groupBy` would likely be `1`).
+          nullable: true
+          type: string
+        groupBy:
+          description: |-
+            Groups by the specified fields: a comma delimited list of 1 based numeric indexes into `select`, or repeats of its expressions.
+            Default is null (meaning no grouping will be performed on the selected columns).
+          nullable: true
+          type: string
+        dateTimeFormat:
+          description: "Format to apply for DateTime data, leaving blank gives the\
+            \ Luminesce Exporter default, currently `yyyy-MM-dd HH:mm:ss.fff`"
+          maxLength: 64
+          minLength: 0
+          nullable: true
+          type: string
+        loadWaitMilliseconds:
+          description: Optional maximum additional wait period for post execution
+            platform processing.
+          format: int32
+          type: integer
+        formatting:
+          $ref: '#/components/schemas/ExportFormatting'
+      required:
+      - driveLocationAndFileName
+      type: object
     ScalarParameter:
       additionalProperties: false
       description: Describes a scalar parameter as defined in the SQL
@@ -13785,6 +15718,126 @@ components:
       - None
       - ProvideLineage
       type: string
+    TableExport:
+      additionalProperties: false
+      example:
+        columns:
+        - date:
+            excelFormat: excelFormat
+            pattern: pattern
+            preset: preset
+          number:
+            negativeNumberFormat: null
+            maxDecimals: 1
+            thousandSeparator: true
+            minDecimals: 6
+            excelFormat: excelFormat
+            displayAsPercentage: true
+          conditionalRules:
+          - valueTo: valueTo
+            color: null
+            effect: null
+            valueColumn: valueColumn
+            valueToColumn: valueToColumn
+            format: format
+            hex: hex
+            includeAggregates: true
+            text: text
+            value: value
+            operator: null
+            sourceColumn: sourceColumn
+          - valueTo: valueTo
+            color: null
+            effect: null
+            valueColumn: valueColumn
+            valueToColumn: valueToColumn
+            format: format
+            hex: hex
+            includeAggregates: true
+            text: text
+            value: value
+            operator: null
+            sourceColumn: sourceColumn
+          hidden: true
+          dataType: null
+          header: header
+          colId: colId
+          wrapText: true
+          columnColor:
+            hex: hex
+            preset: preset
+        - date:
+            excelFormat: excelFormat
+            pattern: pattern
+            preset: preset
+          number:
+            negativeNumberFormat: null
+            maxDecimals: 1
+            thousandSeparator: true
+            minDecimals: 6
+            excelFormat: excelFormat
+            displayAsPercentage: true
+          conditionalRules:
+          - valueTo: valueTo
+            color: null
+            effect: null
+            valueColumn: valueColumn
+            valueToColumn: valueToColumn
+            format: format
+            hex: hex
+            includeAggregates: true
+            text: text
+            value: value
+            operator: null
+            sourceColumn: sourceColumn
+          - valueTo: valueTo
+            color: null
+            effect: null
+            valueColumn: valueColumn
+            valueToColumn: valueToColumn
+            format: format
+            hex: hex
+            includeAggregates: true
+            text: text
+            value: value
+            operator: null
+            sourceColumn: sourceColumn
+          hidden: true
+          dataType: null
+          header: header
+          colId: colId
+          wrapText: true
+          columnColor:
+            hex: hex
+            preset: preset
+        grouping:
+          groupKeys:
+          - groupKeys
+          - groupKeys
+          dateParts:
+            key: dateParts
+          aggregations:
+          - aggFunc: null
+            placement: null
+            colId: colId
+          - aggFunc: null
+            placement: null
+            colId: colId
+        tableName: tableName
+      properties:
+        tableName:
+          maxLength: 256
+          minLength: 0
+          nullable: true
+          type: string
+        columns:
+          items:
+            $ref: '#/components/schemas/ExportColumn'
+          nullable: true
+          type: array
+        grouping:
+          $ref: '#/components/schemas/ExportGrouping'
+      type: object
     TableLineage:
       additionalProperties: false
       example:

@@ -29,11 +29,13 @@ import com.finbourne.luminesce.model.BackgroundQueryCancelResponse;
 import com.finbourne.luminesce.model.BackgroundQueryListItem;
 import com.finbourne.luminesce.model.BackgroundQueryProgressResponse;
 import com.finbourne.luminesce.model.BackgroundQueryResponse;
+import com.finbourne.luminesce.model.DownloadQueryResultRequest;
 import com.finbourne.luminesce.model.ExportType;
 import com.finbourne.luminesce.model.ExternalQuerySource;
 import java.io.File;
 import com.finbourne.luminesce.model.LusidProblemDetails;
 import java.time.OffsetDateTime;
+import com.finbourne.luminesce.model.SaveQueryResultToDriveRequest;
 import com.finbourne.luminesce.model.SqlExecutionFlags;
 
 import java.lang.reflect.Type;
@@ -294,6 +296,265 @@ public class SqlBackgroundExecutionApi {
      */
     public APIcancelQueryRequest cancelQuery(String executionId) {
         return new APIcancelQueryRequest(executionId);
+    }
+    private okhttp3.Call downloadQueryResultCall(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download, final ApiCallback _callback) throws ApiException {
+        return downloadQueryResultCall(executionId, downloadQueryResultRequest, download,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call downloadQueryResultCall(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = downloadQueryResultRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground/{executionId}/download"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (download != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("download", download));
+        }
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json-patch+json",
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call downloadQueryResultValidateBeforeCall(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling downloadQueryResult(Async)");
+        }
+
+        // verify the required parameter 'downloadQueryResultRequest' is set
+        if (downloadQueryResultRequest == null) {
+            throw new ApiException("Missing the required parameter 'downloadQueryResultRequest' when calling downloadQueryResult(Async)");
+        }
+
+        return downloadQueryResultCall(executionId, downloadQueryResultRequest, download, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> downloadQueryResultWithHttpInfo(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download) throws ApiException {
+        okhttp3.Call localVarCall = downloadQueryResultValidateBeforeCall(executionId, downloadQueryResultRequest, download, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> downloadQueryResultWithHttpInfo(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = downloadQueryResultValidateBeforeCall(executionId, downloadQueryResultRequest, download, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call downloadQueryResultAsync(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadQueryResultValidateBeforeCall(executionId, downloadQueryResultRequest, download, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call downloadQueryResultAsync(String executionId, DownloadQueryResultRequest downloadQueryResultRequest, Boolean download, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = downloadQueryResultValidateBeforeCall(executionId, downloadQueryResultRequest, download, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIdownloadQueryResultRequest {
+        private final String executionId;
+        private final DownloadQueryResultRequest downloadQueryResultRequest;
+        private Boolean download;
+
+        private APIdownloadQueryResultRequest(String executionId, DownloadQueryResultRequest downloadQueryResultRequest) {
+            this.executionId = executionId;
+            this.downloadQueryResultRequest = downloadQueryResultRequest;
+        }
+
+        /**
+         * Set download
+         * @param download Makes this a file-download request (the default), or else returns the data in the response-body (as &#x60;{executionId}/csv&#x60; does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded. (optional, default to true)
+         * @return APIdownloadQueryResultRequest
+         */
+        public APIdownloadQueryResultRequest download(Boolean download) {
+            this.download = download;
+            return this;
+        }
+
+        /**
+         * Build call for downloadQueryResult
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return downloadQueryResultCall(executionId, downloadQueryResultRequest, download, _callback);
+        }
+
+        /**
+         * Execute downloadQueryResult request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = downloadQueryResultWithHttpInfo(executionId, downloadQueryResultRequest, download);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute downloadQueryResult request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = downloadQueryResultWithHttpInfo(executionId, downloadQueryResultRequest, download, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute downloadQueryResult request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return downloadQueryResultWithHttpInfo(executionId, downloadQueryResultRequest, download);
+        }
+
+        /**
+         * Execute downloadQueryResult request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return downloadQueryResultWithHttpInfo(executionId, downloadQueryResultRequest, download, opts);
+        }
+
+        /**
+         * Execute downloadQueryResult request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return downloadQueryResultAsync(executionId, downloadQueryResultRequest, download, _callback);
+        }
+
+        /**
+         * Execute downloadQueryResult request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return downloadQueryResultAsync(executionId, downloadQueryResultRequest, download, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them
+     * Downloads the results as a file in the requested format, as the endpoint of that format (e.g. &#x60;{executionId}/csv&#x60;) does, but specified by a JSON body rather than query parameters. Given &#x60;?download&#x3D;false&#x60;, the data is returned in the response-body instead.  Given &#x60;formatting&#x60;, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so &#x60;grouping&#x60; is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query (required)
+     * @param downloadQueryResultRequest The format to download in, which of the results, and how they are to be formatted (required)
+     * @return APIdownloadQueryResultRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIdownloadQueryResultRequest downloadQueryResult(String executionId, DownloadQueryResultRequest downloadQueryResultRequest) {
+        return new APIdownloadQueryResultRequest(executionId, downloadQueryResultRequest);
     }
     private okhttp3.Call fetchQueryResultCsvCall(String executionId, Boolean download, String sortBy, String filter, String sqlFilter, String select, String groupBy, Integer limit, Integer page, String delimiter, String escape, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
         return fetchQueryResultCsvCall(executionId, download, sortBy, filter, sqlFilter, select, groupBy, limit, page, delimiter, escape, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());
@@ -4555,6 +4816,250 @@ public class SqlBackgroundExecutionApi {
      */
     public APIlistQueriesRequest listQueries() {
         return new APIlistQueriesRequest();
+    }
+    private okhttp3.Call saveFormattedQueryResultToDriveCall(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest, final ApiCallback _callback) throws ApiException {
+        return saveFormattedQueryResultToDriveCall(executionId, saveQueryResultToDriveRequest,  _callback, new ConfigurationOptions());
+    }
+
+    private okhttp3.Call saveFormattedQueryResultToDriveCall(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = saveQueryResultToDriveRequest;
+
+        // create path and map variables
+        String localVarPath = "/api/SqlBackground/{executionId}/drive"
+            .replace("{" + "executionId" + "}", localVarApiClient.escapeString(executionId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain",
+            "application/json",
+            "text/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json-patch+json",
+            "application/json",
+            "text/json",
+            "application/*+json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "oauth2" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback, opts);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call saveFormattedQueryResultToDriveValidateBeforeCall(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest, final ApiCallback _callback, ConfigurationOptions opts) throws ApiException {
+        // verify the required parameter 'executionId' is set
+        if (executionId == null) {
+            throw new ApiException("Missing the required parameter 'executionId' when calling saveFormattedQueryResultToDrive(Async)");
+        }
+
+        // verify the required parameter 'saveQueryResultToDriveRequest' is set
+        if (saveQueryResultToDriveRequest == null) {
+            throw new ApiException("Missing the required parameter 'saveQueryResultToDriveRequest' when calling saveFormattedQueryResultToDrive(Async)");
+        }
+
+        return saveFormattedQueryResultToDriveCall(executionId, saveQueryResultToDriveRequest, _callback, opts);
+
+    }
+
+
+    private ApiResponse<String> saveFormattedQueryResultToDriveWithHttpInfo(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest) throws ApiException {
+        okhttp3.Call localVarCall = saveFormattedQueryResultToDriveValidateBeforeCall(executionId, saveQueryResultToDriveRequest, null, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private ApiResponse<String> saveFormattedQueryResultToDriveWithHttpInfo(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest, ConfigurationOptions opts) throws ApiException {
+        okhttp3.Call localVarCall = saveFormattedQueryResultToDriveValidateBeforeCall(executionId, saveQueryResultToDriveRequest, null, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call saveFormattedQueryResultToDriveAsync(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest, final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = saveFormattedQueryResultToDriveValidateBeforeCall(executionId, saveQueryResultToDriveRequest, _callback, new ConfigurationOptions());
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    private okhttp3.Call saveFormattedQueryResultToDriveAsync(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest, final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+
+        okhttp3.Call localVarCall = saveFormattedQueryResultToDriveValidateBeforeCall(executionId, saveQueryResultToDriveRequest, _callback, opts);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class APIsaveFormattedQueryResultToDriveRequest {
+        private final String executionId;
+        private final SaveQueryResultToDriveRequest saveQueryResultToDriveRequest;
+
+        private APIsaveFormattedQueryResultToDriveRequest(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest) {
+            this.executionId = executionId;
+            this.saveQueryResultToDriveRequest = saveQueryResultToDriveRequest;
+        }
+
+        /**
+         * Build call for saveFormattedQueryResultToDrive
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return saveFormattedQueryResultToDriveCall(executionId, saveQueryResultToDriveRequest, _callback);
+        }
+
+        /**
+         * Execute saveFormattedQueryResultToDrive request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = saveFormattedQueryResultToDriveWithHttpInfo(executionId, saveQueryResultToDriveRequest);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute saveFormattedQueryResultToDrive request. Use any specified configuration options to override any other configuration for this request only.
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute(ConfigurationOptions opts) throws ApiException {
+            ApiResponse<String> localVarResp = saveFormattedQueryResultToDriveWithHttpInfo(executionId, saveQueryResultToDriveRequest, opts);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute saveFormattedQueryResultToDrive request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return saveFormattedQueryResultToDriveWithHttpInfo(executionId, saveQueryResultToDriveRequest);
+        }
+
+        /**
+         * Execute saveFormattedQueryResultToDrive request with HTTP info returned. Use any specified configuration options to override any other configuration for this request only.
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo(ConfigurationOptions opts) throws ApiException {
+            return saveFormattedQueryResultToDriveWithHttpInfo(executionId, saveQueryResultToDriveRequest, opts);
+        }
+
+        /**
+         * Execute saveFormattedQueryResultToDrive request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return saveFormattedQueryResultToDriveAsync(executionId, saveQueryResultToDriveRequest, _callback);
+        }
+
+        /**
+         * Execute saveFormattedQueryResultToDrive request (asynchronously). Use any specified configuration options to override any other configuration for this request only.
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback, ConfigurationOptions opts) throws ApiException {
+            return saveFormattedQueryResultToDriveAsync(executionId, saveQueryResultToDriveRequest, _callback, opts);
+        }
+    }
+
+    /**
+     * [EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body
+     * Saves the results directly to Drive, as &#x60;GET {executionId}/drive&#x60; does, but specified by a JSON body rather than query parameters.  Given &#x60;formatting&#x60;, the results are saved as the grid shows them, as &#x60;PUT {executionId}/download&#x60; downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+     * @param executionId ExecutionId returned when starting the query (required)
+     * @param saveQueryResultToDriveRequest Where (and how) to save the results, as the query parameters of &#x60;GET {executionId}/drive&#x60; (required)
+     * @return APIsaveFormattedQueryResultToDriveRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIsaveFormattedQueryResultToDriveRequest saveFormattedQueryResultToDrive(String executionId, SaveQueryResultToDriveRequest saveQueryResultToDriveRequest) {
+        return new APIsaveFormattedQueryResultToDriveRequest(executionId, saveQueryResultToDriveRequest);
     }
     private okhttp3.Call saveQueryResultToDriveCall(String executionId, String driveLocationAndFileName, Boolean mayOverwrite, ExportType format, String driveTemplateLocation, String tableNameReference, String sortBy, String filter, String sqlFilter, String select, String groupBy, String dateTimeFormat, Integer loadWaitMilliseconds, final ApiCallback _callback) throws ApiException {
         return saveQueryResultToDriveCall(executionId, driveLocationAndFileName, mayOverwrite, format, driveTemplateLocation, tableNameReference, sortBy, filter, sqlFilter, select, groupBy, dateTimeFormat, loadWaitMilliseconds,  _callback, new ConfigurationOptions());

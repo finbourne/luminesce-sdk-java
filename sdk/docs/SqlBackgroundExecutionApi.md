@@ -5,6 +5,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**cancelQuery**](SqlBackgroundExecutionApi.md#cancelQuery) | **DELETE** /api/SqlBackground/{executionId} | CancelQuery: Cancel / Clear data from a previously run query |
+| [**downloadQueryResult**](SqlBackgroundExecutionApi.md#downloadQueryResult) | **PUT** /api/SqlBackground/{executionId}/download | [EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them |
 | [**fetchQueryResultCsv**](SqlBackgroundExecutionApi.md#fetchQueryResultCsv) | **GET** /api/SqlBackground/{executionId}/csv | FetchQueryResultCsv: Fetch the result of a query as CSV |
 | [**fetchQueryResultExcel**](SqlBackgroundExecutionApi.md#fetchQueryResultExcel) | **GET** /api/SqlBackground/{executionId}/excel | FetchQueryResultExcel: Fetch the result of a query as an Excel file |
 | [**fetchQueryResultHistogram**](SqlBackgroundExecutionApi.md#fetchQueryResultHistogram) | **GET** /api/SqlBackground/{executionId}/histogram | FetchQueryResultHistogram: Construct a histogram of the result of a query |
@@ -18,6 +19,7 @@ All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
 | [**getHistoricalFeedback**](SqlBackgroundExecutionApi.md#getHistoricalFeedback) | **GET** /api/SqlBackground/{executionId}/historicalFeedback | GetHistoricalFeedback: View historical query progress (for older queries) |
 | [**getProgressOf**](SqlBackgroundExecutionApi.md#getProgressOf) | **GET** /api/SqlBackground/{executionId} | GetProgressOf: View query progress up to this point. |
 | [**listQueries**](SqlBackgroundExecutionApi.md#listQueries) | **GET** /api/SqlBackground | ListQueries: List the background queries available to the calling user |
+| [**saveFormattedQueryResultToDrive**](SqlBackgroundExecutionApi.md#saveFormattedQueryResultToDrive) | **PUT** /api/SqlBackground/{executionId}/drive | [EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body |
 | [**saveQueryResultToDrive**](SqlBackgroundExecutionApi.md#saveQueryResultToDrive) | **GET** /api/SqlBackground/{executionId}/drive | SaveQueryResultToDrive: Saves the query results directly to Drive |
 | [**startQuery**](SqlBackgroundExecutionApi.md#startQuery) | **PUT** /api/SqlBackground | StartQuery: Start to Execute Sql in the background |
 
@@ -108,6 +110,101 @@ public class SqlBackgroundExecutionApiExample {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## downloadQueryResult
+
+> String downloadQueryResult(executionId, downloadQueryResultRequest, download)
+
+[EXPERIMENTAL] DownloadQueryResult: Downloads the query results in the format specified in the body, optionally formatted as the grid shows them
+
+Downloads the results as a file in the requested format, as the endpoint of that format (e.g. &#x60;{executionId}/csv&#x60;) does, but specified by a JSON body rather than query parameters. Given &#x60;?download&#x3D;false&#x60;, the data is returned in the response-body instead.  Given &#x60;formatting&#x60;, the results are exported as the grid shows them: only the columns given, in their order and with their headers, their numbers and dates shown as given (in the given locale and timezone), and their conditional rules applied. So far only a csv download may be formatted, in which colours and wrapping cannot be shown (so are ignored), nor is it grouped (so &#x60;grouping&#x60; is ignored), as csv is for passing data on rather than reporting.  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query, or the request was invalid - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlBackgroundExecutionApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlBackgroundExecutionApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
+        SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        DownloadQueryResultRequest downloadQueryResultRequest = new DownloadQueryResultRequest(); // DownloadQueryResultRequest | The format to download in, which of the results, and how they are to be formatted
+        Boolean download = true; // Boolean | Makes this a file-download request (the default), or else returns the data in the response-body (as `{executionId}/csv` does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded.
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.downloadQueryResult(executionId, downloadQueryResultRequest, download).execute(opts);
+
+            String result = apiInstance.downloadQueryResult(executionId, downloadQueryResultRequest, download).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlBackgroundExecutionApi#downloadQueryResult");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **executionId** | **String**| ExecutionId returned when starting the query | |
+| **downloadQueryResultRequest** | [**DownloadQueryResultRequest**](DownloadQueryResultRequest.md)| The format to download in, which of the results, and how they are to be formatted | |
+| **download** | **Boolean**| Makes this a file-download request (the default), or else returns the data in the response-body (as &#x60;{executionId}/csv&#x60; does unless asked to download), though binary formats (e.g. excel and parquet) are always downloaded. | [optional] [default to true] |
+
+### Return type
+
+**String**
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
@@ -1457,6 +1554,99 @@ public class SqlBackgroundExecutionApiExample {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
+
+[Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
+
+
+## saveFormattedQueryResultToDrive
+
+> String saveFormattedQueryResultToDrive(executionId, saveQueryResultToDriveRequest)
+
+[EXPERIMENTAL] SaveFormattedQueryResultToDrive: Saves the query results directly to Drive, as specified in the body
+
+Saves the results directly to Drive, as &#x60;GET {executionId}/drive&#x60; does, but specified by a JSON body rather than query parameters.  Given &#x60;formatting&#x60;, the results are saved as the grid shows them, as &#x60;PUT {executionId}/download&#x60; downloads them (so far for csv only).  The following error codes are to be anticipated most with standard Problem Detail reports: - 400 BadRequest : Something failed with the execution of your query or drive parameters were incorrect in some way - 401 Unauthorized - 403 Forbidden - 404 Not Found : The requested query result doesn&#39;t (yet) exist or the calling user did not run the query. - 429 Too Many Requests : Please try your request again soon  1. The query has been executed successfully in the past yet the server-instance receiving this request (e.g. from a load balancer) doesn&#39;t yet have this data available.  1. By virtue of the request you have just placed this will have started to load from the persisted cache and will soon be available.  1. It is also the case that the original server-instance to process the original query is likely to already be able to service this request.
+
+### Example
+
+```java
+import com.finbourne.luminesce.model.*;
+import com.finbourne.luminesce.api.SqlBackgroundExecutionApi;
+import com.finbourne.luminesce.extensions.ApiConfigurationException;
+import com.finbourne.luminesce.extensions.ApiFactoryBuilder;
+import com.finbourne.luminesce.extensions.auth.FinbourneTokenException;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+public class SqlBackgroundExecutionApiExample {
+
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ApiConfigurationException, FinbourneTokenException {
+        String fileName = "secrets.json";
+        try(PrintWriter writer = new PrintWriter(fileName, "UTF-8")) {
+          writer.write("{" +
+            "\"api\": {" +
+            "    \"tokenUrl\": \"<your-token-url>\"," +
+            "    \"luminesceUrl\": \"https://<your-domain>.lusid.com/honeycomb\"," +
+            "    \"username\": \"<your-username>\"," +
+            "    \"password\": \"<your-password>\"," +
+            "    \"clientId\": \"<your-client-id>\"," +
+            "    \"clientSecret\": \"<your-client-secret>\"" +
+            "  }" +
+            "}");
+        }
+
+        // uncomment the below to use configuration overrides
+        // ConfigurationOptions opts = new ConfigurationOptions();
+        // opts.setTotalTimeoutMs(2000);
+        
+        // uncomment the below to use an api factory with overrides
+        // ApiFactory apiFactory = ApiFactoryBuilder.build(fileName, opts);
+        // SqlBackgroundExecutionApi apiInstance = apiFactory.build(SqlBackgroundExecutionApi.class);
+
+        SqlBackgroundExecutionApi apiInstance = ApiFactoryBuilder.build(fileName).build(SqlBackgroundExecutionApi.class);
+        String executionId = "executionId_example"; // String | ExecutionId returned when starting the query
+        SaveQueryResultToDriveRequest saveQueryResultToDriveRequest = new SaveQueryResultToDriveRequest(); // SaveQueryResultToDriveRequest | Where (and how) to save the results, as the query parameters of `GET {executionId}/drive`
+        try {
+            // uncomment the below to set overrides at the request level
+            // String result = apiInstance.saveFormattedQueryResultToDrive(executionId, saveQueryResultToDriveRequest).execute(opts);
+
+            String result = apiInstance.saveFormattedQueryResultToDrive(executionId, saveQueryResultToDriveRequest).execute();
+            System.out.println(result.toJson());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SqlBackgroundExecutionApi#saveFormattedQueryResultToDrive");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **executionId** | **String**| ExecutionId returned when starting the query | |
+| **saveQueryResultToDriveRequest** | [**SaveQueryResultToDriveRequest**](SaveQueryResultToDriveRequest.md)| Where (and how) to save the results, as the query parameters of &#x60;GET {executionId}/drive&#x60; | |
+
+### Return type
+
+**String**
+
+### HTTP request headers
+
+- **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+- **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 
 [Back to top](#) &#8226; [Back to API list](../README.md#documentation-for-api-endpoints) &#8226; [Back to Model list](../README.md#documentation-for-models) &#8226; [Back to README](../README.md)
 
