@@ -1,7 +1,7 @@
 <a id="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
+All URIs are relative to *https://fbn-ci.lusid.com/honeycomb*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

@@ -1,6 +1,6 @@
 # ViewManagementApi
 
-All URIs are relative to *https://fbn-prd.lusid.com/honeycomb*
+All URIs are relative to *https://fbn-ci.lusid.com/honeycomb*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|

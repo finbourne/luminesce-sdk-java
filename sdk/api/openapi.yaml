@@ -105,7 +105,7 @@ info:
     \ 5 2, stroke-width:2px;\nlinkStyle 14 stroke:#26a3ff, stroke-dasharray: 5 2,\
     \ stroke-width:2px;\n```\n\n"
 servers:
-- url: https://fbn-prd.lusid.com/honeycomb
+- url: https://fbn-ci.lusid.com/honeycomb
 security:
 - {}
 tags:
